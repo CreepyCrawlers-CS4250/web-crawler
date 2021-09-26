@@ -4,29 +4,30 @@ import csv
 
 all_links = []
 
-def addToReport(link, outlinks):
+def add_to_report(link, num_outlinks):
     try:
         with open('report.csv', 'a') as csvfile:
-            csvfile.writerow({link["href"]}, outlinks)
+            csvwriter = csv.writer(csvfile)
+            csvwriter.writerow([link, num_outlinks])
     except:
         pass   
 
-def addToRepository(link):
-    # do we make it .txt or .html???
-    try:
-        fileName = f'{soup.title.text}; {soup.h1.text}; {link["href"]}.html'
-        f = open(fileName, "x")
-    except:
-        print("error. file already exists")
-        pass
+# def add_to_repository(title, header, link):
+#     # do we make it .txt or .html???
+#     try:
+#         file_name = title + ';' + header + ';' + link + '.html'
+#         f = open(file_name, "x")
+#     except:
+#         print("error. file already exists")
+#         pass
 
-def getOutlinks(link):
-    pages = []
-    for link in soup("a"):
-        if 'href' in link.attrs:
-            print(link['href'])
-            pages.append(link['href'])
-    return pages
+def get_outlinks(links):
+    outlinks = []
+    for link in links:
+            if 'href' in link.attrs:
+                if link['href'] not in outlinks:
+                    outlinks.append(link['href'])
+    return outlinks
 
 def creepy_crawler(link):
     # GET request on seed
@@ -37,28 +38,15 @@ def creepy_crawler(link):
     soup = BeautifulSoup(req.text, "html.parser")
 
     # Create a new file and save in repository folder
-    addToRepository(link)
+    # add_to_repository(soup.title.text, soup.h1.text, link)
 
     # Get all links for seed
-    outlinks = getOutlinks(link)
-    all_links.extend(outlinks)
+    outlinks = get_outlinks(soup('a'))
+    all_links.extend([outlink for outlink in outlinks if outlink not in all_links])
     # Add seed to report.csv
-    addToReport(link, len(outlinks))
+    add_to_report(link, len(outlinks))
 
-seed = "https://en.wikipedia.org/wiki/Main_Page"
+seed = "https://en.wikipedia.org"
 creepy_crawler(seed)
 
-
-
-
-
-
-
-
-
-
-
-
-
 # print(soup.prettify())
-
