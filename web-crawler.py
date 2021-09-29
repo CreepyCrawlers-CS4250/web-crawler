@@ -56,7 +56,4 @@ def creepy_crawler(link):
         creepy_crawler(all_links.pop(0))
 
 seed = "https://en.wikipedia.org"
-# all_links.append(seed)
 creepy_crawler(seed)
-
-# print(soup.prettify())
