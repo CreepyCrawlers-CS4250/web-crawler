@@ -39,7 +39,10 @@ def get_outlinks(links, language):
 
 
 def get_language(seed) -> str:
-    req = requests.get(seed)
+    try:
+        req = requests.get(seed)
+    except:
+        return 'language could not be found, GET request failed'
     soup = BeautifulSoup(req.text, "html.parser")
     try:
         language = detect(soup.get_text())
