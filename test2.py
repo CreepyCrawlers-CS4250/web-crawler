@@ -32,9 +32,8 @@ def get_outlinks(links, language):
             if 'https://' in link['href'] or 'http://' in link['href']:
                 if link['href'] not in outlinks:
                     if get_language(link['href']) == language:
-                        # print("Link: ", link['href'])
-                        # print('Language:', get_language(link['href']), '\n')
                         outlinks.append(link['href'])
+                        print('added')
     return outlinks
 
 
@@ -46,6 +45,8 @@ def get_language(seed) -> str:
     soup = BeautifulSoup(req.text, "html.parser")
     try:
         language = detect(soup.get_text())
+        print(soup.title.string)
+        print(language)
         return language
     except:
         return 'no language detected'
@@ -66,7 +67,7 @@ def creepy_crawler(link, language):
     outlinks = get_outlinks(soup('a'), language)
     all_links.extend(
         [outlink for outlink in outlinks if outlink not in all_links])
-    # print(all_links)
+
     # Add seed to report.csv
     add_to_report(link, len(outlinks))
 
@@ -77,7 +78,8 @@ def creepy_crawler(link, language):
         creepy_crawler(all_links.pop(0), language)
 
 
-seed = "https://en.wikipedia.org"
+# seed = "https://disney.fandom.com/wiki/The_Disney_Wiki"
+seed = "https://www.yahoo.co.jp/"
 language = get_language(seed)
 print('Seed:', seed)
 print('Language:', language, '\n')
