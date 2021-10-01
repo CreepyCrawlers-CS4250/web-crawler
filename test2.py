@@ -54,29 +54,32 @@ def get_language(seed) -> str:
 
 
 def creepy_crawler(link, language):
-    # print(link)
-    # GET request on seed
-    req = requests.get(link)
 
-    # Get the link as BeautifulSoup object
-    soup = BeautifulSoup(req.text, "html.parser")
+    try:
+        # GET request on seed
+        req = requests.get(link)
 
-    # Create a new file and save in repository folder
-    add_to_repository(req.text)
+        # Get the link as BeautifulSoup object
+        soup = BeautifulSoup(req.text, "html.parser")
 
-    # Get all links for seed
-    outlinks = get_outlinks(soup('a'), language)
-    all_links.extend(
-        [outlink for outlink in outlinks if outlink not in all_links])
+        # Create a new file and save in repository folder
+        add_to_repository(req.text)
 
-    # Add seed to report.csv
-    add_to_report(link, len(outlinks))
+        # Get all links for seed
+        outlinks = get_outlinks(soup('a'), language)
+        all_links.extend(
+            [outlink for outlink in outlinks if outlink not in all_links])
 
-    global counter
-    if counter > 500:
-        return "done"
-    else:
-        time.sleep(1)
+        # Add seed to report.csv
+        add_to_report(link, len(outlinks))
+
+        global counter
+        if counter > 500:
+            return "done"
+        else:
+            time.sleep(1)
+            creepy_crawler(all_links.pop(0), language)
+    except:
         creepy_crawler(all_links.pop(0), language)
 
 
