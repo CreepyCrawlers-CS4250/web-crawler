@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 from langdetect import detect
+import time
 
 all_links = []
 counter = 0
@@ -75,6 +76,7 @@ def creepy_crawler(link, language):
     if counter > 500:
         return "done"
     else:
+        time.sleep(1)
         creepy_crawler(all_links.pop(0), language)
 
 
