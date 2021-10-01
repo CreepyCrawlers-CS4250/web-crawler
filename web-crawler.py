@@ -88,9 +88,9 @@ def creepy_crawler(link, language):
         creepy_crawler(all_links.pop(0), language)
 
 
-# seed = "https://disney.fandom.com/wiki/The_Disney_Wiki"
+seed = "https://disney.fandom.com/wiki/The_Disney_Wiki"
 # seed = "https://www.univision.com/noticias"
-seed = "https://ja.wikipedia.org/wiki/"
+# seed = "https://ja.wikipedia.org/wiki/"
 language = get_language(seed)
 print('Seed:', seed)
 print('Language:', language, '\n')
