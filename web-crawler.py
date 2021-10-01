@@ -34,9 +34,7 @@ def get_outlinks(links, language):
                 if link['href'] not in outlinks:
                     if get_language(link['href']) == language:
                         outlinks.append(link['href'])
-                        print('added')
-        # print("blah blah")
-    # print("we here")
+                        # print('added')
     return outlinks
 
 
