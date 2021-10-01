@@ -49,9 +49,9 @@ def get_language(seed) -> str:
     soup = BeautifulSoup(req.text, "html.parser")
     try:
         language = detect(soup.get_text())
-        print(soup.title.string)
-        print(seed)
-        print(language)
+        # print(soup.title.string)
+        # print(seed)
+        # print(language)
         return language
     except:
         return 'no language detected'
