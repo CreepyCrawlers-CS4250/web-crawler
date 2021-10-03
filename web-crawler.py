@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import csv
 from langdetect import detect
 import time
+import os
 
 all_links = []
 counter = 0
@@ -34,9 +35,6 @@ def get_outlinks(links, language):
                 if link['href'] not in outlinks:
                     if get_language(link['href']) == language:
                         outlinks.append(link['href'])
-                        print('added')
-        # print("blah blah")
-    # print("we here")
     return outlinks
 
 
@@ -68,7 +66,6 @@ def creepy_crawler(link, language):
 
         # Create a new file and save in repository folder
         add_to_repository(req.text)
-
         # Get all links for seed
         outlinks = get_outlinks(soup('a'), language)
 
@@ -85,12 +82,17 @@ def creepy_crawler(link, language):
             time.sleep(1)
             creepy_crawler(all_links.pop(0), language)
     except:
+        global counter
+        counter -= 1
+        file_path = "repository/" + counter + ".html"
+        os.remove(file_path)
         creepy_crawler(all_links.pop(0), language)
 
 
 # seed = "https://disney.fandom.com/wiki/The_Disney_Wiki"
 # seed = "https://www.univision.com/noticias"
 seed = "https://ja.wikipedia.org/wiki/"
+
 language = get_language(seed)
 print('Seed:', seed)
 print('Language:', language, '\n')
