@@ -82,9 +82,9 @@ def creepy_crawler(link, language):
             time.sleep(1)
             creepy_crawler(all_links.pop(0), language)
     except:
-        global counter
+        # global counter
         counter -= 1
-        file_path = "repository/" + counter + ".html"
+        file_path = "repository/" + str(counter) + ".html"
         os.remove(file_path)
         creepy_crawler(all_links.pop(0), language)
 
