@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta charset="utf-8"><meta name="description" content="Sailthru Default Signup Page"><meta name="keywords" content="Sailthru"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><script src="https://code.jquery.com/jquery-latest.min.js"></script><link href="https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans%7CLato" rel="stylesheet"><link rel="shortcut icon" type="image/png" href="https://sailthru-media.s3.amazonaws.com/composer/images/sailthru-prod-6n2/Fandom/Fandom%20Newsletter/Welcome%20Series/Header-GenericTitle-WeeklyEmail-1.png"><title>Fandom </title><style>
+
+body {
+  font-family: 'Rubik', sans-serif;
+  color:#002A32;
+  
+ }
+
+#wrapper {
+  font-family: 'Rubik', sans-serif;
+  width: 60%;
+  margin: 0 auto;
+}
+
+#logo {
+  color: #002A32;
+  border-bottom: 0px solid #000;
+  text-align: center;
+}
+
+.logo  {
+  width: 100%;
+  margin: 0%;
+}
+
+#content {
+  font-family: 'Rubik', sans-serif;
+  margin: 1% auto;
+  text-align: center;
+  
+}
+
+.checkboxes {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/*fixes IE blue border issue*/
+a {
+  color: #4989F1;
+  text-decoration: none;
+  border: 0px
+}
+
+a img {
+  text-decoration: none;
+  border: 0px;
+  outline: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+
+  
+  
+  
+
+ul {
+  margin: 0% 15% 0% 30%;
+}
+
+li {
+  list-style: none;
+  text-align: left;
+  padding: 1%;
+  margin-left: 3%;
+}
+
+input.checkbox {
+  margin-right: 3%;
+}
+
+.description {
+  display: block;
+  margin: 2% 1%;
+} 
+ 
+.newsletter_name {
+  font-weight: 500;
+  font-size: 100%;
+}
+
+form {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form_error {
+  color: red;
+}
+
+p.note {
+  margin: 3% 0% 3% 0%;
+}
+
+p.form_error {
+  color: red;
+}
+
+.date {
+  display: block;
+  font-size: 110%;
+  margin: 0 auto;
+  padding: 1%;
+  text-align: center;
+}
+
+#email {
+  display: none;
+} 
+
+.input_em {
+  width: 50%;
+  height: 25px;
+  font-size: 105%;
+  margin: 1% auto;
+  text-align: center;
+  display: block;
+}
+
+/* Button Styles */
+input.btn, a.btn {
+  border: none;
+  font-family:Rubik, Helvetica-Bold, Helvetica, Arial, sans-serif;
+  font-size: 80%;
+  cursor: pointer;
+  padding: 3% 5%;
+  display: inline-block;
+  margin: 3%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  background: #002A32;
+  border: 2px solid #FFF;
+  border-radius: 5px;
+  color: #EEECDC;
+  -webkit-appearance: none;
+}
+
+input.btn:hover, a.btn:hover {
+  background: #FFF;
+  border: 2px solid #000;
+  color: #000;
+}
+
+
+/* Media queries for smaller screens */
+@media screen and (max-width: 1024px) {
+  #wrapper {
+    width: 75%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  #content {
+    width: 80%;
+  }
+  ul {
+    margin: 0% 5% 0% 5%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  #content {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  #content {
+    width: 100%;
+    float: left;
+  }
+  ul {
+    margin: 1%;
+    padding: 1%;
+  }
+  li {
+   margin: 0%;
+  }
+  img.logo {
+    width: 200px;
+  }
+  .input_em {
+  width: 80%;
+  height: 25px;
+}
+  .unsub {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  #content {
+    width: 100%;
+    float: left;
+  }
+  input.btn {
+  font-size: 50%;
+  }
+  img.logo {
+    width: 200px;
+  }
+}
+
+</style><script>function st_recaptcha_1(token) {
+    var form = document.querySelectorAll("form[data-st-form-num='1']")[0];
+    HTMLFormElement.prototype.submit.call(form);
+}</script></head><body>
+  <div id="wrapper">
+    
+    <div id="header">
+        <div id="logo">
+        
+        <!---->
+        
+          <img class="logo" alt="Sign Up for Fandom's Weekly Newsletter!'" src="https://sailthru-media.s3.amazonaws.com/composer/images/sailthru-prod-6n2/Fandom/Fandom%20Newsletter/Welcome%20Series/Header-GenericTitle-WeeklyEmail-1.png"></div>
+    </div> <!-- end header -->
+
+  <div id="content">
+    <p class="note">Whether looking for in-depth information on favorite fandoms or what&rsquo;s buzzing in entertainment, FANDOM has your pop culture curiosities covered through fan-expert knowledge and carefully curated and fun, original multi-platform content. <br><br><b>Sign up today to receive weekly newsletters from Fandom - everything from Trending Communities, Featured Videos, and more!</b><br></p>
+
+   <form method="post" onsubmit="validateMyForm()" data-st-form-num="1">
+   
+    <label><input name="email" type="text" id="email"></label> 
+    <label>Enter Your Email Address: <input name="email" type="text" class="input_em" autofocus></label> 
+    
+    <p class="note form_error" id="form_suggestion"></p>
+
+
+
+
+
+  
+
+  
+  
+  
+
+          <input type="hidden" name="vars[source]" value="sailthru_signup_page_wikibar"><input type="submit" name="submit" value="Sign Up Today!" class="btn st-recaptcha" data-callback="st_recaptcha_1"><input type="hidden" name="nonce_61574d4418994" value="61574d4418995">
+<noscript>
+    <input type="hidden" name="st_no_js" value="1">
+</noscript><input type="hidden" name="profile_id" value=""><input type="hidden" name="st_form_num" value="0"></form>
+         
+      </div>  <!--END content-->
+    </div> <!-- END wrapper -->
+
+<script type="text/javascript">
+// 
+var myInput = document.getElementById("email");
+
+function validateMyForm()
+{
+  if(myInput.value != "" || null )
+  { 
+    console.log("you must be a bot; validation failed");
+    event.preventDefault();
+    return false;
+  }
+  console.log("you're valid, please proceed");
+  return true;
+}
+</script></body></html><script type="text/javascript">function st_recaptcha_onload() {
+    if (window.self === window.top) {
+        var submitButtons = window.self.document.querySelectorAll(".st-recaptcha");
+        for (var i = 0; i < submitButtons.length; i++) {
+            submitButtons[i].addEventListener('click', function (e) {
+                if (e.defaultPrevented) {
+                    e.stopImmediatePropagation();
+                }
+            });
+            grecaptcha.render(submitButtons[i], {'sitekey': '6LedJDkUAAAAANr8R6VZKS4kevTq_pWNZ-xBG6II'});
+        }
+    } else {
+        var forms = window.self.document.querySelectorAll("form[data-st-form-num]");
+        for (var i = 0; i < forms.length; i++) {
+            var input = window.self.document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'st_in_iframe';
+            input.value = '1';
+            forms[i].appendChild(input);
+        }
+    } 
+}</script><script src="https://www.google.com/recaptcha/api.js?onload=st_recaptcha_onload&amp;render=explicit" async="" defer></script>
