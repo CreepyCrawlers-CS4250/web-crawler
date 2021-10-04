@@ -1,0 +1,1197 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="ROBOTS" content="INDEX,FOLLOW"><meta name="keywords" content=""><meta name="description" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Univision Digital Now Subscription Center</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+      integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+      crossorigin="anonymous"
+    />
+    <!-- Custom styles for this template -->
+    <link href="https://mc835262rl0r2p1hcmy9k8l24f28.pub.sfmc-content.com/kleuhsaj2ki" rel="stylesheet" />
+    <style type="text/css">
+      body {
+      }
+
+      .logo {
+        width: 145px;
+        margin: 10px auto 0;
+      }
+
+      .logo img {
+        width: 145px;
+      }
+
+      #submitPrefs {
+        width: 174px;
+        height: 70px;
+        padding-right: 30;
+        border: none;
+        background: #c626b6;
+        background-origin: content-box;
+        background-position: right center;
+        background-size: 18px 18px;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 18px;
+        color: #ffffff;
+        margin: 0;
+      }
+
+      .error {
+        border: 1px solid #ff0000;
+        background-color: #f5cccc;
+        color: #666666;
+        padding: 50px;
+        margin-bottom: 50px;
+        display: none;
+        z-index: 1;
+        text-decoration: none;
+      }
+
+      .success {
+        border: 1px solid #707070;
+        background-color: #c626b6;
+        color: #ffffff;
+        padding: 50px;
+        margin-bottom: 50px;
+        display: none;
+        z-index: 1;
+      }
+
+      .error {
+        border: 1px solid #707070;
+        background-color: blue;
+        color: #ffffff;
+        padding: 50px;
+        margin-bottom: 50px;
+        display: none;
+        z-index: 1;
+      }
+
+      .error {
+        border: 1px solid #707070;
+        background-color: red;
+        color: #ffffff;
+        padding: 50px;
+        margin-bottom: 50px;
+        display: none;
+        z-index: 1;
+      }
+      
+      .override {
+        border: 1px solid #707070;
+        background-color: white;
+        color: red;
+        padding: 50px;
+        margin-bottom: 50px;
+        display: none;
+        z-index: 1;
+      }
+ 
+
+      #footer {
+        height: 350px;
+      }
+
+      #header {
+        padding-top: 25px !important;
+      }
+
+      h6 {
+        font-size: 22px;
+        display: inline-block;
+        margin-left: 5px;
+      }
+
+      .subBox input[type="checkbox"] {
+        cursor: pointer;
+      }
+
+      .txtBox {
+        min-height: 172px;
+      }
+
+      h6 {
+        font-size: 22px;
+        display: inline-block;
+        margin-left: 5px;
+      }
+
+      .subBox input[type="checkbox"] {
+        cursor: pointer;
+      }
+
+      .txtBox {
+        min-height: 172px;
+        cursor: pointer;
+      }
+
+      .txtBox input[type="checkbox"] {
+        display: none;
+      }
+
+      .txtBox input[type="checkbox"] + .txtBox-header {
+        display: inline-block;
+      }
+
+      .txtBox input[type="checkbox"]:checked + .txtBox-header {
+        color: #2cb1ff;
+      }
+
+      .txtBox input[type="checkbox"] + .txtBox-header .txtBox-check {
+        background-image: url("https://image.e.univision.com/lib/fe8c13727c66067a73/m/1/ca518cce-96ad-4390-bc60-e9100b5df3f8.png");
+        background-size: 30px 15px;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+      }
+
+      .txtBox input[type="checkbox"]:checked + .txtBox-header .txtBox-check {
+        background-position-x: -15px;
+      }
+
+      .addSub {
+        background: none;
+      }
+
+      .addSub {
+        background: none;
+      }
+
+      .subConfirm {
+        height: 100%;
+      }
+
+      .subConfirm h1 {
+        font-size: 18px;
+      }
+      .subForm select {
+        padding: 0 18px;
+        font-style: italic;
+        font-weight: 600;
+        line-height: 18px;
+        color: #999999;
+        border: none;
+        border-radius: 0;
+        margin: 0px 3px 5px 0;
+      }
+      .subForm input,
+      .subForm select,
+      .subForm button {
+        height: 35px;
+        font-size: 12px;
+      }
+
+      .subForm button {
+        padding: 9px;
+      }
+
+      .subConfirm .secondaryTxt {
+        font-size: 12px;
+      }
+
+      .subsAddedTxt {
+        font-size: 14px;
+      }
+
+      .subSelectWarning {
+        display: none;
+        color: #ffc107;
+        font-size: 18px;
+        float: right;
+        position: relative;
+        right: 32px;
+        top: 4px;
+      }
+
+      #subscriptions.dnCPCHome {
+        margin-bottom: 0;
+      }
+
+      #uni-header {
+        height: 545px;
+      }
+
+      #uni-footer {
+        height: 350px;
+      }
+
+      #uni-header,
+      #uni-footer {
+        width: 100%;
+        border: none;
+        position: absolute;
+        z-index: 1000;
+        overflow: scroll;
+        white-space: nowrap;
+      }
+
+      #header {
+        padding-top: 180px;
+      }
+
+      @media (max-width: 1200px) {
+        .txtBox {
+          min-height: 190px;
+        }
+
+        .addSub {
+          min-height: 67px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        #header {
+          padding-top: 80px;
+        }
+
+        #uni-footer {
+          height: 680px;
+        }
+
+        .txtBox {
+          min-height: 226px;
+        }
+      }
+
+      @media (max-width: 990px) {
+        .txtBox {
+          min-height: 262px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #uni-header {
+          height: 780px;
+        }
+
+        #uni-footer {
+          height: 747px;
+        }
+
+        #footer {
+          height: 285px;
+        }
+
+        .imgBox {
+          background-size: auto !important;
+        }
+
+        .imgBox .overlay {
+          position: static;
+        }
+
+        .imgBox .overlay {
+          width: 100px;
+        }
+
+        .imgBox .overlay h2 {
+          font-size: 18px;
+        }
+
+        .imgBox .overlay h3 {
+          font-size: 12px;
+        }
+
+        .subBox {
+          height: 380px;
+        }
+      }
+
+      @media (max-width: 575px) {
+        body {
+          padding-bottom: 932px;
+        }
+
+        #uni-header {
+          display: none;
+        }
+
+        #uni-footer {
+          height: 806px;
+        }
+
+        #footer {
+          height: 188px;
+        }
+
+        .subForm input[name="firstName"],
+        .subForm input[name="lastName"],
+        .subForm button {
+          width: 32%;
+        }
+
+        #header.dnCPCHome h1 {
+          font-size: 24px;
+          line-height: 28px;
+        }
+
+        #header.dnCPCHome .subheadTxt {
+          font-size: 18px;
+          line-height: 20px;
+        }
+
+        .subBox,
+        .subAddedOverlay {
+          width: 100%;
+          max-width: none;
+        }
+
+        .subBox {
+          height: 340px;
+        }
+      }
+      select{
+ background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 95% 50%;
+ -moz-appearance: none; 
+ -webkit-appearance: none; 
+ appearance: none;
+        background-color:white;
+    </style>
+  </head>
+
+  <body>
+    <div class="logo">
+      <a href="https://www.univision.com/">
+        <img
+          src="https://image.e.univision.com/lib/fe8c13727c66067a73/m/1/fc51e9f4-7f3b-4e18-9529-6581e4384bfa.png"
+        />
+      </a>
+    </div>
+
+    <!-- Start: Header -->
+    <div id="header" class="container dnCPCHome">
+      <div class="container">
+        <h1><span class="purpleTxt">Newsletter</span> Suscripciones<span style="color:white">10 Variable: </span></h1>
+        
+        <div class="subheadTxt">
+          Seleccione de nuestros newsletters e ingresa tu correo electrónico
+          para suscribirte.
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="content">
+      <form action="https://pub.e.univision.com/PC_BACK_PROD" method="POST">
+        <input type="hidden" name="subkey" value="" />
+        <input type="hidden" name="source" value="PC" />
+
+        
+        <div id="signUpForm" class="container" style="padding-bottom: 50px">
+          <div
+            class="subForm"
+            style="
+              text-align: center;
+              padding-top: 25px;
+              padding-bottom: 25px;
+              background-color: black;
+            "
+          >
+            <input type="hidden" name="newSub" value="true" />
+            <input
+              type="text"
+              name="subkey"
+              placeholder="Correo electrónico"
+              required
+            />
+            <input type="text" name="firstName" placeholder="Nombre" />
+            <input type="text" name="lastName" placeholder="Apellido" />
+            <div>
+            <span style="color: white">Cumpleaños</span>
+            <select name="DOBday" id="DOBday">
+              <option>- fecha -</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option></select
+            ><select name="DOBMonth" id="DOBMonth">
+              <option>- mes -</option>
+              <option value="1">enero</option>
+              <option value="2">febrero</option>
+              <option value="3">marzo</option>
+              <option value="4">abril</option>
+              <option value="5">mayo</option>
+              <option value="6">junio</option>
+              <option value="7">julio</option>
+              <option value="8">agosto</option>
+              <option value="9">septiembre</option>
+              <option value="10">octubre</option>
+              <option value="11">noviembre</option>
+              <option value="12">diciembre</option>
+              </select></div>
+            <!--
+          <input onfocus="(this.type='date')" class="js-form-control" name="DOB" placeholder="Cumpleaños"  min="1753-01-01">
+-->
+          </div>
+        </div>
+        
+
+        <!-- Start: Subscriptions -->
+        <div id="subscriptions" class="dnCPCHome">
+          <div class="container">
+            <div class="status-message success">
+              Tus preferencias han sido actualizadas exitosamente.
+            </div>
+
+            <div id="error" class="error-message error">
+              Hubo un error al actualizar tus preferencias. Favor de intentarlo
+              nuevamente más tarde.
+            </div>
+
+            <div class="row">
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(29, 29, 234)
+                        url('https://image.exct.net/lib/fe8b13727c67007a71/m/2/0532328c-0fb7-4a9b-b387-3ac7dbfcd30b.jpg') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(29, 29, 234, 0.8)"
+                    >
+                      <h2>Noticias</h2>
+                      <h3>DIARIO</h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="noticias"
+                      id="noticias"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>Noticias</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="noticias_optDown"
+                      id="noticias_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">La mejor información en Política, Inmigración, Economía, Salud, Dinero y muchas más noticias relevantes del mundo en nuestro portal, diariamente en tu bandeja de entrada.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(146, 39, 143)
+                        url('https://image.e.univision.com/lib/fe8c13727c66067a73/m/1/daffc86b-dd77-40de-abd5-1f3c0bde2343.png') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(146, 39, 143, 0.8)"
+                    >
+                      <h2>Famosos</h2>
+                      <h3>DIARIO</h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="famosos"
+                      id="famosos"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>Famosos</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="famosos_optDown"
+                      id="famosos_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">Recibe las ultimas noticias de entretenimiento. Chismes de la farándula, series, novelas, shows, fotos y videos de famosos hispanos y artistas de Hollywood, diariamente en tu bandeja de entrada.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(0, 115, 80)
+                        url('https://image.exct.net/lib/fe8b13727c67007a71/m/2/5610270e-aed5-43bb-b5ef-b8a23a5d5c28.jpg') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(0, 115, 80, 0.8)"
+                    >
+                      <h2>Deportes - TUDN</h2>
+                      <h3>DIARIO</h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="deportes"
+                      id="deportes"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>Deportes - TUDN</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="deportes_optDown"
+                      id="deportes_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">Lo mejor del fútbol, beisbol, boxeo, NFL, NBA, MLS y demás deportes. Diariamente en tu bandeja de entrada.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(65, 10, 100)
+                        url('https://image.exct.net/lib/fe8b13727c67007a71/m/2/ee9e5660-6ba5-40bb-8fd5-7ed71f285dca.jpg') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(65, 10, 100, 0.8)"
+                    >
+                      <h2>Horóscopos</h2>
+                      <h3>DIARIO</h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="horoscopos"
+                      id="horoscopos"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>Horóscopos</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="horoscopos_optDown"
+                      id="horoscopos_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">Recibe lo mejor de Horóscopos y aprende sobre tu signo zodiacal. Mantente informado con las últimas noticias, videos y fotos de Horóscopos.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(0,0,0)
+                        url('https://image.e.univision.com/lib/fe8c13727c66067a73/m/1/3db2c98b-e506-4fb9-a1b3-34179f002f30.png') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(0,0,0, 0.8)"
+                    >
+                      <h2>TV Shows</h2>
+                      <h3></h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="tv_shows"
+                      id="tv_shows"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>TV Shows</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="tv_shows_optDown"
+                      id="tv_shows_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">Recibe la última información de la nueva programación que tenemos para ti y los shows que te mantienen pegados a la pantalla.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(237, 28, 36)
+                        url('https://image.exct.net/lib/fe8b13727c67007a71/m/2/c9ded0f1-7e4a-4b5c-953d-0a4bd705c4db.jpg') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(237, 28, 36, 0.8)"
+                    >
+                      <h2>Música - Uforia</h2>
+                      <h3>MENSUAL</h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="uforia"
+                      id="uforia"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>Música - Uforia</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="uforia_optDown"
+                      id="uforia_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">Recibe lo mejor del mundo de la música. Noticias sobre tus artistas favoritos, las canciones de moda, videos e imágenes de los mejores momentos de la música y sus personajes.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(29, 29, 234)
+                        url('https://image.exct.net/lib/fe8b13727c67007a71/m/2/62d916b0-6b55-4122-a645-1e363f118da9.jpg') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(29, 29, 234, 0.8)"
+                    >
+                      <h2>News</h2>
+                      <h3>WEEKLY</h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="news"
+                      id="news"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>News</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="news_optDown"
+                      id="news_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">The best information in Politics, Immigration, Economy, Health, Money and many more relevant news of the world in our portal, weekly in your inbox.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(0,0,0)
+                        url('https://image.e.univision.com/lib/fe8c13727c66067a73/m/1/68e0a809-cf5a-4a73-a586-df8ece9abec2.jpg') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(0,0,0, 0.8)"
+                    >
+                      <h2>Univision Política</h2>
+                      <h3>SEMANAL</h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="destino"
+                      id="destino"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>Univision Política</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="destino_optDown"
+                      id="destino_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">Te enviamos las últimas noticias sobre todo lo que pasa en la política nacional y las decisiones que impactan tu vida.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(0, 0, 0)
+                        url('https://image.e.univision.com/lib/fe8c13727c66067a73/m/1/e749306a-8deb-4bc8-9236-46a6eb6de258.jpg') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(0, 0, 0, 0.8)"
+                    >
+                      <h2>Crisis COVID-19</h2>
+                      <h3>SEMANAL</h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="coronavirus"
+                      id="coronavirus"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>Crisis COVID-19</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="coronavirus_optDown"
+                      id="coronavirus_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">Cobertura especial sobre la crisis del coronavirus en EEUU y el mundo. Aquí encontrarás respuesta a todas las preguntas sobre esta pandemia.</p>
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Start: Subscription Box -->
+              <div class="col-12 col-md-4 col-sm-6 subCol">
+                <div class="subBox">
+                  <div
+                    class="imgBox"
+                    style="
+                      background: rgb(120, 61, 118)
+                        url('https://image.e.univision.com/lib/fe8c13727c66067a73/m/1/14bdbe4d-3c37-476c-868a-0d993eafa867.jpg') center center no-repeat;
+                      background-size: 100% 100%;
+                    "
+                  >
+                    <div
+                      class="overlay"
+                      style="background: rgba(120, 61, 118, 0.8)"
+                    >
+                      <h2>Prende TV</h2>
+                      <h3></h3>
+                    </div>
+                  </div>
+                  <div class="txtBox d-md-inline-block">
+                    
+                    <input
+                      class="subCheck prefCheck"
+                      type="checkbox"
+                      name="prendetv"
+                      id="prendetv"
+                    />
+                    
+                    <div class="txtBox-header">
+                      <div class="txtBox-check"></div>
+                      <h6>Prende TV</h6>
+                    </div>
+                    <br />
+
+                    <input
+                      class="subCheck optDown-Check"
+                      type="checkbox"
+                      name="prendetv_optDown"
+                      id="prendetv_optDown"
+                    />
+                    <div class="txtBox-header optDown">
+                      <div class="txtBox-check"></div>
+                      <h6>Recibe sólo tres días</h6>
+                    </div>
+                    <p class="description">Recibe información sobre el nuevo servicio de Streaming que te ofrece una gran variedad de canales únicos, y contenido On Demand.</p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div id="unsubBox">
+              
+
+              
+              <input
+                class="subCheck prefCheck"
+                type="checkbox"
+                name="globalUnsub"
+                id="globalUnsub"
+              />
+
+              
+              <label for="globalUnsub"
+                >Optar por no recibir newsletters de Univision</label
+              >
+            </div>
+            <br />
+            <br />
+            <div style="text-align: center">
+              <input
+                id="submitPrefs"
+                class="submitBtn"
+                type="submit"
+                value="Aceptar"
+              />
+            </div>
+
+            <div class="secondaryTxt" style="padding-top: 20px">
+              Al suscribirse, usted acepta nuestra
+              <a href="https://www.univision.com/global/privacy-policy-en"
+                >política de privacidad</a
+              >.
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Start: Footer -->
+    <div id="footer">
+      <iframe
+        id="uni-footer"
+        src="https://www.univision.com/proxy/api/cached/component/Footer/pageUri/.noticias"
+      >
+      </iframe>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+      integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+       
+         $("#unsubBox").hide();
+       
+
+         $(".optDown").hide();
+
+       $("form").submit(function (e) {
+         e.preventDefault();
+         var success = $(".success");
+         var error = $(".error");
+
+         var form = $(this);
+         var action = form.attr("action");
+         var method = form.attr("method");
+
+         var subs = [];
+
+         $(".subCheck").each(function () {
+           var checkbox = $(this);
+           var prefName = checkbox.prop("name")
+           var isChecked = checkbox.prop("checked");
+           if (isChecked) {
+             var prefObj = { "Name": prefName, "Value": true }
+             subs.push(prefObj);
+           } else {
+             var prefObj = { "Name": prefName, "Value": false }
+             subs.push(prefObj);
+           }
+         });
+           var signUpForm = document.getElementById('signUpForm')
+           // var DOBMonth = document.getElementById('DOBMonth').value
+           // var dateObj = new Date();
+           // var fullDOB = DOBMonth + '/' + DOBday + '/' + dateObj.getFullYear();
+           // console.log("full DOB:",fullDOB)
+
+
+         var formArray = form.not(".subCheck").serializeArray();
+         var formObj = objectifyForm(formArray);
+         formObj["subscriptions"] = subs;
+
+         if (signUpForm !== null) {
+           var d = new Date();
+             formObj["birthday"] = formObj["DOBMonth"] + "/" + formObj["DOBday"] + "/" + d.getFullYear();
+         }
+         else {}
+
+         $.ajax({
+           url: action,
+           method: method,
+           data: {
+             data: JSON.stringify(formObj)
+           },
+           success: function (response) {
+             console.log(response);
+             var res = JSON.parse(response);
+             console.log(res);
+             if (res.ok == true) {
+               success.html(res.message);
+               success.show(
+                 "slow",
+                 function () {
+                   setTimeout(
+                     function () {
+                       success.hide("slow");
+                     },
+                     7000);
+                 }
+               );
+               $("#signUpForm").hide();
+               $("#nameAndBirthday").hide();
+               $("#unsubBox").show();
+               subs = [];
+             } else {
+               error.html(res.message);
+               
+               //START added to remove red on found email
+               if(res.override == true){
+                 $("#error").addClass("override");
+               }
+               //END added to remove red on found email
+               
+               error.show(
+                 "slow",
+                 function () {
+                   setTimeout(
+                     function() {
+                       error.hide("slow", turnRed );                       
+                     },
+                     7000);
+                 }
+               );               
+             }
+           },
+           complete: function () {
+             $('body, html').animate({ scrollTop: $('form').offset().top }, 'slow');
+           }
+         });
+       });
+      
+       function turnRed() {
+         $("#error").removeClass("override");
+       };
+
+       $(".txtBox-header").click(function (evt) {
+         if ($(this).hasClass('optDown')) {
+           var checkbox = $(this).parent().find(".optDown-Check");
+           var isChecked = checkbox.prop("checked");
+           var prefName = checkbox.prop("name")
+           if (!isChecked) {
+             checkbox.prop("checked", true);
+             $(this).parent().find(".prefCheck").prop("checked", true);
+           } else {
+             checkbox.prop("checked", false);
+           }
+         } else {
+           var checkbox = $(this).parent().find(".prefCheck");
+           var isChecked = checkbox.prop("checked");
+           var prefName = checkbox.prop("name")
+           if (!isChecked) {
+             checkbox.prop("checked", true);
+           } else {
+             checkbox.prop("checked", false);
+             $(this).parent().find(".optDown-Check").prop("checked", false);
+             $(this).parent().find(".optDown").show();
+           }
+         }
+       });
+
+
+       function objectifyForm(formArray) {//serialize data function
+         var returnArray = {};
+         for (var i = 0; i < formArray.length; i++) {
+           returnArray[formArray[i]['name']] = formArray[i]['value'];
+         }
+         return returnArray;
+       };
+    </script>
+  
+<script>(function(a,m,i,g,o,s){o=a.createElement(g);s=a.getElementsByTagName(i)[0];o.src=m.origin+m.pathname+"/_t?eventType=CLOUDPAGESVISIT";o.width=0;o.height=0;o.style.display="none";s.appendChild(o);})(document,window.location,"body","img");</script>
+
+	<script src="https:&#x2F;&#x2F;7292276.collect.igodigital.com&#x2F;collect.js"></script>
+	<script>
+		if (_etmc && typeof _etmc.push === 'function') {
+			_etmc.push(['setOrgId', '7292276']);
+			_etmc.push(['trackPageView']);
+		}
+	</script>
+
+</body>
+</html>
