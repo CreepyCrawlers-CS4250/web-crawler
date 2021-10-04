@@ -1,0 +1,2987 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="buZ0qdrBkADH7cH9f6BmPUet3RXgCH3r+5Mkegfd7PMledfWYADuGEd9NdehFc+txVRq+lbijYh8LQ2akiylNg==" />
+<link rel="search" type="application/opensearchdescription+xml" title="NDL Search" href="https://iss.ndl.go.jp/api/opensearch_description" />
+  <link rel="stylesheet" media="" href="/stylesheets/ndl/styles.css" type="text/css" />
+  
+<link rel="stylesheet" media="print" href="/stylesheets/ndl/styles_print.css" type="text/css" />
+<script src="/javascripts/ndl/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="/javascripts/ndl/jquery-ui-1.8.6.custom.min.js" type="text/javascript"></script>
+<script src="/javascripts/ndl/jquery.cookie.js" type="text/javascript"></script>
+<script src="/javascripts/rails.js" type="text/javascript"></script>
+<script src="/javascripts/ndl/init.js" type="text/javascript"></script>
+<link rel="stylesheet" media="" href="/stylesheets/ndl/style_dialog.css" type="text/css" />
+
+<!-- script type="text/javascript" defer src="https://api.jglobal.jst.go.jp/webapi/api.js.php?key=JDEkcmFzbXVzbGUkLmhUREguWmptNFhPSG9BYXdRbkhSMA==" charset="UTF-8"></script -->
+<script type="text/javascript">
+//<![CDATA[
+
+$(window).load(function(){
+  if(search_keywords == '') {
+    return false;
+  }
+  apiurl = 'https://api.jglobal.jst.go.jp/jgapi/v1/terms';
+  $.ajax({
+    url: apiurl,
+    type: 'GET',
+    dataType: 'json',
+    data: { "q": search_keywords },
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-JGAPI-KEY', 'JDEkcmFzbXVzbGUkLmhUREguWmptNFhPSG9BYXdRbkhSMA==');
+    },
+    success: function(data) {
+      api_invoke(data);
+    },
+    error: function(data) { 
+    },
+  });
+  return false;
+});
+
+function api_invoke(data){
+  var main_html = "";
+  var data_html = "";
+  var hit_cnt = 0;
+  var item = "";
+  for( var i = 0; i < data.length; i ++ ){
+    item = data[i]['title'];
+    if( search_keywords.indexOf(item) < 0 ){
+      hit_cnt++;
+      if( hit_cnt > disp_cnt ){
+        data_html += '<li class="additional"><a href="' + books_url + "?any=" + encodeURI(item) + '">' + item + '</a></li>';
+      }else{
+        data_html += '<li><a href="' + books_url + "?any=" + encodeURI(item) + '">' + item + '</a></li>';
+      }
+    }
+  }
+
+  if( hit_cnt > 0 ){
+    main_html += '<h2 class="mainlabel">';
+    main_html += '科学技術用語';
+    main_html += '</h2>';
+    main_html += '<p>Powered by <a href=\"javascript:void(window.open(\'http://jglobal.jst.go.jp/\',\'jstwindow\'))\">J-GLOBAL</a></p>'
+    main_html += '<div class="subgroup" id="jglobal_content">';
+    main_html += '<ul class="sub-ul">';
+    main_html += data_html;
+    main_html += '</ul>';
+    if( hit_cnt > disp_cnt ){
+      main_html += '<div class="show-wrapper">';
+      main_html += '<span class="showall"><a href="#">▼全て表示</a></span><span class="showsome"><a href="#">▲一部を表示</a></span>';
+      main_html += '</div>';
+    }
+    main_html += '</div>';
+
+    contents.innerHTML = main_html;
+    var jglobalArea = $('#jglobal_content');
+    setShowAllSwitch($('.showall', jglobalArea), $('.showsome', jglobalArea), $('.additional', jglobalArea));
+
+    return true;
+  }
+
+}
+
+//]]>
+</script>
+  <script type="text/javascript">
+
+    document.onkeydown = function(e) { 
+        if(!e) {
+            if(window.event.keyCode == 116) {
+                window.event.keyCode = 1; // IE8対応 keyCode 1 は存在しない
+                return false;
+            }
+        } else {
+            if(e.which == 116) {
+                return false;
+            }
+        }
+    };
+
+    
+    // 並び換えのプルダウンメニューが選択されたときに呼び出される関数
+    function change_page_with_sort_type(obj) {
+      var url = "https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&ar=4e1f&except_repository_nos%5B%5D=R100000038&except_repository_nos%5B%5D=R100000049&except_repository_nos%5B%5D=R100000073";
+      para_sym = (url.indexOf('?') > 1) ? "&" : "?";
+      if (obj.value) {
+        window.location.href= url + para_sym + "sort=" + obj.value;
+      } else {
+        window.location.href= url;
+      }
+    }
+    //]]>
+
+    // Show or Hide Multisearching Indicatior
+    (function($){
+      var multisearchingIndicator = function( isVisible ){
+        if ( isVisible ) { // Show
+          var colorBefore = '#030';
+          var colorAfter = '#080';
+          var speed = 1200;
+          var effect = 'linear';
+          $(function(){
+            var wrapper = $( '#tabs-search' );
+            if ( wrapper.length > 0 ) {
+              var indicator = $( '<div class="indicator-multisearching"><div class="im-label">横断検索実行中...(%)</div><div class="im-stop" onclick="multisearchingIndicator( false )">停止</div><div class="dropshadow dropshadow-up">&nbsp;</div></div>' );
+              indicator.css( 'background-color', colorBefore );
+              var animate = function(){
+                indicator.animate(
+                { backgroundColor: colorAfter },
+                speed,
+                effect,
+                function(){
+                  indicator.animate(
+                  { backgroundColor: colorBefore },
+                  speed,
+                  effect,
+                  animate
+                )
+                }
+              );
+              };
+              indicator.hide();
+              wrapper.append( indicator );
+              indicator.slideDown( 'slow', function(){
+                animate();
+              } );
+            };
+          });
+        } else { // Hide
+          var indicator = $( '.indicator-multisearching' );
+          if ( indicator.length > 0 ) {
+            indicator.slideUp( 'fast', function(){ indicator.remove(); } );
+          };
+          if(typeof(indicatorStop) == 'function') {
+            indicatorStop();
+          }
+        };
+      };
+      window.multisearchingIndicator = multisearchingIndicator; // Expose to the globe.
+    })(jQuery);
+
+  </script>
+
+<title>簡易検索結果｜「&quot;文学&quot;」に一致する資料： 1211786件中1から15件目｜国立国会図書館サーチ</title>
+
+<script type="text/javascript" charset="utf-8" src="/javascripts/ndl/accessibility.js"></script>
+<script type="text/javascript" charset="utf-8" src="/javascripts/lib/shortcut.js"></script>
+</head>
+<body class="result result2" >
+    <noscript>
+    <style type="text/css"><!--
+      div#search-advanced    { display: block; }
+      div#search-handicapped { display: block; }
+      --></style>
+  </noscript>
+
+<style> div#header div.utilmenu { float: none; } </style>
+
+<p class="guidance"><a name="PTOP" id="PTOP"></a></p>
+<p class="guidance"><img width="1" height="1" alt="サイトメニューここから" src="/images/ndl/spacer.png" /><a name="PTOP" id="PTOP"><img width="1" height="1" alt="このページの先頭です" src="/images/ndl/spacer.png" /></a></p>
+  <p class="guidance" id="shortcut_description"><a href="#"><img width="1" height="1" alt="ショートカットキーの説明を開始します。画面遷移や機能実行は、説明にあるショートカットキーを同時に押した後、Enterキーを押してください。ショートカットキーの説明を聞くには、Alt＋0。トップ画面の表示には、Alt＋1。ログインを行うには、Alt＋2。簡易検索画面の表示には、Alt＋3。詳細検索画面の表示には、Alt＋4。障害者向け資料検索画面の表示には、Alt＋5。検索結果の並び替えを行うには、Alt＋6。国立国会図書館ホームページの表示には、Alt＋7。検索結果の絞り込みを行うには、Alt＋8。以上でショートカットキーの説明を終わります。" src="/images/ndl/spacer.png" /></a></p>
+
+    <div id="header" class="header">
+    <p class="guidance"><a href="#resultlist">検索結果一覧へ移動</a></p>
+    <p id="systemname"><a onfocus="popuppanel_login_hide()" href="/">国立国会図書館サーチ</a></p>
+
+  <div class="utilmenu">
+        
+        <ul style="display:inline-block; float: right;">
+            <div class="login-btn" title='ログイン' >                          <a href="/login?target=https://iss.ndl.go.jp/books?op_id=1&locale=ja&any=%2522%25E6%2596%2587%25E5%25AD%25A6%2522&display=&ar=4e1f" class='popup-login'>
+        ログイン
+      </a>
+ </div>
+      <li class="setting"><a onfocus="popuppanel_login_hide()" href="/users/edit">設定</a></li>
+      
+      <li class="help"><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a href="https://iss.ndl.go.jp/information/help/" target="_blank" onfocus="popuppanel_lang_hide()" >ヘルプ</a>
+      </li>
+        <li class="box"><a href="javascript:void(0)" class="triangle triangle-white-rightdown popup-lang"><img class="guidance " width="1" height="1" alt="画面の表示言語のリストです。言語の選択が可能です。" src="/images/ndl/spacer.png" />Language</a><div class="popuppanel popuppanel-lang" id="popuppanel-lang" style="margin-left: -2em">
+          <ul>
+            <li><a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;locale=ja&amp;op_id=1">日本語 (Japanese)</a></li>
+            <li><a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;locale=zh&amp;op_id=1">简体中文（Chinese）</a></li>
+            <li><a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;locale=ko&amp;op_id=1">한국어（Korean）</a></li>
+            <li><a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;locale=en&amp;op_id=1">English</a></li>
+          </ul>
+        </div></li>
+
+        <li class="box font-size"><a href="javascript:void(0)" onfocus="popuppanel_lang_hide()" >文字拡大</a></li>
+        <li class="box monochrome"><a href="javascript:void(0)">白黒反転</a></li>
+
+    </ul>
+  </div>
+  <p class="guidance"><img width="1" height="1" alt="サイトメニューここまで" src="/images/ndl/spacer.png" /></p>
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+  //popuppanel_loginの非表示処理
+  var popuppanel_login_hide = function(){
+    $("#popuppanel-login").hide();
+  };
+
+  //popuppanel_langの非表示処理
+  var popuppanel_lang_hide = function(){
+    $("#popuppanel-lang").hide();
+  };
+
+  //DOMがロードされたときの処理
+  $(document).ready(function($){
+    //文字拡大処理
+    //cookieが存在しない場合、フォントサイズ最小値を設定する
+    if($.cookie("ndlFontSizeStyle") == null){
+      $.cookie("ndlFontSizeStyle", inputMinFontSize, {path:'/' });
+    }
+    //tmpNowFontSizeに一つ前のフォントサイズ係数を設定し、changeFontSizeに処理を依頼
+    if(eval($.cookie("ndlFontSizeStyle")) == inputMinFontSize){
+      tmpNowFontSize = inputMaxFontSize + 1;
+    }else{
+      tmpNowFontSize = eval($.cookie("ndlFontSizeStyle")) - 1 ;
+    }
+    if (window.location.href.match(/login/)){
+        changeFontSize(75);
+    }else{
+        changeFontSize(50);
+    };
+    
+    //白黒反転処理
+    if(eval($.cookie("ndlColorChangeFlag")) == 1){
+      // 白黒反転適用
+      $("body").addClass("monochrome");
+      $("a.sso").css("color", "#FFFF99");
+      /* 白黒反転フラグを有効化 */
+      tmpColorChangeFlag = 1;
+      $.cookie("ndlColorChangeFlag", 1, {path:'/' });
+    }else{
+      $("body").removeClass("monochrome");
+      $("a.sso").css("color", "");
+      /* 白黒反転フラグを無効化 */
+      tmpColorChangeFlag = 0;
+      $.cookie("ndlColorChangeFlag", 0, {path:'/' });
+    }
+
+  });
+
+  //文字拡大がクリックされたときの処理
+  $("li.font-size a").click(function(){
+    // フォントサイズ係数が最大値以下の場合
+    if(eval($.cookie("ndlFontSizeStyle")) <= inputMaxFontSize){
+      $.cookie("ndlFontSizeStyle", eval($.cookie("ndlFontSizeStyle")) + 1, {path:'/' });
+    }else{
+      // フォントサイズ係数が最大値を超えた場合はデフォルトに戻す
+      $.cookie("ndlFontSizeStyle", inputMinFontSize, {path:'/' });
+    }
+  });
+
+  //白黒反転がクリックされたときの処理
+  $("li.monochrome a").click(function(){
+    if( eval($.cookie("ndlColorChangeFlag")) == 1){//ture(白黒反転適用)の場合
+      $.cookie("ndlColorChangeFlag", 0, {path:'/' });
+    }else{//上記以外(白黒反転無効)の場合
+      $.cookie("ndlColorChangeFlag", 1, {path:'/' });
+    }
+  });
+
+
+
+//]]>
+</script>
+<!--[if IE 6]>
+<iframe class="shim" frameborder="0" width="0" height="0"></iframe>
+<![endif]-->
+
+
+<div id="tabs-search" class="tabs-search"><p class="guidance"><a name="search-guidance" id="search-guidance"></a></p>
+<p class="guidance"><img width="1" height="1" alt="検索メニューここから" src="/images/ndl/spacer.png" /></p>
+  <div class="tabs-search-trigger-wrapper">
+    <ul class="tabs-search-trigger">
+      <li class="tabtrigger-first"><a href="#search-normal">簡易検索</a></li><li class="tabtrigger-second"><a href="#search-advanced">詳細検索</a></li><li class="tabtrigger-third"><a href="#search-handicapped">障害者向け資料検索</a></li>
+    </ul>
+  </div>
+
+<script>
+//<![CDATA[
+$.fn.disableOnSubmit_for_search = function(disableList){
+	if(disableList == null){var $list = 'input[type=submit],input[type=button],input[type=reset],button';}
+	else{var $list = disableList;}
+
+	// Makes sure button is enabled at start
+	$(this).find($list).removeAttr('disabled');
+	$(this).submit(function(){
+    if ($(this).find('#searchbox').length){
+    //簡易検索の２重送信抑止
+      if ($(this).find('#searchbox').val() != ''){
+        //空検索時には非活性としない
+        $(this).find($list).attr('disabled','disabled');
+      }
+    }else if ( ($(this).find('#searchbutton_advanced').length)){
+    //詳細検索の２重送信抑止
+      if (get_advanced_text_cnt() > 0){
+        //空検索時には非活性としない
+        $(this).find($list).attr('disabled','disabled');
+      }
+    }else{
+      //簡易検索,詳細検索以外の２重送信抑止
+      $(this).find($list).attr('disabled','disabled');
+    }
+  });
+  return this;
+};
+
+$(function(){
+  $('#searchwrapper').disableOnSubmit_for_search();
+  $('#search_advanced_form').disableOnSubmit_for_search();
+  $('#search_handicapped_form').disableOnSubmit_for_search();
+});
+
+function valid_submit(){
+    //空検索と非活性時にはfalse
+    return (document.getElementById('searchbox').value != '' && !document.getElementById('searchbutton').disabled)
+  }
+
+function valid_submit_advanced(){
+    //空検索と非活性時にはfalse
+    return (get_advanced_text_cnt() > 0 && !document.getElementById('searchbutton_advanced').disabled)
+  }
+// 出版年バリデーションチェック(詳細検索)
+function valid_date(){
+  if (!valid_submit_advanced()) return false
+  $('.valid-date').text('');
+  $('#datefrom').val($('#datefrom').val().replace(/\s+/g, ""))
+  $('#dateto').val($('#dateto').val().replace(/\s+/g, ""))
+  if ($('#datefrom').val() || $('#dateto').val()){
+    var dates = [$('#datefrom').val(), $('#dateto').val()];
+    for (var i=0; i < dates.length; i++) {
+      var date = dates[i]
+      if(!date){
+        dates.splice(i--, 1); 
+        continue;
+      } 
+      // 4,6,8桁かつ数字チェック
+      if(!(([4, 6, 8].indexOf(date.length) >= 0) && date.match(/^[0-9０-９]+$/))){
+        $('.valid-date').text('年(YYYY)、年月(YYYYMM)、年月日(YYYYMMDD)で指定してください。');
+        return false;
+      }
+      dates[i] = date.replace(/[０-９]/g, function(s) {
+        return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+      });
+    }
+    // From、Toの桁数チェック
+    if (dates.length == 2){
+      if (dates[0].length != dates[1].length){
+        $('.valid-date').text('始点と終点を指定する場合は、同じ桁数にしてください。');
+        return false;
+      }
+      if (dates[0] > dates[1]){
+        $('.valid-date').text('終点には始点と同じ値か始点より大きい値を指定してください。');
+        return false;
+      }
+    }
+    // 確認ダイアログ
+    var cookie = document.cookie.indexOf('date_confirm_flg');
+    if (dates[0].length > 4 && cookie　< 0){
+      $('#modal').dialog({
+        modal: true,
+        resizable: false,
+        title: '',
+        buttons: {
+          OK: function() {
+            if ($('#date_dialog').attr('checked')){
+             document.cookie = 'date_confirm_flg=1'; 
+            }
+            $(this).dialog( "close" );
+            $('#search_advanced_form').submit();
+          }
+        }
+      });  
+    } else {
+      $('#search_advanced_form').submit();
+    }
+  }else{
+    $('#search_advanced_form').submit();
+  }
+}
+function get_advanced_text_cnt(){
+    var advobj,txtcnt=0;
+    var elmnum=document.getElementById('search_advanced_form').length;
+    for(var i=0;i<elmnum;i++){
+      advobj=document.getElementById('search_advanced_form')[i];
+      if(advobj.type=='text' && advobj.value != ''){
+        txtcnt++;
+      }
+    }
+    return txtcnt;
+  }
+
+
+//]]>
+</script>
+  <form id="searchwrapper" name="searchForm" onsubmit="return valid_submit();" action="/books/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="TgEFYIXIDhxHrcJWw18/h+kSjg8LzkhCyY0LSq2pVv0FnqYfPwlwBMc9Nnwd6pYXa+s54L0kuCFOMyKqOFgfOA==" />
+  <a name="CONTENTS" id="CONTENTS"></a>
+  <div id="search-normal" style="z-index:99;">
+    <p class="guidance"><img width="1" height="1" alt="簡易検索ここから" src="/images/ndl/spacer.png" /></p>
+    <input type="hidden" name="op_id" id="op_id" value="1" />
+    
+    <div id="mainsearch" style="margin:0 auto;text-align:center;padding-bottom:16px;">
+        <label for="searchbox"><img width="1" height="1" alt="国立国会図書館サーチの簡易検索ページです。Alt＋0を同時に押すと、本システムのショートカットキーの説明にジャンプします。" src="/images/ndl/spacer.png" /><span style="display:none;">国立国会図書館サーチの簡易検索ページです。Alt＋0を同時に押すと、本システムのショートカットキーの説明にジャンプします。</span>キーワード</label>
+        <div style="display:inline-block;_display:inline;*display:inline;zoom:1;width:350px;padding-right:16px;">
+          <input type="text" name="any" id="searchbox" value="&quot;文学&quot;" class="textbox" autocomplete="off" size="50" />
+          <div style="position:relative;height:0px;overflow:visible;">
+            <p id="suggest_list" style="position:absolute;top:0px;left:0px;text-align:left;"></p>
+          </div>
+        </div>
+        <input type="submit" name="commit" value="検索" class="searchbutton" id="searchbutton" data-disable-with="検索" />
+        <span class="transatedsearchselect" style="text-align:left;width:150px;">
+            <label for="trans-normal" class="guidance" id="trans-dropdown-guide"><img width="1" height="1" alt="翻訳検索の言語のリストです。翻訳する検索言語の選択が可能です。" src="/images/ndl/spacer.png" /><span style="display:none;">翻訳検索の言語のリストです。翻訳する検索言語の選択が可能です。</span></label>
+            <select name="trans" id="trans-normal"><option value="">翻訳検索しない</option>
+<option value="ja_ko_jserver">韓国語に翻訳</option>
+<option value="ja_zh_jserver">中国語に翻訳</option>
+<option value="ja_en_jserver">英語に翻訳</option></select>
+        </span>
+        <p class="media-option">
+            <input id="do_remote_search_1" name="do_remote_search" type="checkbox" value="" />
+          <label for="do_remote_search_1">すべての<a href="/information/target/" target="_blank">連携先</a>を検索する</label>
+          <span class="popup-guidance"><img width="13" height="13" alt="チェックすると、検索結果表示に時間がかかるデータベースも含めて検索します。" src="/images/ndl/ico_popup_help.png" /></span>
+        </p>
+        <p id="trans_hidden_val"></p>
+
+    </div>
+      <script>
+//<![CDATA[
+
+        $("#do_remote_search_1").click(function(){
+          if($("#do_remote_search_1").val() == "true"){
+            $("#do_remote_search_1").val("");
+          }else{
+            $("#do_remote_search_1").val("true");
+          }
+        });
+
+        // サジェストキーワード
+
+//]]>
+</script>      <p id="primaryfilter">
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_" value="" checked="checked" /><label for="material_types0">すべて</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_1" value="1" /><label for="material_types1">本</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_2" value="2" /><label for="material_types2">記事・論文</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_3" value="3" /><label for="material_types3">新聞</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_4" value="4" /><label for="material_types4">児童書</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_5" value="5" /><label for="material_types5">レファレンス情報</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_6" value="6" /><label for="material_types6">デジタル資料</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_7" value="7" /><label for="material_types7">その他</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_9" value="9" /><label for="material_types9">立法情報</label></span>
+      </p>
+    <p class="guidance"><img width="1" height="1" alt="簡易検索ここまで" src="/images/ndl/spacer.png" /></p>
+  </div><!-- and of #search-normal -->
+</form>
+  <div id="search-advanced">
+    <p class="guidance"><img width="1" height="1" alt="詳細検索ここから" src="/images/ndl/spacer.png" /></p>
+    <form id="search_advanced_form" name="searchForm" onsubmit="return valid_submit_advanced();" action="/books/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="dUjoLQTuHDH9hYLJv/uan/w2wn+SUFnkJHFpyBuhP6U+10tSvi9iKX0VduNhTjMPfs91kCS6qYejz0AojlB2YA==" />
+    <input type="hidden" name="search_mode" id="search_mode" value="advanced" />
+    
+
+      <div class="controlarea">
+        <div class="adv_clear">
+          <a class="roundbutton" href="#">クリア</a>
+        </div>
+
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px"><label for="rft.title">タイトル</label></th>
+            <td style="width: 140px;">
+              <input type="text" name="rft.title" id="rft.title" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="rft.au">著者・編者</label></th>
+            <td style="width: 140px;">
+              <input type="text" name="rft.au" id="rft.au" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="rft.pub">出版社</label></th>
+            <td style="width: 140px;">
+              <input type="text" name="rft.pub" id="rft.pub" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="datefrom">出版年</label>
+              <span class="popup-guidance"><img width="13" height="13" alt="出版年は年(YYYY)のほか、年月(YYYYMM)、年月日(YYYYMMDD)の指定が可能です。&lt;br /&gt;詳しくはヘルプをご覧ください。" src="/images/ndl/ico_popup_help.png" /></span>
+            </th>
+            <td style="">
+              <input type="text" name="datefrom" id="datefrom" value="" class="textbox" style="width: 60px;" />
+              ～
+              <input type="text" name="dateto" id="dateto" value="" class="textbox" style="width: 60px;" />
+              <div class="valid-date" style="color:#ff0000;"></div>
+            </td>
+          </tr>
+        </table>
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px;"><label for="subject">件名</label>
+            <span class="popup-guidance"><img width="13" height="13" alt="件名とはその資料が扱っているテーマを表す言葉（キーワード）です。 入力例）歴史" src="/images/ndl/ico_popup_help.png" /></span></th>
+            <td style="width: 140px;">
+              <input type="text" name="subject" id="subject" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="ndc">分類記号</label>
+            <span class="popup-guidance"><img width="13" height="13" alt="分類記号とはその資料についての主題内容を表現する記号です。　入力例）332.1" src="/images/ndl/ico_popup_help.png" /></span></th>
+            <td style="width: 140px;">
+              <input type="text" name="ndc" id="ndc" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="rft.isbn">ISBN/ISSN</label></th>
+            <td style="width: 140px;">
+              <input type="text" name="rft.isbn" id="rft.isbn" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="">出版地</label>
+              <span class="popup-guidance"><img width="13" height="13" alt="都市名、国名、国名コードで検索できます。詳しくはヘルプをご覧ください。" src="/images/ndl/ico_popup_help.png" /></span>
+            </th>
+            <td style="width: 220px;">
+              <input type="text" name="place" id="place" value="" class="textbox" style="width: 125px;" />
+              <td style="width: 18px;"></td>
+            </td>
+          </tr>
+        </table>
+
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px;"><label for="trans">
+              <img width="1" height="1" alt="翻訳検索の言語のリストです。翻訳する検索言語の選択が可能です。" src="/images/ndl/spacer.png" /><span style="display:none;">翻訳検索の言語のリストです。翻訳する検索言語の選択が可能です。</span>
+              翻訳検索</label></th>
+              <td>
+                  <select name="trans" id="trans"><option value="">翻訳検索しない</option>
+<option value="ja_ko_jserver">韓国語に翻訳</option>
+<option value="ja_zh_jserver">中国語に翻訳</option>
+<option value="ja_en_jserver">英語に翻訳</option></select>
+              </td>
+            </tr>
+        </table>
+        <table class="skeleton">
+          <tr>
+            <th nowrap style="width: 90px;">データベース</th>
+            <td nowrap style="">
+              <script>
+//<![CDATA[
+
+                  function click_dummy() {
+                    for (i=0 ; i < document.getElementsByName('repository_nos[]').length ; i ++ ){
+                      if (document.getElementsByName('repository_nos[]').item(i).value == 'R100000039' ||
+                          document.getElementsByName('repository_nos[]').item(i).value == 'R100000040') {
+                            document.getElementsByName('repository_nos[]').item(i).checked = document.getElementById('dummy_repository_nos').checked
+                      }
+                    }
+                  }
+
+//]]>
+</script>                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R100000002" checked="checked" />国立国会図書館オンライン</label>
+                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R100000001" checked="checked" />公共図書館蔵書</label>
+                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R000000004" checked="checked" />国立国会図書館オンライン（雑誌記事索引）</label>
+                     <label><input type="checkbox" name="dummy_repository_nos" id="dummy_repository_nos" value="dummy" onclick="click_dummy();" checked="checked" />NDLデジタルコレクション</label>
+                     <div style="display:none">
+                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R100000039" checked="checked" />国立国会図書館デジタルコレクション</label>
+                     </div>
+                     <div style="display:none">
+                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R100000040" checked="checked" />国立国会図書館デジタルコレクション（電子書籍・電子雑誌）</label>
+                     </div>
+              <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="other" checked="checked" />その他</label>
+              <input type="button" class="release4" value=すべて選択/解除>
+            </td>
+          </tr>
+        </table>
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px;">資料種別</th>
+            <td style="">
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="1" checked="checked" />本</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="2" checked="checked" />記事・論文</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="3" checked="checked" />新聞</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="4" checked="checked" />児童書</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="5" checked="checked" />レファレンス情報</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="6" checked="checked" />デジタル資料</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="7" checked="checked" />その他</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="9" checked="checked" />立法情報</label>
+              <input type="button" class="release" value=すべて選択/解除>
+            </td>
+          </tr>
+        </table>
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px;">所蔵館</th>
+            <td>
+              <label><input type="checkbox" name="libraries[]" id="libraries_" value="1" checked="checked" />国立国会図書館</label>
+              <label><input type="checkbox" name="libraries[]" id="libraries_" value="2" checked="checked" />他機関</label>
+              <dl class="media-option">
+                <dt>連携先</dt>
+                <dd>
+                    <input id="do_remote_search_999" name="do_remote_search" type="checkbox" value="" />
+                  <label for="do_remote_search_999">すべての<a href="/information/target/" target="_blank">連携先</a>を検索する</label>
+                  <span class="popup-guidance"><img width="13" height="13" alt="チェックすると、検索結果表示に時間がかかるデータベースも含めて検索します。" src="/images/ndl/ico_popup_help.png" /></span>
+                </dd>
+              </dl>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="submitarea">
+        <input type="button" name="commit" value="検索" class="searchbutton" id="searchbutton_advanced" onclick="valid_date();" data-disable-with="検索" />
+      </div>
+</form>    <p class="guidance"><img width="1" height="1" alt="詳細検索ここまで" src="/images/ndl/spacer.png" /></p>
+  </div>
+  <div id="modal" style="display:none;">
+    <p>出版年に「年月」「年月日」を指定した場合は指定の桁数未満の出版年を持つ書誌がヒットしません。詳しくはヘルプをご覧ください。</p><br>
+    <p>
+      <label><input id="date_dialog" type="checkbox" checked >今後このメッセージを表示しない</label>
+    </p>
+  </div><!-- end of #search-advanced -->
+
+  <div id="search-handicapped">
+    <p class="guidance"><img width="1" height="1" alt="障害者向け資料検索ここから" src="/images/ndl/spacer.png" /></p>
+    <form id="search_handicapped_form" name="searchForm" action="/books/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="smSl1yxQOJExFY9nYcWx3jQfIjEfqb9lI4WIRZ1ND7f5+waolpFGibGFe02/cBhOtuaV3qlDTwakO6GlCLxGcg==" />
+    <input type="hidden" name="search_mode" id="search_mode" value="handicapped" />
+    <input type="hidden" name="mediatypes[]" id="mediatypes_" value="8" />
+    
+
+    <div class="controlarea">
+      <div class="handi_clear">
+        <a class="roundbutton" href="#">クリア</a>
+      </div>
+      <table class="skeleton"  style="margin-bottom: 10px;">
+        <tr style="float: left;">
+        <!-- <tr> -->
+          <th style="width: 85px"><label for="any">キーワード</label></th>
+          <td style="width: 450px;">
+            <input type="text" name="any" id="any" value="" class="textbox" style="width: 445px; height:20px;" />
+          </td>
+        </tr>
+      </table>
+      <table class="skeleton">
+        <tr>
+          <th style="width: 85px"><label for="rft.title2">タイトル</label></th>
+          <td style="width: 140px;">
+            <input type="text" name="rft.title" id="rft.title2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 80px;"><label for="rft.au2">著者、編者等</label></th>
+          <td style="width: 140px;">
+            <input type="text" name="rft.au" id="rft.au2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 85px;"><label for="org_pub2">原本出版者ほか</label></th>
+          <td style="width: 140px;">
+            <input type="text" name="org_pub" id="org_pub2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 80px;"><label for="datefrom2">原本出版年</label></th>
+          <td style="width: 150px;">
+            <input type="text" name="datefrom" id="datefrom2" value="" class="textbox" style="width: 40px;" />
+            年～
+            <input type="text" name="dateto" id="dateto2" value="" class="textbox" style="width: 40px;" />
+            年
+          </td>
+        </tr>
+      </table>
+      <table class="skeleton">
+        <tr>
+          <th style="width: 85px;"><label for="subject2">件名</label>
+          <span class="popup-guidance"><img width="13" height="13" alt="件名とはその資料が扱っているテーマを表す言葉（キーワード）です。 入力例）歴史" src="/images/ndl/ico_popup_help.png" /></span></th>
+          <td style="width: 140px;">
+            <input type="text" name="subject" id="subject2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 80px;"><label for="ndc2">分類</label>
+          <span class="popup-guidance"><img width="13" height="13" alt="分類とはその資料についての主題内容を表現する記号です。　入力例）332.1" src="/images/ndl/ico_popup_help.png" /></span></th>
+          <td style="width: 140px;">
+            <input type="text" name="ndc" id="ndc2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 85px;"><label for="rft.isbn2">ISBN、ISSN</label></th>
+          <td style="width: 140px;">
+            <input type="text" name="rft.isbn" id="rft.isbn2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 80px;"><label for="digital_pub2">製作者、所蔵館</label></th>
+          <td style="width: 150px;">
+            <input type="text" name="digital_pub" id="digital_pub2" value="" class="textbox" style="width: 125px;" />
+          </td>
+        </tr>
+      </table>
+      <table class="skeleton">
+        <tr>
+          <th style="width: 85px;">資料種別</th>
+          <td style="">
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="Braille" checked="checked" />点字</label>
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="DAISY" checked="checked" />DAISY・テキストデータ</label>
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="AudioBookInSoundDisk" checked="checked" />録音図書（DVD、CD）</label>
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="AudioBookInSoundTape" checked="checked" />録音図書（カセットテープ）</label>
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="LargePrint" checked="checked" />大活字</label>
+            <input type="button" class="release2" value=すべて選択/解除 >
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="submitarea">
+      <input type="submit" name="commit" value="検索" class="searchbutton" data-disable-with="検索" />
+    </div>
+    <p class="guidance"><img width="1" height="1" alt="障害者向け資料検索ここまで" src="/images/ndl/spacer.png" /></p>
+</form>  </div><!-- end of #search-handicapped -->
+</div><!-- end of .tabs-search -->
+
+
+<script>
+//<![CDATA[
+	// 「すべて選択/解除」ボタン定義
+	$("input.release2").toggle(
+		function(){
+			$(this).parent().children("label").children("input").attr("checked", "");
+			$("input.release3").parent().children("label").children("input").attr("checked", "");
+		},
+		function(){
+			$(this).parent().children("label").children("input").attr("checked", "checked");
+			$("input.release3").parent().children("label").children("input").attr("checked", "checked");
+		}
+	);
+
+	// 「すべて選択/解除」ボタン定義(データベース)
+	$("input.release4").toggle(
+		function(){
+			$(this).parent().children("label").children("input").attr("checked", "");
+			click_dummy();
+		},
+		function(){
+			$(this).parent().children("label").children("input").attr("checked", "checked");
+			click_dummy();
+		}
+	);
+	
+  $("#do_remote_search_999").click(function(){
+    if($("#do_remote_search_999").val() == "true"){
+      $("#do_remote_search_999").val("");
+    }else{
+      $("#do_remote_search_999").val("true");
+    }
+  });
+  $("div#search-advanced table.skeleton").css("width", "1000px")
+
+  $('#search_advanced_form input').keypress(function(e){
+    if (e.keyCode == 13) {
+      valid_date();
+    }
+  });
+
+//]]>
+</script>
+
+<div id="resultlist">
+  <div id="resultlist_left-wrapper">
+    <div id="listcontent">
+        <div id="resultheaderwrapper" class="dropshadow-top">
+
+  <span id="cross_search_progress">
+</span>
+
+  <div id="resultheader">
+      <h1 class="result-title">
+      検索結果一覧
+    </h1>
+    <p class="result-stats">
+      検索結果<strong>1211786</strong>件中<strong>1</strong>から<strong>15</strong>件を表示
+    </p>
+    <div class="option-control-wrapper">
+      <p class="guidance"><label for="sort"><img width="1" height="1" alt="検索結果表示順のリストです。検索結果表示順の種類の選択が可能です。" src="/images/ndl/spacer.png" /><span style="display:none;">検索結果表示順のリストです。検索結果表示順の種類の選択が可能です。</span></label></p>
+        <form action="/books" accept-charset="UTF-8" method="get">              <input type="hidden" name="any" id="any" value="&quot;文学&quot;" />              <input type="hidden" name="ar" id="ar" value="4e1f" />              <input type="hidden" name="except_repository_nos" id="except_repository_nos" value="R100000038 R100000049 R100000073" />          <select name="sort" id="sort"><option value="df">適合度順</option>
+<option value="ud">新しい順</option>
+<option value="ua">古い順</option>
+<option value="ya">タイトル（昇順）</option>
+<option value="yd">タイトル（降順）</option>
+<option value="da">データベース順</option></select>
+          <input type="button" onclick="change_page_with_sort_type(sort)" class="actionbutton " value="並び替え" />
+</form>        <div class="option-control option-control-list ">
+            <span class="option-control-label">表示切替</span>
+            <a class="option-control-box option-control-list" href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">一覧</a><a class="option-control-box option-control-thumbnail" href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=thumbnail&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">書影</a>
+        </div>
+    </div>
+    
+    <div class="optional-select">
+    </div>
+    <p class="guidance"><img width="1" height="1" alt="ページジャンプ" src="/images/ndl/spacer.png" /></p>
+    <ul class="pagingnav" style="margin-top:1px;">
+<li><span class="larrow larrow_d">前のページに戻る</span></li>
+<li><strong>1</strong></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=2">2</a></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=3">3</a></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=4">4</a></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=5">5</a></li>
+<li><span class="ellipsis">...</span></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=34">34</a></li>
+<li><a class="rarrow" href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=2">次のページに進む</a></li>
+</ul>
+      
+
+</div><!-- end of div#resultheader -->
+</div><!-- end of div#resultheaderwrapper -->
+
+            <ul>
+    <script>
+//<![CDATA[
+        function initialize_navigations($group, length){
+        setting_navigations($group, 0, length)
+
+        setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', $group ) ), $( '.disclosure_panel', $group ), $group );
+        // 閉じたときにpagingをresetするhook
+        var $trigger = $( '.roundbutton-wrapper', $( '.result-disclosure-button', $group ) );
+        $trigger.click(function(){
+        setting_navigations($group, 0, length)
+        })
+        }
+        function goto_group_page(source, idx, length){
+        setting_navigations($(source).parents('.item_group_wrapper'), idx, length)
+        }
+        function setting_navigations($group, idx, length){
+        // 数字navi
+        for(var i = 0;i < length;i++){
+        $page = $group.find('div.page' + (i + 1)) // 項目の実体
+        $navi = $group.find('li.n_page' + (i + 1)) // ページナビゲーション
+        if(i == idx){
+        $page.show()
+        $navi.html('<strong>' + (i + 1) + '</strong>')
+        }else{
+        $page.hide()
+        $navi.html( '<a href ="javascript:void(0)" onclick="goto_group_page(this,' + i + ',' + length + ');return false">' + (i + 1) + '</a>' )
+        }
+
+        }
+
+        // 三角ボタンの処理
+        //alert(idx+','+length)
+        // left
+        $left = $group.find('li.left')
+        if(idx == 0){
+        $left.html('<span class="larrow larrow_d"></span>')
+        }else{
+        $left.html( '<a href="javascript:void(0)" onclick="goto_group_page(this,' + (idx - 1) + ',' + length + ');return false" class="larrow">&lt;</a>' )
+        }
+        // right
+        $right = $group.find('li.right')
+        if(idx + 1 == length){
+        $right.html('<span class="rarrow rarrow_d"></span>')
+        }else{
+        $right.html( '<a href="javascript:void(0)" onclick="goto_group_page(this,' + (idx + 1) + ',' + length + ');return false" class="rarrow">&gt;</a>' )
+        }
+
+        }
+        function generateRoundButton(){
+        $('.roundbutton').each(function(i){
+        var center = $(this);
+        if(!center.hasClass('roundbutton-center')){
+        center.addClass('roundbutton-center');
+        var capLeft = $('<span class="roundbutton-cap-l">&nbsp;</span>');
+        var capRight = $('<span class="roundbutton-cap-r">&nbsp;</span>');
+        capLeft.add(capRight).click(function(){
+        center.trigger('click');
+        window.location.href = center.attr('href');
+        });
+        center.wrap('<span class="roundbutton-wrapper"></span>')
+        .before(capLeft)
+        .after(capRight);
+        };
+        });
+        };
+
+     function setDisclosureGimmick($trigger, $disclosing, $wrapper, openingFunction, closingFunction){
+        $trigger.unbind('click')
+        $trigger.click(function(event){
+            event.preventDefault();
+            if($wrapper.hasClass('disclosure-open')) {
+                if($disclosing.length > 0){ // There is a disclosing area
+                    $disclosing.slideUp('fast', function(){
+                        $wrapper.removeClass('disclosure-open');
+                        if(closingFunction){
+                            closingFunction();
+                        };
+                    });
+                }else{
+                    $wrapper.removeClass('disclosure-open');
+                };
+            }else{
+                $wrapper.addClass('disclosure-open');
+                $disclosing.slideDown('fast', function(){
+                    if(openingFunction){
+                        openingFunction();
+                    };
+                });
+            };
+        });
+    };
+
+
+//]]>
+</script>        <div class="item_group_wrapper"style="border-top:3px solid #CCC">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_0').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_0">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023165321-00">ブックハンティング2011 歴史の方法としてのアイヌ散文説話 アイヌ口承文学の認識論&lt;エピステモロジー&gt; 著・坂田美奈子</a>
+        
+      </h3>
+  <p>	
+        
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">出版ニュース = Japanese publications news and reviews : 出版総合誌</span>
+
+        <span class="item"></span>
+        
+          <span class="item">(通号 2260)</span>
+
+
+          <span class="item">2011-11-00</span>
+
+          <span class="item">p.20-21</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023165321&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023165321">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="even item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_1').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_1">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span><a onclick="$(&#39;#list_item_1&#39;).load(&#39;https://iss.ndl.go.jp/books/translate_list?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;from_lang=zh&amp;identifier=R000000004-I023174243-00&amp;list_index=1&amp;sort=df&amp;to_lang=ja&amp;trans_partial=true&#39;);" href="#"><img style="margin-left:10px;float:right;" src="/images/ndl/button_japanese.png" /></a></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023174243-00">&quot;村上文学&quot;汉译本中的文本转换问题 以『ダンス・ダンス・ダンス』的两个译本为例</a>
+        
+      </h3>
+  <p>	
+        海村 惟一,海村 佳惟
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">福岡国際大学紀要 = Bulletin of Fukuoka International University</span>
+
+        <span class="item">(26)</span>
+        
+
+
+          <span class="item">2011-09</span>
+
+          <span class="item">p.13-30</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023174243&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023174243">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+    <div class="similarwrapper">
+    
+          <div id="list_item_2" class="page1" >
+                <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span><a onclick="$(&#39;#list_item_2&#39;).load(&#39;https://iss.ndl.go.jp/books/translate_list?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;from_lang=zh&amp;identifier=R000000004-I11096981-00&amp;list_index=2&amp;sort=df&amp;to_lang=ja&amp;trans_partial=true&#39;);" href="#"><img style="margin-left:10px;float:right;" src="/images/ndl/button_japanese.png" /></a></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I11096981-00">&quot;村上文学&quot; 漢譯本中的文本轉換問題--以『ダンス・ダンス・ダンス』的兩個譯本爲例</a>
+        
+      </h3>
+  <p>	
+        海村 惟一,海村 佳惟
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">福岡国際大学紀要 = Bulletin of Fukuoka International University</span>
+
+        <span class="item">(25)</span>
+        
+
+
+          <span class="item">2011-03</span>
+
+          <span class="item">p.39～52</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/11096981&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/11096981">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+          </div>
+    </div>
+</div>
+        <div class="item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_3').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_3">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023191953-00">優秀作 時雨沼</a>
+        
+          <span style="font-weight:normal">(支部誌・同人誌推薦作品特集)</span>
+      </h3>
+  <p>	
+        梅崎 萌子
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.6-18</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023191953&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023191953">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="even item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_4').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_4">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023191958-00">川田家断絶始末</a>
+        
+          <span style="font-weight:normal">(支部誌・同人誌推薦作品特集)</span>
+      </h3>
+  <p>	
+        澄田 恭一
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.19-39</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023191958&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023191958">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_5').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_5">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023191966-00">聖二月</a>
+        
+          <span style="font-weight:normal">(支部誌・同人誌推薦作品特集)</span>
+      </h3>
+  <p>	
+        池戸 亮太
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.40-57</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023191966&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023191966">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="even item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_6').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_6">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023191970-00">ネット家族</a>
+        
+          <span style="font-weight:normal">(支部誌・同人誌推薦作品特集)</span>
+      </h3>
+  <p>	
+        宮川 芙美子
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.58-77</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023191970&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023191970">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_7').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_7">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023191974-00">上野にて</a>
+        
+          <span style="font-weight:normal">(支部誌・同人誌推薦作品特集)</span>
+      </h3>
+  <p>	
+        青山 次郎
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.78-91</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023191974&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023191974">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="even item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_8').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_8">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023191989-00">文学者たちの〈十二月八日〉</a>
+        
+      </h3>
+  <p>	
+        岩渕 剛
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.106-112</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023191989&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023191989">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_9').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_9">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023191997-00">大江・岩波沖縄戦裁判が示したもの</a>
+        
+      </h3>
+  <p>	
+        北村 隆志
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.113-120</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023191997&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023191997">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="even item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_10').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_10">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023192007-00">歴史のなかのロマン・ロラン</a>
+        
+      </h3>
+  <p>	
+        槇村 哲朗
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.121-141</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023192007&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023192007">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_11').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_11">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023192014-00">福島からの報告 いわき市からの原発公害報告</a>
+        
+      </h3>
+  <p>	
+        広田 次男
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.142-146</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023192014&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023192014">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="even item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_12').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_12">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023192031-00">福島からの報告 原発事故から六ヶ月、私達は何を見たか : 福島県での農業再建と復興の現段階</a>
+        
+      </h3>
+  <p>	
+        前田 新
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.147-153</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023192031&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023192031">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_13').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_13">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023192038-00">文芸時評 多様な小説方法の併存する現在</a>
+        
+      </h3>
+  <p>	
+        三浦 健治
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.154-159</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023192038&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023192038">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="even item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_14').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_14">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023192046-00">支部誌・同人誌評 喪失と絶望からの再生</a>
+        
+      </h3>
+  <p>	
+        井上 文夫
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.160-165</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023192046&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023192046">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+        <div class="item_group_wrapper">
+  <script>
+//<![CDATA[
+    jQuery(function($){
+
+    var this_group = $('#list_item_15').parents('.item_group_wrapper')
+
+      generateRoundButton()
+
+    // setDisclosureGimmick( $( '.roundbutton-wrapper', $( '.result-disclosure-button', this_group ) ), $( '.disclosure_panel', this_group ), this_group );
+
+    })
+
+//]]>
+</script>  <div id="list_item_15">
+        <li class="item_result item_article">
+    <span class="material_category">
+          記事・論文
+    </span>
+    <div class="item_summarywrapper">
+<!--
+  <span></span>
+-->
+  
+  <h3>
+          <a href="https://iss.ndl.go.jp/books/R000000004-I023192055-00">「民主文学」総目次(五四三号~五五四号) : 二〇一一年一月号~十二月号</a>
+        
+      </h3>
+  <p>	
+        
+        </p>
+
+      <p class="publication-info">
+          <span class="colon-delimiter">掲載誌</span>
+          <span class="item">民主文学 / 日本民主主義文学会 編</span>
+
+        <span class="item">(554)</span>
+        
+          <span class="item">(通号 604)</span>
+
+
+          <span class="item">2011-12</span>
+
+          <span class="item">p.192-196</span>
+
+      </p>
+      
+    </div>
+      <p style="text-align:right;">
+    
+      
+
+      <img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a onclick="window.open(&#39;http://id.ndl.go.jp/bib/023192055&#39;, &#39;ndl_opac&#39;); return false;" class="external" href="http://id.ndl.go.jp/bib/023192055">国立国会図書館オンライン（雑誌記事索引）</a>
+    </p>
+    <p style="text-align:right;">
+    </p>
+  </li>
+  
+    
+  </div>
+</div>
+  </ul>
+
+
+        <div id="resultfooterwrapper">
+          <p class="guidance"><a href="#search-guidance">再検索する</a></p>
+          <div id="resultfooter">
+            <p class="guidance"><img width="1" height="1" alt="ページジャンプ" src="/images/ndl/spacer.png" /></p>
+            <ul class="pagingnav" style="margin-top:1px;">
+<li><span class="larrow larrow_d">前のページに戻る</span></li>
+<li><strong>1</strong></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=2">2</a></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=3">3</a></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=4">4</a></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=5">5</a></li>
+<li><span class="ellipsis">...</span></li>
+<li><a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=34">34</a></li>
+<li><a class="rarrow" href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=2">次のページに進む</a></li>
+</ul>
+            <p class="pagetop"><a href="#PTOP">ページトップに戻る</a></p>
+          </div><!-- end of div#resultfooter -->
+        </div><!-- end of div#resultfooterwrapper -->
+      <p class="guidance"><img width="1" height="1" alt="検索結果一覧ここまで" src="/images/ndl/spacer.png" /></p>
+    </div><!-- end of div#listcontent -->
+
+    <div id="facet">
+      <div class="facet-wrapper">
+          <h2 class="mainlabel">
+            検索結果の絞り込み
+          </h2>
+
+
+            <div id="facet_group_ui_media_type_sm" class="subgroup">
+                <h3 class="sublabel">資料種別</h3>
+  <ul class="sub-ul">
+  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_1&amp;locale=ja&amp;op_id=1">本</a>  (518921件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_2&amp;locale=ja&amp;op_id=1">記事・論文</a>  (468133件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_3&amp;locale=ja&amp;op_id=1">新聞</a>  (43件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_4&amp;locale=ja&amp;op_id=1">児童書</a>  (32513件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_5&amp;locale=ja&amp;op_id=1">レファレンス情報</a>  (39153件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_6&amp;locale=ja&amp;op_id=1">デジタル資料</a>  (435026件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_7&amp;locale=ja&amp;op_id=1">その他</a>  (179件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_8&amp;locale=ja&amp;op_id=1">障害者向け資料</a>  (400件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=1_9&amp;locale=ja&amp;op_id=1">立法情報</a>  (1114件)
+</li>  </ul>
+            </div>
+            <div id="facet_group_repository_no_sm" class="subgroup">
+              <p class="guidance" id="facet_group_repository_no_shortcut"><a href="#"><img width="1" height="1" alt="検索結果の絞り込みができます。" src="/images/ndl/spacer.png" /></a></p>
+              
+
+  <h3 class="sublabel">データベース</h3>
+  <ul class="sub-ul">
+
+    <li>    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000004&amp;locale=ja&amp;op_id=1">        国立国会図書館オンライン（雑誌記事索引）</a>      (360499件)
+    </div>
+</li>
+    <li>    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000001&amp;locale=ja&amp;op_id=1">        公共図書館蔵書</a>      (224352件)
+    </div>
+</li>
+    <li>    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000025&amp;locale=ja&amp;op_id=1">        学術機関リポジトリデータベース（IRDB）（機関リポジトリ）</a>      (159949件)
+    </div>
+</li>
+    <li>    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000096&amp;locale=ja&amp;op_id=1">        CiNii Books</a>      (120847件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000039&amp;locale=ja&amp;op_id=1">        国立国会図書館デジタルコレクション</a>      (110255件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A00&amp;locale=ja&amp;op_id=1">        図書</a>      (44509件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A001&amp;locale=ja&amp;op_id=1">        国立国会図書館（図書）</a>      (126件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A0011&amp;locale=ja&amp;op_id=1">        国立国会図書館調査及び立法考査局（図書）</a>      (5件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A01&amp;locale=ja&amp;op_id=1">        雑誌</a>      (63740件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A011&amp;locale=ja&amp;op_id=1">        国立国会図書館（雑誌）</a>      (73件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A04&amp;locale=ja&amp;op_id=1">        博士論文</a>      (1167件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A05&amp;locale=ja&amp;op_id=1">        官報</a>      (386件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A06&amp;locale=ja&amp;op_id=1">        日本占領関係資料</a>      (11件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A07&amp;locale=ja&amp;op_id=1">        憲政資料</a>      (1件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A11&amp;locale=ja&amp;op_id=1">        プランゲ文庫</a>      (329件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A12&amp;locale=ja&amp;op_id=1">        点字データ</a>      (48件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A16&amp;locale=ja&amp;op_id=1">        録音・映像関係資料</a>      (61件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A17&amp;locale=ja&amp;op_id=1">        他機関デジタル化資料</a>      (60件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A2&amp;locale=ja&amp;op_id=1">        古典籍資料（貴重書等）</a>      (143件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000039%2FD%3A90&amp;locale=ja&amp;op_id=1">        歴史的音源</a>      (8件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000002&amp;locale=ja&amp;op_id=1">        国立国会図書館オンライン</a>      (95658件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000024&amp;locale=ja&amp;op_id=1">        CiNii Articles</a>      (61167件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000016&amp;locale=ja&amp;op_id=1">        J-STAGE</a>      (44162件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000076&amp;locale=ja&amp;op_id=1">        JapanKnowledge</a>      (29139件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000004&amp;locale=ja&amp;op_id=1">        児童書総合目録</a>      (26824件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000006&amp;locale=ja&amp;op_id=1">        レファレンス協同データベース</a>      (9444件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000094&amp;locale=ja&amp;op_id=1">        デジタルアーカイブシステムADEAC</a>      (8241件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000067&amp;locale=ja&amp;op_id=1">        出版情報登録センター（JPRO）</a>      (4921件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000103&amp;locale=ja&amp;op_id=1">        デジタルアーカイブ福井</a>      (4819件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000040&amp;locale=ja&amp;op_id=1">        国立国会図書館デジタルコレクション（電子書籍・電子雑誌）</a>      (4689件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000040%2FI%3A1105&amp;locale=ja&amp;op_id=1">        国立国会図書館</a>      (844件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000040%2FI%3A11051&amp;locale=ja&amp;op_id=1">        国立国会図書館調査及び立法考査局</a>      (118件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=7_R100000040%2FI%3AOTHER&amp;locale=ja&amp;op_id=1">        その他</a>      (3727件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000085&amp;locale=ja&amp;op_id=1">        秋田県立図書館デジタルアーカイブ</a>      (3259件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000102&amp;locale=ja&amp;op_id=1">        東京大学学術資産等アーカイブズポータル</a>      (1729件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000014&amp;locale=ja&amp;op_id=1">        青空文庫</a>      (1618件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000109&amp;locale=ja&amp;op_id=1">        教育図書館近代教科書デジタルアーカイブ</a>      (1571件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000054&amp;locale=ja&amp;op_id=1">        叡智の杜Web（宮城県図書館）</a>      (963件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000034&amp;locale=ja&amp;op_id=1">        衆議院HP</a>      (818件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000074&amp;locale=ja&amp;op_id=1">        農林水産関係試験研究機関総合目録</a>      (687件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000097&amp;locale=ja&amp;op_id=1">        国立国会図書館オンライン（電子ブック・電子ジャーナル）</a>      (673件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000113&amp;locale=ja&amp;op_id=1">        佐賀県立図書館データベース</a>      (452件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000092&amp;locale=ja&amp;op_id=1">        九大コレクション</a>      (379件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000055&amp;locale=ja&amp;op_id=1">        広島市立中央図書館 特別コレクション</a>      (216件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000111&amp;locale=ja&amp;op_id=1">        食の文化ライブラリー蔵書目録検索</a>      (212件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000098&amp;locale=ja&amp;op_id=1">        メディア芸術データベース（マンガ）</a>      (211件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000099&amp;locale=ja&amp;op_id=1">        最高裁判所図書館 蔵書検索</a>      (189件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000035&amp;locale=ja&amp;op_id=1">        参議院HP</a>      (169件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000184&amp;locale=ja&amp;op_id=1">        リサーチ･ナビ（調べ方案内）</a>      (138件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000105&amp;locale=ja&amp;op_id=1">        京都大学蔵書検索KULINE 貴重資料</a>      (117件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000050&amp;locale=ja&amp;op_id=1">        古典籍総合データベース（早稲田大学図書館）</a>      (87件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000095&amp;locale=ja&amp;op_id=1">        ColBase: 国立博物館所蔵品統合検索システム</a>      (84件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000093&amp;locale=ja&amp;op_id=1">        文化遺産オンライン</a>      (79件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000196&amp;locale=ja&amp;op_id=1">        都市横浜の記憶（横浜市中央図書館）</a>      (78件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000007&amp;locale=ja&amp;op_id=1">        カレントアウェアネス</a>      (31件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000041&amp;locale=ja&amp;op_id=1">        独立行政法人国立美術館 所蔵作品総合目録検索システム（画像なし）</a>      (28件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000005&amp;locale=ja&amp;op_id=1">        新書マップ</a>      (27件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000112&amp;locale=ja&amp;op_id=1">        琉球・沖縄関係貴重資料デジタルアーカイブ</a>      (24件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000114&amp;locale=ja&amp;op_id=1">        関西大学デジタルアーカイブ</a>      (24件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000030&amp;locale=ja&amp;op_id=1">        日本ペンクラブ 電子文藝館</a>      (21件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000046&amp;locale=ja&amp;op_id=1">        筑波大学附属図書館 貴重書コレクション</a>      (19件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000038&amp;locale=ja&amp;op_id=1">        奈良県地域史料目録</a>      (18件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000202&amp;locale=ja&amp;op_id=1">        函館市中央図書館所蔵デジタルアーカイブ デジタル資料館</a>      (17件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000048&amp;locale=ja&amp;op_id=1">        沖縄戦関係資料閲覧室 所蔵資料検索（未電子化）</a>      (14件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000199&amp;locale=ja&amp;op_id=1">        静岡県立中央図書館 デジタルライブラリー</a>      (14件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000046&amp;locale=ja&amp;op_id=1">        日本原子力研究開発機構所蔵目録データベース</a>      (13件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000088&amp;locale=ja&amp;op_id=1">        国立女性教育会館女性デジタルアーカイブシステム</a>      (12件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000039&amp;locale=ja&amp;op_id=1">        奈良県立図書情報館 まほろばデジタルライブラリー</a>      (8件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000194&amp;locale=ja&amp;op_id=1">        富山県立図書館 古絵図・貴重書ギャラリー</a>      (8件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000086&amp;locale=ja&amp;op_id=1">        東京都立図書館デジタルアーカイブ（TOKYOアーカイブ）</a>      (7件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000058&amp;locale=ja&amp;op_id=1">        札幌市中央図書館デジタルライブラリー</a>      (5件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000110&amp;locale=ja&amp;op_id=1">        教育図書館戦後教育資料デジタルアーカイブ</a>      (5件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000195&amp;locale=ja&amp;op_id=1">        岐阜県図書館 岐阜県関係資料＋地図資料</a>      (4件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000056&amp;locale=ja&amp;op_id=1">        三重県立図書館 和漢籍資料デジタル閲覧室</a>      (3件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000062&amp;locale=ja&amp;op_id=1">        大阪府立図書館 おおさか eコレクション</a>      (3件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000204&amp;locale=ja&amp;op_id=1">        宮崎県立図書館 貴重書デジタルアーカイブ</a>      (3件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000031&amp;locale=ja&amp;op_id=1">        日本法令索引（明治前期編）</a>      (3件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000101&amp;locale=ja&amp;op_id=1">        青森県立図書館デジタルアーカイブ</a>      (3件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000107&amp;locale=ja&amp;op_id=1">        大阪市立図書館デジタルアーカイブ</a>      (3件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000075&amp;locale=ja&amp;op_id=1">        沖縄県立図書館『貴重資料デジタル書庫』</a>      (2件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R100000106&amp;locale=ja&amp;op_id=1">        教育図書館貴重資料デジタルコレクション</a>      (2件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000040&amp;locale=ja&amp;op_id=1">        独立行政法人国立美術館 所蔵作品総合目録検索システム（画像あり）</a>      (1件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000059&amp;locale=ja&amp;op_id=1">        北海道立図書館 北方資料デジタル・ライブラリー</a>      (1件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000185&amp;locale=ja&amp;op_id=1">        埼玉県立図書館 デジタルライブラリー</a>      (1件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=0_R000000192&amp;locale=ja&amp;op_id=1">        奈良国立博物館収蔵品データベース</a>      (1件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 0em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=8_NDLPublication&amp;locale=ja&amp;op_id=1">        国立国会図書館刊行物</a>      (1166件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=8_NDLPublication%2FLegislativeInformation&amp;locale=ja&amp;op_id=1">        調査及び立法考査局刊行物</a>      (123件)
+    </div>
+</li>
+    <li class="additional">    <div style=" margin-left: 1em; ">
+      <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=8_NDLPublication%2FnoLegislativeInformation&amp;locale=ja&amp;op_id=1">        その他</a>      (1043件)
+    </div>
+</li>  </ul>
+    <div class="show-wrapper">
+      <span class="showall"><a href="#">▼全て表示</a></span><span class="showsome"><a href="#">▲一部を表示</a></span>
+    </div>
+
+
+            </div>
+            <div id="facet_group_library_sm" class="subgroup">
+                <h3 class="sublabel">所蔵館</h3>
+  <ul class="sub-ul">
+  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=3_%E5%9B%BD%E7%AB%8B%E5%9B%BD%E4%BC%9A%E5%9B%B3%E6%9B%B8%E9%A4%A8&amp;locale=ja&amp;op_id=1">国立国会図書館</a>  (95658件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=3_%E5%A4%A7%E9%98%AA%E5%BA%9C%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%9B%B3%E6%9B%B8%E9%A4%A8&amp;locale=ja&amp;op_id=1">大阪府立中央図書館</a>  (37224件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=3_%E6%A8%AA%E6%B5%9C%E5%B8%82%E7%AB%8B%E5%9B%B3%E6%9B%B8%E9%A4%A8&amp;locale=ja&amp;op_id=1">横浜市立図書館</a>  (36185件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=3_%E5%A4%A7%E9%98%AA%E5%B8%82%E7%AB%8B%E5%9B%B3%E6%9B%B8%E9%A4%A8&amp;locale=ja&amp;op_id=1">大阪市立図書館</a>  (34141件)
+</li>  </ul>
+    <div class="show-wrapper">
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+      function call_facet_ajax_urlfacet_group_library_sm(){
+      wait_html = '<div style="margin:10px;">\
+                      <img alt="Ajax-loader" src="/images/ndl/ajax-loader.gif" />\
+                      <span style="font-weight:bold;">所蔵館を取得中..</span>\
+                   </div>';
+      document.getElementById('facet_group_library_sm').innerHTML = wait_html;
+        $('#facet_group_library_sm').load('https://iss.ndl.go.jp/books/get_facet_group_library?any=%22%E6%96%87%E5%AD%A6%22&ar=4e1f&except_repository_nos%5B%5D=R100000038&except_repository_nos%5B%5D=R100000049&except_repository_nos%5B%5D=R100000073&sort=df')
+      }
+//]]>
+</script>
+        <span class="showall"><a href="#" onclick="call_facet_ajax_urlfacet_group_library_sm();">▼全て表示</a></span>
+    </div>
+
+            </div>
+            <div id="facet_group_year_of_publication_sm" class="subgroup">
+                <h3 class="sublabel">出版年</h3>
+  <ul class="sub-ul">
+  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=4_2121&amp;locale=ja&amp;op_id=1">2121</a>  (2件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=4_2024&amp;locale=ja&amp;op_id=1">2024</a>  (4件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=4_2023&amp;locale=ja&amp;op_id=1">2023</a>  (5件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=4_2022&amp;locale=ja&amp;op_id=1">2022</a>  (60件)
+</li>  </ul>
+    <div class="show-wrapper">
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+      function call_facet_ajax_urlfacet_group_year_of_publication_sm(){
+      wait_html = '<div style="margin:10px;">\
+                      <img alt="Ajax-loader" src="/images/ndl/ajax-loader.gif" />\
+                      <span style="font-weight:bold;">出版年を取得中..</span>\
+                   </div>';
+      document.getElementById('facet_group_year_of_publication_sm').innerHTML = wait_html;
+        $('#facet_group_year_of_publication_sm').load('https://iss.ndl.go.jp/books/get_facet_year?any=%22%E6%96%87%E5%AD%A6%22&ar=4e1f&except_repository_nos%5B%5D=R100000038&except_repository_nos%5B%5D=R100000049&except_repository_nos%5B%5D=R100000073&sort=df')
+      }
+//]]>
+</script>
+        <span class="showall"><a href="#" onclick="call_facet_ajax_urlfacet_group_year_of_publication_sm();">▼全て表示</a></span>
+    </div>
+
+            </div>
+            <div id="facet_group_ndc_facet_sm" class="subgroup">
+                <h3 class="sublabel">分類</h3>
+  <ul class="sub-ul">
+  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_0&amp;locale=ja&amp;op_id=1">0.総記</a>  (18047件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_1&amp;locale=ja&amp;op_id=1">1.哲学</a>  (9797件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_2&amp;locale=ja&amp;op_id=1">2.歴史</a>  (27502件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_3&amp;locale=ja&amp;op_id=1">3.社会科学</a>  (20281件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_4&amp;locale=ja&amp;op_id=1">4.自然科学</a>  (5270件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_5&amp;locale=ja&amp;op_id=1">5.技術</a>  (1212件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_6&amp;locale=ja&amp;op_id=1">6.産業</a>  (1200件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_7&amp;locale=ja&amp;op_id=1">7.芸術</a>  (6482件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_8&amp;locale=ja&amp;op_id=1">8.言語</a>  (10003件)
+</li>  <li>  <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=5_9&amp;locale=ja&amp;op_id=1">9.文学</a>  (224787件)
+</li>  </ul>
+
+            </div>
+
+            <div id="facet_group_genre_sm" class="subgroup">
+              
+
+    <h3 class="sublabel">分野</h3>
+    <ul class="sub-ul">
+      <li>      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E3%81%9D%E3%81%AE%E4%BB%96&amp;locale=ja&amp;op_id=1">          その他</a>        (1件)
+      </div>
+    </li>
+        <li>      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E3%81%9D%E3%81%AE%E4%BB%96%2F%E3%81%9D%E3%81%AE%E4%BB%96&amp;locale=ja&amp;op_id=1">          その他</a>        (2件)
+      </div>
+    </li>
+        <li>      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E3%81%9D%E3%81%AE%E4%BB%96%2F%E3%81%9D%E3%81%AE%E4%BB%96%2F%E3%81%9D%E3%81%AE%E4%BB%96&amp;locale=ja&amp;op_id=1">          その他</a>        (2件)
+      </div>
+    </li>
+        <li>      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E5%AD%A6%E6%A0%A1%E6%95%99%E8%82%B2&amp;locale=ja&amp;op_id=1">          学校教育</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%8F%B8%E6%B3%95%E3%83%BB%E6%B3%95%E5%8B%99&amp;locale=ja&amp;op_id=1">          司法・法務</a>        (13件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%8F%B8%E6%B3%95%E3%83%BB%E6%B3%95%E5%8B%99%2F%E5%88%91%E4%BA%8B%E6%B3%95%E5%88%B6&amp;locale=ja&amp;op_id=1">          刑事法制</a>        (7件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%8F%B8%E6%B3%95%E3%83%BB%E6%B3%95%E5%8B%99%2F%E5%8F%B8%E6%B3%95%E5%88%B6%E5%BA%A6&amp;locale=ja&amp;op_id=1">          司法制度</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%8F%B8%E6%B3%95%E3%83%BB%E6%B3%95%E5%8B%99%2F%E6%B0%91%E4%BA%8B%E6%B3%95%E5%88%B6&amp;locale=ja&amp;op_id=1">          民事法制</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%8F%B8%E6%B3%95%E3%83%BB%E6%B3%95%E5%8B%99%2F%E6%B3%95%E5%8B%99%E8%A1%8C%E6%94%BF&amp;locale=ja&amp;op_id=1">          法務行政</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%8F%B8%E6%B3%95%E3%83%BB%E6%B3%95%E5%8B%99%2F%E8%AD%A6%E5%AF%9F&amp;locale=ja&amp;op_id=1">          警察</a>        (4件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%A4%96%E4%BA%A4%E3%83%BB%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C&amp;locale=ja&amp;op_id=1">          外交・安全保障</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%A4%96%E4%BA%A4%E3%83%BB%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%2F%E5%9B%BD%E9%9A%9B%E6%A9%9F%E9%96%A2%E3%83%BB%E5%9B%BD%E9%9A%9B%E6%B3%95&amp;locale=ja&amp;op_id=1">          国際機関・国際法</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%A4%96%E4%BA%A4%E3%83%BB%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%2F%E5%A4%96%E4%BA%A4&amp;locale=ja&amp;op_id=1">          外交</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E5%A4%96%E4%BA%A4%E3%83%BB%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%2F%E9%98%B2%E8%A1%9B%E3%83%BB%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C&amp;locale=ja&amp;op_id=1">          防衛・安全保障</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%86%B2%E6%B3%95&amp;locale=ja&amp;op_id=1">          憲法</a>        (28件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%86%B2%E6%B3%95%2F%E4%BA%BA%E6%A8%A9&amp;locale=ja&amp;op_id=1">          人権</a>        (6件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%86%B2%E6%B3%95%2F%E6%86%B2%E6%B3%95&amp;locale=ja&amp;op_id=1">          憲法</a>        (21件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%86%B2%E6%B3%95%2F%E6%A0%84%E5%85%B8%E5%88%B6%E5%BA%A6&amp;locale=ja&amp;op_id=1">          栄典制度</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E6%B2%BB&amp;locale=ja&amp;op_id=1">          政治</a>        (18件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E5%85%9A&amp;locale=ja&amp;op_id=1">          政党</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E6%B2%BB%E4%BA%8B%E6%83%85%E3%83%BB%E6%94%BF%E6%B2%BB%E4%B8%80%E8%88%AC&amp;locale=ja&amp;op_id=1">          政治事情・政治一般</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E6%B2%BB%E8%B3%87%E9%87%91&amp;locale=ja&amp;op_id=1">          政治資金</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E6%B2%BB%2F%E8%AD%B0%E4%BC%9A&amp;locale=ja&amp;op_id=1">          議会</a>        (10件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E6%94%BF%E6%B2%BB%2F%E9%81%B8%E6%8C%99&amp;locale=ja&amp;op_id=1">          選挙</a>        (9件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E8%A1%8C%E6%94%BF&amp;locale=ja&amp;op_id=1">          行政</a>        (9件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E8%A1%8C%E6%94%BF%2F%E5%85%AC%E5%8B%99%E5%93%A1%E5%88%B6%E5%BA%A6&amp;locale=ja&amp;op_id=1">          公務員制度</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E8%A1%8C%E6%94%BF%2F%E5%86%85%E9%96%A3&amp;locale=ja&amp;op_id=1">          内閣</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E8%A1%8C%E6%94%BF%2F%E5%9C%B0%E6%96%B9%E8%87%AA%E6%B2%BB&amp;locale=ja&amp;op_id=1">          地方自治</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%94%BF%E6%B2%BB%2F%E8%A1%8C%E6%94%BF%2F%E8%A1%8C%E6%94%BF%E5%88%B6%E5%BA%A6&amp;locale=ja&amp;op_id=1">          行政制度</a>        (4件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E6%B5%B7%E4%B8%8A%E4%BF%9D%E5%AE%89&amp;locale=ja&amp;op_id=1">          海上保安</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F+%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96+&amp;locale=ja&amp;op_id=1">           教育・科学・文化 </a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F+%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96+%2F+%E6%96%87%E5%8C%96&amp;locale=ja&amp;op_id=1">           文化</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8A%B4%E5%83%8D&amp;locale=ja&amp;op_id=1">          労働</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8A%B4%E5%83%8D%2F%E5%8A%B4%E5%83%8D%E5%B8%82%E5%A0%B4%E3%83%BB%E9%9B%87%E7%94%A8&amp;locale=ja&amp;op_id=1">          労働市場・雇用</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8A%B4%E5%83%8D%2F%E5%8A%B4%E5%83%8D%E6%9D%A1%E4%BB%B6%E3%83%BB%E5%8A%B4%E5%83%8D%E7%81%BD%E5%AE%B3&amp;locale=ja&amp;op_id=1">          労働条件・労働災害</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8E%9A%E7%94%9F&amp;locale=ja&amp;op_id=1">          厚生</a>        (11件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8E%9A%E7%94%9F%2F%E4%BA%BA%E5%8F%A3%E5%95%8F%E9%A1%8C&amp;locale=ja&amp;op_id=1">          人口問題</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8E%9A%E7%94%9F%2F%E5%8C%BB%E7%99%82%E3%83%BB%E8%96%AC%E4%BA%8B&amp;locale=ja&amp;op_id=1">          医療・薬事</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8E%9A%E7%94%9F%2F%E6%8F%B4%E8%AD%B7&amp;locale=ja&amp;op_id=1">          援護</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8E%9A%E7%94%9F%2F%E7%96%BE%E7%97%85%E3%83%BB%E4%BF%9D%E5%81%A5&amp;locale=ja&amp;op_id=1">          疾病・保健</a>        (4件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8E%9A%E7%94%9F%2F%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C&amp;locale=ja&amp;op_id=1">          社会保障</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E5%8E%9A%E7%94%9F%2F%E7%A4%BE%E4%BC%9A%E7%A6%8F%E7%A5%89&amp;locale=ja&amp;op_id=1">          社会福祉</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96&amp;locale=ja&amp;op_id=1">          教育・科学・文化</a>        (32件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96+&amp;locale=ja&amp;op_id=1">          教育・科学・文化 </a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96+%2F%E8%8A%B8%E8%A1%93&amp;locale=ja&amp;op_id=1">          芸術</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        教育・科学・文化 
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96%2F%E5%AD%A6%E6%A0%A1%E6%95%99%E8%82%B2&amp;locale=ja&amp;op_id=1">          学校教育</a>        (8件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96%2F%E5%AD%A6%E8%A1%93&amp;locale=ja&amp;op_id=1">          学術</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96%2F%E5%AE%97%E6%95%99&amp;locale=ja&amp;op_id=1">          宗教</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96%2F%E6%96%87%E5%8C%96&amp;locale=ja&amp;op_id=1">          文化</a>        (9件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96%2F%E7%A4%BE%E4%BC%9A%E6%95%99%E8%82%B2&amp;locale=ja&amp;op_id=1">          社会教育</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96%2F%E7%A7%91%E5%AD%A6%E6%8A%80%E8%A1%93&amp;locale=ja&amp;op_id=1">          科学技術</a>        (6件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96%2F%E8%8A%B8%E8%A1%93&amp;locale=ja&amp;op_id=1">          芸術</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A4%BE%E4%BC%9A%2F%E6%95%99%E8%82%B2%E3%83%BB%E7%A7%91%E5%AD%A6%E3%83%BB%E6%96%87%E5%8C%96%2F%E8%91%97%E4%BD%9C%E6%A8%A9&amp;locale=ja&amp;op_id=1">          著作権</a>        (5件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%A7%91%E5%AD%A6%E6%8A%80%E8%A1%93&amp;locale=ja&amp;op_id=1">          科学技術</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E5%9B%BD%E5%9C%9F%E3%83%BB%E5%BB%BA%E8%A8%AD%E3%83%BB%E9%81%8B%E8%BC%B8&amp;locale=ja&amp;op_id=1">          国土・建設・運輸</a>        (4件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E5%9B%BD%E5%9C%9F%E3%83%BB%E5%BB%BA%E8%A8%AD%E3%83%BB%E9%81%8B%E8%BC%B8%2F%E6%B5%B7%E4%B8%8A%E4%BF%9D%E5%AE%89&amp;locale=ja&amp;op_id=1">          海上保安</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E5%9B%BD%E5%9C%9F%E3%83%BB%E5%BB%BA%E8%A8%AD%E3%83%BB%E9%81%8B%E8%BC%B8%2F%E8%87%AA%E7%84%B6%E7%81%BD%E5%AE%B3&amp;locale=ja&amp;op_id=1">          自然災害</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E6%83%85%E5%A0%B1%E9%80%9A%E4%BF%A1%E3%83%BB%E9%83%B5%E6%94%BF&amp;locale=ja&amp;op_id=1">          情報通信・郵政</a>        (7件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E6%83%85%E5%A0%B1%E9%80%9A%E4%BF%A1%E3%83%BB%E9%83%B5%E6%94%BF%2F%E6%83%85%E5%A0%B1%E9%80%9A%E4%BF%A1%E3%83%BB%E6%94%BE%E9%80%81&amp;locale=ja&amp;op_id=1">          情報通信・放送</a>        (7件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E7%92%B0%E5%A2%83&amp;locale=ja&amp;op_id=1">          環境</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E7%92%B0%E5%A2%83%2F%E8%87%AA%E7%84%B6%E4%BF%9D%E8%AD%B7&amp;locale=ja&amp;op_id=1">          自然保護</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E7%A8%8E%E3%83%BB%E9%87%91%E8%9E%8D%E3%83%BB%E7%B5%8C%E6%B8%88&amp;locale=ja&amp;op_id=1">          税・金融・経済</a>        (5件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E7%A8%8E%E3%83%BB%E9%87%91%E8%9E%8D%E3%83%BB%E7%B5%8C%E6%B8%88%2F%E5%9B%BD%E7%A8%8E&amp;locale=ja&amp;op_id=1">          国税</a>        (4件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E7%A8%8E%E3%83%BB%E9%87%91%E8%9E%8D%E3%83%BB%E7%B5%8C%E6%B8%88%2F%E5%9C%B0%E6%96%B9%E7%A8%8E&amp;locale=ja&amp;op_id=1">          地方税</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E7%A8%8E%E3%83%BB%E9%87%91%E8%9E%8D%E3%83%BB%E7%B5%8C%E6%B8%88%2F%E5%9C%B0%E6%96%B9%E8%B2%A1%E6%94%BF&amp;locale=ja&amp;op_id=1">          地方財政</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E7%A8%8E%E3%83%BB%E9%87%91%E8%9E%8D%E3%83%BB%E7%B5%8C%E6%B8%88%2F%E9%87%91%E8%9E%8D&amp;locale=ja&amp;op_id=1">          金融</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3&amp;locale=ja&amp;op_id=1">          農林水産</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%2F%E9%A3%9F%E7%B3%A7&amp;locale=ja&amp;op_id=1">          食糧</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E9%80%9A%E5%95%86%E3%83%BB%E7%94%A3%E6%A5%AD&amp;locale=ja&amp;op_id=1">          通商・産業</a>        (5件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E9%80%9A%E5%95%86%E3%83%BB%E7%94%A3%E6%A5%AD%2F%E5%85%AC%E6%AD%A3%E5%8F%96%E5%BC%95%E3%83%BB%E6%B6%88%E8%B2%BB%E8%80%85%E4%BF%9D%E8%AD%B7&amp;locale=ja&amp;op_id=1">          公正取引・消費者保護</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E9%80%9A%E5%95%86%E3%83%BB%E7%94%A3%E6%A5%AD%2F%E5%9B%BD%E9%9A%9B%E7%B5%8C%E6%B8%88&amp;locale=ja&amp;op_id=1">          国際経済</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E9%80%9A%E5%95%86%E3%83%BB%E7%94%A3%E6%A5%AD%2F%E7%94%A3%E6%A5%AD%E6%94%BF%E7%AD%96&amp;locale=ja&amp;op_id=1">          産業政策</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E9%80%9A%E5%95%86%E3%83%BB%E7%94%A3%E6%A5%AD%2F%E7%B5%8C%E6%B8%88%E5%8D%94%E5%8A%9B&amp;locale=ja&amp;op_id=1">          経済協力</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 1em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E7%B5%8C%E6%B8%88%2F%E9%80%9A%E5%95%86%E3%83%BB%E7%94%A3%E6%A5%AD%2F%E9%80%9A%E5%95%86&amp;locale=ja&amp;op_id=1">          通商</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=9_%E8%87%AA%E7%84%B6%E4%BF%9D%E8%AD%B7&amp;locale=ja&amp;op_id=1">          自然保護</a>        (1件)
+      </div>
+    </li>
+  
+    </ul>
+      <div class="show-wrapper">
+        <span class="showall"><a href="#">▼全て表示</a></span><span class="showsome"><a href="#">▲一部を表示</a></span>
+      </div>
+            </div>
+            <div id="facet_group_area_sm" class="subgroup">
+              
+
+    <h3 class="sublabel">国・地域</h3>
+    <ul class="sub-ul">
+      <li>      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_EU&amp;locale=ja&amp;op_id=1">          EU</a>        (9件)
+      </div>
+    </li>
+        <li>      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%81%AA%E3%81%97&amp;locale=ja&amp;op_id=1">          なし</a>        (2件)
+      </div>
+    </li>
+        <li>      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB&amp;locale=ja&amp;op_id=1">          アメリカ</a>        (20件)
+      </div>
+    </li>
+        <li>      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%82%A4%E3%82%AE%E3%83%AA%E3%82%B9&amp;locale=ja&amp;op_id=1">          イギリス</a>        (14件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%82%A4%E3%82%BF%E3%83%AA%E3%82%A2&amp;locale=ja&amp;op_id=1">          イタリア</a>        (10件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%82%AA%E3%82%BB%E3%82%A2%E3%83%8B%E3%82%A2&amp;locale=ja&amp;op_id=1">          オセアニア</a>        (8件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%82%AB%E3%83%8A%E3%83%80&amp;locale=ja&amp;op_id=1">          カナダ</a>        (6件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%83%89%E3%82%A4%E3%83%84&amp;locale=ja&amp;op_id=1">          ドイツ</a>        (17件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%83%95%E3%83%A9%E3%83%B3%E3%82%B9&amp;locale=ja&amp;op_id=1">          フランス</a>        (20件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%83%A8%E3%83%BC%E3%83%AD%E3%83%83%E3%83%91&amp;locale=ja&amp;op_id=1">          ヨーロッパ</a>        (14件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E3%83%AD%E3%82%B7%E3%82%A2&amp;locale=ja&amp;op_id=1">          ロシア</a>        (2件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E4%B8%AD%E5%9B%BD&amp;locale=ja&amp;op_id=1">          中国</a>        (9件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E4%B8%AD%E5%A4%AE%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB&amp;locale=ja&amp;op_id=1">          中央アメリカ</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E5%8C%97%E6%9C%9D%E9%AE%AE&amp;locale=ja&amp;op_id=1">          北朝鮮</a>        (1件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E5%8C%97%E6%AC%A7&amp;locale=ja&amp;op_id=1">          北欧</a>        (8件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E5%8D%97%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB&amp;locale=ja&amp;op_id=1">          南アメリカ</a>        (3件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E5%9B%BD%E9%9A%9B&amp;locale=ja&amp;op_id=1">          国際</a>        (8件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E6%97%A5%E6%9C%AC&amp;locale=ja&amp;op_id=1">          日本</a>        (34件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E6%9D%B1%E5%8D%97%E3%82%A2%E3%82%B8%E3%82%A2&amp;locale=ja&amp;op_id=1">          東南アジア</a>        (5件)
+      </div>
+    </li>
+        <li class="additional">      <div style=" margin-left: 0em; ">
+        <a href="/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;display=&amp;escape=false&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;filters%5B%5D=10_%E9%9F%93%E5%9B%BD&amp;locale=ja&amp;op_id=1">          韓国</a>        (11件)
+      </div>
+    </li>
+  
+    </ul>
+      <div class="show-wrapper">
+        <span class="showall"><a href="#">▼全て表示</a></span><span class="showsome"><a href="#">▲一部を表示</a></span>
+      </div>
+            </div>
+
+                <div id="clustering_word_group" class="subgroup">
+          <h3 class="sublabel">特徴語（実証実験）</h3>
+          <ul class="sub-ul">
+            <li>              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E3%82%92%E8%AA%AD%E3%82%80&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">を読む</a>
+</li>            <li>              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E3%82%92%E3%82%81%E3%81%90%E3%81%A3%E3%81%A6&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">をめぐって</a>
+</li>            <li>              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E3%82%92%E4%B8%AD%E5%BF%83%E3%81%AB&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">を中心に</a>
+</li>            <li>              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E6%BA%90%E6%B0%8F%E7%89%A9%E8%AA%9E&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">源氏物語</a>
+</li>            <li class="additional">              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E6%96%B0%E9%80%A3%E8%BC%89%E3%83%BB%E7%AC%AC1%E5%9B%9E&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">新連載・第1回</a>
+</li>            <li class="additional">              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E7%B7%8F%E7%9B%AE%E6%AC%A1&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">総目次</a>
+</li>            <li class="additional">              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=Political&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">Political</a>
+</li>            <li class="additional">              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E3%82%A2%E3%83%BC%E3%83%88%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%AA%E3%83%BC&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">アートギャラリー</a>
+</li>            <li class="additional">              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E3%83%89%E3%83%8A%E3%83%AB%E3%83%89%E3%83%BB%E3%82%AD%E3%83%BC%E3%83%B3&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">ドナルド・キーン</a>
+</li>            <li class="additional">              <a href="https://iss.ndl.go.jp/books?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;cfilter%5B%5D=%E4%B8%96%E7%95%8C%E5%90%8C%E6%99%82%E6%96%87%E5%AD%A6%E3%82%92%E8%AA%AD%E3%82%80&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">世界同時文学を読む</a>
+</li>          </ul>
+            <div class="show-wrapper">
+              <span class="showall"><a href="#">▼全て表示</a></span><span class="showsome"><a href="#">▲一部を表示</a></span>
+            </div>
+        </div>
+      
+      </div><!-- end of div.facet-wrapper-->
+      <p class="guidance"><img width="1" height="1" alt="検索結果の絞り込み　ここまで" src="/images/ndl/spacer.png" /></p>
+    </div><!-- end of div#facet -->
+  </div><!-- end of div#resultlist_left-wrapper -->
+
+  <div id="keyword">
+      <div class="keyword-wrapper">
+        <div id="subject_authority_keywords">
+  <div style="margin:10px;">
+    <img alt="Ajax-loader" src="/images/ndl/ajax-loader.gif" />
+    <span style="font-weight:bold;">関連キーワードを取得中..</span>
+  </div>
+  <script>
+//<![CDATA[
+$('#subject_authority_keywords').load('https://iss.ndl.go.jp/books/get_subject_authority_keywords?any=%22%E6%96%87%E5%AD%A6%22&ar=4e1f&except_repository_nos%5B%5D=R100000038&except_repository_nos%5B%5D=R100000049&except_repository_nos%5B%5D=R100000073&sort=df')
+//]]>
+</script>
+</div>
+<div id="author_authority_keywords">
+    <h2 class="mainlabel">
+    著者名キーワード
+  </h2>
+  <div class="subgroup">
+  <ul class="sub-ul">
+        <li>
+          <a href="https://iss.ndl.go.jp/books?any=%E6%97%A5%E6%9C%AC%E5%85%90%E7%AB%A5%E6%96%87%E5%AD%A6%E8%80%85%E5%8D%94%E4%BC%9A">日本児童文学者協会</a><br />
+</li>        <li>
+          <a href="https://iss.ndl.go.jp/books?any=%E5%9B%BD%E6%96%87%E5%AD%A6%E7%A0%94%E7%A9%B6%E8%B3%87%E6%96%99%E9%A4%A8">国文学研究資料館</a><br />
+</li>        <li>
+          <a href="https://iss.ndl.go.jp/books?any=%E5%A4%8F%E7%9B%AE%E6%BC%B1%E7%9F%B3">夏目漱石</a><br />
+</li>        <li>
+          <a href="https://iss.ndl.go.jp/books?any=%E4%BC%8A%E8%97%A4%E6%95%B4">伊藤整</a><br />
+</li>        <li>
+          <a href="https://iss.ndl.go.jp/books?any=%E6%97%A5%E5%A4%96%E3%82%A2%E3%82%BD%E3%82%B7%E3%82%A8%E3%83%BC%E3%83%84%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE">日外アソシエーツ株式会社</a><br />
+</li>        <li>
+          <a href="https://iss.ndl.go.jp/books?any=%E9%98%BF%E9%83%A8%E7%9F%A5%E4%BA%8C">阿部知二</a><br />
+</li>        <li>
+          <a href="https://iss.ndl.go.jp/books?any=%E6%98%8E%E6%B2%BB%E5%A4%A7%E6%AD%A3%E6%98%AD%E5%92%8C%E6%96%B0%E8%81%9E%E7%A0%94%E7%A9%B6%E4%BC%9A">明治大正昭和新聞研究会</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E5%B7%9D%E7%AB%AF%E5%BA%B7%E6%88%90">川端康成</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E4%BA%AC%E9%83%BD%E5%A4%A7%E5%AD%A6%E6%96%87%E5%AD%A6%E9%83%A8">京都大学文学部</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E4%B9%85%E6%9D%BE%E6%BD%9C%E4%B8%80">久松潜一</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E8%B0%B7%E5%B4%8E%E6%BD%A4%E4%B8%80%E9%83%8E">谷崎潤一郎</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E5%B7%9D%E6%88%B8%E9%81%93%E6%98%AD">川戸道昭</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E6%A6%8A%E5%8E%9F%E8%B2%B4%E6%95%99">榊原貴教</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E8%BF%91%E4%B8%96%E6%96%87%E5%AD%A6%E6%9B%B8%E8%AA%8C%E7%A0%94%E7%A9%B6%E4%BC%9A">近世文学書誌研究会</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E6%97%A5%E6%9C%AC%E8%BF%91%E4%BB%A3%E6%96%87%E5%AD%A6%E9%A4%A8">日本近代文学館</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E6%97%A5%E6%9C%AC%E6%B0%91%E4%B8%BB%E4%B8%BB%E7%BE%A9%E6%96%87%E5%AD%A6%E4%BC%9A">日本民主主義文学会</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E8%8A%A5%E5%B7%9D%E7%AB%9C%E4%B9%8B%E4%BB%8B">芥川竜之介</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E6%97%A5%E6%9C%AC%E8%BF%91%E4%BB%A3%E6%96%87%E5%AD%A6%E7%A0%94%E7%A9%B6%E4%BC%9A">日本近代文学研究会</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E9%82%A3%E9%A0%88%E6%AD%A3%E5%B9%B9">那須正幹</a><br />
+</li>        <li class="additional">
+          <a href="https://iss.ndl.go.jp/books?any=%E6%AD%A6%E8%80%85%E5%B0%8F%E8%B7%AF%E5%AE%9F%E7%AF%A4">武者小路実篤</a><br />
+</li>  </ul>
+  <div class="show-wrapper">
+    <span class="showall"><a href="#">▼全て表示</a></span><span class="showsome"><a href="#">▲一部を表示</a></span>
+  </div>
+  </div>
+</div>
+<div id="jglobal_keywords">
+  
+<div id="jglobal_contents">
+</div>
+<div>
+<input type="hidden" name="jg_keywords" id="jg_keywords" value="%22%22%E6%96%87%E5%AD%A6%22%22" />
+<script type="text/javascript">
+//<![CDATA[
+
+var books_url = "https://iss.ndl.go.jp/books";
+var search_keywords = decodeURIComponent(document.getElementById("jg_keywords").value);
+var contents = document.getElementById("jglobal_contents");
+var disp_cnt = 7;
+var cnt = 0;
+
+//]]>
+</script>
+</div>
+</div>
+<p class="guidance"><img width="1" height="1" alt="関連キーワードで検索　ここまで" src="/images/ndl/spacer.png" /></p>
+
+          <div class="other-service">
+    <h2 class="mainlabel">外部サービスで検索</h2>
+    <div class="subgroup">
+      <h3 class="sublabel">書籍検索</h3>
+      <ul class="sub-ul">
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://www.google.co.jp/search?tbs=bks:1&amp;tbo=p&amp;q=%22%E6%96%87%E5%AD%A6%22" target="_blank">Google Book</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://scholar.google.co.jp/scholar?q=%22%E6%96%87%E5%AD%A6%22 " target="_blank">Google Scholar</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://webcatplus.nii.ac.jp/index.html?type=equals-book&amp;text=%22%E6%96%87%E5%AD%A6%22" target="_blank">WebCat Plus</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://www.worldcat.org/search?q=kw%3A%22%E6%96%87%E5%AD%A6%22" target="_blank">World Cat</a></li>
+        <!-- li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://202.231.40.111/GlobalFinder/cgi/Start.exe" target="_blank">人間文化研究機構</a></li -->
+      </ul>
+    </div>
+    <div class="subgroup">
+      <h3 class="sublabel">調べ方</h3>
+      <ul class="sub-ul">
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="https://rnavi.ndl.go.jp/ln-search/#%22%E6%96%87%E5%AD%A6%22" target="_blank">リサーチナビ</a></li>
+      </ul>
+    </div>
+    <div class="subgroup">
+      <h3 class="sublabel">辞書</h3>
+      <ul class="sub-ul">
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://ja.wikipedia.org/w/index.php?title=特別%3A検索&amp;search=%22%E6%96%87%E5%AD%A6%22" target="_blank">Wikipedia</a></li>
+      </ul>
+    </div>
+    <div class="subgroup">
+      <h3 class="sublabel">検索エンジン</h3>
+      <ul class="sub-ul">
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://www.google.co.jp/search?ie=utf-8&amp;oe=utf-8&amp;q=%22%E6%96%87%E5%AD%A6%22" target="_blank">google.co.jp</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://search.yahoo.co.jp/search?ei=UTF-8&amp;p=%22%E6%96%87%E5%AD%A6%22" target="_blank">yahoo.co.jp</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://search.goo.ne.jp/web.jsp?MT=%22%CA%B8%B3%D8%22" target="_blank">goo.ne.jp</a></li>
+      </ul>
+    </div>
+    <p class="guidance"><img width="1" height="1" alt="外部サービスで検索　ここまで" src="/images/ndl/spacer.png" /></p>
+  </div><!-- end of div#other_service -->
+<script>
+//<![CDATA[
+    $(function(){
+    var $ext_service = $('#external_service_subgroup')
+    setShowAllSwitch($('.showall', $ext_service), $('.showsome', $ext_service), $('.additional', $ext_service));
+    })
+
+//]]>
+</script>
+      </div><!-- end of div#keyword-wrapper -->
+      <div class="bibliography-info"><a name="bibliography-info" id="bibliography-info"></a>
+  <h2 class="mainlabel">検索結果を出力</h2>
+  <div class="subgroup" >
+    <ul class="sub-ul">
+        <li>
+          <img class="guidance" width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+          <a class="rss" target="_blank" href="/books.rss?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">検索結果のRSS</a>
+          <p>この検索キーワードに関する新着図書の情報をRSSで受け取ることができます。</p>
+        </li>
+    </ul>
+  </div>
+  <div class="subgroup" >
+    <ul class="sub-ul">
+      <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a class="refworks" target="_blank" href="/books.refworks?any=%22%E6%96%87%E5%AD%A6%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=1&amp;sort=df">RefWorks出力</a>
+        <p>書誌情報を、オンラインデータベースからRefWorks上の個人フォルダに直接取り込むことができます。</p>
+      </li>
+      <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a class="external" href="http://en.wikipedia.org/wiki/RefWorks" target="_blank">RefWorksとは</a></li>
+    </ul>
+  </div>
+  <p class="guidance"><img class="guidance" width="1" height="1" alt="検索結果を出力　ここまで" src="/images/ndl/spacer.png" /></p>
+</div><!-- end of div#bibliography_info -->
+
+  </div><!-- end of div#keyword -->
+</div><!-- end of div#resultlist -->
+
+
+<div id="footer" class="footer">
+<p class="guidance"><img width="1" height="1" alt="以下、フッターです" src="/images/ndl/spacer.png" /></p>
+<ul>
+<li id="home"><a href="https://www.ndl.go.jp/">国立国会図書館ホーム</a></li>
+<li><a href="https://ndlonline.ndl.go.jp/">国立国会図書館オンライン</a></li>
+<li><a href="/children/top">国際子ども図書館 子どもOPAC</a></li>
+<li><a href="https://id.ndl.go.jp/auth/ndla" title="国立国会図書館典拠データ検索・提供サービス">Web NDL Authorities</a></li>
+
+<li><a href="https://iss.ndl.go.jp/information/outline/">国立国会図書館サーチについて</a></li>
+<li><a href="https://www.ndl.go.jp/form/jp/service/contact/index.html">お問い合わせ</a></li>
+</ul>
+<p class="guidance"><a href="#header">ページトップに戻る</a></p>
+</div>
+
+<address>Copyright &copy; 2012 National Diet Library. All Rights Reserved.</address>
+<p class="guidance"><img width="1" height="1" alt="フッター　ここまで" src="/images/ndl/spacer.png" /></p>
+
+
+<script type="text/javascript">
+//<![CDATA[
+  $(function(){
+  if($.cookie("scroll_y")){
+    window.scrollBy(0, $.cookie("scroll_y"));
+    $.cookie("scroll_y", "", { expires: -1 }); 
+  }
+  })
+//]]>
+</script>
+
+</body>
+</html>

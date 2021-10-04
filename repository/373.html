@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>FAQ　よくある質問と回答 | クリエイティブ・コモンズ・ジャパン</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://creativecommons.jp/xmlrpc.php">
+	<!--[if lt IE 9]>
+		<script src="https://s2.wp.com/wp-content/themes/pub/suits/js/html5.js" type="text/javascript"></script>
+	<![endif]-->
+	<meta name='robots' content='max-image-preview:large' />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=5410'
+					+ '&is_singular=';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMuanA%3D"
+		+ "&wpcomid=87963173"
+		+ "&time=1633269603";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//komtmt.wordpress.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="クリエイティブ・コモンズ・ジャパン &raquo; フィード" href="https://creativecommons.jp/feed/" />
+<link rel="alternate" type="application/rss+xml" title="クリエイティブ・コモンズ・ジャパン &raquo; コメントフィード" href="https://creativecommons.jp/comments/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkWFPAyEMhv+QXL2ZbO6D8bcA12BnyxEKnvx72SUz58ymXwgvzVOetLAk4+dYMBaQahLXQFFhSX4Wo0KM7SoNXvUBNtiFCbVHhzn0Skb4GMdhPzyCq8QTOJ79u2Fy2eYGWhrjdyOKnuuECicFwYksMsoqtAmJbcNsGIP1bRCKf+O9ts0/oNvyq2lvhiXZs7Jtcy0mZJqutP/dIttCMegNfDP189z6uyT7W/4OttAUsHRcL3dT8PM+sm7UuZRR1fRTqIopb/2vdcGv8jLun3bH3eF4eD59AWb3zts=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link crossorigin="anonymous" rel='stylesheet' id='suits-font-css'  href='https://fonts.googleapis.com/css?family=Lato%3A100%2C300%2C400%26subset%3Dlatin%2Clatin-ext' media='all' />
+<link rel='stylesheet' id='all-css-4-1' href='https://s2.wp.com/_static/??-eJyFi0EOwjAMwD5ECRtD4oJ4S1eyEpY21ZJq8HvKbVzgZks2rMUFyYbZwO6YUKHUEbSSKai9GPdBdQebLFVXuEbKCivdIrZw8gFHkdkxzQ2e/8+I4liCN5L8JW5iT8uvdcGRJTaM0KqNfqZrunSn7tj3h+E8PN69sVKX?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-5-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-8-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"87963173","siteName":"\u30af\u30ea\u30a8\u30a4\u30c6\u30a3\u30d6\u30fb\u30b3\u30e2\u30f3\u30ba\u30fb\u30b8\u30e3\u30d1\u30f3","siteURL":"https:\/\/creativecommons.jp","siteHost":"creativecommons.jp","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/7149e5e71169dd2e4984b6b0f2019a78?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/suits","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fcreativecommons.jp%252Ffaq%252F","themeURL":"","xhrURL":"https:\/\/creativecommons.jp\/wp-admin\/admin-ajax.php","nonce":"059cc66faf","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"60c6ce6565\" \/>","referer":"https:\/\/creativecommons.jp\/faq\/","canFollow":"1","feedID":"35216289","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/komtmt.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fkomtmt.wordpress.com%2Ffaq%2F","postID":"5410","shortlink":"https:\/\/wp.me\/P5X5eR-1pg","canEditPost":"","editLink":"https:\/\/wordpress.com\/page\/creativecommons.jp\/5410","statsLink":"https:\/\/wordpress.com\/stats\/post\/5410\/creativecommons.jp","i18n":{"view":"\u30b5\u30a4\u30c8\u3092\u8868\u793a","follow":"\u30d5\u30a9\u30ed\u30fc","following":"\u30d5\u30a9\u30ed\u30fc\u4e2d","edit":"\u7de8\u96c6","login":"\u30ed\u30b0\u30a4\u30f3","signup":"\u767b\u9332","customize":"\u30ab\u30b9\u30bf\u30de\u30a4\u30ba","report":"\u3053\u306e\u30b3\u30f3\u30c6\u30f3\u30c4\u3092\u5831\u544a","themeInfo":"\u30c6\u30fc\u30de\u3092\u53d6\u5f97: Suits","shortlink":"\u77ed\u7e2e\u30ea\u30f3\u30af\u3092\u30b3\u30d4\u30fc","copied":"\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f","followedText":"\u4eca\u5f8c\u3053\u306e\u30b5\u30a4\u30c8\u306e\u65b0\u3057\u3044\u6295\u7a3f\u304c <a href=\"https:\/\/wordpress.com\/\">Reader<\/a> \u306b\u8868\u793a\u3055\u308c\u307e\u3059","foldBar":"\u3053\u306e\u30d0\u30fc\u3092\u6298\u308a\u305f\u305f\u3080","unfoldBar":"\u3053\u306e\u30d0\u30fc\u3092\u5c55\u958b","editSubs":"\u8cfc\u8aad\u7ba1\u7406","viewReader":"\u30b5\u30a4\u30c8\u3092 Reader \u3067\u8868\u793a","viewReadPost":"Reader \u3067\u6295\u7a3f\u3092\u8868\u793a","subscribe":"\u767b\u9332\u3059\u308b","enterEmail":"\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3092\u5165\u529b","followers":"\u73fe\u572844\u4eba\u30d5\u30a9\u30ed\u30ef\u30fc\u304c\u3044\u307e\u3059\u3002","alreadyUser":"WordPress.com \u306e\u30a2\u30ab\u30a6\u30f3\u30c8\u3092\u3059\u3067\u306b\u304a\u6301\u3061\u3067\u3059\u304b ? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fcreativecommons.jp%252Ffaq%252F\">\u4eca\u3059\u3050\u30ed\u30b0\u30a4\u30f3<\/a>","stats":"\u7d71\u8a08\u60c5\u5831","notifyNewPosts":"\u65b0\u3057\u3044\u6295\u7a3f\u3092\u901a\u77e5","notifyNewPostsDetails":"\u3053\u306e\u30b5\u30a4\u30c8\u304b\u3089\u306e\u65b0\u898f\u6295\u7a3f\u306e\u30a6\u30a7\u30d6\u901a\u77e5\u3068\u30e2\u30d0\u30a4\u30eb\u901a\u77e5\u3092\u53d7\u3051\u53d6\u308b","emailNewPosts":"\u65b0\u3057\u3044\u6295\u7a3f\u3092\u30e1\u30fc\u30eb\u3067\u901a\u77e5","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=creativecommons.jp\">here<\/a>.","emailNewComments":"\u65b0\u898f\u30b3\u30e1\u30f3\u30c8\u901a\u77e5\u30e1\u30fc\u30eb\u3092\u53d7\u3051\u53d6\u308b","instantly":"\u5373\u6642","daily":"\u6bce\u65e5","weekly":"\u6bce\u9031"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFykEKwkAMQNELmQ4qtboQz1LbWDJMknGSQXt7K9SFILj6i//CI8Og4igeooWs5oxm/YRNtE34vqxXSgjVsCxAHEhu+sOV5JCLPufPIxlSHdHeM94rlnlNwyR/ETBNpXdc8YXP28OuOx3brt3HF3swRvU='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://komtmt.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://creativecommons.jp/faq/" />
+<link rel='shortlink' href='https://wp.me/P5X5eR-1pg' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fcreativecommons.jp%2Ffaq%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fcreativecommons.jp%2Ffaq%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="FAQ　よくある質問と回答" />
+<meta property="og:url" content="https://creativecommons.jp/faq/" />
+<meta property="og:description" content="日本語版クリエイティブ・コモンズ・ライセンス（以下、「CCライセンス」と表記）のFAQのページです。 なお、文&hellip;" />
+<meta property="article:published_time" content="2016-04-18T17:00:39+00:00" />
+<meta property="article:modified_time" content="2021-09-17T15:44:05+00:00" />
+<meta property="og:site_name" content="クリエイティブ・コモンズ・ジャパン" />
+<meta property="og:image" content="https://komtmt.files.wordpress.com/2015/03/faqsc.png" />
+<meta property="og:image:width" content="2654" />
+<meta property="og:image:height" content="808" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="FAQ　よくある質問と回答" />
+<meta name="twitter:image" content="https://komtmt.files.wordpress.com/2015/03/faqsc.png?w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/7149e5e71169dd2e4984b6b0f2019a78?s=32" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/7149e5e71169dd2e4984b6b0f2019a78?s=32" sizes="16x16" />
+<link rel="apple-touch-icon" href="https://secure.gravatar.com/blavatar/7149e5e71169dd2e4984b6b0f2019a78?s=114" />
+<link rel='openid.server' href='https://creativecommons.jp/?openidserver=1' />
+<link rel='openid.delegate' href='https://creativecommons.jp/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://creativecommons.jp/osd.xml" title="クリエイティブ・コモンズ・ジャパン" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#efece6" />
+		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="クリエイティブ・コモンズ・ジャパン" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=登録;action-uri=https://creativecommons.jp/feed/;icon-uri=https://secure.gravatar.com/blavatar/7149e5e71169dd2e4984b6b0f2019a78?s=16" /><meta name="msapplication-task" content="name=無料ブログを作成;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com サポート;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com フォーラム;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="日本語版クリエイティブ・コモンズ・ライセンス（以下、「CCライセンス」と表記）のFAQのページです。 なお、文&hellip;" />
+	<style type="text/css" id="suits-header-css">
+			.site-header {
+			background: #000 url(https://komtmt.files.wordpress.com/2015/04/ccjpheader_00.png) no-repeat scroll top;
+		}
+			.site-title,
+		.site-description {
+			position: absolute;
+			clip: rect(1px, 1px, 1px, 1px);
+			width: 1px;
+			height: 1px;
+		}
+		</style>
+	<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #efece6; }
+</style>
+	<!-- この URL で利用できる AMP HTML バージョンはありません。 --><style type="text/css" id="custom-colors-css">.site-header h1.site-title { color: #000000;}
+.site-header h2.site-description { color: #212121;}
+.site-info { color: #212121;}
+.site-info { color: #000000;}
+a:hover { color: #333333;}
+.entry-content a, .comment-content a, .page-content a { color: #333333;}
+.entry-meta a:hover { color: #333333;}
+.nav-menu li a { color: #000000;}
+.nav-menu li:hover > a, .nav-menu li a:hover { color: #000000;}
+.nav-menu .current_page_item > a, .nav-menu .current_page_ancestor > a, .nav-menu .current-menu-item > a, .nav-menu .current-menu-ancestor > a { color: #000000;}
+.nav-menu li:hover { background-color: #404040;}
+body { background-color: #efece6;}
+.site-header { background-color: #ab9d88;}
+#navbar { background-color: #847969;}
+.site-info-container { background-color: #847969;}
+.nav-menu li:hover > a, .nav-menu li a:hover { background-color: #847969;}
+.nav-menu li:hover > a, .nav-menu li a:hover { background-color: rgba( 132, 121, 105, 0.8 );}
+ul.nav-menu ul a:hover, .nav-menu ul ul a:hover { background-color: #847969;}
+.nav-menu .current_page_item > a, .nav-menu .current_page_ancestor > a, .nav-menu .current-menu-item > a, .nav-menu .current-menu-ancestor > a { background-color: #847969;}
+.nav-menu .sub-menu, .nav-menu .children { background-color: #655D51;}
+a { color: #792D2B;}
+.entry-content a, .comment-content a, .page-content a { color: #792D2B;}
+.entry-meta a { color: #792D2B;}
+body, h1, h2, h3, h4, h5, h6 { color: #444444;}
+h1, h2, h3, h4, h5, h6 { color: #4F4F4F;}
+.entry-meta { color: #4F4F4F;}
+input { color: #4F4F4F;}
+textarea { color: #4F4F4F;}
+</style>
+		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s2.wp.com/?custom-css=1&#038;csblog=5X5eR&#038;cscache=6&#038;csrev=10" />
+		<!-- Your Google Analytics Plugin is missing the tracking ID -->
+</head>
+
+<body class="page-template-default page page-id-5410 page-parent custom-background customizer-styles-applied three-footer-sidebars highlander-enabled highlander-light custom-colors">
+	<div id="page" class="hfeed site">
+
+		<header id="masthead" class="site-header" role="banner">
+			
+			<a class="home-link" href="https://creativecommons.jp/" title="クリエイティブ・コモンズ・ジャパン" rel="home">
+				<h1 class="site-title">クリエイティブ・コモンズ・ジャパン</h1>
+				<h2 class="site-description"></h2>
+			</a><!-- #navbar .header-navigation -->
+
+			<div id="navbar" class="header-navigation">
+
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<h3 class="menu-toggle">メニュー</h3>
+					<div class="menu-%e3%83%88%e3%83%83%e3%83%97%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc-container"><ul id="menu-%e3%83%88%e3%83%83%e3%83%97%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc" class="nav-menu"><li id="menu-item-6005" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6005"><a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ・ライセンスとは</a></li>
+<li id="menu-item-5994" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5994"><a href="https://creativecommons.jp/features/">活用事例</a>
+<ul class="sub-menu">
+	<li id="menu-item-6036" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6036"><a href="https://creativecommons.jp/category/features/">すべてのカテゴリ</a></li>
+	<li id="menu-item-6042" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6042"><a href="https://creativecommons.jp/category/features/features-text/">文章</a></li>
+	<li id="menu-item-6039" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6039"><a href="https://creativecommons.jp/category/features/features-audio/">音</a></li>
+	<li id="menu-item-6037" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6037"><a href="https://creativecommons.jp/category/features/features-images/">画像</a></li>
+	<li id="menu-item-6043" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6043"><a href="https://creativecommons.jp/category/features/features-video/">映像</a></li>
+	<li id="menu-item-6041" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6041"><a href="https://creativecommons.jp/category/features/features-education/">教育</a></li>
+	<li id="menu-item-6038" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6038"><a href="https://creativecommons.jp/category/features/features-science/">科学</a></li>
+</ul>
+</li>
+<li id="menu-item-5999" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-5410 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-5999"><a href="https://creativecommons.jp/faq/" aria-current="page">FAQ</a>
+<ul class="sub-menu">
+	<li id="menu-item-6021" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-5410 current_page_item menu-item-6021"><a href="https://creativecommons.jp/faq/" aria-current="page">FAQ　よくある質問と回答</a></li>
+	<li id="menu-item-6020" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6020"><a href="https://creativecommons.jp/faq/detail/">FAQ　詳細版</a></li>
+	<li id="menu-item-8857" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8857"><a href="https://creativecommons.jp/sciencecommons/cc0-faq/">CC0 FAQ</a></li>
+	<li id="menu-item-8858" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8858"><a href="https://creativecommons.jp/od_faq/">オープンデータに関するFAQ</a></li>
+</ul>
+</li>
+<li id="menu-item-6065" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-6065"><a href="https://creativecommons.jp/category/weblog/">ブログ</a>
+<ul class="sub-menu">
+	<li id="menu-item-6067" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6067"><a href="https://creativecommons.jp/category/weblog/">ブログ</a></li>
+	<li id="menu-item-6066" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6066"><a href="https://creativecommons.jp/category/weblog/events/">イベント告知</a></li>
+</ul>
+</li>
+<li id="menu-item-6817" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6817"><a href="https://creativecommons.jp/category/press/">プレスリリース</a></li>
+<li id="menu-item-5995" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5995"><a href="https://creativecommons.jp/about/">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-9517" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9517"><a href="https://creativecommons.jp/privacy/">プライバシーポリシー</a></li>
+	<li id="menu-item-6004" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6004"><a href="https://creativecommons.jp/about/">組織概要</a></li>
+	<li id="menu-item-5997" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5997"><a href="https://creativecommons.jp/about/people/">CCJPのメンバー</a></li>
+	<li id="menu-item-5998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5998"><a href="https://creativecommons.jp/about/history/">沿革</a></li>
+	<li id="menu-item-5996" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5996"><a href="https://creativecommons.jp/about/downloads/">データ・資料</a></li>
+</ul>
+</li>
+<li id="menu-item-6000" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6000"><a href="https://creativecommons.jp/donate/">寄付</a>
+<ul class="sub-menu">
+	<li id="menu-item-6035" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6035"><a href="https://creativecommons.jp/donate/">寄付</a></li>
+	<li id="menu-item-6002" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6002"><a href="https://creativecommons.jp/donate/donators/">支援者</a></li>
+	<li id="menu-item-6003" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6003"><a href="https://creativecommons.jp/donate/about-supporting-members/">賛助会員について</a></li>
+</ul>
+</li>
+</ul></div>					<form role="search" method="get" class="search-form" action="https://creativecommons.jp/">
+				<label>
+					<span class="screen-reader-text">検索:</span>
+					<input type="search" class="search-field" placeholder="検索 &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="検索" />
+			</form>				</nav><!-- #site-navigation .navigation .main-navigation -->
+
+			</div><!-- #navbar .header-navigation -->
+
+		</header><!-- #masthead .site-header -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+
+		<div id="content" class="site-content" role="main">
+
+			
+<article id="post-5410" class="post-5410 page type-page status-publish hentry">
+
+	<header class="entry-header">
+
+		
+		<h1 class="entry-title">FAQ　よくある質問と回答</h1>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>日本語版クリエイティブ・コモンズ・ライセンス（以下、「CCライセンス」と表記）のFAQのページです。</p>
+<p>なお、文中にある「著作権法」とは、断りがない限り日本の著作権法のことを指します。内容に関するお問い合わせや、記載されていない事項については<a href="../contact/">こちら</a>からご連絡ください。</p>
+<div id="menu"></div>
+<p>※<a href="https://wiki.creativecommons.org/Frequently_Asked_Questions">英語版FAQ</a>も、適宜参照ください。</p>
+<h2>特によくある質問</h2>
+<ol>
+<li><a href="#a1">クリエイティブ・コモンズとはなんですか？</a></li>
+<li><a href="#a2">CCライセンスとはなんですか？</a></li>
+<li><a href="#a3">CCライセンスのアイコンはそれぞれ、どのような意味ですか？</a></li>
+<li><a href="#a4">インターネット上以外の作品にCCライセンスを付けることはできますか？</a></li>
+<li><a href="#a5">ソフトウェアにCCライセンスを付けることはできますか？</a></li>
+<li><a href="#a6">CCライセンスの作品を利用する際、何を記載すればよいのでしょうか？　また、CCライセンスのURLやアイコン、バナー等も表示しなければならないのでしょうか？</a></li>
+<li><a href="#a7">「NC（非営利）」アイコンのついている作品を使用しても良いですか？</a></li>
+<li><a href="#a8">CCライセンスのついた特定の作品を探しているのですが、どこにあるか教えてください。また、CCライセンスのついたある作品の著作者の方と連絡が取りたいので、連絡先を教えてください。</a></li>
+</ol>
+<h2>よくある質問</h2>
+<h3>クリエイティブ・コモンズの組織と活動について</h3>
+<ol>
+<li><a href="#f1">クリエイティブ・コモンズとは、どのような団体なのですか？</a></li>
+<li><a href="#f2">クリエイティブ・コモンズは、誰が始めたのですか？</a></li>
+<li><a href="#f3">クリエイティブ・コモンズの拠点は、どこにあるのですか？</a></li>
+<li><a href="#f4">誰がクリエイティブ・コモンズに出資しているのですか？</a></li>
+<li><a href="#f5">クリエイティブ・コモンズが解決しようとしているのは、どのような課題なのでしょうか？</a></li>
+<li><a href="#f6">クリエイティブ・コモンズは、誰のためにあるのでしょうか？</a></li>
+<li><a href="#f7">クリエイティブ・コモンズ・ジャパンは何をしようとしているのでしょうか？</a></li>
+<li><a href="#f8">クリエイティブ・コモンズは、著作権に反対しているのですか？</a></li>
+<li><a href="#f9">クリエイティブ・コモンズは、CCライセンスの下で公開されているコンテンツのデータベースを持っているのでしょうか？</a></li>
+<li><a href="#f10">クリエイティブ・コモンズは、コンテンツを収集したり、所有したりしていますか？</a></li>
+<li><a href="#f11">クリエイティブ・コモンズは、DRM（デジタル著作権管理）と何か関係があるのでしょうか？</a></li>
+<li><a href="#f12">クリエイティブ・コモンズはCCライセンスに関する紛争の調停は行いますか？</a></li>
+<li><a href="#f13">クリエイティブ・コモンズの活動に大変興味があります。何か力になりたいのですが。</a></li>
+<li><a href="#f14">CCライセンスで作品を公開するメリットはなんですか？</a></li>
+<li><a href="#f15">似たような発想に基づいたいろいろなライセンスがすでに存在していると思いますが、CCライセンスには何か新しい点などがあるのでしょうか？</a></li>
+<li><a href="#f16">CCライセンスの下で公開された作品は、「パブリック・ドメイン」となるのでしょうか？</a></li>
+<li><a href="#f17">CCライセンスや、そのツールを使用するのに費用はかかりますか？</a></li>
+<li><a href="#f18">CCライセンスのもとで公表されている作品を、DRM（デジタル著作権管理）のツールで保護しようとした場合、どうなるのでしょうか？</a></li>
+</ol>
+<h3>CCライセンスについて</h3>
+<ol>
+<li><a href="#i1">CCライセンスは法律ですか？</a></li>
+<li><a href="#i2">CCライセンスは法的効力を持っていますか？</a></li>
+<li><a href="#i3">CCライセンスは日本の法律上、効力を持つのでしょうか？</a></li>
+<li><a href="#i4">CCライセンスには4つの要素があるということですが、それぞれの意味を教えてください。</a></li>
+<li><a href="#i5">CCライセンスの「NC（非営利）」は「その作品は営利目的で利用してはいけない」という意味ですか？</a></li>
+<li><a href="#i6">CCライセンスの「表示（BY）」は何を意味するのですか？</a></li>
+<li><a href="#i7">コモンズ証とは何でしょうか？ リーガルコードとは何でしょうか？ HTMLやメタデータは何のためにあるのでしょうか？</a></li>
+<li><a href="#i8">もしも、著作権の保有者が、その人の作品を二つの異なるCCライセンスで提供している場合は、どうなるのですか？</a></li>
+<li><a href="#i9">CCライセンスをソフトウェアのドキュメントに付けることはできますか？</a></li>
+<li><a href="#i10">ライセンス・バージョンとは何ですか？ なぜ存在するのですか？</a></li>
+<li><a href="#i11">日本語で提供されているCCライセンスには、どのようなバージョンがありますか？</a></li>
+<li><a href="#i12">日本語CCライセンスの2.1と4.0の主な違いは何ですか？</a></li>
+<li><a href="#i13">日本語CCライセンスの2.1をそのまま使っているとまずいでしょうか？ 4.0に変える必要がありますか？ </a></li>
+<li><a href="#i14">バージョン2.1のSA（継承）が付与された作品を二次利用する場合、バージョン2.1のSAを付与しないといけないのでしょうか？バージョン4.0のSAを付与することはできるでしょうか？</a></li>
+</ol>
+<h3>自分の作品にCCライセンスを付けてみようと考えている方へ</h3>
+<ol>
+<li><a href="#b1">CCライセンスを使うのに、事前に何か署名したり登録したりする必要はありますか？</a></li>
+<li><a href="#b2">CCライセンスはどのように機能しているのでしょうか？</a></li>
+<li><a href="#b3">CCライセンスのうち、どのライセンスを選んだらよいでしょうか？</a></li>
+<li><a href="#b4">自分の作品が保護されるためには著作権表示は必要ですか？</a></li>
+<li><a href="#b5">自分が商標権を有するマテリアルに、商標権に影響を与えずにCCライセンスを付与することはできますか？</a></li>
+<li><a href="#b6">CCライセンスを付けることで「著作権の制限」に関する規定の適用に影響はありますか？</a></li>
+<li><a href="#b7">既にNexToneやJASRAC等の著作権管理団体に著作権管理の委託をしていますが、CCライセンスを使うことはできますか？</a></li>
+<li><a href="#b8">どのようにCCライセンスを付けたらよいでしょうか？</a></li>
+<li><a href="#b9">クリエイティブ・コモンズの人たちは、誰がどのような作品にCCライセンスをつけているかについて、管理したり、それに問題がないかどうかを審査したりしていますか？</a></li>
+<li><a href="#b10">CCライセンスを付けて公表している作品でも利益を得ることはできますか？</a></li>
+<li><a href="#b11">私は現在バンドに所属していますが、自分の作品にCCライセンスを付けつつ、引き続きロイヤリティをもらうことはできますか？</a></li>
+<li><a href="#b12">誰かが自分の作品をCCライセンスに反する方法で利用した場合はどうなりますか？</a></li>
+<li><a href="#b13">自分の作品の利用のされ方が意にそぐわない場合、どうしたらよいでしょうか？</a></li>
+<li><a href="#b14">CCライセンスを付与すると、パブリシティ権やプライバシー権、人格権にどのような影響を与えますか？</a></li>
+<li><a href="#b15">著作者人格権とはなんでしょうか？ 自分が望まない作品の利用行為を防ぐ為にこの権利を行使するには、どのようにすればよいでしょうか？</a></li>
+<li><a href="#b16">一度付けたCCライセンスを後から変更したい場合はどうしたらよいでしょうか？</a></li>
+</ol>
+<h3>CCライセンスの付いた作品を利用したいと考えている方へ</h3>
+<ol>
+<li><a href="#c1">CCライセンスの付いた作品は、どのような方法で利用できますか？</a></li>
+<li><a href="#c2">クリエイティブ・コモンズという団体が作品の利用について許諾を与えてくれる、ということでしょうか？</a></li>
+<li><a href="#c3">CCライセンスが付いた作品を利用する場合に、気をつけることはありますか？</a></li>
+<li><a href="#c4">CCライセンスの付いた作品を、そのライセンスに従って利用する限り、お金を支払う必要はありませんか？</a></li>
+<li><a href="#c6">利用しようとしている作品について、本当に正当な権利を有する人によってCCライセンスが付けられているのか不安があるのですが…。</a></li>
+<li><a href="#c7">著作権者が、「自分の作品には二つの異なるCCライセンスが付いている」と言っている場合はどうなりますか？</a></li>
+<li><a href="#c8">ある作品を、その作品につけられたCCライセンスが許可していない方法で利用したい場合はどうしたらよいでしょうか？</a></li>
+<li><a href="#c9">CCライセンスのついた作品とそうでない他の作品を合わせて、コンピレーションアルバムや文集など（以下、「編集物」と言います。）を作った場合、その全体に対してCCライセンスを付けなければなりませんか？</a></li>
+<li><a href="#c10">二つの異なるCCライセンスの作品を組み合わせることはできますか？ また、CCライセンスの付いた作品と付いていない作品を組み合わせることはできますか？</a></li>
+<li><a href="#c11">CCライセンスの付いた作品を元にして、新しい作品を作りました。この新しい作品には、どのようなCCライセンスを付けることができますか？</a></li>
+<li><a href="#c12">様々な作品を集めて一つのリソースにまとめています。この中にCCライセンスのついた作品を含めることは可能でしょうか？</a></li>
+<li><a href="#c13">CCライセンスの条項を変更したり、条件の中のいくつかを免除したりすることはできますか？</a></li>
+</ol>
+<h3>データ</h3>
+<h4>データとCCライセンス</h4>
+<ol>
+<li><a href="#h1">データベースをCCライセンスを付与してリリースすることはできますか？</a></li>
+<li><a href="#h2">CCライセンスが利用された場合、何がライセンスされますか？</a></li>
+<li><a href="#h3">どのようにCCという法的手段をデータベースに利用することができますか？</a></li>
+</ol>
+<h4>データ（一般的な）</h4>
+<ol>
+<li><a href="#h4">データベースのどの構成要素が著作権によって保護されますか？</a></li>
+<li><a href="#h5">私のデータベース利用が著作権によって制限される場合、私はどのようにライセンスに従えば良いですか？</a></li>
+<li><a href="#h6">データベースのどの構成要素がデータベース権により保護されますか？</a></li>
+</ol>
+<h3>クリエイティブ・コモンズのロゴの使用</h3>
+<ol>
+<li><a href="#e1">GIF画像ではなく、PNG画像を使用したいのですが、どうしたらよいですか？ また、逆にPNG画像ではなくGIF画像を使用したい場合はどうしたらよいですか？</a></li>
+<li><a href="#e2">解像度の高いクリエイティブ・コモンズのロゴは、どこでダウンロードできますか？</a></li>
+<li><a href="#e3">Tシャツやステッカーにクリエイティブ・コモンズのロゴをプリントしたいのですが、どうしたらよいですか？</a></li>
+<li><a href="#e4">クリエイティブ・コモンズのロゴを自分のサイトや作品に取り入れることができますか？</a></li>
+<li><a href="#e5">自分のサイトや作品に表示しているクリエイティブ・コモンズのロゴに、より見栄えを良くする等の変更を加えても構わないでしょうか？</a></li>
+</ol>
+<h2>特によくある質問</h2>
+<ol>
+<li id="a1"><strong>クリエイティブ・コモンズとはなんですか？</strong></li>
+<hr>
+<div style="padding-left:30px;">「クリエイティブ・コモンズ」とは、作品の利用と流通を図ろうとする活動の名前です。また、その活動を行っている団体の名前でもあります。日本では、<a href="https://creativecommons.jp/about/">コモンスフィア</a>というNPO法人が中心となって活動を行っています。本部は米国にあり、それ以外にも世界の５０を超える国や地域のプロジェクトチームが連携して活動しています。</div>
+<p style="padding-left:30px;">・クリエイティブ・コモンズの考えについて</p>
+<p style="padding-left:30px;">日本では、作品の創作と同時に自動的に著作権が発生します。著作権は、作品が勝手に模倣されて作品を作る人が創作することへの意欲を失わないようにするために（もともとは活版印刷術の時代に多額の資金を使って出版した本の海賊版が出まわって、本の出版の意欲が失われないようにするために）誕生した権利です。そのため、他人が著作権を持っている作品を、勝手に使うことは許されない、という考えが前提になっています。</p>
+<p style="padding-left:30px;">しかし、全ての作者（以下、「クリエイター」と言います。）が本当に「自分の作品は、誰にも使わせたくない！」と思っているのでしょうか。クリエイターの中には、自分が作った作品を皆が知ってくれること、使ってくれること、自分の作品に手を加えて遊んでくれること、これらのいろいろな利用のされ方を歓迎し、皆と共有することに満足を得る人もいるのです。特にインターネットの世界では、そうした楽しみ方をするクリエイターの人たちが多く存在します。</p>
+<p style="padding-left:30px;">私たちクリエイティブ・コモンズは、著作権の存在を前提としながら、クリエイターの方々が安心して作品を使いあって楽しめるためのツールを作ろうと考えました。具体的には、「この条件でなら使ってもいいよ！」という意思を簡単に表明できるようなシステムを作ったのです。それが、「CCライセンス」です。</p>
+<p style="padding-left:30px;">・クリエイティブ・コモンズ・ジャパンについて</p>
+<p style="padding-left:30px;">クリエイティブ・コモンズ・ジャパンは主に日本においてCCライセンスの普及・実践を行うために活動する組織の名称です。2003 年から国際大学GLOCOMをホストとしてCreative Commons Public Licenseの日本語訳を行い、2004 年3月に、世界で米国についで2番目に、日本法準拠のCCライセンスをリリースしました。2006年3月には組織として独立するために事務局準備会を発足し、2007年7月25日に東京都の認可をうけ 特定非営利活動法人（NPO法人）となりました。 私たちは今後も、CCライセンスが日本において、教育機関や企業、そして個々の情報発信者達による柔軟な著作権表現が普及していくための様々な活動を行っていきます。</p>
+<p style="text-align:right;"><a href="#menu">戻る</a></p>
+<li id="a2"><strong>CCライセンスとはなんですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">法律や技術に関する専門的な知識がなくても、自分の希望する条件を組み合わせることで、自分の作品をインターネットを通じて世界に発信することができる画期的なライセンスシステムです。<br />
+CCライセンスでは、多くのクリエイターが希望すると思われる典型的な条件を4つ準備し、それぞれ、アイコンでわかりやすく表示しています。この4つの典型的な条件とは、「表示」「非営利」「改変禁止」「継承」です。クリエイターは、この4つのアイコンを組み合わせて、自分の作品の利用条件を発信することができます。</p>
+<p style="padding-left:30px;">CCライセンスに関する簡単な図解は以下のとおりです。</p>
+<p style="padding-left:30px;"><a href="https://komtmt.files.wordpress.com/2015/03/aboutcc.png"><img loading="lazy" data-attachment-id="6025" data-permalink="https://creativecommons.jp/faq/aboutcc-2/" data-orig-file="https://komtmt.files.wordpress.com/2015/03/aboutcc.png" data-orig-size="832,588" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="aboutcc" data-image-description="" data-image-caption="" data-medium-file="https://komtmt.files.wordpress.com/2015/03/aboutcc.png?w=300" data-large-file="https://komtmt.files.wordpress.com/2015/03/aboutcc.png?w=620" class="alignnone size-medium wp-image-6025" src="https://komtmt.files.wordpress.com/2015/03/aboutcc.png?w=300&#038;h=212" alt="aboutcc" width="300" height="212" srcset="https://komtmt.files.wordpress.com/2015/03/aboutcc.png?w=300&amp;h=212 300w, https://komtmt.files.wordpress.com/2015/03/aboutcc.png?w=600&amp;h=424 600w, https://komtmt.files.wordpress.com/2015/03/aboutcc.png?w=150&amp;h=106 150w" sizes="(max-width: 300px) 100vw, 300px"></a></p>
+<p style="padding-left:30px;">CCライセンスのつけ方は、とても簡単です。こちら（<a href="http://creativecommons.org/choose/" target="_blank" rel="noopener">http://creativecommons.org/choose/</a>）のページに表示される２つの質問に回答して頂くだけで、4つのアイコンを組み合わせた6種類のCCライセンスの中から、あなたの希望する条件にあったライセンスが、自動的に選ばれるようになっています。次のページで選んだライセンスが表示され、その内容を確認の上、所定のHTMLコードを作品を公開するページのソースに張り付けると、ウェブ上で所定のCCライセンスのバナーを表示させることができます。また、アナログの媒体にCCライセンスを表示することも可能です。その場合には、上記のバナーの画像や、ライセンス条件が記載されているウェブページのURLなどを表記することができます。</p>
+<p style="padding-left:30px;">CCライセンスには、3つの大きな特徴があります。</p>
+<p style="padding-left:60px;">一つ目は、法律に詳しくない人でもすぐに理解できるよう、ライセンスの簡単な解説のページ（コモンズ証）が準備されていることです。CCライセンスのバナーをクリックして頂くと、コモンズ証のページが表示されます。これによって、ライセンスの大まかな内容が簡単に理解できます。</p>
+<p style="padding-left:60px;">二つ目は、ライセンスの具体的な内容については、万一紛争が生じたときにも対応できるよう、法律の専門家が「利用許諾条項」を作成していることです。「コモンズ証」はあくまでも、ライセンスの概要を紹介しているに過ぎず、作品を利用している途中で疑問が生じたときには、この「利用許諾条項」を見ることで、より詳しい利用条件を理解することができます。「利用許諾条項」は、コモンズ証のページの一番下の部分にリンクが張られています。</p>
+<p style="padding-left:60px;">三つ目は、先ほどご紹介した手順でHTMLコードを貼り付けることで、コンピュータがライセンスの内容を読み取ることができるデータが自動的に埋め込まれることです。その結果、検索エンジンやアプリケーションなどで作品を見つけやすくなっています。例えば、専用の検索エンジンで「桜　写真」と検索すれば、CCライセンスの下で公開されている桜の写真を見つけることができ、作品の利用者も、自分の希望する条件で利用できるコンテンツを簡単に探すことができると同時に、作者にとっても自分の作品が多くの人の目にとまりやすいというメリットがあります。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="a3"><strong>CCライセンスのアイコンはそれぞれ、どのような意味ですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスの基本となる「<strong>BY（表示）</strong>」「<strong>NC（非営利）</strong>」「<strong>ND（改変禁止）</strong>」「<strong>SA（継承）</strong>」の4つの要素について詳しくご説明します。それぞれの要素が表す意味は次のとおりです。</p>
+<hr>
+<p style="padding-left:30px;"><strong><img loading="lazy" data-attachment-id="6029" data-permalink="https://creativecommons.jp/faq/by-large/" data-orig-file="https://komtmt.files.wordpress.com/2015/03/by-large.png" data-orig-size="384,384" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="by.large" data-image-description="" data-image-caption="" data-medium-file="https://komtmt.files.wordpress.com/2015/03/by-large.png?w=300" data-large-file="https://komtmt.files.wordpress.com/2015/03/by-large.png?w=384" class=" wp-image-6029 alignnone" src="https://komtmt.files.wordpress.com/2015/03/by-large.png?w=50&#038;h=50" alt="by.large" width="50" height="50" srcset="https://komtmt.files.wordpress.com/2015/03/by-large.png?w=50&amp;h=50 50w, https://komtmt.files.wordpress.com/2015/03/by-large.png?w=100&amp;h=100 100w" sizes="(max-width: 50px) 100vw, 50px">　BY（表示）</strong><br />
+作品を創作した人（著作者）の氏名や作品のタイトルなど、作品に関する情報を表示しなくてはならないことを表します。<br />
+<strong><img loading="lazy" data-attachment-id="6028" data-permalink="https://creativecommons.jp/faq/nc-jp-large/" data-orig-file="https://komtmt.files.wordpress.com/2015/03/nc-jp-large.png" data-orig-size="384,384" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="nc-jp.large" data-image-description="" data-image-caption="" data-medium-file="https://komtmt.files.wordpress.com/2015/03/nc-jp-large.png?w=300" data-large-file="https://komtmt.files.wordpress.com/2015/03/nc-jp-large.png?w=384" class="wp-image-6028 alignnone" src="https://komtmt.files.wordpress.com/2015/03/nc-jp-large.png?w=50&#038;h=50" alt="nc-jp.large" width="50" height="50" srcset="https://komtmt.files.wordpress.com/2015/03/nc-jp-large.png?w=50&amp;h=50 50w, https://komtmt.files.wordpress.com/2015/03/nc-jp-large.png?w=100&amp;h=100 100w" sizes="(max-width: 50px) 100vw, 50px">　NC（非営利）</strong><br />
+営利目的で利用してはならないことを表します。（営利目的で利用したい場合には、作品の権利者にコンタクトして別途許諾を得る必要があります。営利目的で許諾を得た場合は、本アイコンを付ける必要はありません。）<br />
+<strong><img loading="lazy" data-attachment-id="6026" data-permalink="https://creativecommons.jp/faq/nd-large/" data-orig-file="https://komtmt.files.wordpress.com/2015/03/nd-large.png" data-orig-size="384,384" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="nd.large" data-image-description="" data-image-caption="" data-medium-file="https://komtmt.files.wordpress.com/2015/03/nd-large.png?w=300" data-large-file="https://komtmt.files.wordpress.com/2015/03/nd-large.png?w=384" class=" wp-image-6026 alignnone" src="https://komtmt.files.wordpress.com/2015/03/nd-large.png?w=50&#038;h=50" alt="nd.large" width="50" height="50" srcset="https://komtmt.files.wordpress.com/2015/03/nd-large.png?w=50&amp;h=50 50w, https://komtmt.files.wordpress.com/2015/03/nd-large.png?w=100&amp;h=100 100w" sizes="(max-width: 50px) 100vw, 50px">　ND（改変禁止）</strong><br />
+作品を改変しないことを表します。（その作品の全部または一部をそのまま利用することを言います。）<br />
+<strong><img loading="lazy" data-attachment-id="6027" data-permalink="https://creativecommons.jp/faq/sa-large/" data-orig-file="https://komtmt.files.wordpress.com/2015/03/sa-large.png" data-orig-size="384,384" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="sa.large" data-image-description="" data-image-caption="" data-medium-file="https://komtmt.files.wordpress.com/2015/03/sa-large.png?w=300" data-large-file="https://komtmt.files.wordpress.com/2015/03/sa-large.png?w=384" class=" wp-image-6027 alignnone" src="https://komtmt.files.wordpress.com/2015/03/sa-large.png?w=50&#038;h=50" alt="sa.large" width="50" height="50" srcset="https://komtmt.files.wordpress.com/2015/03/sa-large.png?w=50&amp;h=50 50w, https://komtmt.files.wordpress.com/2015/03/sa-large.png?w=100&amp;h=100 100w" sizes="(max-width: 50px) 100vw, 50px">　SA（継承）</strong><br />
+作品を改変することは自由ですが、もしも作品を改変して新しい作品を作った場合には、その新しい作品にも元の作品と同じライセンスを付けることを表します。例えば、あなたが「表示」と「継承」のアイコンが付いた作品を改変して新しい作品をつくった場合、その作品は必ず「表示」と「継承」のライセンスのアイコンを付ける必要があります。</p>
+<hr>
+<p style="padding-left:30px;">例えば「BY‐NC（表示－非営利）」というCCライセンスの表す意味は、「『作者や作品に関する情報を表記すること』と『非営利目的で利用すること』を条件に、作品の利用を許可する」ということです。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="a5"><strong>インターネット上以外の作品にCCライセンスを付けることはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">可能です。CCライセンスは、全ての著作物を対象としておりますので、インターネット上で発信される著作物に限らずCCライセンスを付けることができます。</p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">オンラインの作品にCCライセンスを付ける場合とオフラインの作品に付ける場合の唯一の違いは、オフラインの場合はメタデータが含まれないために、結果としてサーチエンジンからの検索ができないということです。</span></p>
+<p style="padding-left:30px;">インターネット上以外の作品については、次のいずれかの方法でライセンスを表示してください。<br />
+① 例：「本作品はCC-BYライセンスによって許諾されています。ライセンスの内容を知りたい方は<a href="http://creativecommons.org/licenses/by/4.0/deed.ja">http://creativecommons.org/licenses/by/<span style="font-weight:400;">4.0/deed.ja</span></a>でご確認ください。」といった記載をする。<br />
+② 該当するライセンスのバナーやアイコンの画像を掲載し、①と同様の文章を記載する。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="a6"><strong>ソフトウェアにCCライセンスを付けることはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">可能ですが、お勧めはできません。</p>
+<p style="padding-left:30px;">CCライセンスは、ソースコードとオブジェクトコードについては、適用の対象として考慮していないからです。Free Software Foundationによって公開されている<a href="http://www.gnu.org/licenses/license-list.ja.html" target="_blank" rel="noopener">ライセンス（日本語参考訳）</a>や、Open Source Initiativeがリストに挙げている<a href="http://opensource.org/licenses" target="_blank" rel="noopener">ライセンス</a>（<a href="http://sourceforge.jp/projects/opensource/wiki/licenses" target="_blank" rel="noopener">日本語参考訳</a>）等、ソフトウェアに適したライセンスが既に他にありますので、そちらのご利用をご検討ください。これらのライセンスは、CCライセンスと異なり、ソフトウェア専用のライセンスとして設計されています。</p>
+<p style="padding-left:30px;">クリエイティブ・コモンズは法律に関する専門的な知識がなくても簡単に理解することができるコモンズ証（例：CC-BY）と、コンピュータが読み取るメタデータを使って、いくつかのフリー・ソフトウェアやオープン・ソフトウェアのライセンスを取り込んでいます。</p>
+<p style="padding-left:30px;">例としては、CC-GNU GPL（コモンズ証）、CC-GNU LGPL（コモンズ証）、 CC-BSD（コモンズ証）などです。これらのライセンスを使えば、既に完成されているこれらのソフトウェア・ライセンスを使いつつ、CCライセンスと同じように、人が理解しやすいライセンスの解説（コモンズ証）とコンピュータが読み取るメタデータを表示することができます。</p>
+<p style="padding-left:30px;">ただし、注意していただきたいのは、クリエイティブ・コモンズは、これらのソフトウェア・ライセンスの代替ライセンスを提供しているわけではありません。単に、元の許諾書と共に人とコンピュータのどちらもが読める説明のあるライセンスを合わせただけです。</p>
+<p style="text-align:right;"><a href="#menu">戻る</a></p>
+<li id="a7"><strong>CCライセンスの作品を利用する際、何を記載すればよいのでしょうか？　また、CCライセンスのURLやアイコン、バナー等も表示しなければならないのでしょうか？</strong></li>
+<p style="padding-left:30px;"><strong>① 何を記載すべきかについて</strong></p>
+<p style="padding-left:30px;">以下の◆のマークがついたものを記載してください。</p>
+<p style="padding-left:30px;">◆<strong>元の作品の「Ⓒ 著作権者の名前 公表年」の３点セット（これを「著作権表示」又は「クレジット」と呼ぶことがあります）</strong></p>
+<p style="padding-left:30px;">→元の作品に記載されている場合には、必ず記載してください。</p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">◆<strong>元の作品の作者名、スポンサー、タイトル</strong></span></p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">→</span>元の作品に表示があれば記載してください。</p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">◆<strong>元の作品の著作権表示かライセンス情報に関するページへの指定されたURL</strong></span></p>
+<p style="padding-left:30px;">→元の作品に表示があれば記載してください。</p>
+<p style="padding-left:30px;"><span style="text-decoration:underline;">※ 元の作品に改変を加えて二次的著作物を創作した場合</span></p>
+<p style="padding-left:30px;"><strong>◆ 元の作品を利用した二次的著作物である旨</strong><br />
+→例えば、「この作品は（原著作者）による『（オリジナルの作品の題名）』の日本語訳です。」「（原著作者）による『（オリジナルの作品の題名）』の脚本です。」などの表示が必要です。<br />
+※ 権利者から著作権表示を抹消するようリクエストがあった場合は速やかに抹消してください。</p>
+<p style="padding-left:30px;"><strong>②どのように記載すべきかについて</strong></p>
+<p style="padding-left:30px;"><span style="line-height:1.5;"><strong>利用しようとするメディア又は方法にとって合理的な方法で上記の表示を行ってください。</strong>記載場所につきましては、厳密に場所が決められているわけではありませんが、ウェブサイトへの掲載であれば、同一のページに記載して頂くことが望ましいでしょう。</span></p>
+<p style="padding-left:30px;"><strong>③CCライセンスのURLやアイコン、バナーを表示すべきかについて</strong></p>
+<p style="padding-left:60px;"><span style="text-decoration:underline;">⒜ そのままの利用の場合（元の作品に改変を加えずに再掲載するような場合）</span></p>
+<p style="padding-left:60px;">◆ <strong>元の作品についているライセンスのURI（コモンズ証のページのURL）</strong><br />
+→必ず記載してください。同じCCライセンスのバナーを貼る方法でもよいです。</p>
+<p style="padding-left:60px;">◆ <strong>元の作品についているライセンスの告知文、および免責文</strong><br />
+→元の作品に記載されていれば、その内容を変えずに再掲載してください。</p>
+<p style="padding-left:60px;"><span style="text-decoration:underline;">⒝ 元の作品に改変を加えて二次的著作物を創作した場合</span></p>
+<p style="padding-left:60px;">元の作品に改変を加えて二次的著作物を創作した場合は、二次的著作物の新たな著作権が発生します。この二次的著作物にどのようなライセンスをつけるかについては、理論上は二次的著作物を創作した人が自由に決めることができます。<br />
+しかし、CCライセンスのついた作品を利用して二次的著作物を創作した場合には、ライセンスの選択に以下のような制限がありますので、注意してください。</p>
+<p style="padding-left:90px;"><span style="text-decoration:underline;">ⅰ） 元の作品にＳＡ（継承）アイコンが付いていない場合</span><br />
+→二次的著作物には、元の作品についているライセンスよりも同じか、より制限を課す条件でのライセンスを付けることができます。例えば、元の作品が「BY-NC（表示‐非営利）ライセンス」の下で公開されていた場合、その作品を改変した二次的著作物に「BY-NC-SA（表示‐非営利‐継承）ライセンス」を付けることはできますが、「BY（表示）ライセンス」を付けることはできません。したがって、二次的著作物についてAll rights reservedとすることも可能です（その場合は、⒜の事項を掲載する必要はありません）。</p>
+<p style="padding-left:90px;"><span style="text-decoration:underline;">ⅱ）元の作品にＳＡ（継承）アイコンが付いている場合</span><br />
+→原則として、元の作品と同一のライセンスを付けなければなりません。ただし、CCライセンスは様々な国の言語でリリースされており、また、バージョンアップがなされることもあります。必要に応じて、日本語版のライセンスや、バージョンが上の同じアイコンのライセンスを選択することは可能です。</p>
+<p style="padding-left:30px;">※ CCライセンスSA（継承）バージョン3.0以降では、一定の条件の場合には、CCライセンスではなく、相互互換性のある他のライセンスに付け替えることが認められています。このライセンスに基づいて、二次的著作物のライセンスとして、他の相互互換性のあるライセンスを選んだ場合は、その相互互換性のあるライセンスの条項に従ってください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="a8"><strong>「NC（非営利）」アイコンのついている作品を使用しても良いですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">何が「営利」で何が「非営利」かは、最終的には裁判所の解釈によって定まりますので、残念ながらクリエイティブ・コモンズ・ジャパンではお答えすることができません。</p>
+<p style="padding-left:30px;">例えば、対価をとって販売し利益を得ている場合には、営利活動といえるでしょう。また、NPO法人やボランティア団体、学校法人などが何らの収入を得ずに行っている利用は、非営利といえるでしょう。しかし、この間にある沢山の境界事例では、何が営利で何が営利ではないのか、という判断は大変難しく、国によっても異なり、同じ国でも事例によっても異なる可能性があるため、専門的な法律アドバイスが必要になってしまう場合があります。クリエイティブ・コモンズでは、この点が明確になるよう国際的に議論を続けているところです。</p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">もし、どうしてもご自身の利用が営利なのか、非営利なのか迷ってしまうような場合は、明らかに営利利用が許諾されているライセンスのついた作品（例えばBY（表示）、BY-SA（表示－継承）、BY-ND（表示－改変禁止） などが付いた作品）を利用することをおすすめします。そうでなければ、法律の専門家に相談するか、著作権者に直接連絡を取って、別途お問い合わせください。</span></p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="a9"><strong>CCライセンスのついた特定の作品を探しているのですが、どこにあるか教えてください。また、CCライセンスのついたある作品の著作者の方と連絡が取りたいので、連絡先を教えてください。</strong></li>
+<hr>
+<p style="padding-left:30px;">私共はライセンスシステムの公開と普及活動を行っており、個別の作品については管理していません。お探しの作品や作品の著作権者の方の連絡先等をご案内することはできかねます。</p>
+<p style="padding-left:30px;">なお、CCライセンスについているメタデータなどを使って、CCライセンスがついている作品を検索するツールがいくつか提供されています。<a href="http://search.creativecommons.org" target="_blank" rel="noopener">こちら</a>からご利用ください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</ol>
+<h1>よくある質問</h1>
+<h3>クリエイティブ・コモンズの組織と活動について</h3>
+<ol>
+<li id="f1"><strong>クリエイティブ・コモンズとはどのような団体なのですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズは、法律が認める知的財産権をすべて行使したいわけではないという人たちも存在するという認識に基づいて設立された非営利団体です。</p>
+<p style="padding-left:30px;">現在、世界に向かって「いくつかの権利は留保されています（Some rights reserved)」や「何の権利も留保されていません(No rights reserved)」と告知する簡単で信頼できる方法が充分に提供されていないと私たちは考えています。</p>
+<p style="padding-left:30px;">ずっと昔から、全面的な保護を与える著作権は、自分たちの求めるような露出や広範な頒布の獲得の手助けにはならないと感じている人たちがたくさんいます。多くの起業家やアーティストたちは、自分たちのクリエイティブな投資への見返りを確保する方法として、完全な著作権のモデルではなくて、もっと革新的なビジネス・モデルに拠ることを好むようになってきています。</p>
+<p style="padding-left:30px;">他の人々は、知的なコモンズに貢献したり、参加したりすることから満足感を得ています。理由がどうであれ、インターネットの多くの市民がその作品━━とその作品を再利用し、改変し、頒布する権限━━を寛大な条件で他の人たちと共有したいと思っていることは明らかです。</p>
+<p style="padding-left:30px;">クリエイティブ・コモンズは、私たちのウェブサイトで無料でライセンスのセットを世界に提供することによって、作品を共有したいという気持ちを人々が表現する手助けをしようと考えています。</p>
+<p style="text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f2"><strong>クリエイティブ・コモンズは、誰が始めたのですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズは、2001年、サイバー法や知的財産の権威であるJames Boyle、Michael Carroll、及びLawrence Lessig、MITコンピュータサイエンス教授のHal Abelson、弁護士からドキュメンタリー・フィルム制作者になりサイバー法の専門家になったEric Saltzman、パブリック・ドメインのウェブ編集者であるEric Eldredによって作られました。また、ハーバード・ロー・スクールのBerkman Center for Internet &amp; Societyに所属するフェローや学生も立ち上げに協力しました。また、最初の2年間は、スタンフォード・ロー・スクールとthe Center for Internet &amp; Societyにオフィスを置いてそのサポートを受けていました。</p>
+<p style="padding-left:30px;">その後、各国にそれぞれプロジェクトが立ち上げられました。日本では、2003年から準備会を立ち上げ、2004年3月に、米国についで2番目の国として日本法準拠のCCライセンスをリリースしました。また、2007年にはNPO法人化しています。<a href="../about/">CCJPメンバー</a></p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f3"><strong>クリエイティブ・コモンズの拠点は、どこにあるのですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズの本部は米国にある組織で、スタッフやボランティアによって運営されています。</p>
+<p style="padding-left:30px;">クリエイティブ・コモンズ・ジャパンは、東京在住のボランティアを中心に活動しています。現在のところ、固定のオフィスは持たず、メールや電話、月に1回の定例ミーティングなどで情報を集約しつつ、各ボランティアがそれぞれ、自分の得意な分野、興味のある分野を中心に活動しています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f4"><strong>誰がクリエイティブ・コモンズに出資しているのですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズは有志による活動で、皆様からのご寄付によって支えられています。</p>
+<p style="padding-left:30px;">もし、我々の考えに賛同し、ご協力頂けるのでしたら、こちらの<a href="../donate/">寄付ページ</a>からご寄付をお願いします。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f5"><strong>クリエイティブ・コモンズが解決しようとしているのは、どのような課題なのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">デジタル革命とインターネットの出現によって、我々は急速に自分の作品を高品質で多様に配信できるようになりました。それと同時に、コストをあまりかけずに、グローバルに人々が協力して、新しい編集著作物、二次的著作物などを創作できるようにもなりました。これにより、かつてないほど作品や情報が生み出されることとなりました。人と人とのつながりが増えるほど、必要な情報を手に入れ、様々な問題を解決できるようになりました。技術やメディアが集まることによって、現存する作品を組み合わせたり、少し手を加えたりすることができるようになり、例えばリミックスやマッシュアップといった方法で新しい作品をつくることもできます。</p>
+<p style="padding-left:30px;">デジタル革命とインターネットの出現がもたらしたグローバル化は、企業間のみならず、科学や教育といった分野でも特に顕著に見られる現象です。無料の百科事典ウィキペディアや無料のオープンソースソフトウェア・コミュニティがその好例です。こういったプロジェクトは、経済的利益を得る目的で行われているのではなく、大勢の貢献者たちによる、知ること・認められることへの欲求、助け合いの目的により行われています。</p>
+<p style="padding-left:30px;">一方で、これらの新たな発展や可能性の問題点は、新しい技術が現在定められている著作権法のルールを脅かすおそれがあるということです。<br />
+これに対して、権利者たちは、<br />
+（１）侵害行為に利用される恐れがある技術の発展を防ぐ<br />
+（２）DRMや技術的保護手段などの権利管理ツールを開発する<br />
+（３）ロビイング活動によって、技術的保護手段を保護する法律を作る<br />
+（４）著作権のあるものを使ってはいけないと若者に教える大がかりな広報キャンペーンを打つ<br />
+といった４段階の戦略をもって対抗してきました。</p>
+<p style="padding-left:30px;">権利者たちによるこのような反応は、理解はできるものの、デジタル技術を使って創作性を後押しし、協力して科学や教育の分野の問題を解決する、といった発展を遅らせてしまうのではないかということも懸念されます。</p>
+<p style="padding-left:30px;">もし、何らかの作品を作ろうとする人が、その権利者と法律の問題と技術的な問題をクリアするために非常に複雑な交渉しなければならないとしたら、多くの人達は、法律を無視するか、創作をやめるかのどちらかになってしまう可能性もあります。</p>
+<p style="padding-left:30px;">そこで、私たちは作品の創作者や権利者たちが、自分の作品がどのように利用されることを認めているかを示す簡単な方法を提供しようと考えました。そうすれば、簡単に、かつ合法的に、作品を共有したり、その作品に手を加えて新しい作品を作ることができるようになります。逆に、どのような利用は認めていないと明示することもできるのです。これが、我々クリエイティブ・コモンズの最も大事な使命です。我々は、著作者が自分の著作権をより簡単に、有効に活用できる方法を提供したいと考えています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f6"><strong>クリエイティブ・コモンズは、誰のためにあるのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズは、クリエイターや作品を利用するユーザー、いろいろな作品を掛け合わせることで相乗的に生み出される文化的利益を享受する一般の方々の為にあります。</p>
+<p style="padding-left:30px;">先生、学者、科学者、作家、写真家、映画監督、音楽家、グラフィック・デザイナー、ウェブの愛好者、そしてそれらの作品に接する人々が、クリエイティブ・コモンズの提案するツールによって何かを得られることを願っています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f7"><strong>クリエイティブ・コモンズ・ジャパンは何をしようとしているのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">私たちの最初の目標は、著作物の利用許諾を与える際に用いるライセンスを一般の方々に無料で提供することにあります。このライセンスは、著作者の方々が世界に向けて、自分の作品は一定の条件を満たせば自由に共有してよいものだということを明言するのに役に立つものです。</p>
+<p style="padding-left:30px;">例えば、もしもあなたが著作者としてオンラインで公開された画像について、「あなたへのクレジットさえつけてくれれば複製したり無断で配布したりしても構わない」と思っているのなら、あなたのそのような意志を明確に伝えるのに役に立つようなライセンスを用意しています。</p>
+<p style="padding-left:30px;">もしもあなたのバンドのMP3ファイルについて、「自由に複製してもよいけれども無断で営利目的に使って欲しくない」ということであれば、私たちが用意したライセンスの一つを、そのような意志の表明にご利用いただくことができます。</p>
+<p style="padding-left:30px;">私たちのライセンス選択ツールをお使いになれば、メニューから好みのオプションを選ぶことであなたの希望に最も近い条件の組み合わせを探しあてることもできます。</p>
+<p style="padding-left:30px;">「表示」はあなたに対するクレジットを与えることを条件にして、他の人があなたの作品とそれに基づく二次著作物を複製、頒布、展示、上演、演奏、口述、上映、公衆送信、翻案することを許可するものです。</p>
+<p style="padding-left:30px;">「非営利」は、非営利目的に限って、他の人があなたの作品とそれに基づく二次著作物を複製、頒布、展示、上演、演奏、口述、上映、公衆送信、翻案することを許可するものです。</p>
+<p style="padding-left:30px;">「改変禁止」は、作品の二次著作物ではなく、その作品そのままの複製だけを複製、頒布、展示、上演、演奏、口述、上映、公衆送信することを許可するものです。</p>
+<p style="padding-left:30px;">「継承」は、あなたの作品に付されているライセンスと同一のライセンスに基づいてのみ、二次著作物を頒布することを許可するものです。</p>
+<p style="padding-left:30px;">お好みのライセンスを選んだら、そのライセンスを用いていることを表示するために、3つの方法を用意してあります。</p>
+<ol>
+<li>コモンズ証：簡単に、わかりやすい言葉で書かれたライセンスの概要で、対応するアイコンとセットになっています。</li>
+<li>法的コード：実際に作品の利用条件を決定している部分で、法廷で通用するような、ライセンスの文面。</li>
+<li>デジタルコード：検索エンジンやその他のアプリケーションが理解できるようにライセンスの内容を説明したデータ。</li>
+</ol>
+<p style="padding-left:30px;">もしもあなたが全ての著作権を放棄したいということであれば、━━ちょうどベンジャミン・フランクリンからソフトウェアの先進的な開発者たちがそうしたように━━私たちはそれもお手伝いします。あなたはあなたの作品を、パブリック・ドメインとして知られる、制約条件の課されていない創作物の共有領域に寄付することができます。</p>
+<p style="padding-left:30px;">ここでは何も所有されておらず、どのような利用も自由です。言い換えれば、私たちはあなたが「No rights reserved」と宣言することをお手伝いできます。</p>
+<p style="text-align:right;"><a href="https://creativecommons.jp/faq/detail/#menu">戻る</a></p>
+<li id="f8"><strong>クリエイティブ・コモンズは、著作権に反対しているのですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">そうではありません。CCライセンスは、著作権を維持しつつ、作品のより柔軟かつオープンな利用を促進するためのツールです。</p>
+<p style="padding-left:30px;">現に、CCライセンスを法的に執行する場合には、著作権があることが根拠となります。著作権法の目的は、「文化的所産の公正な利用に留意しつつ、著作権者等の権利の保護を図り、文化の発展に寄与すること」（著作権法第1条）です。クリエイティブ・コモンズは、著作権者が望む条件のもとで様々な作品が使われるようにすることで、文化の発展に寄与することができると信じています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f9"><strong>クリエイティブ・コモンズは、CCライセンスの下で公開されているコンテンツのデータベースを持っているのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズ及びクリエイティブ・コモンズ・ジャパンでは、CCライセンスの下で公開されているコンテンツの収集、データベース化等は行っておりません。</p>
+<p style="padding-left:30px;">クリエイティブ・コモンズでは、これらの情報を一箇所に登録するのではなく、セマンティック・ウェブ技術等を用いて検索する方針を採用しています。CCライセンスの下で公開されているコンテンツは、各種検索エンジンのライセンス検索や、本ウェブサイトにある「作品検索」ボタンのリンク先ページにおいて検索することができます。</p>
+<p style="padding-left:30px;">クリエイティブ・コモンズ・ジャパンでは、ジャンルごとにCCライセンスの採用事例をご紹介しておりますので、そちらもご参照下さい。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f10"><strong>クリエイティブ・コモンズは、コンテンツを収集したり、所有したりしていますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">いいえ。私たちは、CCライセンスの広報・普及活動に専念させていただいており、ライセンスのついている作品の収集・所有・提供などの活動は行っておりません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f11"><strong>クリエイティブ・コモンズは、DRM（デジタル著作権管理）と何か関係があるのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">いいえ。CCライセンスは、インターネット等のデジタル環境下において、著作者がどのような利用を認め、どのような利用を認めていないか等の著作権の許諾を簡単に表すことができるツールです。</p>
+<p style="padding-left:30px;">CCライセンスにはメタデータがついており、コンピュータがライセンスの内容を理解できるようにしています。しかし、このメタデータは、DRMのように、著作者が認めていない利用行為を技術的に防ぐツールではありません。</p>
+<p style="padding-left:30px;">私たちが、CCライセンスをそのように設計した理由は、技術的な制限を採用した場合、著作権の例外規定などで法律上認められている利用行為ですら、叶わなくなってしまったり、従来は想定できなかったような作品の再利用を促進する妨げとなったりするからです。私たちは、このような、新しい作品の再利用による創作活動も盛んに行われることが望ましいと考えており、権利を守ろうとする技術も、行き過ぎれば我々の創造力が欠如していってしまうことを恐れています。</p>
+<p style="padding-left:30px;">著作権が尊重されるべきことは疑いの余地がありません。しかし、それは技術に頼るのではなく、先人たちや、法律によって残されてきた自由とその制限を尊重するという昔ながらの方法で尊重されるべきであると考えています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f12"><strong>クリエイティブ・コモンズはCCライセンスに関する紛争の調停は行いますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">いいえ。私たちは、柔軟な著作権の運用とでコンテンツの流通を促進するためにCCライセンスを提供し、さらにユーザーフレンドリーなライセンスとなるよう取り組むことに専念しています。</p>
+<p style="padding-left:30px;">事務局のメンバーには日本の弁護士資格を有した者も多数属していますが、クリエイティブ・コモンズは法律事務所ではないため、ライセンスの利用や著作権に関する紛争について法的なアドバイスやサービスを提供することはできません。CCライセンスに関する紛争の調停に関しては、独自に弁護士をご依頼ください。</p>
+<p style="padding-left:30px;">CCライセンスを使っている方、これから使ってみたいと考えている方が持つ疑問や質問にはできるだけお答えします。</p>
+<p style="text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f13"><strong>クリエイティブ・コモンズの活動に大変興味があります。何か力になりたいのですが。</strong></li>
+<hr>
+<p style="padding-left:30px;">私たちの活動に興味を持っていただいたこと、心よりお礼申し上げます。クリエイティブ・コモンズ・ジャパンでは、<a href="../contact/">こちらの窓口</a>から、直接ご意見を受け付けています。また、<a href="../donate/">ご寄付の受付</a>も行っています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f14">&nbsp;<strong>CCライセンスで作品を公開するメリットはなんですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">確かに現行の著作権法はCCライセンスより多くの法的な保護を提供していますが、CCライセンスでの公開にはいくつかの動機やメリットが考えられます。</p>
+<p style="padding-left:30px;">自分の作品に基づいて他の人が何かを創り出しているという考えや、知的なコモンズに貢献しているという側面に魅了されているかもしれません。クリエイティブ・コモンズのコミュニティが成長していけば、新しい協調の方法の発展を手助けしているという満足感も持つことができるかもしれません。</p>
+<p style="padding-left:30px;">学者は書いたものが複製・共有されることでその考えを世界に広められるかもしれません。駆け出しのデザイナーは、評判を確立するために自分のスケッチが自由に普及することを奨励するかもしれません。すでに有名になっている商業的ミュージシャンは、彼の完全に保護されているたくさんの曲に対する一般の興味を刺激するために、いくつかの曲をサンプルとして提供するかもしれません。政治活動家は無制限の複製を通じてできるだけ多くの人々にメッセージを届けようとするかもしれません。</p>
+<p style="padding-left:30px;">CCライセンスは、著作権の最終的なコントロールをあなたに残しながら、こうしたストラテジーを応援します。</p>
+<p style="text-align:right;"><a href="https://creativecommons.jp/faq/detail/#menu">戻る</a></p>
+<li id="f15"><strong>CCライセンスの下で公開された作品は、「パブリック・ドメイン」となるのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスの下で公開された作品は、著作権の全てが放棄されているわけではないので、厳密にはそうとは言えません。</p>
+<p style="padding-left:30px;">CCライセンスは、あくまでの権利を自分で保持しつつ、自由な利用を一定の条件のもとで許諾しているにすぎません。もし、ご自分の作品を「パブリック・ドメイン」にしたいとお考えでしたら、パブリック・ドメインと同じような扱いとなるCC0というライセンスの利用もご検討下さい。詳細は<a href="https://wiki.creativecommons.org/wiki/CC0_FAQ">英語版</a><span style="color:#000000;"><a href="https://wiki.creativecommons.org/wiki/CC0_FAQ">CC0 FAQ</a>、もしくは<a href="https://creativecommons.jp/sciencecommons/cc0-faq/">CC0 FAQ日本語参考訳</a></span>をご覧下さい。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f16"><strong>CCライセンスや、そのツールを使用するのに費用はかかりますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">いいえ。全て無料です。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f17"><strong>CCライセンスのもとで公表されている作品を、DRM（デジタル著作権管理）のツールで保護しようとした場合、どうなるのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスのもとで公表されている作品を、DRM（デジタル著作権管理）のツールで保護した場合、CCライセンスによって認められているはずの利用を技術的な制限手段によって制限したこととなるので、クリエイティブ・コモンズのライセンス違反になります。</p>
+<p style="padding-left:30px;">CCライセンスでは、「作品の提供を受けた人がその作品のライセンスの許諾条項に従って与えられていた権利行使を制限されてしまう、というような技術的手段を取ること」を禁じています。</p>
+<p style="padding-left:30px;">暗号化やアクセス制限が、必ずしもライセンスによって禁止されている技術的保護手段になるとは限りません。例えば、E-mailで送られたコンテンツが受信者の公開キーにより暗号化された場合、受信者の作品の利用を制限したことにはならないので、ライセンス違反にはあたりません。同様に、受信者を特定のユーザー群（例えばユーザーネームとパスワードを持っている人）に制限することもライセンス違反にはあたりません。 ただし、もしその暗号が、受信者がライセンス上認められる利用行為を妨げるような形で埋め込まれていれば、ライセンス違反となります。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="f18"><strong>似たような発想に基づいたいろいろなライセンスがすでに存在していると思いますが、CCライセンスには何か新しい点などがあるのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">創作物の共有を促進するような先人たちの試みの中で、特に特筆すべきはFree Software Foundationの設立者であり、General Public License （GNU GPL）の作者でもあるリチャード・ストールマン氏です。FSFの提供するライセンスは主にソフトウェアを対象としています。</p>
+<p style="padding-left:30px;">これに対して、クリエイティブ・コモンズは、学術研究、映画、文学、音楽、写真、その他の創作物を扱うことを念頭においた上でCCライセンスを設計しています。もちろん、他の人々の活動によってすでにサポートされていることがある場合━━例えばElectronic Frontier Foundation のOpen Audio Licenseがその一例として挙げられるでしょう━━があることは承知しています。</p>
+<p style="padding-left:30px;">公衆に対し、作品を提供するための手段がより多く存在していることは、アーティストの自由な選択を助け、創作意欲の向上させる、私たちはこのように考えています。そして、これらの様々なライセンスは、お互いに補い合っていくことを目指しており、競合するものではありません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</ol>
+<h3>CCライセンスについて</h3>
+<ol>
+<li id="i1"><strong>CCライセンスは法律ですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">いいえ、法律ではありません。</p>
+<p style="padding-left:30px;">CCライセンスは作品の利用を許諾する人と、許諾を受けて使う人の間の約束ごと、つまり利用許諾の条件の雛型（見本）です。その約束は著作権法その他の法律で守られています。ライセンスを自分の作品に適用するかどうか（マークをつけるかどうか）は、各人の判断に任されていますので、ご自分の判断で行ってください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i2"><strong>CCライセンスは法的効力を持っていますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズの利用許諾書は、原則として法的効力があります。</p>
+<p style="padding-left:30px;">しかし、著作権法の解釈の中には、法律や判例を参照しても明らかになっていない部分があり、その部分をクリエイティブ･コモンズやクリエイティブ・コモンズ・ジャパンが決めることはできません。利用許諾条項をよく読んでお使いください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i3"><strong>CCライセンスは日本の法律上、効力を持つのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスは、日本の著作権法その他の法律に基づいていますので、原則としては法律的な拘束力があります。しかし、著作権法の解釈の中には、法律や判例を参照しても明らかになっていない部分があり、その部分をクリエイティブ･コモンズやクリエイティブ・コモンズ・ジャパンが決めることはできません。利用許諾条項をよく読んでお使いください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i4"><strong>CCライセンスには4つの要素があるということですが、それぞれの意味を教えてください。</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスは、表示・非営利・改変禁止・継承の４つの基本要素から成り立っています。これらを簡潔に説明すると、以下のようになります。</p>
+<p style="padding-left:30px;"><strong>表示</strong>　…作者や作品に関する情報を表記することを条件に、その作品の利用を許可する。表示内容の詳しい解説はこちらをご覧ください。<br />
+<strong>非営利</strong>　…非営利目的で利用することを条件に、その作品の利用を許可する。非営利に関するご質問はこちらをご覧ください。<br />
+<strong>改変禁止</strong>　…作品を改変しないこと（その作品の全部または一部をそのまま利用すること）を条件に、その作品の利用を許可する。<br />
+<strong>継承</strong>　…作品を改変することは自由ですが、もしも作品を改変して新しい作品を作った場合には、その新しい作品にも元の作品と同じライセンスを付けることを条件に、その作品の利用を許可する。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i5"><strong>CCライセンスの「NC（非営利）」は「その作品は営利目的で利用してはいけない」という意味ですか？</strong><br />
+<hr>
+<p style="padding-left:30px;">必ずしもそうではありません。</p>
+<p style="padding-left:30px;">「NC（非営利）」とは、CCライセンスの付された公開の作品として利用する場合には営利目的で利用する権利は与えられない、という意味です。営利目的で利用したい場合は、いつでも、ライセンサー（許諾者）に直接連絡を取って、営利目的で利用することについて別途の許可を求めることができます。</p>
+<p style="padding-left:30px;">CCライセンスの画期的なところは、この「NC（非営利）」という条件を選択できる点です。この条件をつけて、「このCCライセンスのもとでの利用は、非営利目的である場合に限って許可する」とすることにより、営利目的でない範囲で作品を最大限に広く流通させることができ、その一方で、商業的な利用については別途の許可を要することによって、著作権者自身が作品の利用をコントロールできるようになっています。</p>
+<p style="padding-left:30px;"><span style="text-decoration:underline;">※「NC（非営利）」についての注意事項</span></p>
+<p style="padding-left:30px;">「NC（非営利）」という条件は、作品の利用者に対して利用の目的を制限するものであって、著作権者自身がこの制限を課されることはありません。</p>
+<p style="padding-left:30px;">つまり、もしあなたが、「NC（非営利）」を含むCCライセンスを選んだ場合、あなた（ライセンサー）は利用者（ライセンシー）に対し、「NC（非営利）」という条件、すなわち営利目的での利用を禁じる制限を課したことになります。しかし、その作品の著作権者であるあなた自身は、いつでも営利を目的としてその作品を利用することが可能です。これに対し、利益を得ることを目的としてあなたの作品をコピーしたり、自らの作品等に組み込んだりすることを希望する人は、あなたはそのような利用を「NC（非営利）」によって禁止していますから、まずあなたから別途の許諾を得なければなりません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</li>
+<li id="i6"><strong>CCライセンスの「表示（BY）」は何を意味するのですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスが付されていることを示す「表示（BY）」は、作品を利用しようとする方に対する、「ある条件に従えば、私の許諾なくこの作品を使ってもよいですよ」というメッセージのようなものです。主な利用条件については、コモンズ証に記載されています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i7"><strong>コモンズ証とは何でしょうか。リーガルコードとは何でしょうか？ HTMLやメタデータは何のためにあるのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスは次の3段階で提示されます。</p>
+<p style="padding-left:30px;"><strong>１）コモンズ証</strong>（一般の人向け）<br />
+利用許諾書の内容を作品の利用者にわかりやすく伝えるために、利用許諾書の重要な部分を要約したもので、その作品の利用者ができることとできないことを簡潔に示しています。コモンズ証自体に法的効力はありません。</p>
+<p style="padding-left:30px;"><strong>２）利用許諾書</strong>（弁護士などの専門家向け）<br />
+作品の著作権者と作品の利用者の間で結ばれる利用許諾契約の契約書です。法的効力があり、万一の紛争の際にはこの文書の内容に基づいて解決が図られます。</p>
+<p style="padding-left:30px;"><strong>３）メタデータ</strong>（コンピュータが読み取るもの）<br />
+コンテンツに当てはまる許諾内容を表し、サーチエンジンで検索できるようにするものです。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i8"><strong>もしも、著作権の保有者が、その人の作品を二つの異なるCCライセンスで提供している場合は、どうなるのですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">あなたがその作品について使いたいと思うライセンスを、その中から選んでください。</p>
+<p style="padding-left:30px;">一般的には、同一作品を二つの異なるライセンスの下で提供するライセンサー（許諾者）は、二つのライセンスの間で、ユーザーが自由に選択してよいとの意思を有しているものと解釈されます。</p>
+<p style="padding-left:30px;">例えば、ある写真が、非商用条項を持つライセンスとは別に、帰属条項を持つ別のライセンスを付けられているとすれば、二つの条項が同時に適用されるということではありません。もしライセンサー（許諾者）が両方を同時に適用させたいのであれば、両方の条項を含む単一のライセンスを選択するようにすべきです。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i9"><strong>CCライセンスをソフトウェアのドキュメントに付けることはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスは全ての文書に利用できます。ただ、ソフトウェアをサポートする文書には、<a href="http://www.fsf.org" target="_blank" rel="noopener">Free Software Foundation</a>のFree Documentation Licenseを推薦します。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i10"><strong>ライセンス・バージョンとは何ですか？ なぜ存在するのですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズのライセンスは、世界中のライセンス利用状況や、利用者からの要望や懸念点などを踏まえ、ライセンスの有用性や法的効力を向上させるために、細かな規定や文言を見直し、改訂することがあります。改訂の前と後との内容を区別するために、バージョン番号を付けて発行しています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i11"><strong>日本語で提供されているライセンスにはどのようなバージョンがありますか？</strong></li>
+<p style="padding-left:30px;">2.0、2.1、4.0があります。2.0は2003年に、2.1は2004年に、4.0は2015年に、それぞれ発行されました。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i12"><strong>日本語ライセンスの2.1と4.0の主な違いは何ですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">4.0は2.1に対して、下記のような改訂が適用されました。</p>
+<ol>
+<li style="list-style-type:none;">
+<ol>
+<li style="list-style-type:none;">
+<ul>
+<li>全体に読み易く、曖昧さや履行が困難な条項が整理されました。</li>
+<li>ライセンス対象が「作品(Work)」から「マテリアル（Material)」に変更されました。これは、ライセンス対象をデータベースなど、より広い範囲に適応できるよう広げるためです。</li>
+<li>許諾を受けた人がライセンスに違反した場合でも、違反に気が付いてから30日以内に違反状態を是正すれば、自動的に許諾を再度得られるようになりました。</li>
+<li>バージョン2.1ライセンスの日本語で提供しているものは、日本法に準拠したライセンスとして、他の国の法律に準拠したライセンスとは厳密には別個のものとしていました。これに対して、バージョン4.0は、日本法にも他の国の法律にも 「international（国際）」という単一のライセンスで対応する内容に変更しました（つまり、各国ごとのバージョンがありません）。各言語で提供されるライセンスは、公式翻訳という位置づけになります。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i13"><strong>2.1など最新版ではない日本語ライセンスをそのまま使っているとまずいでしょうか？ 最新版に変える必要がありますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">新しいバージョンのライセンスが公表されたから、それ以前のバージョンのライセンスが無効になるとか、サイト上で読めなくなるとか、ライセンスとして効力を失うということはありません。 クリエイティブ・コモンズ・ジャパンとしては、基本的に最新版が最も優れたライセンスであり、最もお勧めできるものと考えています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="i14"><strong>バージョン2.1のSA（継承）が付与された作品を二次利用する場合、バージョン2.1のSAを付与しないといけないのでしょうか？バージョン4.0のSAを付与することはできるでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">SA（継承）のライセンスが付与された作品を二次利用して共有する場合、同じバージョンか、それ以降のバージョンの同じ条件がついたCCライセンスを付与する必要があります。つまり、バージョン2.1が付与された作品を二次利用して共有する場合は、2.1以降であるバージョン4.0のSA（継承）を付与することができます。反対に、バージョン4.0が付与された作品を二次利用して共有する場合には、それより前のバージョン2.1を付与することはできません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</ol>
+<h3>自分の作品にCCライセンスを付けてみようと考えている方へ</h3>
+<ol>
+<li id="b1"><strong>CCライセンスを使うのに、事前に何か署名したり登録したりする必要はありますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">いいえ、その必要はありません。</p>
+<p style="padding-left:30px;">クリエイティブ・コモンズ及びクリエイティブ・コモンズ・ジャパンでは、どの作品がCCライセンスのついたものかどうか追跡したり、記録したりはしていません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b2"><strong>CCライセンスはどのように機能しているのでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスは著作権に基づいて成り立っています。ですから、著作権法で保護される作品であればライセンスを付けることができます。著作権法で守られている作品としては、例えば書籍、ウェブサイト、ブログ、写真、映像、ビデオ、曲その他録音・録画物があります。</p>
+<p style="padding-left:30px;">なお、プログラムも著作権法で保護されますが、CCライセンスを付けることはお薦めしていません（本FAQ「ソフトウェアにCCライセンスを付けるすることはできますか？」参照）。</p>
+<p style="padding-left:30px;">CCライセンスを使って、あなたの作品をどのように利用してよいかを表すことができます。例えば、他の人があなたの作品を複製できる、改変できる、二次的著作物を創作できる、又は販売できるなどというメッセージを伝えることができます。これらは、著作権法上認められている引用等の利用行為に制限を加えるものではなく、また、そもそも著作権法では保護されない事実やアイデアといったものの利用を制限しようというものでもありません。</p>
+<p style="padding-left:30px;">CCライセンスは、その作品を見た人に、ライセンスの条件に従った利用の許可を与えるものです。すなわち、もしボブがCCライセンスの付いているあなたの作品のコピーを所有している場合に、ボブはそのコピーをキャロルにあげることができ、キャロルもまたその作品をCCライセンスに則して利用することが許可されているということです。これで、あなたはボブとキャロルに対して、それぞれ利用許諾契約を結んだことになります。</p>
+<p style="padding-left:30px;">気をつけなくてはいけないのは、CCライセンスは著作権に関するライセンスであるということです。その作品が商標権や特許権でも保護されているような場合、CCライセンスで商標の使用や特許発明の実施を許諾できるわけではありません。</p>
+<p style="padding-left:30px;">CCライセンスは次の3段階で提示されます：<br />
+<strong>１）コモンズ証</strong>（一般的に読解できるもの）<br />
+<strong>２）利用許諾書</strong>（弁護士などの専門家向け）<br />
+<strong>３）メタデータ</strong>（コンピュータが読み取るもの）</p>
+<p style="padding-left:30px;">CCライセンスを使うのに、特に署名などは必要ありません。</p>
+<p style="padding-left:30px;">他に、CCライセンスについて理解しておいていただきたいことは、CCライセンスは、独占排他的なものではないということです。つまり、CCライセンスによって、作品を一般の人に対し利用を許諾しながら、それとは別に特定の人と利用許諾契約を結ぶこともできるということです。この場合、その利用許諾契約によって利益を得ることも可能です。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b3"><strong>CCライセンスのうち、どのライセンスを選んだらよいでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">どのライセンスを選ぶかは、あなたの希望次第です。</p>
+<p style="padding-left:30px;">ライセンスは他の人があなたの作品をどのように扱えるかを示すものですので、それに該当するライセンスを選ぶ必要があります。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b4"><strong>自分の作品が保護されるためには著作権表示は必要ですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">著作権保護のために著作権表示(注：（ｃ）、名前、公表年 の3セット）を付けることは必要という訳ではありません。あなたが自分の作品の著作権を有しているということを明確に示したい場合は表示されることをお勧めします。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b5"><strong>自分が商標権を有するマテリアルに、商標権に影響を与えずにCCライセンスを付与することはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">はい、CCライセンスは商標権にライセンス付与するものではないため、CCライセンスを付与しても、あなたの商標権に影響を与えません。ただし、CCライセンスを適用することで、商標法上求められる許諾ではないけれども、ライセンスされたマテリアルに関連して当該商標を利用する黙示のライセンスを付与したとみられるリスクがあります。このリスクを回避するために、商標またはその他のブランドの主張を希望するライセンサーは、商標やブランドに対すしｓてはライセンスが適用されないことを明示することをお勧めします。これは、著作権表示のなかで行うことができます。もしくは、マテリアルが公開されているウェブサイト上で表示することもできます。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b6"><strong>CCライセンスを付けることで「著作権の制限」に関する規定の適用に影響はありますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">いいえ。</p>
+<p style="padding-left:30px;">日本では、著作権法第30条から第50条までに「著作権の制限」に関する規定が設けられており、「私的使用のための複製」「引用」等、所定の場合に限って著作権者から許諾を得ずに作品の利用ができることが規定されています。これらの著作権法上認められている利用は、ライセンスの影響は全く受けません。</p>
+<p style="padding-left:30px;">例えば、「非営利」の条件があるCCライセンスのついた作品を利用する際、著作権法上規定されている「引用」に該当すれば、仮に営利を目的とする利用でも認められることとなります。この点を明確にするために、我々のライセンスには、「本ライセンスによってあなたのフェア・ユースその他の権利が影響を受けることはまったくありません」との条項が設けられています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b7"><strong>既にNexToneやJASRAC等の著作権管理団体に著作権管理の委託をしていますが、CCライセンスを使うことはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">委託を行っている著作権管理団体に確認する必要があります。</p>
+<p style="padding-left:30px;">CCライセンスをつける権利を著作権管理団体に委託譲渡してしまっている可能性があるためです。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b8"><strong>どのようにCCライセンスを付けたらよいでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">インターネット上で公開する作品の場合は、<a href="http://creativecommons.org/choose/" target="_blank" rel="noopener">こちら</a>のページから自分の希望に合ったライセンスを選んでCCライセンスを付けます。</p>
+<p style="padding-left:30px;">まず、２つの質問に答えてライセンスを選択したら、表示されるHTMLコードをウェブページのソースに追加します。このコードによって、自動的にライセンス・ボタンが表示されます。このボタンは、作品を見た人たちに、その作品がCCライセンスのついたものであることを表示する役割を担っています。</p>
+<p style="padding-left:30px;">また、HTMLコードはメタデータも含んでいて検索エンジンでその作品が見つかるようになっています。<br />
+インターネット上で公開する作品以外の作品にCCライセンスを付けたい場合は、本FAQ「インターネット上以外の作品にCCライセンスを付けることはできますか？」を参照してください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b9"><strong>クリエイティブ・コモンズの人たちは、誰がどのような作品にCCライセンスをつけているかについて、管理したり、それに問題がないかどうかを審査したりしていますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズは、CCライセンスが誰にどのように使われているかを調査・管理しているわけではなく、個別の作品に付されたライセンスが正当な権利者によって正しい方法で付されたものかどうかを確認・検証することもありません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b10"><strong>CCライセンスを付けて公表している作品でも利益を得ることはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスは排他的なものではありませんので、CCライセンスを付けて公表している作品でも、別途利用許諾契約を交わして収益を得ることはできます。</p>
+<p style="padding-left:30px;">CCライセンスの「非営利」条件をつけると、「このCCライセンスでの利用は、非営利目的である場合に限って許可する」という意味となり、営利目的でない範囲で作品を広く流通させつつ、商業的な利用については別途の許可を要することによって、著作権者自身が作品の利用をコントロールできます。</p>
+<p style="padding-left:30px;"><span style="text-decoration:underline;">※NC（非営利目的での利用を許諾する条件）についての注意事項</span></p>
+<p style="padding-left:30px;">① 「非営利」という条件は、作品の利用者に対して利用の目的を制限するものであって、著作権者自身がこの制限を課されることはありません。つまり、もしあなたが「非営利」を含むCCライセンスを選んだ場合、あなたは利用者（ライセンシー）に対し「非営利」という条件、すなわち営利目的での利用を禁じる制限を課したことになります。しかし、その作品の著作権者であるあなた自身はいつでも営利を目的としてその作品を利用することが可能です。これに対し、利益を得ることを目的としてあなたの作品をコピーしたり、自らの作品等に組み込んだりすることを希望する人は、あなたはそのような利用を「非営利」によって禁止していますから、まずあなたから別途の許諾を得なければなりません。</p>
+<p style="padding-left:30px;">② 「非営利」に関する条項についての注意点：現米国法においては、ファイル共有やオンラインでの作品交換は金銭の交換がなくても商業利用とみなされます。しかしながら、正しく行われるファイル共有であれば、頒布や教育の面で非常に有益であるという考えのもと、CCライセンスでは無償の場合に限り商業利用としていません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b11"><strong>私は現在バンドに所属していますが、自分の作品にCCライセンスを付けつつ、引き続きロイヤリティをもらうことはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">可能です。NC（非営利目的での利用を許諾する条件）をつける限り（例：BY-NC（表示－非営利）、BY-NC-SA（表示－非営利－継承）、BY-NC-ND（表示－非営利－改変禁止））、営利目的での利用からロイヤリティを得ることはできます。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b12"><strong>誰かが自分の作品をライセンスに反する方法で利用した場合はどうなりますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスで公表されている作品を、ライセンスに反する方法で利用した場合、その人に対する利用許諾契約は自動的に終了します。</p>
+<p style="padding-left:30px;">例えば、もし誰かがCCライセンスのついたあなたの作品を利用するときに、あなたが明示したとおりの著作権表示を行わなかった場合、その人はその後あなたの作品を利用することが認められなくなります。作品の利用が認められなくなるのは違反した人に対してだけであって、ライセンスで認められた利用行為をしている他の人には関係ありません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b13"><strong>自分の作品の利用のされ方が意にそぐわない場合、どうしたらよいでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">作品の改変方法や、作品を改変して作られた新たな作品が意に反する場合、CCライセンスの規定により、利用者に対してその改変された作品や二次的著作物から、名前を削除するよう要請することができます。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b14"><strong>CCライセンスを付与すると、パブリシティ権やプライバシー権、人格権にどのような影響を与えますか？</strong><br />
+<hr>
+<p style="padding-left:30px;">CCライセンスの最新バージョン4.0を付与する場合、ライセンスによって第三者に対して許諾された権利の行使に必要な限度内で、対象マテリアルに帰属するパブリシティ権、プライバシー権、人格権を放棄するか、主張しないことに合意することにもなります。たとえば、あなたが写った写真にライセンスを付与した場合、写真をさらに配布しないようにプライバシー権を主張することはできません。 （3.0およびそれ以前のCCライセンスにも同様の含みがありましたが、明示していませんでした。）このような形での権利の許諾を望まない場合は、CCライセンスを対象となるマテリアルに適用しないでください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</li>
+<li id="b15"><strong>著作者人格権とはなんでしょうか？自分が望まない作品の利用行為を防ぐ為にこの権利を行使するには、どのようにすればよいでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">作品の改変方法や、作品を改変して作られた新たな作品が意に反する場合、CCライセンスの規定により、利用者に対してその改変された作品や二次的著作物から、名前を削除するよう要請することができます。</p>
+<p style="padding-left:30px;">また、それ以外に日本の著作権法では、作品の創作者である著作者に著作者人格権が認められています。著作者人格権によって、著作者は「最初に公表する権利」「著作者名の表示をさせる（させない）権利」「意に反する改変を受けない権利」が認められています。</p>
+<p style="padding-left:30px;">CCライセンスでは、著作者及び実演家の名誉又は声望を害するような改変による二次的著作物の創作を認めていません（CCライセンスの利用者がND（改変禁止）条件をつけている場合には、名誉又は声望を害するかどうかを問わず一切の改変による二次的著作物の創作が認められません）。したがって、自分の作品を好ましくない方法で利用された場合、作品の創作者の方は、著作者人格権に基づいて、訴えを提起することができることがあります。</p>
+<p style="padding-left:30px;">但し、全ての「改変」が「名誉又は声望を害する」ものであるとは限りません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="b16"><strong>一度付けたCCライセンスを後から変更したい場合はどうしたらよいでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスは取消ができません。つまり、CCライセンスのついた作品を入手した誰かに対して、そのライセンスで認められている利用を止めることはできません。</p>
+<p style="padding-left:30px;">CCライセンスをつけた作品の公表を止めることはいつでもできますが、既に出回ってしまった作品のコピーは、それが単なるコピーでも、編集著作物や二次的著作物に含まれるものであっても、それを回収するということはできません。</p>
+<p style="padding-left:30px;">したがって、CCライセンスを選ぶときは、たとえ後になって作品の公表を中止することになったときでも、他の人がライセンスに従って作品を利用することにあなた自身が不満を覚えないようなものを選ぶように注意しなくてはいけません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</ol>
+<h3>CCライセンスの付いた作品を利用したいと考えている方へ</h3>
+<ol>
+<li id="c1"><strong>CCライセンスの付いた作品は、どのような方法で利用できますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスの元で公開されている作品は、利用許諾条件に定められた条件の範囲内で利用することが認められます。したがって、まずは自分が利用しようと思っている方法が認められているものかどうか、利用許諾条件を確認してください。</p>
+<p style="padding-left:30px;">CCライセンスにはいくつかのバージョンがありますので、利用しようとする作品につけられたライセンスのバーションをよく確認し、そのバージョンに関する利用許諾条件を参照することによって、希望する利用方法が認められるかどうかを確認する必要があります。</p>
+<p style="padding-left:30px;">認められる利用方法の内容等、各ライセンスの重要な事項については、コモンズ証をご覧ください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c2"><strong>クリエイティブ・コモンズという団体が作品の利用について許諾を与えてくれる、ということでしょうか？</strong><br />
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズ（又はクリエイティブ・コモンズ・ジャパン）がその作品について利用許諾を与えるわけではありません。</p>
+<p style="padding-left:30px;">作品を創作したクリエイターが、自分の作品をもっと自由に使ってもらいたいとき、CCライセンスという手段を利用することによって、自ら作品について利用許諾を与えるのであり、クリエイティブ・コモンズは、そのライセンスの仕組みやツールを提供しているにとどまります。</p>
+<p style="padding-left:30px;">作品を創作したクリエイターまたはそのクリエイターから著作権を譲り受けた人、つまりその作品の著作権者は、CCライセンスのもとで作品を公開することによって、「特定の利用条件に従う限り、私にいちいち問い合わせなくても、この作品を使っても良いですよ」という意思を表明したことになります。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</li>
+<li id="c3"><strong>CCライセンスが付いた作品を利用する場合に、気をつけることはありますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">特に以下のような点に注意して下さい。</p>
+<li style="list-style-type:none;">
+<ol>
+<li>利用作品に著作権表示（注：（ｃ）、名前、公表年の3セット）が付いている場合は、内容を変更しないで再掲載してください。</li>
+<li>利用作品の著作者、及び実演家のクレジットを、あなたが利用している媒体や方法にとって合理的な方式で、（もし示されていれば原著作者及び実演家の名前、又は変名を伝えることにより）表示してください。</li>
+<li>利用作品のタイトルが示されている場合は、そのタイトルを表示してください。</li>
+<li>利用作品のライセンサー（許諾者）がその作品に添付するよう指定したURLやURIがあれば、合理的に実行可能な範囲で、そのURLやURIを表示してください（ただし、そのURLやURIが本作品の著作権表示またはライセンス情報を参照するものでないときは、URLやURIの表示は必要ありません）。</li>
+<li>利用作品が二次的著作物（改変された作品）の場合は、当該二次的著作物中の原著作物の利用を示すクレジットを表示してください。</li>
+</ol>
+</li>
+<p style="padding-left:30px;">これらのクレジットは、合理的であればどんな方法でも行うことができます。ただし、二次的著作物又は編集著作物等の場合には、少なくとも他の同様の著作者のクレジットが表示される箇所で当該クレジットを表示し、少なくとも他の同様の著作者のクレジットと同程度に目立つ方法で行ってください。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c4"><strong>CCライセンスの付いた作品を、そのライセンスに従って利用する限り、お金を支払う必要はありませんか？</strong></li>
+<hr>
+<p style="padding-left:30px;">原則として、その必要はありません。CCライセンスは、利用料を支払わずに作品を利用できるようにするためのライセンスです。</p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">しかし、例えば「NC（非営利）」のついた作品を、営利を目的として利用する場合等、作品につけられたCCライセンスの条件を超えた利用をしようとする場合には、別途、著作権者からその利用について許諾を得なければなりませんが、そのとき、著作権者から、許諾の条件として作品の利用料の支払いを求められる場合があります。</span></p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c6"><strong>利用しようとしている作品について、本当に正当な権利を有する人によってCCライセンスが付けられているのか不安があるのですが…。</strong></li>
+<hr>
+<p style="padding-left:30px;">そのような作品は、利用をお控えいただくか、CCライセンスを付けてその作品を公開している方に使用しても問題がないかどうかを直接お問い合わせ下さい。</p>
+<p style="padding-left:30px;">本来、他人の作品や、他人の作品を元に創作した作品に、勝手にCCライセンスを付けることはできません。</p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">しかしながら、不理解や誤解によって、著作権者の許諾を受けずにCCライセンスが付けられたり、誤った内容のCCライセンスが付けられてしまっている作品がある可能性もあります。そのような作品を、CCライセンスの表示を信じて利用してしまった場合、著作権侵害の責任を負わなければならない場合があります。</span></p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">CCライセンスには、「責任制限」という条項が含まれています。これは、CCライセンスを付けてその作品を公開している人が、必ずしもその作品に関する全ての権利を有していることを保証するものではないということを意味しています。つまり、そのような作品を利用することによって、本当の著作権者から損害賠償を請求される等して、作品を利用された方に損害が発生したとしても、原則として、作品を利用された方は、CCライセンスを付けてその作品を公開している人に対して、自己に生じた損害に関する責任を追及することができません。</span></p>
+<p style="padding-left:30px;"><span style="line-height:1.5;">したがって、ライセンスを付けた人以外の他の誰かが著作権を持っているとわかる作品、そのような作品を元に作られた作品、肖像権、パブリシティ権、商標権に抵触するような作品を利用しようとするときは、その作品を公開している人や正当な権利を持っている人に確認する等して、ライセンスを付けた人がその作品に関して、CCライセンスを付して作品を公開することについて必要な権利を全て有していることを確認した上で作品を利用する必要があります。</span></p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c7"><strong>著作権者が、「自分の作品には二つの異なるCCライセンスが付いている」と言っている場合はどうなりますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">利用者としては、どちらのライセンスを選んでその作品を利用しても問題ありません。</p>
+<p style="padding-left:30px;">一般的には、ライセンサー（許諾者）が同じ作品に二つの異なるライセンスを付けるのは利用者に選択肢を与えるためという場合が多いです。</p>
+<p style="padding-left:30px;">例えば、ある写真が「非営利」の条件がついたライセンスで提供されている一方で、「改変禁止」の条件がついたライセンスでも提供されているという場合（「BY-NC（表示-非営利）」「BY-ND（表示-改変禁止）」の両方のライセンスがついている状態）、営利利用も改変利用も両方禁止されているという意味ではなく、営利利用と改変利用のいずれかが禁止されているという意味になります。もし著作権者がその両方の条件を課した利用許諾を希望するのであれば、両方の条件が入った一つのライセンスを選択しなければなりません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c8"><strong>ある作品を、その作品につけられたCCライセンスが許可していない方法で利用したい場合はどうしたらよいでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスの付いた作品について、そのライセンスが許可していない方法でその利用をしたい場合（例えば、非営利目的での利用のみが認められた作品を、営利目的で利用したい場合）は、その作品の著作権者の方（原則的には、CCライセンスをつけて作品を公開している方）に連絡を取って、別途、その利用について許諾を得る必要があります。</p>
+<p style="padding-left:30px;">もし、許可されていない方法での利用を無断で行った場合、その利用行為は、CCライセンスに基づく利用許諾が及ばない行為ですから、著作権侵害の責任を問われることがあります（差止請求、損害賠償請求、刑事罰の適用等）。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c9"><strong>CCライセンスのついた作品とそうでない他の作品を合わせて、コンピレーションアルバムや文集など（以下、「編集物」と言います。）を作った場合、その全体に対してCCライセンスを付けなければなりませんか？</strong></li>
+<hr>
+<p style="padding-left:30px;">そのような場合、CCライセンスのついていない他の作品には、CCライセンスを付ける必要はありません。</p>
+<p style="padding-left:30px;">編集物全体に対してCCライセンスを付けたい場合は、CCライセンスのついていない他の作品について著作権を有する方から同意を得た上で、行ってください。もともとCCライセンスのついている作品には、ライセンスを付けなければならないか、つけるとしたらどのライセンスを付けるべきかについては、本FAQの「そのままの利用の場合」をご参照下さい。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c10"><strong>二つの異なるCCライセンスの作品を組み合わせることはできますか？ また、CCライセンスの付いた作品と付いていない作品を組み合わせることはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">原則的には、どちらの場合もできます。しかし、「継承」の条件を含んだCCライセンス（すなわち、「表示－継承」、「表示－非営利－継承」）がついた作品を他の作品と組み合わせて利用するときは、同じ条件のCCライセンスがついた作品同士でなければなりません。</p>
+<p style="padding-left:30px;">「継承」の条件は、「同じ条件のライセンスで頒布する場合に限り、作品の改変を認める」というものですから、組み合わせた結果生まれた作品にも同じ条件のライセンスを付けなければなりません。したがって、同じ条件のCCライセンスがついた作品同士でなければ組み合わせることができないということになります。例えば、「表示－継承」のライセンスがついた作品と、「表示－非営利－継承」のライセンスがついた作品を組み合わせて新たな作品を作ることは認められません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c11"><strong>CCライセンスの付いた作品を元にして、新しい作品を作りました。この新しい作品には、どのようなCCライセンスを付けることができますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">原則として、元の作品についているライセンスよりも条件を緩めることは認められません。詳しくは、以下の表で確認下さい。</p>
+<p style="padding-left:30px;"><strong>表</strong>：原作品のライセンスと新しく作った作品に付けることができるライセンスの種類</p>
+<table style="height:235px;" border="0" width="813">
+<tbody>
+<tr>
+<th colspan="2"></th>
+<th colspan="7">新しく作った作品に付けることができるライセンスの種類</th>
+</tr>
+<tr>
+<th colspan="2"></th>
+<th style="text-align:center;width:5em;">by</th>
+<th style="text-align:center;width:5em;">by-nc</th>
+<th style="text-align:center;width:5em;">by-nc-nd</th>
+<th style="text-align:center;width:5em;">by-nc-sa</th>
+<th style="text-align:center;width:5em;">by-nd</th>
+<th style="text-align:center;width:5em;">by-sa</th>
+<th style="text-align:center;width:5em;">pd</th>
+</tr>
+<tr>
+<th rowspan="7">原作品の<br />
+ライセンス</th>
+<th style="text-align:center;width:5em;">pd</th>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+</tr>
+<tr>
+<th style="text-align:center;width:5em;">by</th>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td></td>
+</tr>
+<tr>
+<th style="text-align:center;width:5em;">by-nc</th>
+<td></td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th style="text-align:center;width:5em;">by-nc-nd</th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th style="text-align:center;width:5em;">by-nc-sa</th>
+<td></td>
+<td></td>
+<td></td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th style="text-align:center;width:5em;">by-nd</th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th style="text-align:center;width:5em;">by-sa</th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="background-color:green;text-align:center;color:white;">○</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p style="padding-left:30px;"><strong>＜表の見方＞</strong><br />
+まず、左の列から元の作品についているCCライセンスの種類を選びます。その欄を横に見ていって、○印のある部分に対応する縦の列のCCライセンスの種類が、新しい作品に付けることのできるライセンスになります。</p>
+<p style="padding-left:30px;">※「改変禁止」の条件のついた作品は、そもそもその作品を利用して新しい作品を作ることが認められないため、「表示－非営利－改変禁止」と「表示－改変禁止」の欄には、○印がありません。また、元の作品に「継承」の条件が付いている場合は、新しい作品は、元の作品と同一の条件のライセンスしか付けることができません。</p>
+<p style="padding-left:30px;"><strong>※記号の意味</strong><br />
+by = <a href="http://creativecommons.org/licenses/by/2.1/jp/">表示</a>のみ<br />
+by-nd = <a href="http://creativecommons.org/licenses/by-nd/2.1/jp/">表示－改変禁止</a><br />
+by-nc-nd =<a href="http://creativecommons.org/licenses/by-nc-nd/2.1/jp/">表示－非営利－改変禁止</a><br />
+by-nc =<a href="http://creativecommons.org/licenses/by-nc/2.1/jp/">表示－非営利</a><br />
+by-nc-sa =<a href="http://creativecommons.org/licenses/by-nc-sa/2.1/jp/">表示－非営利－継承</a><br />
+by-sa =<a href="http://creativecommons.org/licenses/by-sa/2.1/jp/">表示－継承</a><br />
+pd =パブリック・ドメイン</p>
+<p style="padding-left:30px;">＜表のイメージファイル＞<a href="https://komtmt.files.wordpress.com/2015/03/faqsc.png"><img loading="lazy" data-attachment-id="6032" data-permalink="https://creativecommons.jp/faq/faqsc/" data-orig-file="https://komtmt.files.wordpress.com/2015/03/faqsc.png" data-orig-size="2654,808" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="faqsc" data-image-description="" data-image-caption="" data-medium-file="https://komtmt.files.wordpress.com/2015/03/faqsc.png?w=300" data-large-file="https://komtmt.files.wordpress.com/2015/03/faqsc.png?w=620" class=" size-medium wp-image-6032 alignnone" src="https://komtmt.files.wordpress.com/2015/03/faqsc.png?w=300&#038;h=91" alt="faqsc" width="300" height="91" srcset="https://komtmt.files.wordpress.com/2015/03/faqsc.png?w=300&amp;h=91 300w, https://komtmt.files.wordpress.com/2015/03/faqsc.png?w=598&amp;h=182 598w, https://komtmt.files.wordpress.com/2015/03/faqsc.png?w=150&amp;h=46 150w" sizes="(max-width: 300px) 100vw, 300px"></a></p>
+<p style="text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c12"><strong>様々な作品を集めて一つのリソースにまとめています。この中にCCライセンスのついた作品を含めることは可能でしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">全てのCCライセンスはそれが付された作品を編集著作物（例えば作品集、百科事典、データベースなど）の素材に含めることを許諾しています。</p>
+<p style="padding-left:30px;">しかし、その場合は素材にする原作品についていたライセンスの許諾条項に従わなければなりません。例えば、「非営利」のCCライセンスが原作品に付けられている場合、それを商業的に使われる編集著作物の素材に含めることはできません。</p>
+<p style="padding-left:30px;">以下の表で、あなたの作っている編集著作物にCCライセンスの付いた作品を含めることができるかを確認して下さい。編集著作物の素材にCCライセンスのついた作品を含める場合、その作品には同じCCライセンスを付けておかなくてはいけませんが、それはその作品のみのライセンスであり、編集著作物全体に同一のCCライセンスをつける必要はありません。</p>
+<p style="padding-left:30px;">＜記号の意味＞<br />
+by =表示のみ<br />
+by-nd =表示－改変禁止<br />
+by-nc-nd =表示－非営利－改変禁止<br />
+by-nc =表示－非営利<br />
+by-nc-sa =表示－非営利－継承<br />
+by-sa =表示－継承<br />
+pd =パブリック・ドメイン</p>
+<p style="padding-left:30px;">原作品についているライセンスの種類 編集著作物の種類<br />
+営利目的 非営利目的<br />
+pd ○ ○<br />
+by ○ ○<br />
+by-nc ○<br />
+by-nc-nd ○<br />
+by-nc-sa ○<br />
+by-nd ○ ○<br />
+by-sa ○ ○</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="c13"><strong>CCライセンスの条項を変更したり、条件の中のいくつかを免除したりすることはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">CCライセンスの内容を変更したり、条件の中のいくつかを免除することは可能ですが、その場合変更されたライセンスは、『CCライセンス』とは言えません。</p>
+<p style="padding-left:30px;">また他の作品についているCCライセンスと互換性がなくなってしまうことが多い点にもご留意下さい。</p>
+<p style="padding-left:30px;">しかしながら、利用者に対して個別に許諾条項と異なる許諾を与えることは可能ですし、例えば「表示」の条件中のある許諾要素について免除したいと考える場合には、署名のある書面に基づき免除や変更の同意を行うことが認められています（バージョン3.0以降）。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</ol>
+<h3>データ</h3>
+<h4>データとCCライセンス</h4>
+<ol>
+<li id="h1"><strong>データベースをCCライセンスを付与してリリースすることはできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">はい、CCライセンスは、データベースにライセンスを付与するために利用することができます。最新版（4.0）は、適用できる場合、データベース権を、著作権に従ってデータベースにライセンスを付与するために利用することができます。データベース権は、（内容のない部分の頻繁な抽出を含む）データベースの重要な部分のコピーと再利用を妨げます。しかしながら、著作権と異なり、データベース権は、その創作性ではなく作者の投資を保護するものです。</p>
+<p style="padding-left:30px;">CCは学問的、又は科学的な利用を意図したデータベースにNC（非営利）又はND（改変禁止）を利用することを推奨しません。データベースの再利用を最大化するために我々のライセンスに加え、CC0パブリックドメインをデータベースに利用することができます。CC0を利用した場合、データベースとそのコンテンツのすべての著作権及び隣接権を放棄する効果があり、可能な限り世界的なパブリックドメインとなります。科学や政治といった領域では、CC0の利用を考慮する重要な理由があります。著作権及び隣接権を放棄することにより潜在的な利用者のためにすべての不確実性を排除し、最も効果的な再利用を促進し、情報を共有することになります。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="h2"><strong>CCライセンスが利用された場合、何がライセンスされますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">ライセンスの文言及び条件がデータベースの構造（著作権により保護できる範囲における選択と配列）、そのコンテンツ（著作権により保護できる場合）及びデータベースの作者がデータベース権を有する場合の作者に認められた権利に適用されます。それでもなおライセンサーは、データベースにおいて有するすべての権利よりも少ない権利を留保するライセンスを選ぶことができます。クリエイティブコモンズは、この選択に対しアドバイスします。しかしながら、もしライセンサーがそのような選択をするならば、我々は何がライセンスされていて何がライセンスされていないのかをはっきりとさせることを強く推奨します。何がライセンスされているのかをはっきりと通知する方法に関しての更なる情報については以下を参照。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="h3"><strong>どのようにCCという法的手段をデータベースに利用することができますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">データベースを CCライセンスの下に利用できるようにする前に、まずライセンスをつけるのに必要なすべての権利を有しているかどうかデータベースのプロバイダーは確認しなければなりません。しばしばデータベースのプロバイダーは、データベースコンテンツの原作者ではないことがあります。そのような場合、データベースのプロバイダーは、 CCという法的手段の下にデータベースを公表する前に他の作者から別の許可を得なければなりません。データベースの作者がデータベースのコンテンツの作者から許可を得ないでデータベースにライセンスをつけることを決定する場合、許可を得ていないマテリアルを明確に示し、ライセンスの文言の下に提供されていないものとしてマテリアルを明確に表示しなければなりません。更なる情報については、我々のライセンスをつける前のガイドラインを読んで下さい。</p>
+<p style="padding-left:30px;">データベースのプロバイダーは、データベースの何の要素をCCという法的手段によりカバーしたいのか注意深く検討し、再利用者が見て、理解できる方法でその要素を示さなければなりません。以下、ライセンスのないコンテンツと明確に区別するための更なる情報については我々のページ参照（https省略）。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</ol>
+<h4>データ（一般的な）</h4>
+<ol>
+<li id="h4"><strong>データベースのどの構成要素が著作権によって保護されますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">データベースに関しては、以下の４つの構成要素を考慮すべきです。（１）データベースモデル又はデータベース構造、（２）データエントリー又はアウトプットシート、（３）フィールドネーム、そして（４）データあるいは別のコンテンツ</p>
+<p style="padding-left:30px;">データベースモデルは、データベーステーブルやテーブルインデックスを含み、いかにデータベースが構築され、組織されているかに言及します。データベースの選択、コーディネーション、アレンジは、オリジナルな場合、著作権に従います。多くの裁判管轄では、オリジナルであることの敷居は、かなり低いです。例えば、アメリカ合衆国の裁判所は、アルファベット順の電話帳を著作権保護に値するオリジナルであるとするには不十分であるとする一方、特定の地域における中華系アメリカ人のビジネスにつき編集された辞書は、オリジナルであるとしました。これらの決定は、具体的な事実に沿ったもので（しゃれを言うつもりではなく）裁判管轄により変わります。</p>
+<p style="padding-left:30px;">データエントリーおよびアウトプットシートは問題を含んでおり、これらの問題に対する答えは、データベースに組み込まれています。例えば、科学者に遺伝子の名前、経路情報および存在論？を問うウェブページは、データエントリーシートを構成します。これらのシートのフォーマットとレイアウトは、データベースモデルが著作権により保護できる場合、決定に利用されるオリジナリティーと同一の基準に従い著作権により保護されます。</p>
+<p style="padding-left:30px;">フィールドネームは、コンテンツ又はデータを記述します。例えば、「アドレス」はストリートアドレス情報に関するフィールド名です。これらは、オリジナリティーにしばしば欠けるので著作権により保護されることは少ないです。</p>
+<p style="padding-left:30px;">データベースに含まれるデータ又はコンテンツは、十分に創造性がある場合、著作権に従います。データベースに含まれる原作の詩は、著作権により保護されます。しかし、純粋に事実のデータ（遺伝子名や都市の人口のような）は、著作権により保護されません。事実は、著作権により保護されないし、著作権により保護されているコンテンツのアイディアも著作権によっては保護されません<span style="font-size:inherit;">。</span></p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="h5"><strong>私のデータベース利用が著作権によって制限される場合、私はどのようにライセンスに従えば良いですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">あなたの利用が公開して共有することを含む場合、あなたがライセンサーであることをすべてのCCライセンスが要求します。その他の義務は、データベースに利用されている特定のCCライセンスによります。NC（非営利）の場合は、いずれの規定された利用も非営利目的に限定されます。 ND（改変禁止）が適用されている場合、データベースを改変することはできますが、それを公開して共有することはできません。SA（継承）ライセンスの場合、あなたが公開して共有するデータベースの改変につき、同じあるいは互換性のあるライセンスを利用しなければなりません。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="h6"><strong>データベースのどの構成要素がデータベース権により保護されますか？</strong></li>
+<hr>
+<p style="padding-left:30px;"><span style="font-size:inherit;">著作権と対照的にデータベース権は、データベースの作者のデータベースに対する相当な投資の保護を意図しています。特にデータベース権は、コンテンツの重要な部分の抽出や再利用を権限なしに行わないようにするためのものです。</span></p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</ol>
+<h3>クリエイティブ・コモンズのロゴの使用</h3>
+<ol>
+<li id="e1"><strong>GIF画像ではなく、PNG画像を使用したいのですが、どうしたらよいですか？ また、逆にPNG画像ではなくGIF画像を使用したい場合はどうしたらよいですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">以前のライセンス・ボタンについては両方のフォーマットで提供しています。somerights20.gif から somerights20.pngへの変換、又はその逆も可能です。新しいライセンスについてはPNGフォーマットでのみ提供しています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="e2"><strong>解像度の高いクリエイティブ・コモンズのロゴは、どこからダウンロードできますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">高解像度のクリエイティブ・コモンズのロゴやライセンス・ボタンは「<a href="../about/downloads/">データ・資料</a>」でダウンロードできます。クリエイティブ・コモンズのロゴ、名称、ライセンス・ボタンのご使用は、「<a href="../policies/">各種コンテンツの利用条件</a>」に従った条件でのみ許諾しています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="e3"><strong>Tシャツやステッカーにクリエイティブ・コモンズのロゴをプリントしたいのですが、どうしたらよいですか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズのロゴ、名称、ライセンス・ボタンのご使用は、クリエイティブ・コモンズのウェブサイトや、CCライセンスへのリンク用など、「<a href="../policies/">各種コンテンツの利用条件</a>」に従った条件でのみ許諾しています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="e4"><strong>クリエイティブ・コモンズのロゴを自分のサイトや作品に取り入れることができますか？</strong></li>
+<hr>
+<p style="padding-left:30px;">「ポリシー・ページ」に従っていただくことが条件となりますが、クリエイティブ・コモンズのロゴをあなたのウェブサイトや作品に取り入れることができます。</p>
+<p style="padding-left:30px;">原則として、クリエイティブ・コモンズの法人ロゴ（“Creative Commons”の名称、および円の中に“CC”を配したマーク）は、クリエイティブ・コモンズのウェブサイトへのリンク用に限定して使用を許諾しています。また、“Some Rights Reserved”や“No Rights Reserved”ボタンと各ライセンス要素のボタン（表示のボタン、非営利のボタン等）は、そのボタンに対応するライセンスへのリンク用に限定して使用を許諾しています。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+<li id="e5"><strong>自分のサイトや作品に表示しているクリエイティブ・コモンズのロゴに、より見栄えを良くする等の変更を加えても構わないでしょうか？</strong></li>
+<hr>
+<p style="padding-left:30px;">クリエイティブ・コモンズのロゴに変更を加えることは、ご遠慮頂きますようお願いします。“Some Rights Reserved”や“No Rights Reserved”ボタンは、クリエイティブ・コモンズの商標であり、私たちが提供するライセンス体系の中核をなすものであるため、統一的に使用していただく必要があるからです。</p>
+<p style="padding-left:30px;text-align:right;"><a href="#menu">戻る</a></p>
+</ol>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+			</footer><!-- .entry-meta -->
+
+</article><!-- #post-# .#post-class-# -->
+
+<div id="comments" class="comments-area">
+
+	
+	
+</div><!-- #comments .comments-area -->
+		</div><!-- #content .site-content -->
+
+	</div><!-- #primary .content-area -->
+
+
+	<div id="secondary" class="sidebar-container" role="complementary">
+				<div class="widget-area">
+			<aside id="text-4" class="widget widget_text">			<div class="textwidget"><a href="http://search.creativecommons.org" target="_blank" rel="noopener"><img src="https://komtmt.files.wordpress.com/2015/04/search.png" width="220" height="60"></a>
+<br><br>
+<a href="http://creativecommons.org/choose/" target="_blank" rel="noopener"><img src="https://komtmt.files.wordpress.com/2015/04/choose.png" width="220" height="60"></a></div>
+		</aside><aside id="twitter_timeline-4" class="widget widget_twitter_timeline"><h3 class="widget-title">CCJPのツイート</h3><a class="twitter-timeline" data-width="220" data-theme="light" data-border-color="#e8e8e8" data-tweet-limit="3" data-lang="JA" data-partner="jetpack" data-chrome="noheader nofooter noscrollbar" href="https://twitter.com/cc_jp" href="https://twitter.com/cc_jp">ツイート</a></aside><aside id="categories-6" class="widget widget_categories"><h3 class="widget-title">カテゴリー</h3><form action="https://creativecommons.jp" method="get"><label class="screen-reader-text" for="cat">カテゴリー</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>カテゴリーを選択</option>
+	<option class="level-0" value="340429926">5.クリエイティブ・コモンズの組織と活動について&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="924">イベント告知&nbsp;&nbsp;(33)</option>
+	<option class="level-0" value="2201">イベント報告&nbsp;&nbsp;(11)</option>
+	<option class="level-0" value="16">ブログ&nbsp;&nbsp;(342)</option>
+	<option class="level-0" value="2764">プレスリリース&nbsp;&nbsp;(29)</option>
+	<option class="level-0" value="1066225">メディア情報&nbsp;&nbsp;(6)</option>
+	<option class="level-0" value="838364">CCHQ&nbsp;&nbsp;(169)</option>
+	<option class="level-0" value="71639796">画像&nbsp;&nbsp;(17)</option>
+	<option class="level-0" value="340429921">科学&nbsp;&nbsp;(7)</option>
+	<option class="level-0" value="340429922">音&nbsp;&nbsp;(14)</option>
+	<option class="level-0" value="12185">FAQ&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="64546">in the media&nbsp;&nbsp;(12)</option>
+	<option class="level-0" value="9789549">INTO INFINITY&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="1274439">isummit&nbsp;&nbsp;(6)</option>
+	<option class="level-0" value="1096989">全般&nbsp;&nbsp;(6)</option>
+	<option class="level-0" value="217">出演予告&nbsp;&nbsp;(3)</option>
+	<option class="level-0" value="4433050">教育&nbsp;&nbsp;(11)</option>
+	<option class="level-0" value="340429928">文章&nbsp;&nbsp;(20)</option>
+	<option class="level-0" value="4433068">映像&nbsp;&nbsp;(15)</option>
+	<option class="level-0" value="9548">活用事例&nbsp;&nbsp;(62)</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</aside><aside id="archives-6" class="widget widget_archive"><h3 class="widget-title">アーカイブ</h3>		<label class="screen-reader-text" for="archives-dropdown-6">アーカイブ</label>
+		<select id="archives-dropdown-6" name="archive-dropdown">
+			
+			<option value="">月を選択</option>
+				<option value='https://creativecommons.jp/2021/09/'> 2021年9月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2021/07/'> 2021年7月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2021/05/'> 2021年5月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2021/01/'> 2021年1月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2020/10/'> 2020年10月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2020/08/'> 2020年8月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2020/06/'> 2020年6月 &nbsp;(4)</option>
+	<option value='https://creativecommons.jp/2020/04/'> 2020年4月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2020/01/'> 2020年1月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2019/11/'> 2019年11月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2019/08/'> 2019年8月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2018/11/'> 2018年11月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2018/10/'> 2018年10月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2018/09/'> 2018年9月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2018/05/'> 2018年5月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2017/12/'> 2017年12月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2017/11/'> 2017年11月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2017/10/'> 2017年10月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2017/09/'> 2017年9月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2017/08/'> 2017年8月 &nbsp;(4)</option>
+	<option value='https://creativecommons.jp/2016/10/'> 2016年10月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2016/08/'> 2016年8月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2016/07/'> 2016年7月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2016/04/'> 2016年4月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2016/01/'> 2016年1月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2015/10/'> 2015年10月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2015/09/'> 2015年9月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2015/08/'> 2015年8月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2015/07/'> 2015年7月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2015/05/'> 2015年5月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2015/01/'> 2015年1月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2014/12/'> 2014年12月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2014/09/'> 2014年9月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2014/06/'> 2014年6月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2014/04/'> 2014年4月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2013/11/'> 2013年11月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2013/10/'> 2013年10月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2013/09/'> 2013年9月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2013/07/'> 2013年7月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2013/04/'> 2013年4月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2013/03/'> 2013年3月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2013/02/'> 2013年2月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2013/01/'> 2013年1月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2012/12/'> 2012年12月 &nbsp;(6)</option>
+	<option value='https://creativecommons.jp/2012/11/'> 2012年11月 &nbsp;(4)</option>
+	<option value='https://creativecommons.jp/2012/10/'> 2012年10月 &nbsp;(4)</option>
+	<option value='https://creativecommons.jp/2012/09/'> 2012年9月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2012/08/'> 2012年8月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2012/07/'> 2012年7月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2012/06/'> 2012年6月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2012/05/'> 2012年5月 &nbsp;(9)</option>
+	<option value='https://creativecommons.jp/2012/04/'> 2012年4月 &nbsp;(8)</option>
+	<option value='https://creativecommons.jp/2012/03/'> 2012年3月 &nbsp;(12)</option>
+	<option value='https://creativecommons.jp/2012/02/'> 2012年2月 &nbsp;(15)</option>
+	<option value='https://creativecommons.jp/2012/01/'> 2012年1月 &nbsp;(8)</option>
+	<option value='https://creativecommons.jp/2011/12/'> 2011年12月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2011/11/'> 2011年11月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2011/10/'> 2011年10月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2011/09/'> 2011年9月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2011/08/'> 2011年8月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2011/07/'> 2011年7月 &nbsp;(9)</option>
+	<option value='https://creativecommons.jp/2011/06/'> 2011年6月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2011/05/'> 2011年5月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2011/04/'> 2011年4月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2011/03/'> 2011年3月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2010/12/'> 2010年12月 &nbsp;(4)</option>
+	<option value='https://creativecommons.jp/2010/11/'> 2010年11月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2010/10/'> 2010年10月 &nbsp;(4)</option>
+	<option value='https://creativecommons.jp/2010/09/'> 2010年9月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2010/08/'> 2010年8月 &nbsp;(7)</option>
+	<option value='https://creativecommons.jp/2010/07/'> 2010年7月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2010/06/'> 2010年6月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2010/05/'> 2010年5月 &nbsp;(4)</option>
+	<option value='https://creativecommons.jp/2010/04/'> 2010年4月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2010/03/'> 2010年3月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2010/02/'> 2010年2月 &nbsp;(10)</option>
+	<option value='https://creativecommons.jp/2010/01/'> 2010年1月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2009/12/'> 2009年12月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2009/11/'> 2009年11月 &nbsp;(9)</option>
+	<option value='https://creativecommons.jp/2009/10/'> 2009年10月 &nbsp;(14)</option>
+	<option value='https://creativecommons.jp/2009/09/'> 2009年9月 &nbsp;(8)</option>
+	<option value='https://creativecommons.jp/2009/08/'> 2009年8月 &nbsp;(19)</option>
+	<option value='https://creativecommons.jp/2009/07/'> 2009年7月 &nbsp;(6)</option>
+	<option value='https://creativecommons.jp/2009/05/'> 2009年5月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2009/04/'> 2009年4月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2009/03/'> 2009年3月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2009/01/'> 2009年1月 &nbsp;(6)</option>
+	<option value='https://creativecommons.jp/2008/12/'> 2008年12月 &nbsp;(5)</option>
+	<option value='https://creativecommons.jp/2008/11/'> 2008年11月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2008/10/'> 2008年10月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2008/08/'> 2008年8月 &nbsp;(6)</option>
+	<option value='https://creativecommons.jp/2008/07/'> 2008年7月 &nbsp;(21)</option>
+	<option value='https://creativecommons.jp/2008/06/'> 2008年6月 &nbsp;(6)</option>
+	<option value='https://creativecommons.jp/2008/05/'> 2008年5月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2008/04/'> 2008年4月 &nbsp;(7)</option>
+	<option value='https://creativecommons.jp/2008/03/'> 2008年3月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2008/02/'> 2008年2月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2008/01/'> 2008年1月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2007/12/'> 2007年12月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2007/11/'> 2007年11月 &nbsp;(4)</option>
+	<option value='https://creativecommons.jp/2007/10/'> 2007年10月 &nbsp;(5)</option>
+	<option value='https://creativecommons.jp/2007/09/'> 2007年9月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2007/08/'> 2007年8月 &nbsp;(8)</option>
+	<option value='https://creativecommons.jp/2007/07/'> 2007年7月 &nbsp;(18)</option>
+	<option value='https://creativecommons.jp/2007/06/'> 2007年6月 &nbsp;(6)</option>
+	<option value='https://creativecommons.jp/2007/05/'> 2007年5月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2007/04/'> 2007年4月 &nbsp;(3)</option>
+	<option value='https://creativecommons.jp/2007/03/'> 2007年3月 &nbsp;(9)</option>
+	<option value='https://creativecommons.jp/2007/02/'> 2007年2月 &nbsp;(16)</option>
+	<option value='https://creativecommons.jp/2007/01/'> 2007年1月 &nbsp;(11)</option>
+	<option value='https://creativecommons.jp/2006/12/'> 2006年12月 &nbsp;(56)</option>
+	<option value='https://creativecommons.jp/2006/11/'> 2006年11月 &nbsp;(45)</option>
+	<option value='https://creativecommons.jp/2006/10/'> 2006年10月 &nbsp;(10)</option>
+	<option value='https://creativecommons.jp/2006/09/'> 2006年9月 &nbsp;(10)</option>
+	<option value='https://creativecommons.jp/2006/08/'> 2006年8月 &nbsp;(2)</option>
+	<option value='https://creativecommons.jp/2006/07/'> 2006年7月 &nbsp;(10)</option>
+	<option value='https://creativecommons.jp/2006/06/'> 2006年6月 &nbsp;(9)</option>
+	<option value='https://creativecommons.jp/2006/05/'> 2006年5月 &nbsp;(7)</option>
+	<option value='https://creativecommons.jp/2004/03/'> 2004年3月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2003/11/'> 2003年11月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2003/07/'> 2003年7月 &nbsp;(1)</option>
+	<option value='https://creativecommons.jp/2003/04/'> 2003年4月 &nbsp;(1)</option>
+
+		</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "archives-dropdown-6" );
+	function onSelectChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value !== '' ) {
+			document.location.href = this.options[ this.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onSelectChange;
+})();
+/* ]]> */
+</script>
+			</aside><aside id="facebook-likebox-3" class="widget widget_facebook_likebox"><h3 class="widget-title"><a href="https://www.facebook.com/ccjpn/">CCJPのFacebook</a></h3>		<div id="fb-root"></div>
+		<div class="fb-page" data-href="https://www.facebook.com/ccjpn/" data-width="220"  data-height="400" data-hide-cover="true" data-show-facepile="false" data-tabs="timeline" data-hide-cta="false" data-small-header="true">
+		<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/ccjpn/"><a href="https://www.facebook.com/ccjpn/">CCJPのFacebook</a></blockquote></div>
+		</div>
+		</aside>		</div><!-- .widget-area -->
+	</div><!-- #secondary .sidebar-container -->
+
+
+		</div><!-- #main .site-main -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			
+<div id="tertiary" class="sidebar-container" role="complementary">
+
+	<div class="sidebar-inner">
+
+				<div class="widget-area">
+			<aside id="text-7" class="widget widget_text">			<div class="textwidget"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.ja"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0;" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a><br />注があるものを除いて, このサイトの内容物は <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 ライセンスの下に提供されています。</a></div>
+		</aside>		</div><!-- .widget-area -->
+		
+				<div class="widget-area">
+			<aside id="rss_links-2" class="widget widget_rss_links"><p class="size-medium"><a class="feed-image-link" href="https://creativecommons.jp/feed/" title="投稿 を購読"><img src="https://creativecommons.jp/i/rss/orange-medium.png" alt="RSS Feed" /></a>&nbsp;<a href="https://creativecommons.jp/feed/" title="投稿 を購読">RSS - 投稿</a></p>
+</aside><!-- Invalid Facebook Page URL -->		</div><!-- .widget-area -->
+		
+				<div class="widget-area">
+			<aside id="nav_menu-5" class="widget widget_nav_menu"><div class="menu-%e3%83%95%e3%83%83%e3%82%bf%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc-container"><ul id="menu-%e3%83%95%e3%83%83%e3%82%bf%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc" class="menu"><li id="menu-item-6008" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6008"><a href="https://creativecommons.jp/sitemap/">サイトマップ</a></li>
+<li id="menu-item-6060" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6060"><a href="https://creativecommons.jp/policies/">各種コンテンツの利用条件</a></li>
+<li id="menu-item-6059" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6059"><a href="https://creativecommons.jp/contact/">お問い合わせ</a></li>
+</ul></div></aside>		</div><!-- .widget-area -->
+		
+	</div><!-- .sidebar-inner -->
+
+</div><!-- #tertiary .sidebar-container -->
+			<div class="site-info-container">
+
+				<div class="site-info">
+										<a href="https://wordpress.com/ja/?ref=footer_blog" rel="nofollow">WordPress.com Blog.</a>
+									</div><!-- .site-info -->
+
+			</div><!-- .site-info-container -->
+
+		</footer><!-- #colophon .site-footer -->
+
+	</div><!-- #page -->
+
+<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202139y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	</div>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+			<div id="jp-carousel-loading-overlay">
+			<div id="jp-carousel-loading-wrapper">
+				<span id="jp-carousel-library-loading">&nbsp;</span>
+			</div>
+		</div>
+		<div class="jp-carousel-overlay" style="display: none;">
+
+		<div class="jp-carousel-container">
+			<!-- The Carousel Swiper -->
+			<div
+				class="jp-carousel-wrap swiper-container jp-carousel-swiper-container jp-carousel-transitions"
+				itemscope
+				itemtype="https://schema.org/ImageGallery">
+				<div class="jp-carousel swiper-wrapper"></div>
+				<div class="jp-swiper-button-prev swiper-button-prev">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskPrev" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="9" height="12">
+							<path d="M16.2072 16.59L11.6496 12L16.2072 7.41L14.8041 6L8.8335 12L14.8041 18L16.2072 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskPrev)">
+							<rect x="0.579102" width="23.8823" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+				<div class="jp-swiper-button-next swiper-button-next">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskNext" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="12">
+							<path d="M8.59814 16.59L13.1557 12L8.59814 7.41L10.0012 6L15.9718 12L10.0012 18L8.59814 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskNext)">
+							<rect x="0.34375" width="23.8822" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<!-- The main close buton -->
+			<div class="jp-carousel-close-hint">
+				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="maskClose" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="14">
+						<path d="M19.3166 6.41L17.9135 5L12.3509 10.59L6.78834 5L5.38525 6.41L10.9478 12L5.38525 17.59L6.78834 19L12.3509 13.41L17.9135 19L19.3166 17.59L13.754 12L19.3166 6.41Z" fill="white"/>
+					</mask>
+					<g mask="url(#maskClose)">
+						<rect x="0.409668" width="23.8823" height="24" fill="#FFFFFF"/>
+					</g>
+				</svg>
+			</div>
+			<!-- Image info, comments and meta -->
+			<div class="jp-carousel-info">
+				<div class="jp-carousel-info-footer">
+					<div class="jp-carousel-pagination-container">
+						<div class="jp-swiper-pagination swiper-pagination"></div>
+						<div class="jp-carousel-pagination"></div>
+					</div>
+					<div class="jp-carousel-photo-title-container">
+						<h2 class="jp-carousel-photo-caption"></h2>
+					</div>
+					<div class="jp-carousel-photo-icons-container">
+						<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-info" aria-label="写真のメタデータ表示を切り替え">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskInfo" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7537 2C7.26076 2 2.80273 6.48 2.80273 12C2.80273 17.52 7.26076 22 12.7537 22C18.2466 22 22.7046 17.52 22.7046 12C22.7046 6.48 18.2466 2 12.7537 2ZM11.7586 7V9H13.7488V7H11.7586ZM11.7586 11V17H13.7488V11H11.7586ZM4.79292 12C4.79292 16.41 8.36531 20 12.7537 20C17.142 20 20.7144 16.41 20.7144 12C20.7144 7.59 17.142 4 12.7537 4C8.36531 4 4.79292 7.59 4.79292 12Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskInfo)">
+										<rect x="0.8125" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+							</span>
+						</a>
+												<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-comments" aria-label="写真のコメント表示を切り替え">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskComments" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.3271 2H20.2486C21.3432 2 22.2388 2.9 22.2388 4V16C22.2388 17.1 21.3432 18 20.2486 18H6.31729L2.33691 22V4C2.33691 2.9 3.2325 2 4.3271 2ZM6.31729 16H20.2486V4H4.3271V18L6.31729 16Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskComments)">
+										<rect x="0.34668" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+
+								<span class="jp-carousel-has-comments-indicator" aria-label="この画像にはコメントがあります。"></span>
+							</span>
+						</a>
+											</div>
+				</div>
+				<div class="jp-carousel-info-extra">
+					<div class="jp-carousel-info-content-wrapper">
+						<div class="jp-carousel-photo-title-container">
+							<h2 class="jp-carousel-photo-title"></h2>
+						</div>
+						<div class="jp-carousel-comments-wrapper">
+															<div id="jp-carousel-comments-loading">
+									<span>コメントを読み込み中…</span>
+								</div>
+								<div class="jp-carousel-comments"></div>
+								<div id="jp-carousel-comment-form-container">
+									<span id="jp-carousel-comment-form-spinner">&nbsp;</span>
+									<div id="jp-carousel-comment-post-results"></div>
+																														<form id="jp-carousel-comment-form">
+												<label for="jp-carousel-comment-form-comment-field" class="screen-reader-text">コメントをどうぞ</label>
+												<textarea
+													name="comment"
+													class="jp-carousel-comment-form-field jp-carousel-comment-form-textarea"
+													id="jp-carousel-comment-form-comment-field"
+													placeholder="コメントをどうぞ"
+												></textarea>
+												<div id="jp-carousel-comment-form-submit-and-info-wrapper">
+													<div id="jp-carousel-comment-form-commenting-as">
+																													<fieldset>
+																<label for="jp-carousel-comment-form-email-field">メール</label>
+																<input type="text" name="email" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-email-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-author-field">名前</label>
+																<input type="text" name="author" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-author-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-url-field">サイト</label>
+																<input type="text" name="url" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-url-field" />
+															</fieldset>
+																											</div>
+													<input
+														type="submit"
+														name="submit"
+														class="jp-carousel-comment-form-button"
+														id="jp-carousel-comment-form-button-submit"
+														value="コメントを送信" />
+												</div>
+											</form>
+																											</div>
+													</div>
+						<div class="jp-carousel-image-meta">
+							<div class="jp-carousel-title-and-caption">
+								<div class="jp-carousel-photo-info">
+									<h3 class="jp-carousel-caption" itemprop="caption description"></h3>
+								</div>
+
+								<div class="jp-carousel-photo-description"></div>
+							</div>
+							<ul class="jp-carousel-image-exif" style="display: none;"></ul>
+							<a class="jp-carousel-image-download" target="_blank" style="display: none;">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84615 5V19H19.7775V12H21.7677V19C21.7677 20.1 20.8721 21 19.7775 21H5.84615C4.74159 21 3.85596 20.1 3.85596 19V5C3.85596 3.9 4.74159 3 5.84615 3H12.8118V5H5.84615ZM14.802 5V3H21.7677V10H19.7775V6.41L9.99569 16.24L8.59261 14.83L18.3744 5H14.802Z" fill="white"/>
+									</mask>
+									<g mask="url(#mask0)">
+										<rect x="0.870605" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+								<span class="jp-carousel-download-text"></span>
+							</a>
+							<div class="jp-carousel-image-map" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/_static/??/wp-content/mu-plugins/carousel/swiper-bundle.css,/wp-content/mu-plugins/carousel/jetpack-carousel.css?m=1630955947j&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack-facebook-embed-js-extra'>
+var jpfbembed = {"appid":"249643311490","locale":"ja_JP"};
+</script>
+<script id='jetpack-carousel-js-extra'>
+var jetpackSwiperLibraryPath = {"url":"\/wp-content\/mu-plugins\/carousel\/swiper-bundle.js"};
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"ja","ajaxurl":"https:\/\/creativecommons.jp\/wp-admin\/admin-ajax.php","nonce":"d54c08234d","display_exif":"0","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"\u30b3\u30e1\u30f3\u30c8","post_comment":"\u30b3\u30e1\u30f3\u30c8\u3092\u9001\u4fe1","write_comment":"\u30b3\u30e1\u30f3\u30c8\u3092\u3069\u3046\u305e","loading_comments":"\u30b3\u30e1\u30f3\u30c8\u3092\u8aad\u307f\u8fbc\u307f\u4e2d\u2026","download_original":"\u30d5\u30eb\u30b5\u30a4\u30ba\u8868\u793a <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"\u30b3\u30e1\u30f3\u30c8\u306e\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002","no_comment_email":"\u30b3\u30e1\u30f3\u30c8\u3059\u308b\u306b\u306f\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3092\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002","no_comment_author":"\u30b3\u30e1\u30f3\u30c8\u3059\u308b\u306b\u306f\u304a\u540d\u524d\u3092\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002","comment_post_error":"\u30b3\u30e1\u30f3\u30c8\u6295\u7a3f\u306e\u969b\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002\u5f8c\u307b\u3069\u3082\u3046\u4e00\u5ea6\u304a\u8a66\u3057\u304f\u3060\u3055\u3044\u3002","comment_approved":"\u30b3\u30e1\u30f3\u30c8\u304c\u627f\u8a8d\u3055\u308c\u307e\u3057\u305f\u3002","comment_unapproved":"\u30b3\u30e1\u30f3\u30c8\u306f\u627f\u8a8d\u5f85\u3061\u4e2d\u3067\u3059\u3002","camera":"\u30ab\u30e1\u30e9","aperture":"\u7d5e\u308a","shutter_speed":"\u30b7\u30e3\u30c3\u30bf\u30fc\u30b9\u30d4\u30fc\u30c9","focal_length":"\u7126\u70b9\u8ddd\u96e2","copyright":"\u8457\u4f5c\u6a29\u8868\u793a","comment_registration":"0","require_name_email":"0","login_url":"https:\/\/komtmt.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fcreativecommons.jp%2Ffaq%2F","blog_id":"87963173","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"stats_query_args":"blog=87963173&v=wpcom&tz=9&user_id=0&subd=komtmt","is_public":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??-eJyNj1uOwjAMRTc0xhpGlPlBLAWlqQGX5kHsUNg95lFpxEiIr8TOPc4xjhl8ikpRsRfs6MSe8nnWyxf+edI9BRLMtUWprHLLbmv0yinKazhUyEPdcbQYaXb+gBuOHrfOU5vSASi01H1K6ciqVEA50MCR3nCuCxyhdQWDE2PsBlps0j9F0++PlcrleczG7FOAXNL5AoWsJzoxJjHUju47W/mQt4/eiHhXUhUapk1ganzAwF3lpTRuHVbfzc98+TtvmkV/BQR6pLw='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'87963173','blog_tz':'9','user_lang':'ja','blog_lang':'ja','user_id':'0'}]);
+_stq.push(['view', {'blog':'87963173','v':'wpcom','tz':'9','user_id':'0','post':'5410','subd':'komtmt'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGRVYVNrSFguN3FwSmQ5RGtNX3VQcj1yVzhiflM1THQtLGFdQ2toOXYlRyYrL1lLWVZvM0swNEVQZUstX2w4fmoveDJtbHZpcHxwa0cwP0JUbT1vTmxGaU0uaHhmdy8/UVNQcnVHfjRabS1+Q1Q2cyVdPU90T2c3M0hwbkp1b2FrTHxUaXp3b19IbWhnXy5SQ1ImV1VCMy1SJmRQMWguck9zUWt6ckxdak5aTTRxUU9JZ0VEK3QlcmU4K19wV2RsQUVNR1MzM2VjWmNXeFhOeFlZUiU3M0F2a0ErOVZbd25GLXlpUT9OcE4mNi5JQkFvWyxVMWZmN1BUc002RVFsRixoPTYrekg/Zkslb2pVN2RzVltYU2RoRiZBZCVPPQ=='}]);
+_stq.push([ 'clickTrackerInit', '87963173', '5410' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

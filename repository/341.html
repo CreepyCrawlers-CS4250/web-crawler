@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html itemscope="" itemid="" itemtype="http://schema.org/WebPage" xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width" />
+ <title itemprop="name">クリエイティブ・コモンズのメタデータ -- 著作権とライセンス記述の新しい形</title>
+ <link itemprop="creator" href="http://purl.org/net/who/kanzaki#masahide" />
+ <link rel="contents" href="/docs/sw/" />
+ <link rel="help" href="/info/navi" />
+ <link rel="copyright" href="/info/disclaimer" />
+ <link rel="stylesheet" href="/parts/kan01.css" />
+ <link rel="stylesheet" media="print" href="/parts/print.css" />
+ <style>
+ #cc-vocab-def table {width:95%}
+ </style>
+ <script src="/parts/std.js"></script>
+</head>
+
+<body onload="init()">
+<header class="banner" id="banner" role="banner">
+ <div id="stinfo-navi">
+  <a href="#s0" id="bnsl" tabindex="10"><img src="/parts/univ.gif" alt="すぐ本文へ。" title="各ページ共通のヘッダをスキップする実験です" /></a>
+  <img src="/parts/help.gif" alt="情報の探し方など：" /><a href="/info/navi" title="情報の探し方、移動方法などの説明" accesskey="h">Help</a>
+  <img src="/parts/tri-d.png" alt="　更新情報など：" title="" /><a href="#stinfo" id="snavi" title="このページの更新情報など">Status info</a>
+ <!--eoi(stinfo-navi)--></div>
+ <a href="/"><img src="/parts/logo.png" id="twk-logo" alt="The Web KANZAKI " title="サイトの表紙ページへ" /></a>
+ <span class="tagline">music &amp; knowledge sharing </span>
+</header>
+
+
+
+<div id="s0" class="main" role="main">
+<h1>クリエイティブ・コモンズのメタデータ</h1>
+
+<div class="lead">
+<p class="abstract" itemprop="http://purl.org/dc/terms/abstract">著作物のより広く柔軟な提供を目指した新しいライセンスを提案するクリエイティブ・コモンズは、そのライセンス内容のメタデータを<a href="./rdf-model.html">RDF</a>で記述できるようにしています。クリエイティブ・コモンズの定義する語彙とその用法を簡単に紹介します。</p>
+
+
+<ul class="toc" itemprop="http://purl.org/dc/terms/tableOfContents">
+ <li><a href="#cc-intro">クリエイティブ・コモンズとは</a></li>
+ <li><a href="#cc-option">C.C.ライセンスのオプション</a></li>
+ <li><a href="#cc-vocab">C.C.メタデータの語彙</a></li>
+ <li><a href="#ccm-sample">C.C.メタデータの記述</a></li>
+ <li><a href="#cc-extended">C.C.メタデータ語彙を用いた拡張</a></li>
+ <li><a href="#reference">参考文献</a></li>
+</ul>
+
+</div>
+
+
+
+
+
+
+<section>
+<h2 id="cc-intro">クリエイティブ・コモンズとは</h2>
+
+<p>クリエイティブ・コモンズ（<a href="#ref-creativecommons">[Creative Commons]</a>、以下C.C.と略記）は、知的創作物の“著作権”を尊重しつつ、その成果をより広く容易に利用するための新しい形を提唱する活動です。そのプロジェクトのひとつであるLicensing Project<a href="#ref-cclp">[CCLP]</a>は、「一定の条件の下に創作物を自由に利用してよい」というライセンス（の組み合わせ）を用意し、作者が適当なライセンスを選択して自分の著作物に適用できるようにしています。</p>
+
+<p>C.C.のライセンスは、(1)平易な文の要約とアイコンを使って誰にでも理解できるようにしたコモンズ型共有ライセンス“証書”（<dfn>Commons Deed</dfn>）；(2)米国の法律に基づいた厳密なライセンス文書（<dfn>Legal Code</dfn>）；(3)機械可読な形でライセンスを表現し、サーチエンジンなどが利用できるようにした<a href="./#tech">メタデータ</a>（<dfn>Digital Code</dfn>）；の3つで構成されています。この3番目のメタデータは、ライセンスの条件やオプションを表す語彙を<a href="./rdf-schema.html">RDFスキーマ</a>で定義し、この組み合わせでエージェントが理解できるライセンス条項を記述しようという新しい試みです。</p>
+
+
+
+
+<!--eos(2)--></section>
+
+
+<section>
+<h2 id="cc-option">C.C.ライセンスのオプション</h2>
+
+<p>C.C.のライセンスは、基本的にコンテンツの複製、配布、表示および公開を認めるとした上で、次の3つのオプションをどう扱うかを組み合わせて定義します<a href="#ref-ccloptions">[CCL-OPTIONS]</a>。</p>
+
+<dl>
+<dt>Attribution（クレジットの明示）</dt>
+<dd>コンテンツのクレジット（出典）を示す必要があるかどうか</dd>
+<dt>Commercial Use（商用利用）</dt>
+<dd>コンテンツの商用利用を認めるかどうか（作者自身、および作者が別途許諾する場合の商用利用は除く）</dd>
+<dt>Modification（原作に手を加えた作品）</dt>
+<dd>原作に基づく派生作品（翻訳、編曲、映画化、模写、コラージュ、縮小版など）の作成・配布などを自由に認めるか、あるいはオリジナルと同じライセンス条件の下でのみ派生作品の作成・配布などを認めるか、あるいは一切の変更を認めないか</dd>
+</dl>
+
+<p>これらの組み合わせにより、あらかじめ定義されたCommons DeedやLegal Codeを利用して、自らの作品を公開することができます。<a id="op-ex1">たとえば</a></p>
+
+<ul>
+ <li>クレジットの明示が必要</li>
+ <li>商用利用は不可</li>
+ <li>派生制作物の作成配布は同一条件で可</li>
+</ul>
+
+<p>という条件の下に複製、配布などを認めるならば、<dfn>Attribution-NonCommercial-ShareAlike</dfn>というタイプのライセンスとなり、クリエイティブ・コモンズが提供する“証書”などをそのまま利用できるわけです。</p>
+
+
+
+
+<!--eos(2)--></section>
+
+
+<section>
+<h2 id="cc-vocab">C.C.メタデータの語彙</h2>
+
+<p>C.C.のメタデータを記述するために、<a href="./rdf-model.html">RDF</a>のクラスとプロパティが定義されています<a href="#ref-ccm-schema">[CCM-SCHEMA]</a>。以下の語彙は、<a href="./names.html">XML名前空間</a>として<em class="attn">http://web.resource.org/cc/</em>を用います。</p>
+
+<p class="note">C.C.のスキーマURIが、いつの間にか（2006年ごろ）<code>http://creativecommons.org/ns#</code>に変更されています。それに伴い、下記の語彙定義もいくつか追加、変更があるようですが、ここでは旧語彙のままにしておきます。それにしても、名前空間を変えるとは、別の語彙を新たに定義することに等しいわけで、厄介な話です。</p>
+
+
+
+<section id="cc-vocab-def">
+<h3>基本クラスとインスタンス</h3>
+
+<p>基本クラスとそれを用いたインスタンスにより、ライセンス記述に必要な概念が定義されています。</p>
+
+
+
+
+<section>
+<h4>基本クラス</h4>
+
+<table>
+ <thead>
+  <tr>
+   <th>クラス</th><th>内容</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>Work</td><td>著作権やライセンスを与える対象となる作品</td>
+  </tr>
+  <tr>
+   <td>Agent</td><td>作品をつくる能力のあるもの：人間、組織、コンピュータなど</td>
+  </tr>
+  <tr>
+   <td>License</td><td>作品を利用するに際しての要件、許可事項の組み合わせ</td>
+  </tr>
+  <tr>
+   <td>Permission</td><td>認められる、もしくは望ましい（あるいは認められない、望ましくない）行為</td>
+  </tr>
+  <tr>
+   <td>Requirement</td><td>利用者に対して要求される（あるいはされない）行為</td>
+  </tr>
+  <tr>
+   <td>Prohibition</td><td>禁止する事項</td>
+  </tr>
+ </tbody>
+</table>
+
+
+<!--eos(4)--></section>
+
+
+<section>
+<h4>許可できる事項：Permissionクラスのインスタンス</h4>
+
+<table>
+ <thead>
+  <tr>
+   <th>リソース</th><th>内容</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>Reproduction</td><td>複数の複製をつくること。C.C.のライセンスでは常に許可される</td>
+  </tr>
+  <tr>
+   <td>Distribution</td><td>配布、公開および上演。C.C.のライセンスでは常に許可される</td>
+  </tr>
+  <tr>
+   <td>DerivativeWorks</td><td>二次的な作品（原作の翻訳、編曲、映画化、模写、縮小版など）の作成及び配布</td>
+  </tr>
+ </tbody>
+</table>
+
+
+<!--eos(4)--></section>
+
+
+<section>
+<h4>禁止できる事項：Prohibitionクラスのインスタンス</h4>
+
+<table>
+ <thead>
+  <tr>
+   <th>リソース</th><th>内容</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>CommercialUse</td><td>商用/営利目的で権利を行使すること</td>
+  </tr>
+ </tbody>
+</table>
+
+
+<!--eos(4)--></section>
+
+
+<section>
+<h4>要求できる事項：Requirementクラスのインスタンス</h4>
+
+<table>
+ <thead>
+  <tr>
+   <th>リソース</th><th>内容</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>Notice</td><td>著作権およびライセンス表示を変更せずに記載すること</td>
+  </tr>
+  <tr>
+   <td>Attribution</td><td>著作権保有者および/もしくは作者のクレジットを表示すること</td>
+  </tr>
+  <tr>
+   <td>ShareAlike</td><td>二次的な作品も原作と同じ条件によってライセンスすること</td>
+  </tr>
+  <tr>
+   <td>SourceCode</td><td>二次的な作品とともにソースコードも提供すること</td>
+  </tr>
+ </tbody>
+</table>
+
+
+<!--eos(4)--></section>
+
+
+<section>
+<h4>特定のライセンス：Licenseクラスのインスタンス</h4>
+
+<table>
+ <thead>
+  <tr>
+   <th>リソース</th><th>内容</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>PublicDomain</td><td>著作権を保持せず、全てが制約なしに認められているもの</td>
+  </tr>
+ </tbody>
+</table>
+
+
+
+<!--eos(4)--></section>
+<!--eos(3)--></section>
+
+
+<section>
+<h3>プロパティ</h3>
+
+<p>上で定義したクラス（のインスタンス）をライセンスに結びつけるためのプロパティが定義されています。</p>
+
+<table>
+ <thead>
+  <tr>
+   <th>プロパティ</th><th>働き</th><th>domain</th><th>range</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>license</td><td>ライセンスを保有している</td><td>Work</td><td>License</td>
+  </tr>
+  <tr>
+   <td class="dif1">permits</td><td>主語ライセンスの認める事項</td><td>License</td><td>Permission</td>
+  </tr>
+  <tr>
+   <td class="dif2">requires</td><td>主語ライセンスが要求する事項</td><td>License</td><td>Requirement</td>
+  </tr>
+  <tr>
+   <td class="dif3">prohibits</td><td>主語ライセンスが禁止する事項</td><td>License</td><td>Prohibition</td>
+  </tr>
+  <tr>
+   <td>derivativeWork</td><td>主語作品の二次著作物である</td><td>Work</td><td>Work</td>
+  </tr>
+ </tbody>
+</table>
+
+
+
+
+
+<!--eos(3)--></section>
+<!--eos(2)--></section>
+
+
+<section>
+<h2 id="ccm-sample">C.C.メタデータの記述</h2>
+
+<p>クリエイティブ・コモンズのライセンス・プロジェクトは、作品のメタデータに(1)<a href="./dublin-core.html">Dublin Core</a>を用いた作品概要；(2)C.C.メタデータ語彙を用いたライセンスの概要；の2つを記述することを推奨しています<a href="#ref-cc-implement">[CC-IMPLEMENT]</a>。</p>
+
+<p>ライセンス・プロジェクトのページ<a href="#ref-cclp">[CCLP]</a>では、フォームで必要なオプションを選択するだけで、作品ページにCCアイコンを掲載するためのHTMLや、上記語彙を用いたメタデータを生成してくれます。ただしこのメタデータは、作品概要までは記述してくれませんから、その部分は作者が補うことになります。</p>
+
+<p class="aux">ライセンスを作ったページでさらに'bonus'というセクションに進むと、フォームを使っていくつかの情報を記述したDCメタデータも生成してくれるようです。ただし、日付のフォーマットが不正確だったり、日本語はエスケープされてしまったりするので、できることなら自分で記述する方が良さそうです。</p>
+
+
+
+
+<section>
+<h3>RDFコンテナ要素と名前空間宣言</h3>
+
+<p>最初にRDF要素の開始タグを記述し、そこで必要な名前空間を宣言します。ここでは、C.C.メタデータ語彙をデフォルトとし、RDF、DCをそれぞれ<code>rdf:</code>、<code>dc:</code>として記述します。</p>
+
+<div class="example">
+<p class="c">（例）</p>
+<pre>&lt;rdf:RDF 
+  xmlns=&quot;http://web.resource.org/cc/&quot;
+  xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+  xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;&gt;
+</pre>
+</div>
+
+
+<!--eos(3)--></section>
+
+
+<section>
+<h3>作品概要</h3>
+
+<p>基本的には通常のDCメタデータと同じですが、<code>rdf:Description</code>要素の代わりにC.C.の<code>Work</code>要素を用いて<a href="./rdf-xml.html#n1">型付きノード</a>とします。また、<code>dc:creator</code>や<code>dc:rights</code>プロパティを構造化するために<code>Agent</code>要素ノードを加えることを推奨しています。</p>
+
+
+<div class="example">
+<p class="c">（例）</p>
+<pre> &lt;<code class="attn">Work</code> rdf:about=&quot;http://www.kanzaki.com/&quot;&gt;
+  &lt;dc:title&gt;The Web KANZAKI&lt;/dc:title&gt;
+  &lt;dc:creator&gt;
+   &lt;<code class="attn2">Agent</code>&gt;
+    &lt;dc:title&gt;神崎正英&lt;/dc:title&gt;
+   &lt;/Agent&gt;
+  &lt;/dc:creator&gt;
+  &lt;dc:date&gt;1995-12-15&lt;/dc:date&gt;
+  &lt;dc:rights&gt;
+   &lt;<code class="attn2">Agent</code>&gt;
+    &lt;dc:title&gt;KANZAKI Virtual Company, Inc.&lt;/dc:title&gt;
+   &lt;/Agent&gt;
+  &lt;/dc:rights&gt;
+  ...
+  &lt;<code class="attn">license</code> rdf:resource=&quot;http://creativecommons.org/licenses/<code class="dif4">by-nc-sa</code>/1.0/&quot;/&gt;
+ &lt;/Work&gt;
+</pre>
+</div>
+
+<p>作品概要の最後に記述した<code>license</code>プロパティで、この作品がどのタイプのライセンスを採用しているかを示します。この例ではURIの後半が<code class="dif4">by-nc-sa</code>となっており、<samp>Attribution-NonCommercial-ShareAlike</samp>型のライセンスであることを意味しています。</p>
+
+
+
+<!--eos(3)--></section>
+
+
+<section>
+<h3>ライセンスの概要</h3>
+
+<p>ライセンス定義は<samp>http://creativecommons.org/licenses/by-nc-sa/1.0/</samp>というURIで参照できるのですが、エージェントがその場でライセンス内容を確認できるよう、同じRDF内部に改めて<code>License</code>要素を記述し、上記の語彙を用いて概要を示します。</p>
+
+<div class="example" id="License-def-elt-ex">
+<p class="c">（例）</p>
+<pre> &lt;<code class="attn">License</code> rdf:about=&quot;http://creativecommons.org/licenses/by-nc-sa/1.0/&quot;&gt;
+  &lt;<code class="dif1">permits</code> rdf:resource=&quot;http://web.resource.org/cc/<code class="attn2">Reproduction</code>&quot;/&gt;
+  &lt;<code class="dif1">permits</code> rdf:resource=&quot;http://web.resource.org/cc/<code class="attn2">Distribution</code>&quot;/&gt;
+  &lt;<code class="dif1">permits</code> rdf:resource=&quot;http://web.resource.org/cc/<code class="attn2">DerivativeWorks</code>&quot;/&gt;
+  &lt;<code class="dif3">prohibits</code> rdf:resource=&quot;http://web.resource.org/cc/<code class="attn2">CommercialUse</code>&quot;/&gt;
+  &lt;<code class="dif2">requires</code> rdf:resource=&quot;http://web.resource.org/cc/<code class="attn2">Notice</code>&quot;/&gt;
+  &lt;<code class="dif2">requires</code> rdf:resource=&quot;http://web.resource.org/cc/<code class="attn2">Attribution</code>&quot;/&gt;
+  &lt;<code class="dif2">requires</code> rdf:resource=&quot;http://web.resource.org/cc/<code class="attn2">ShareAlike</code>&quot;/&gt;
+ &lt;/License&gt;
+
+&lt;/rdf:RDF&gt;
+</pre>
+</div>
+
+<p>ここでは(1)<code class="dif1">許可事項</code>としてReproductionとDistribution（全てのC.C.ライセンスに共通）およびDerivativeWorks；(2)<code class="dif3">禁止事項</code>としてCommercialUse；(3)<code class="dif2">要求項目</code>としてNotice、Attribution、ShareAlike；を記述しています。これによって、<a href="#op-ex1">最初の例</a>で示したのと同じライセンス条件を明示しているわけです。</p>
+
+<p>ここまでの例を連結することで、C.C.のライセンス・メタデータを表すRDFが出来上がります。</p>
+
+
+
+<!--eos(3)--></section>
+
+
+<section>
+<h3 id="cc-xhtml">CCライセンスとX/HTML</h3>
+
+<p>CCのサイトの説明では、RDFをHTMLに結びつける手段として、(1)外部ファイルとして保存し、link要素で参照する、(2)head要素内に直接記述する、(3)body要素内に直接記述する、(4)HTML内にコメントとして（<code>&lt;!-- --&gt;</code>で囲んで）記述する、という4つの方法をあげ、その中で(4)のコメント方法を推奨しています<a href="#ref-cc-ext">[CC-EXT]</a>。しかし(4)の方法は、<strong>「マシンが理解できるようにRDFとしてライセンスを提供する」という考え方と矛盾</strong>しており（コメントはHTML作者などの人間が読むためのものです）、適切とは言えません<a href="#ref-clark">[CLARK]</a>。</p>
+
+<p>X/HTMLにRDFを結びつける手段は、現在も議論中のなかなか難しい問題ではあります。現時点で推奨されている（HTMLの文法にも適合する）のは(1)のlink要素による方法です（<a href="dublin-core.html#rdf-html-link">Dublin Coreの場合</a>を参照）が、文書型宣言を持たないXHTMLであれば、(2)(3)の<a href="meta-in-xh.html">RDFをXHTMLに直接埋め込む</a>方法も可能であり、検討の価値があります。また、<a href="rss.html">RSS</a>などの文書メタデータ（あるいは代替文書）に埋め込んでリンクするという(1)の変形も有望です。(4)はシンプルではありますが、ほとんど意味のない方法と言わざるを得ないでしょう。</p>
+
+<p>CCのライセンスRDFのうち、実質的にそのライセンス形態を示しているのはlicense要素ですから、<a href="dublin-core.html#dc-html">Dublin Coreを従来のHTMLに直接埋め込む方法</a>の応用で、<a href="#ref-rfc2731">[RFC2731]</a>に従って次のように書くことも可能です。</p>
+
+<div class="example">
+<p class="c">（例）</p>
+<pre>&lt;link rel=&quot;schema.<code class="attn2">CC</code>&quot; href=&quot;http://web.resource.org/cc/&quot; /&gt;
+&lt;meta name=&quot;<code class="attn2">CC</code>.<code class="attn">license</code>&quot; content=&quot;http://creativecommons.org/licenses/<code class="dif4">by-nc-sa</code>/1.0/&quot; /&gt;
+</pre>
+</div>
+
+<p>多くの場合、アプリケーションは大文字の<a href="#License-def-elt-ex">License要素</a>に記述されたRDFを解釈するのではなく、小文字のlicense要素（プロパティ）の<code class="dif4">by-nc-sa</code>などの文字列を参照してライセンスのタイプを識別することになるでしょうから、実はこれだけで必要な情報は伝えられるのです（URIを辿れば、その定義も参照できます…今のところやはりRDFはコメントアウトされていますが）。</p>
+
+<p>新しい試みとしては、<code>&lt;a&gt;</code>要素の<code>rel</code>属性を利用して、C.C.ライセンスページへのリンクをメタデータにしてしまうという方法があります。2004年2月現在で、C.C.のライセンス生成ページを利用すると、次のようなロゴ埋め込みコードが得られます。</p>
+
+<div class="example">
+<p class="c">（例）</p>
+<pre>&lt;a <code class="attn">rel=&quot;license&quot;</code> href=&quot;http://creativecommons.org/licenses/nc-sa/2.0/jp/&quot;&gt;
+ &lt;img alt=&quot;クリエイティブ・コモンズ・ライセンス&quot;
+   src=&quot;http://creativecommons.org/images/public/somerights2.gif&quot; /&gt;
+&lt;/a&gt;
+</pre>
+</div>
+
+<p>このように<code>&lt;a&gt;</code>要素の<code>rel</code>属性を利用してメタデータの意味づけを行う方法は「<a href="/memo/2004/03/05-1">小文字のsemantic web</a>」として知られており、ここから<a href="/docs/sw/xh2meta.html">XSLTなどを使ってRDFを抽出</a>することが可能です。</p>
+
+
+<p>せっかくマシンが理解できるライセンスという画期的なアイデアを使おうというのですから、コメントに埋め込むなどというおかしな方法ではなく、きちんとエージェントに伝わる形でライセンスを記述したいものです。</p>
+
+
+<div class="aux" id="mozcc">
+<p><img src="mozcc.png" class="dopo" style="margin-left:5px" alt="[画面]mozCCはCCのRDFを見つけるとアイコンを表示したり、ライセンス内容を教えてくれる" /><span class="c">〔補足〕</span>Mozillaの拡張ツールのひとつであるmozCC<a href="#ref-mozcc">[MOZCC]</a>は、文書内にC.C.ライセンスを記述したRDFを見つけると、ツールバーやステータスバーにアイコンを表示し、さらにそれをクリックするとそのRDFに記述されたプロパティなどを表示してくれます。C.C.の定義済ライセンスだけでなく、次に述べるC.C.語彙を用いた拡張でも大丈夫で、とても面白く期待が持てます。</p>
+<p>ただ残念なことに、いまのところ何とコメントになった（&lt;!-- --&gt;内の）RDFしか正しく解析しないようです。XHTMLに直接埋め込んだRDFを解析させるには、変なトリックが必要になるので、これはぜひ改良して欲しいところ。使ってみて、作者に改善希望のメールを送りましょう ;-)</p>
+</div>
+
+
+
+<!--eos(3)--></section>
+
+
+<section>
+<h3 id="cc-gpl">C.C.とGPL</h3>
+
+<p>C.C.はソフトウェアのライセンスはとりあえずGPLの領域としていたわけですが、2003年12月に、ブラジルでC.C.の枠組みでGPLを適用するというCC-GPLが始まりました。このライセンスのURIは<code>http://creativecommons.org/licenses/GPL/2.0/</code>とされ、定義は次のようになっています。</p>
+
+<div class="example">
+<p class="c">（例）</p>
+<pre>&lt;License rdf:about=&quot;http://creativecommons.org/licenses/GPL/2.0/&quot;&gt;
+ &lt;permits rdf:resource=&quot;http://web.resource.org/cc/Reproduction&quot;/&gt;
+ &lt;permits rdf:resource=&quot;http://web.resource.org/cc/Distribution&quot;/&gt;
+ &lt;requires rdf:resource=&quot;http://web.resource.org/cc/Notice&quot;/&gt;
+ &lt;permits rdf:resource=&quot;http://web.resource.org/cc/DerivativeWorks&quot;/&gt;
+ &lt;requires rdf:resource=&quot;http://web.resource.org/cc/ShareAlike&quot;/&gt;
+ &lt;requires rdf:resource=&quot;http://web.resource.org/cc/SourceCode&quot;/&gt;
+&lt;/License&gt;
+</pre>
+</div>
+
+<p>Deedのページはポルトガル語で、どの程度利用できるものかどうかわかりませんが、少なくともメタデータの記述には使えそうです。<a href="/memo/2004/02/11-1">CC-GPLに関するメモ</a>を参照してください。</p>
+
+
+
+
+
+<!--eos(3)--></section>
+<!--eos(2)--></section>
+
+
+<section>
+<h2 id="cc-extended">C.C.メタデータ語彙を用いた拡張</h2>
+
+<p class="note">※C.C.メタデータの語彙そのものについて知れば十分な方は、このセクションを読む必要はありません。これは、メタデータ一般を考えるためにC.C.の語彙を素材として利用した、ちょっとした応用編です。</p>
+
+<p>C.C.のライセンスは、完成された作品の公開を念頭に置いているため、どのオプションでも必ず<code>Distribution</code>（再配布、公開）を認めることになっています。作品が広く流通できるようにという主旨に異存はないのですが、ウェブのようにどんどん書き換えを行って常に更新しているコンテンツの場合、ある時点でのコピーが別の場所で一人歩きしてしまうのは、あまり望ましくありません。</p>
+
+<p>そこで当サイトでは、C.C.のライセンスに基づきつつ、“配布をオフラインに限る”という<a href="/info/disclaimer#rights">独自拡張</a>を試みることにしました（実際は、キャッシュやアーカイブはOKとしていますが、単純化して考えます）。これはC.C.ライセンスには該当しないものの、定義にそのメタデータ語彙を使うことは可能です。どんな方法が可能か、応用例として検討します。</p>
+
+
+
+
+
+<section>
+<h3 id="extension-step1">単純な拡張</h3>
+
+<p>まず、単純な拡張により当サイトのポリシーを定義してみましょう。ここでは、<code>Permission</code>クラスの新たなインスタンスとして<code>Online_Distribution</code>と<code>Offline_Distribution</code>を定義し、これらを<code>permits</code>、<code>prohibits</code>プロパティで記述します。</p>
+
+<p><code>Online_Distribution</code>と<code>Offline_Distribution</code>が排他であることを示す<code>owl:differentFrom</code>を用いるので<a href="./webont-owl.html">OWL</a>の、またコメントを加えるためRDFSの名前空間を追加します。</p>
+
+<div class="example">
+<p class="c">（例）</p>
+<pre>  xmlns:owl=&quot;http://www.w3.org/2002/07/owl#&quot;
+  xmlns:rdfs=&quot;http://www.w3.org/2000/01/rdf-schema#&quot;
+</pre>
+</div>
+
+
+<p><code>by-nc-sa</code>の<code>License</code>要素の<code>Distribution</code>部分を<code>Online_Distribution</code>と<code>Offline_Distribution</code>で置き換えます。ライセンスはもはやC.C.には該当しませんから、rdf:aboutでC.C.の定義を参照するのではなく、適当なIDを与えます。</p>
+
+<div class="example">
+<p class="c">（例）</p>
+<pre> &lt;License rdf:ID=&quot;CC_by-nc-sa_minus_OnlineDistribution&quot;&gt;
+  &lt;permits rdf:resource=&quot;http://web.resource.org/cc/Reproduction&quot;/&gt;
+  &lt;permits rdf:resource=&quot;http://web.resource.org/cc/DerivativeWorks&quot;/&gt;
+  &lt;permits rdf:resource=&quot;<code class="dif1">#Offline_Distribution</code>&quot;/&gt;
+  &lt;prohibits rdf:resource=&quot;<code class="dif2">#Online_Distribution</code>&quot;/&gt;
+  &lt;prohibits rdf:resource=&quot;http://web.resource.org/cc/CommercialUse&quot;/&gt;
+  &lt;requires rdf:resource=&quot;http://web.resource.org/cc/Notice&quot;/&gt;
+  &lt;requires rdf:resource=&quot;http://web.resource.org/cc/Attribution&quot;/&gt;
+  &lt;requires rdf:resource=&quot;http://web.resource.org/cc/ShareAlike&quot;/&gt;
+ &lt;/License&gt;
+</pre>
+</div>
+
+
+<p><code>Online_Distribution</code>と<code>Offline_Distribution</code>を定義します。</p>
+
+
+<div class="example">
+<p class="c">（例）</p>
+<pre> &lt;Permission rdf:ID=&quot;<code class="dif1">Offline_Distribution</code>&quot;&gt;
+  &lt;rdfs:comment&gt;Distribution via offline media such as papers or disks&lt;/rdfs:comment&gt;
+ &lt;/Permission&gt;
+
+ &lt;Permission rdf:ID=&quot;<code class="dif2">Online_Distribution</code>&quot;&gt;
+  &lt;rdfs:comment&gt;Distribution via online media such as the Internet&lt;/rdfs:comment&gt;
+ &lt;/Permission&gt;
+</pre>
+</div>
+
+<p>C.C.のメタデータはRDFによるリソースの記述ですから、これ以外にもさまざまな語彙を用いた拡張が可能です。逆に、ほかのメタデータの中にこのライセンス情報を埋め込んで利用することもできます。あるいは、ライセンスの概要のみを独立したRDFとして用意し、通常のメタデータから<code>rdf:about</code>でURI参照しても構いません。より充実したメタデータの提供手段のひとつとして、この語彙の利用は検討の価値があるでしょう。</p>
+
+<p class="aux">旧版で、<code>Online_Distribution</code>と<code>Offline_Distribution</code>が重ならないことを示そうとして<code>owl:disjointWith</code>を記述していましたが、これはクラスの外延が重ならないことを表すプロパティなので、不適切でした。</p>
+
+
+<!--eos(3)--></section>
+
+
+<section>
+<h3 id="excersise1">練習問題1</h3>
+
+<p>ここで定義したオンライン配布（Online_Distribution）などは、配布（Distribution）の下位概念なので、その関係を明確に示したいところです。しかし、C.C.ではDistributionは概念（クラス）としてでなく、Permissionクラスのインスタンスになっているので、厳密なロジックでは、直接はそういう拡張ができません。この関係を何とか示そうというのが、ここでの練習問題です<!--（融通のきく形でのもっと簡単な拡張は<a href="#excersise2">練習問題2</a>を参照）-->。</p>
+
+<p>最初に、Distribution（配布）がPermissionという概念のインスタンスになっているということについて検討します。よく考えると、この関係は（少なくとも語彙として選ばれた英単語の意味からすると）ちょっと変ですね。もしPermissionというクラスを考えるなら、そのインスタンスは、個別の案件や行為に与える「許可」であって、行為がPermissionのインスタンスになるわけではありません（<a href="noteP">注</a>）。</p>
+
+<p>すっきりさせるために、これがどこか別の語彙セットで定めた、「行為としてのDistributionクラス」のインスタンスでもあると定義することにします。そうすれば、このC.C.語彙が“Distributionという行為に対するPermission”であることがはっきりします。改めてDistributionとは何であるかを定義していくのは骨が折れますから、ここはWordNetの語彙を拝借することにしましょう。C.C.の<code>Distribution</code>は次のように定義できます。</p>
+
+
+<div class="example">
+<p class="c">（例）</p>
+<pre>&lt;Permission rdf:about=&quot;http://web.resource.org/cc/Distribution&quot;&gt;
+ &lt;rdf:type rdf:resource=&quot;http://xmlns.com/wordnet/1.6/Distribution-2&quot;/&gt;
+&lt;/Permission&gt;
+</pre>
+</div>
+
+<p>こうやってURI参照を使うことで、すでに別の所で定義されている語彙を拡張できてしまうというのは、ウェブ・オントロジーの柔軟で強力な（使い方によっては危険な）ところです。</p>
+
+<p>一方、「行為としてのDistributionクラス」のサブクラスとして「オンライン配布クラス」を導き、<code>Online_Distribution</code>というPermissionはこのクラスのインスタンスでもあると定義すれば、<code>Online_Distribution</code>が<code>Distribution</code>と関連があることを間接的にエージェントに伝えられます。「オンライン配布クラス」も、別の名前空間で定義しておく方がとりあえず都合がよいので、以下のようにしてみます。</p>
+
+
+<div class="example">
+<p class="c">（例）</p>
+<pre>&lt;rdfs:Class rdf:about=&quot;http://www.kanzaki.com/info/ccl#Online_Distribution&quot;&gt;
+ &lt;rdfs:subClassOf rdf:resource=&quot;http://xmlns.com/wordnet/1.6/Distribution-2&quot;/&gt;
+&lt;/rdfs:Class&gt;
+
+&lt;Permission rdf:ID=&quot;Online_Distribution&quot;&gt;
+ &lt;rdfs:comment&gt;Distribution via offline media such as papers or disks&lt;/rdfs:comment&gt;
+ &lt;rdf:type rdf:resource=&quot;http://www.kanzaki.com/info/ccl#Online_Distribution&quot;/&gt;
+&lt;/Permission&gt;
+</pre>
+</div>
+
+
+<p><code>Offline_Distribution</code>についても、同様の手順で<code>Distribution</code>との関連を示すことができます。</p>
+
+
+<p class="aux" id="noteP">いずれにしても、「○○を認めている」ことを“<code>Permission</code>クラスのインスタンス”として表現する方法は、「○○を禁止している」という場合には同じ○○を“<code>Prohibition</code>クラスのインスタンス”として扱わなければならず、基本的な考え方に無理があるといえます。むしろ、プロパティ<code>permits</code>、<code>prohibits</code>の値域を<code>Action</code>などとし、<code>Distribution</code>などを<code>Action</code>のインスタンスとすることで、ライセンスによってある行為（Action）が認められたり認められなかったりできるようにするのが、自然な考え方でしょう。</p>
+
+
+<!--
+
+
+
+<h3 id="excersise2">練習問題2</h3>
+
+<p>厳密な論理（OWL DLなど）では、「クラスのインスタンスのサブクラス」を作ることはできませんが、実はRDFやOWL Fullにおいてはクラスとインスタンスの境界は曖昧で、「あるクラスのインスタンスそのものをクラスとみなす」ことができます。そのため、RDFでは次のように<code>Online_Distribution</code>をCCの<code>Distribution</code>のサブクラスとして定義してしまうことも可能です。</p>
+
+<div class="example">
+<p class="c">（例）</p>
+<pre>&lt;rdfs:Class rdf:ID=&quot;Online_Distribution&quot;&gt;
+ &lt;rdfs:subClassOf rdf:resource=&quot;http://web.resource.org/cc/Distribution&quot;/&gt;
+&lt;/rdfs:Class&gt;
+</pre>
+</div>
+
+<p>検討中のOWL2では、こうした記述が取り入れられる方向になっています。</p>
+
+-->
+
+
+<!--eos(3)--></section>
+<!--eos(2)--></section>
+
+
+<section>
+<h2 id="reference">参考文献</h2>
+
+
+<dl class="refs" lang="">
+<dt id="ref-creative commons">[Creative Commons]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://creativecommons.org/"><cite itemprop="name"><a href="http://creativecommons.org/">Creative Commons</a></cite></dd>
+<dd>&lt;http://creativecommons.org/&gt;</dd>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://www.creativecommons.jp/"><cite itemprop="name"><a href="http://www.creativecommons.jp/">クリエイティブ・コモンズ・ジャパン</a></cite>（まず、各ライセンスの日本語訳から）, <time class="date" itemprop="datePublished">2003-05-31</time>, &lt;http://www.creativecommons.jp/&gt;</dd>
+
+<dt id="ref-cclp">[CCLP]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://creativecommons.org/learn/licenses/"><cite itemprop="name"><a href="https://web.archive.org/web/20021217042206/http://creativecommons.org/learn/licenses/">Creative Commons - License Explained</a></cite>, <time class="date" itemprop="datePublished">2002-12</time></dd>
+<dd>&lt;http://creativecommons.org/learn/licenses/&gt;</dd>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://www.hyuki.com/trans/cc-licenses.html"><a href="http://www.hyuki.com/trans/cc-licenses.html">同ライセンス解説の日本語訳</a>, 結城浩氏, &lt;http://www.hyuki.com/trans/cc-licenses.html&gt;</dd>
+
+<dt id="ref-ccloptions">[CCL-OPTIONS]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://creativecommons.org/license/"><cite itemprop="name"><a href="http://creativecommons.org/license/">Creative Commons - Choose License Options</a></cite></dd>
+<dd>&lt;http://creativecommons.org/license/&gt;</dd>
+
+<dt id="ref-ccm-schema">[CCM-SCHEMA]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://creativecommons.org/learn/technology/metadata/schema.rdf"><cite itemprop="name"><a href="https://web.archive.org/web/20030609225231/http://creativecommons.org/learn/technology/metadata/schema.rdf">Creative Commons Metadata RDF Schema</a></cite></dd>
+<dd>&lt;http://creativecommons.org/learn/technology/metadata/schema.rdf&gt;</dd>
+
+<dt id="ref-cc-implement">[CC-IMPLEMENT]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://creativecommons.org/learn/technology/metadata/implement"><cite itemprop="name"><a href="https://web.archive.org/web/20021218090619/http://creativecommons.org/learn/technology/metadata/implement">Implementing Creative Commons Metadata</a></cite></dd>
+<dd>&lt;http://creativecommons.org/learn/technology/metadata/implement&gt;</dd>
+
+<dt id="ref-cc-ext">[CC-EXT]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://creativecommons.org/learn/technology/metadata/extend#html"><cite itemprop="name"><a href="https://web.archive.org/web/20030201222007/http://creativecommons.org/learn/technology/metadata/extend#html">Extending Creative Commons Metadata</a></cite>, <span class="date" itemprop="date"></span></dd>
+<dd>&lt;http://creativecommons.org/learn/technology/metadata/extend#html&gt;</dd>
+
+<dt id="ref-clark">[CLARK]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://www.xml.com/pub/a/2003/01/15/creative.html"><span class="author" itemprop="contributor" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Kendall Grant Clark</span></span>, <cite itemprop="name"><a href="http://www.xml.com/pub/a/2003/01/15/creative.html">Creative Comments: On the Uses and Abuses of Markup</a></cite>, <time class="date" itemprop="datePublished">2003-01-15</time>, <span class="publisher">XML.COM</span></dd>
+<dd>&lt;http://www.xml.com/pub/a/2003/01/15/creative.html&gt;</dd>
+
+<dt id="ref-im200304">[INETMAG2003]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://internet.impress.co.jp/im/pdf/cc.pdf"><span class="author" itemprop="contributor" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">先田千映, 白田秀彰, 神崎正英</span></span>, <cite itemprop="name"><a href="https://web.archive.org/web/20040229172055/http://internet.impress.co.jp/im/pdf/cc.pdf">クリエイティブコモンズとは</a></cite>, <span class="source">『インターネットマガジン』2003年4月号</span>, <span class="publisher">インプレス</span></dd>
+<dd>&lt;http://internet.impress.co.jp/im/pdf/cc.pdf&gt;</dd>
+
+<dt id="ref-hotwired">[HOTWIRED]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://www.hotwired.co.jp/matrix/0311/001/"><span class="author" itemprop="contributor" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">土屋大洋, 真紀奈, 荒川靖弘, クリエイティブ・コモンズ・ジャパンほか</span></span>, <cite itemprop="name"><a href="https://web.archive.org/web/20051205013957/http://hotwired.goo.ne.jp/matrix/0311/001/">日本の「クリエイティブ・コモンズ」の可能性―創造的な著作物の共有地を広げよう</a></cite>, <time class="date" itemprop="datePublished">2003-11-26</time>, <span class="source">Matrix Vol.030</span>, <span class="publisher">Hotwired Japan</span></dd>
+<dd>&lt;http://www.hotwired.co.jp/matrix/0311/001/&gt;</dd>
+
+<dt id="ref-rfc2731">[RFC2731]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://www.ietf.org/rfc/rfc2731.txt"><span class="author" itemprop="contributor" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">J. Kunze</span></span>, <cite itemprop="name"><a href="http://www.ietf.org/rfc/rfc2731.txt">Encoding Dublin Core Metadata in HTML</a></cite>, <time class="date" itemprop="datePublished">1999</time>, <span class="publisher">The Internet Society</span></dd>
+<dd>&lt;http://www.ietf.org/rfc/rfc2731.txt&gt;</dd>
+
+<dt id="ref-mozcc">[MOZCC]</dt>
+<dd itemprop="mentions" itemscope="" itemtype="http://schema.org/CreativeWork" itemid="http://www.yergler.net/projects/mozcc/"><span class="author" itemprop="contributor" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Nathan R. Yergler</span></span>, <cite itemprop="name"><a href="http://www.yergler.net/projects/mozcc/">mozCC -- twice as good as View Source</a></cite>, <time class="date" itemprop="datePublished">2003-11-13</time>, <span class="status" itemprop="description">Version 0.6.1</span></dd>
+<dd>&lt;http://www.yergler.net/projects/mozcc/&gt;</dd>
+
+</dl>
+
+
+
+<!--eos(2)--></section>
+<!--eoc(main)--></div>
+
+<div class="navi" role="navigation">
+<a href="./" accesskey="u"><img src="/parts/ar_u.gif" width="22" height="22" alt="↑ " />メタ情報とセマンティック・ウェブ</a>
+</div>
+
+
+<footer role="contentinfo" id="cif0" lang="">
+<address class="vcard" itemscope="" itemtype="http://schema.org/Person" itemid="http://purl.org/net/who/kanzaki#masahide">
+By <span itemprop="name"><a href="/info/who" class="fn url" rel="author">KANZAKI, Masahide</a></span> (see <a itemprop="http://xmlns.com/foaf/0.1/isPrimaryTopicOf" href="/info/webwho.rdf" title="personal profile in RDF">FOAF</a> or <a href="/" itemprop="url" title="The Web KANZAKI home">home</a>), <a title="disclaimer, rights and contact info" href="/info/disclaimer">&#x00A9;2003-2008</a>.
+</address>
+<span id="stinfo">Status: <time class="created" itemprop="dateCreated">2003-01-06</time>公開, <time id="pst" class="modified" itemprop="dateModified" datetime="2008-07-18">2008-07-18更新</time>, 2021-01-02 リンク切れURLをweb.archive.orgに変更. </span>
+<span class="cpr"><br />Original URI is <cite id="orguri">http://www.kanzaki.com/docs/sw/ccm.html</cite></span>
+</footer>
+<div class="c">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns="http://web.resource.org/cc/"
+  xml:base="http://www.kanzaki.com/info/ccl"
+  xml:lang="en">
+
+ <License rdf:ID="NoOnlineDistribution">
+  <permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+  <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
+  <permits rdf:resource="#Offline_Distribution"/>
+  <prohibits rdf:resource="#Online_Distribution"/>
+  <prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/>
+  <requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+  <requires rdf:resource="http://web.resource.org/cc/Notice"/>
+  <requires rdf:resource="http://web.resource.org/cc/ShareAlike"/>
+  <rdfs:seeAlso rdf:resource="http://creativecommons.org/licenses/by-nc-sa/1.0/"/>
+ </License>
+
+ <rdfs:Class rdf:ID="Offline_Distribution" rdfs:label="Distribution via offline media such as papers or disks"/>
+
+ <rdfs:Class rdf:ID="Online_Distribution" rdfs:label="Distribution via online media such as the Interne"/>
+
+ <Work rdf:about="">
+  <dcterms:created>2003-01-06</dcterms:created>
+  <dcterms:modified>2008-07-16</dcterms:modified>
+  <dc:creator xml:lang="ja">神崎正英</dc:creator>
+  <dc:rights rdf:resource="http://www.kanzaki.com/info/disclaimer"/>
+  <license rdf:resource="#NoOnlineDistribution"/>
+ </Work>
+</rdf:RDF>
+</div>
+</body>
+</html>

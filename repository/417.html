@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<!-- head Start -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>e-Gov法令検索</title>
+<meta name="description" content="電子政府の総合窓口（e-Gov）。法令（憲法・法律・政令・勅令・府省令・規則）の内容を検索して提供します。">
+<meta name="robots" content="index,follow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="index" href="/" title="ホーム">
+<link rel="stylesheet" href="/css/reset.css"/><link rel="stylesheet" href="/css/common.css"/><link rel="stylesheet" href="/css/top.css"/><link rel="stylesheet" href="/css/style_top.css"/><link rel="stylesheet" href="/css/typeC.css"/><link rel="stylesheet" href="/css/common_lawlist.css"/><!-- head End -->
+</head>
+<body id="indexPage" class="top">
+<!-- 共通ヘッダー Start -->
+<header role="banner" id="top_header">
+<button type="button" id="btnHamburgerMenu"></button>
+<h1>
+        <a href="/"></a>
+    <span>法令検索</span>
+</h1>
+<div id="searchForPc">
+<article id="searchArea" role="search">
+    <section id="searchBox">
+      <div id="innerSearchBox">
+        <input type="text" placeholder="検索用語を入力してください。" 
+            value="" id="searchTextBox">
+     
+        <button type="button" id="searchBtn" class="labelColor1 labelTypeBtn">検索</button>
+      </div>
+
+    
+    </section>
+
+
+
+    <section id="searchModeAndType">
+        <section id="searchMode">
+            <ul>
+                <li><label for="selectOnlyTitle"><input type="radio" name="selectAllTitle" id="selectOnlyTitle" value="onlyTitle" checked><span class="inputCheck"></span>法令名のみ</label></li>
+                <li><label for="selectAllText"><input type="radio" name="selectAllTitle" id="selectAllText" value="allText" class="check" ><span class="inputCheck"></span>全文</label></li>
+            </ul>
+        </section>
+        <section id="lawType">
+            <ul>
+                                                        <li><label for="lawType1">
+                    <input type="checkbox" name="law_type" id="lawType1"
+                         value="Constitution" 
+                         class="__Constitution check" 
+                         checked><span class="inputCheck"></span>憲法</label>
+                </li>
+                                                        <li><label for="lawType2">
+                    <input type="checkbox" name="law_type" id="lawType2"
+                         value="Act" 
+                         class="__Act check" 
+                         checked><span class="inputCheck"></span>法律</label>
+                </li>
+                                                        <li><label for="lawType3">
+                    <input type="checkbox" name="law_type" id="lawType3"
+                         value="CabinetOrder" 
+                         class="__CabinetOrder check" 
+                         checked><span class="inputCheck"></span>政令</label>
+                </li>
+                                                        <li><label for="lawType4">
+                    <input type="checkbox" name="law_type" id="lawType4"
+                         value="ImperialOrder" 
+                         class="__ImperialOrder check" 
+                         checked><span class="inputCheck"></span>勅令</label>
+                </li>
+                                                        <li><label for="lawType5">
+                    <input type="checkbox" name="law_type" id="lawType5"
+                         value="MinisterialOrdinance" 
+                         class="__MinisterialOrdinance check" 
+                         checked><span class="inputCheck"></span>府省令</label>
+                </li>
+                                                        <li><label for="lawType6">
+                    <input type="checkbox" name="law_type" id="lawType6"
+                         value="Rule" 
+                         class="__Rule check" 
+                         checked><span class="inputCheck"></span>規則</label>
+                </li>
+                                    </ul>
+            
+            <ul class="allOrNon">
+                <li>
+                    <a href="#" id="lawTypeAll" class="textBtnBlue">全選択</a>
+                </li>
+                <li>
+                    <a href="#" id="lawTypeNon" class="textBtnBlue">全解除</a>
+                </li>
+            </ul>
+        </section>
+    </section>
+
+    <div id="detailsBtnWrap">
+        <button type="button" id="detailsBtn" class="labelColor2 labelTypeBtn">詳細検索</button>
+    </div>
+    <section id="detailsArea">
+        <section id="box2Column">
+            
+            <section id="lawNo">
+                <div class="strong">法令番号</div>
+                <div class="refineBox">
+                    <span class="forSpDays">
+                        <select id="lawNo1" class="focusItem middle">
+                            <option value="">元号</option>
+                                                                                    <option value="Reiwa" >令和</option>
+                                                                                    <option value="Heisei" >平成</option>
+                                                                                    <option value="Showa" >昭和</option>
+                                                                                    <option value="Taisho" >大正</option>
+                                                                                    <option value="Meiji" >明治</option>
+                                                    </select>
+                        <input type="text" min="1" value="" class="middle" id="lawNo2"> 年
+                    </span>
+                    <span class="forSpDays">
+                        <select id="lawNo3" class="long">
+                            <option value="">法令種別</option>
+                                                                                    <option value="Constitution" >憲法</option>
+                                                                                    <option value="Act" >法律</option>
+                                                                                    <option value="CabinetOrder" >政令</option>
+                                                                                    <option value="ImperialOrder" >勅令</option>
+                                                                                    <option value="MinisterialOrdinance" >府省令</option>
+                                                                                    <option value="Rule" >規則</option>
+                                                        
+                        </select>
+                        第 <input type="text" min="1" value="" class="middle" id="lawNo4"> 号
+                    </span>
+                </div>
+            </section>
+            <section id="lawDay">
+                <div class="strong dayPromulgation">公布日</div>
+                <div class="refineBox">
+                    <span class="forSpDays">
+                        <span id="dayPromulgation1">
+
+                            <select id="dayPromulgation1-0" class="gengo">
+                                <option value="">年号</option>
+                                                                                                <option value="令和" >令和</option>
+                                                                                                <option value="平成" >平成</option>
+                                                                                                <option value="昭和" >昭和</option>
+                                                                                                <option value="大正" >大正</option>
+                                                                                                <option value="明治" >明治</option>
+                                                                                                <option value="西暦" >西暦</option>
+                            </select>
+                            <input type="number" min="1" value="" class="middle year" id="dayPromulgation1-1"> 年
+                            <input type="number" min="1" value="" class="short month" id="dayPromulgation1-2"> 月
+                            <input type="number" min="1" value="" class="short date" id="dayPromulgation1-3"> 日
+
+                            <input type="text" value="" class="datepicker" style="display:none;" />
+                        </span>
+                    </span>
+                    <span class="forSpDays">
+                        <select id="lawDayFrom1">
+                            <option value="から" selected>から</option>
+                            <option value="のみ" >のみ</option>
+                        </select>
+                    </span>
+                    <span class="forSpDays">
+                                                <span id="dayPromulgation2" >
+
+                            <select id="dayPromulgation2-0" class="gengo">
+                                <option value="">年号</option>
+                                                                                                <option value="令和" >令和</option>
+                                                                                                <option value="平成" >平成</option>
+                                                                                                <option value="昭和" >昭和</option>
+                                                                                                <option value="大正" >大正</option>
+                                                                                                <option value="明治" >明治</option>
+                                                                                                <option value="西暦" >西暦</option>
+                            </select>
+                            <input type="number" min="1" value="" class="middle year" id="dayPromulgation2-1"> 年
+                            <input type="number" min="1" value="" class="short month" id="dayPromulgation2-2"> 月
+                            <input type="number" min="1" value="" class="short date" id="dayPromulgation2-3"> 日
+
+                            <input type="text" value="" class="datepicker" style="display:none;" />
+                        </span>
+                    </span>
+                </div>
+            </section>
+            <section id="classification">
+                <div class="strong ">分類
+                    </div>
+                <ul class="inlineBlock blackLink">
+                    <li><a href="#" id="classAll" class="textBtnBlue">全選択</a></li>
+                    <li><a href="#" id="classNon" class="textBtnBlue">全解除</a></li>
+                </ul>
+                <div class="refineBox">
+                    <ul>
+                                                                                        <li><label for="classification1">
+                            <input type="checkbox" name="" 
+                                value="憲法" 
+                                id="classification1" 
+                                checked><span class="inputCheck"></span>憲法</label></li>
+                                                                                        <li><label for="classification2">
+                            <input type="checkbox" name="" 
+                                value="刑事" 
+                                id="classification2" 
+                                checked><span class="inputCheck"></span>刑事</label></li>
+                                                                                        <li><label for="classification3">
+                            <input type="checkbox" name="" 
+                                value="財務通則" 
+                                id="classification3" 
+                                checked><span class="inputCheck"></span>財務通則</label></li>
+                                                                                        <li><label for="classification4">
+                            <input type="checkbox" name="" 
+                                value="水産業" 
+                                id="classification4" 
+                                checked><span class="inputCheck"></span>水産業</label></li>
+                                                                                        <li><label for="classification5">
+                            <input type="checkbox" name="" 
+                                value="観光" 
+                                id="classification5" 
+                                checked><span class="inputCheck"></span>観光</label></li>
+                                                                                        <li><label for="classification6">
+                            <input type="checkbox" name="" 
+                                value="国会" 
+                                id="classification6" 
+                                checked><span class="inputCheck"></span>国会</label></li>
+                                                                                        <li><label for="classification7">
+                            <input type="checkbox" name="" 
+                                value="警察" 
+                                id="classification7" 
+                                checked><span class="inputCheck"></span>警察</label></li>
+                                                                                        <li><label for="classification8">
+                            <input type="checkbox" name="" 
+                                value="国有財産" 
+                                id="classification8" 
+                                checked><span class="inputCheck"></span>国有財産</label></li>
+                                                                                        <li><label for="classification9">
+                            <input type="checkbox" name="" 
+                                value="鉱業" 
+                                id="classification9" 
+                                checked><span class="inputCheck"></span>鉱業</label></li>
+                                                                                        <li><label for="classification10">
+                            <input type="checkbox" name="" 
+                                value="郵務" 
+                                id="classification10" 
+                                checked><span class="inputCheck"></span>郵務</label></li>
+                                                                                        <li><label for="classification11">
+                            <input type="checkbox" name="" 
+                                value="行政組織" 
+                                id="classification11" 
+                                checked><span class="inputCheck"></span>行政組織</label></li>
+                                                                                        <li><label for="classification12">
+                            <input type="checkbox" name="" 
+                                value="消防" 
+                                id="classification12" 
+                                checked><span class="inputCheck"></span>消防</label></li>
+                                                                                        <li><label for="classification13">
+                            <input type="checkbox" name="" 
+                                value="国税" 
+                                id="classification13" 
+                                checked><span class="inputCheck"></span>国税</label></li>
+                                                                                        <li><label for="classification14">
+                            <input type="checkbox" name="" 
+                                value="工業" 
+                                id="classification14" 
+                                checked><span class="inputCheck"></span>工業</label></li>
+                                                                                        <li><label for="classification15">
+                            <input type="checkbox" name="" 
+                                value="電気通信" 
+                                id="classification15" 
+                                checked><span class="inputCheck"></span>電気通信</label></li>
+                                                                                        <li><label for="classification16">
+                            <input type="checkbox" name="" 
+                                value="国家公務員" 
+                                id="classification16" 
+                                checked><span class="inputCheck"></span>国家公務員</label></li>
+                                                                                        <li><label for="classification17">
+                            <input type="checkbox" name="" 
+                                value="国土開発" 
+                                id="classification17" 
+                                checked><span class="inputCheck"></span>国土開発</label></li>
+                                                                                        <li><label for="classification18">
+                            <input type="checkbox" name="" 
+                                value="事業" 
+                                id="classification18" 
+                                checked><span class="inputCheck"></span>事業</label></li>
+                                                                                        <li><label for="classification19">
+                            <input type="checkbox" name="" 
+                                value="商業" 
+                                id="classification19" 
+                                checked><span class="inputCheck"></span>商業</label></li>
+                                                                                        <li><label for="classification20">
+                            <input type="checkbox" name="" 
+                                value="労働" 
+                                id="classification20" 
+                                checked><span class="inputCheck"></span>労働</label></li>
+                                                                                        <li><label for="classification21">
+                            <input type="checkbox" name="" 
+                                value="行政手続" 
+                                id="classification21" 
+                                checked><span class="inputCheck"></span>行政手続</label></li>
+                                                                                        <li><label for="classification22">
+                            <input type="checkbox" name="" 
+                                value="土地" 
+                                id="classification22" 
+                                checked><span class="inputCheck"></span>土地</label></li>
+                                                                                        <li><label for="classification23">
+                            <input type="checkbox" name="" 
+                                value="国債" 
+                                id="classification23" 
+                                checked><span class="inputCheck"></span>国債</label></li>
+                                                                                        <li><label for="classification24">
+                            <input type="checkbox" name="" 
+                                value="金融・保険" 
+                                id="classification24" 
+                                checked><span class="inputCheck"></span>金融・保険</label></li>
+                                                                                        <li><label for="classification25">
+                            <input type="checkbox" name="" 
+                                value="環境保全" 
+                                id="classification25" 
+                                checked><span class="inputCheck"></span>環境保全</label></li>
+                                                                                        <li><label for="classification26">
+                            <input type="checkbox" name="" 
+                                value="統計" 
+                                id="classification26" 
+                                checked><span class="inputCheck"></span>統計</label></li>
+                                                                                        <li><label for="classification27">
+                            <input type="checkbox" name="" 
+                                value="都市計画" 
+                                id="classification27" 
+                                checked><span class="inputCheck"></span>都市計画</label></li>
+                                                                                        <li><label for="classification28">
+                            <input type="checkbox" name="" 
+                                value="教育" 
+                                id="classification28" 
+                                checked><span class="inputCheck"></span>教育</label></li>
+                                                                                        <li><label for="classification29">
+                            <input type="checkbox" name="" 
+                                value="外国為替・貿易" 
+                                id="classification29" 
+                                checked><span class="inputCheck"></span>外国為替・貿易</label></li>
+                                                                                        <li><label for="classification30">
+                            <input type="checkbox" name="" 
+                                value="厚生" 
+                                id="classification30" 
+                                checked><span class="inputCheck"></span>厚生</label></li>
+                                                                                        <li><label for="classification31">
+                            <input type="checkbox" name="" 
+                                value="地方自治" 
+                                id="classification31" 
+                                checked><span class="inputCheck"></span>地方自治</label></li>
+                                                                                        <li><label for="classification32">
+                            <input type="checkbox" name="" 
+                                value="道路" 
+                                id="classification32" 
+                                checked><span class="inputCheck"></span>道路</label></li>
+                                                                                        <li><label for="classification33">
+                            <input type="checkbox" name="" 
+                                value="文化" 
+                                id="classification33" 
+                                checked><span class="inputCheck"></span>文化</label></li>
+                                                                                        <li><label for="classification34">
+                            <input type="checkbox" name="" 
+                                value="陸運" 
+                                id="classification34" 
+                                checked><span class="inputCheck"></span>陸運</label></li>
+                                                                                        <li><label for="classification35">
+                            <input type="checkbox" name="" 
+                                value="社会福祉" 
+                                id="classification35" 
+                                checked><span class="inputCheck"></span>社会福祉</label></li>
+                                                                                        <li><label for="classification36">
+                            <input type="checkbox" name="" 
+                                value="地方財政" 
+                                id="classification36" 
+                                checked><span class="inputCheck"></span>地方財政</label></li>
+                                                                                        <li><label for="classification37">
+                            <input type="checkbox" name="" 
+                                value="河川" 
+                                id="classification37" 
+                                checked><span class="inputCheck"></span>河川</label></li>
+                                                                                        <li><label for="classification38">
+                            <input type="checkbox" name="" 
+                                value="産業通則" 
+                                id="classification38" 
+                                checked><span class="inputCheck"></span>産業通則</label></li>
+                                                                                        <li><label for="classification39">
+                            <input type="checkbox" name="" 
+                                value="海運" 
+                                id="classification39" 
+                                checked><span class="inputCheck"></span>海運</label></li>
+                                                                                        <li><label for="classification40">
+                            <input type="checkbox" name="" 
+                                value="社会保険" 
+                                id="classification40" 
+                                checked><span class="inputCheck"></span>社会保険</label></li>
+                                                                                        <li><label for="classification41">
+                            <input type="checkbox" name="" 
+                                value="司法" 
+                                id="classification41" 
+                                checked><span class="inputCheck"></span>司法</label></li>
+                                                                                        <li><label for="classification42">
+                            <input type="checkbox" name="" 
+                                value="災害対策" 
+                                id="classification42" 
+                                checked><span class="inputCheck"></span>災害対策</label></li>
+                                                                                        <li><label for="classification43">
+                            <input type="checkbox" name="" 
+                                value="農業" 
+                                id="classification43" 
+                                checked><span class="inputCheck"></span>農業</label></li>
+                                                                                        <li><label for="classification44">
+                            <input type="checkbox" name="" 
+                                value="航空" 
+                                id="classification44" 
+                                checked><span class="inputCheck"></span>航空</label></li>
+                                                                                        <li><label for="classification45">
+                            <input type="checkbox" name="" 
+                                value="防衛" 
+                                id="classification45" 
+                                checked><span class="inputCheck"></span>防衛</label></li>
+                                                                                        <li><label for="classification46">
+                            <input type="checkbox" name="" 
+                                value="民事" 
+                                id="classification46" 
+                                checked><span class="inputCheck"></span>民事</label></li>
+                                                                                        <li><label for="classification47">
+                            <input type="checkbox" name="" 
+                                value="建築・住宅" 
+                                id="classification47" 
+                                checked><span class="inputCheck"></span>建築・住宅</label></li>
+                                                                                        <li><label for="classification48">
+                            <input type="checkbox" name="" 
+                                value="林業" 
+                                id="classification48" 
+                                checked><span class="inputCheck"></span>林業</label></li>
+                                                                                        <li><label for="classification49">
+                            <input type="checkbox" name="" 
+                                value="貨物運送" 
+                                id="classification49" 
+                                checked><span class="inputCheck"></span>貨物運送</label></li>
+                                                                                        <li><label for="classification50">
+                            <input type="checkbox" name="" 
+                                value="外事" 
+                                id="classification50" 
+                                checked><span class="inputCheck"></span>外事</label></li>
+                                                            </ul>
+                </div>
+            </section>
+        </section>
+        <div id="popUpBtn">
+            <div id="schInformationArea" class="">
+                <div class="schInformation_title">以下のエラーがあります。</div>
+                <ul id="schInformation">
+                <li></li>
+                </ul>
+            </div>
+             <ul>
+                <li><button type="button" id="allCLearPopUp" class="labelColor4 labelTypeBtn">リセット</button></li>
+                <li><button type="button" id="searchBtnPopUp" class="labelColor1 labelTypeBtn">検索</button></li>
+            </ul>
+        </div>
+    </section>
+
+</article>
+
+
+<button type="button" id="open50Btn" class="labelColor2 labelTypeBtn">50音検索</button>
+<section id="lawName">
+    <div class="abc50">
+        <input type="button" id="close50Btn">
+        <div class="abc50Words">
+            <p class="pdnHfBottom">
+                <span class="strong">選択した法令名</span>
+                <span id="allWordsView"></span>
+            </p>
+            <ul>
+                <li><button type="button" id="delAllWords" class="labelTypeBtn" disabled>全て削除</button></li>
+                <li><button type="button" id="delOneWord" class="labelTypeBtn" disabled>一文字削除</button></li>
+            </ul>
+        </div>
+        <div id="abc50WordBox">
+            <ul>
+                <li><button type="button" value="あ"  class="active" >あ</button></li>
+                <li><button type="button" value="い"  class="active" >い</button></li>
+                <li><button type="button" value="う"  class="active" >う</button></li>
+                <li><button type="button" value="え"  class="active" >え</button></li>
+                <li><button type="button" value="お"  class="active" >お</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="か"  class="active" >か</button></li>
+                <li><button type="button" value="き"  class="active" >き</button></li>
+                <li><button type="button" value="く"  class="active" >く</button></li>
+                <li><button type="button" value="け"  class="active" >け</button></li>
+                <li><button type="button" value="こ"  class="active" >こ</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="さ"  class="active" >さ</button></li>
+                <li><button type="button" value="し"  class="active" >し</button></li>
+                <li><button type="button" value="す"  class="active" >す</button></li>
+                <li><button type="button" value="せ"  class="active" >せ</button></li>
+                <li><button type="button" value="そ"  class="active" >そ</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="た"  class="active" >た</button></li>
+                <li><button type="button" value="ち"  class="active" >ち</button></li>
+                <li><button type="button" value="つ"  class="active" >つ</button></li>
+                <li><button type="button" value="て"  class="active" >て</button></li>
+                <li><button type="button" value="と"  class="active" >と</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="な"  class="active" >な</button></li>
+                <li><button type="button" value="に"  class="active" >に</button></li>
+                <li><button type="button" value="ぬ"  disabled class="noactive" >ぬ</button></li>
+                <li><button type="button" value="ね"  class="active" >ね</button></li>
+                <li><button type="button" value="の"  class="active" >の</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="は"  class="active" >は</button></li>
+                <li><button type="button" value="ひ"  class="active" >ひ</button></li>
+                <li><button type="button" value="ふ"  class="active" >ふ</button></li>
+                <li><button type="button" value="へ"  class="active" >へ</button></li>
+                <li><button type="button" value="ほ"  class="active" >ほ</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="ま"  class="active" >ま</button></li>
+                <li><button type="button" value="み"  class="active" >み</button></li>
+                <li><button type="button" value="む"  class="active" >む</button></li>
+                <li><button type="button" value="め"  class="active" >め</button></li>
+                <li><button type="button" value="も"  class="active" >も</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="や"  class="active" >や</button></li>
+                <li><span>&nbsp;</span></li>
+                <li><button type="button" value="ゆ"  class="active" >ゆ</button></li>
+                <li><span>&nbsp;</span></li>
+                <li><button type="button" value="よ"  class="active" >よ</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="ら"  class="active" >ら</button></li>
+                <li><button type="button" value="り"  class="active" >り</button></li>
+                <li><button type="button" value="る"  disabled class="noactive" >る</button></li>
+                <li><button type="button" value="れ"  class="active" >れ</button></li>
+                <li><button type="button" value="ろ"  class="active" >ろ</button></li>
+            </ul>
+            <ul>
+                <li><button type="button" value="わ"  class="active" >わ</button></li>
+                <li><button type="button" value="を"  disabled class="noactive" >を</button></li>
+                <li><button type="button" value="ん"  disabled class="noactive" >ん</button></li>
+                <li><span>&nbsp;</span></li>
+                <li><span>&nbsp;</span></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="dummy_form">
+        <form method="post" accept-charset="utf-8" action="/"><div style="display:none;"><input type="hidden" name="_method" value="POST"/><input type="hidden" name="_csrfToken" autocomplete="off" value="8585cabe8d2bad245e96be4203e1b4ba43d8e6778988765ddec5cc24f1596b14876624e0b6189b85e8fc1cb3068b20980f33a412574471af4c6c8dc6fdcc87a2"/></div>        </form>    </div>
+</section>
+
+
+</div>
+
+<nav id="sNavi">
+    <ul>
+        <li id="iconBeginner"><a href="/help/" class="" target="help">ヘルプ</a></li>
+        </ul>
+</nav>
+
+
+</header>
+
+<!-- 共通ヘッダー End -->
+<div id="contentsWrap" class="cf">
+<div class="egovui-portal-button"><button class="egovui-next-button" type="button" name="button" onclick="location.href='https://www.e-gov.go.jp'">e-Govポータル</button></div>
+
+
+<main id="contents">
+	<div id="contentsBody">
+		<section class="categoryBox">
+			<h2 id="newsList" class="baseTitle strong"><span>お知らせ</span><button type="button" id="news" onclick="location.href='#'" class="listIcon textBtnBlue">一覧</button></h2>
+			<div class="newsList">
+    
+    <dl class="cf">
+       <dt><span class="newsDate">2021/09/30</span>
+       <span class="lawType lavender">更新法令</span></dt>
+       <dd>法令データを更新しました。更新法令一覧は<a title="更新法令一覧" class="iconBlank" href="https://elaws.e-gov.go.jp/update/?update_date=2021%2F09%2F30" target="_blank">こちら</a>。</dd>
+    </dl>
+    
+    <dl class="cf">
+       <dt><span class="newsDate">2020/11/24</span>
+       <span class="lawType darkGray">お知らせ</span></dt>
+       <dd>e-Gov法令検索リニューアルしました。</dd>
+    </dl>
+			</div>
+		</section>
+	</div>
+
+<article id="acquiredInfo">
+<section id="number">
+<h2 class="strong">登録法令情報</h2>
+<div class="refineBox">
+<ul class="link">
+<li><a href="/update/" class="iconBlank" target="update">更新法令一覧</a></li>
+<li><a href="/registdb/" class="iconBlank" target="registdb">DB登録法令数</a></li>
+<li><a href="/unenforced/" class="iconBlank" target="unenforced">新規制定未施行法令一覧</a></li>
+<li><a href="/repeal/" class="iconBlank" target="abolition">廃止法令一覧</a></li>
+<li><a href="/abb/" class="iconBlank" target="abb">略称法令名一覧</a></li>
+</ul>
+</div>
+</section>
+<section id="download">
+<h2 class="strong">法令データの取得</h2>
+<div class="refineBox">
+<ul class="link">
+<li><a href="/download/" class="iconBlank" target="download">XML一括ダウンロード</a></li>
+<li><a href="/apitop/" class="iconBlank" target="apitop">法令API</a></li>
+</ul>
+</div>
+</section><section id="reference">
+<h2 class="strong">他の法令情報を参照する</h2>
+<div class="refineBox">
+<ul class="link">
+<li><a href="https://www.e-gov.go.jp/laws-and-secure-life/diet-submission-bill.html" class="iconBlankOut" target="_blank">国会提出法案</a></li>
+<li><a href="http://www.japaneselawtranslation.go.jp/" class="iconBlankOut" target="_blank">法令外国語訳データベース</a></li>
+<li><a href="http://hourei.ndl.go.jp/SearchSys/" class="iconBlankOut" target="_blank">日本法令索引</a></li>
+</ul>
+</div>
+</section>
+</article>
+</main>
+</div>
+
+<!-- 共通フッター Start -->
+<footer><ul>
+    <li><a href="/aboutsite/">このサイトについて</a></li>
+    <li><a href="/servicepolicy/">ご利用にあたって</a></li>
+    <li><a href="/help/">ヘルプ</a></li>
+    <li><a href="/terms/">利用規約</a></li>
+    <li><a href="/privacypolicy/">個人情報取扱方針</a></li>
+    <li><a href="/contact/">お問合せ</a></li>
+    <li><a href="/sitemap/">サイトマップ</a></li>
+</ul>
+<address>Copyright © Digital Agency All Rights Reserved.</address>
+</footer>
+<!-- 共通フッター End -->
+<nav id="popupSp"></nav>
+<script src="/js/jquery-3.3.1.min.js"></script><script src="/js/jquery-ui.js"></script><script src="/js/jquery.ui.datepicker-ja.min.js"></script><script src="/js/jquery.cookie.js"></script><script src="/js/common.js"></script><script src="/js/search.js?t=20210225_0840"></script><script src="/js/top.js"></script>
+<link rel="stylesheet" href="/css/jquery-ui/jquery-ui.structure.min.custom.css"/><link rel="stylesheet" href="/css/jquery-ui/jquery-ui.theme.min.custom.css"/></body>
+</html>

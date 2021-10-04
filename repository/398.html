@@ -1,0 +1,3296 @@
+
+ 
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head profile="http://www.w3.org/2003/g/data-view">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name = "format-detection" content = "telephone=no" />
+	<meta name="viewport" content="width=device-width,user-scalable=no" />
+	<meta http-equiv="content-style-type" content="text/css" />
+	<meta http-equiv="content-script-type" content="text/javascript" />
+
+	<script type="text/javascript" src="/js/jquery-1.11.2.min.js?null"></script>
+
+	<link href="/style/cinii_res.css?STYLE02V14" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<title>CiNii Articles 検索&nbsp;-
+		
+	 		&nbsp;&quot;パブリックドメイン&quot;</title>
+	<link rel="search" type="application/opensearchdescription+xml" title="CiNii" href="http://ci.nii.ac.jp/opensearch/description.xml" />
+	<link rel="search" type="application/opensearchdescription+xml" title="CiNii Author" href="http://ci.nii.ac.jp/opensearch/author.xml" />
+	
+		<link rel="alternate" type="application/rss+xml" href="https://ci.nii.ac.jp/opensearch/search?q=%22%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200&amp;format=rss" title="RSS 1.0" />
+		<link rel="alternate" type="application/atom+xml" href="https://ci.nii.ac.jp/opensearch/search?q=%22%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200&amp;format=atom" title="Atom 1.0" />
+		<link rel="alternate" type="application/json" href="https://ci.nii.ac.jp/opensearch/search?q=%22%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200&amp;format=json" title="JSON-LD 1.0" />
+	
+	
+	<script type="text/javascript" src="/js/cinii.js?JS01V130"></script>
+	<script type="text/javascript" src="/js/searchbox_disclosure.js?JS03V11"></script>
+	<script type="text/javascript" src="/js/modetab.js?JS04V13"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/html5shiv-printshiv.min.js"></script>
+	<script type="text/javascript" src="/js/respond.min.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/changeDisplayMode.js"></script>
+	<!--[if IE 8.0]>
+	<link rel="stylesheet" type="text/css" href="/style/cinii-ie8.css">
+	<![endif]-->
+</head>
+<body id="search" class="articles result_list with_sidenavi">
+	
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-header">
+	<div id="header" class="navbar-topcontent">
+
+		<p id="header_sysname"><a href="/" id="system_ci_jp" class="headerlogo"></a></p>
+
+		<div class="navbar-topcontent">
+			<!--ブランド名 ロゴ名の表示-->
+			<p id="header_sysname"><a href="/" id="system_ci_jp" class="navbar-brand headerlogo">CiNii 国立情報学研究所 学術情報ナビゲータ[サイニィ]</a></p>
+			<!--トグルボタンの設置-->
+			<button type="button" class="navbar-toggle button-menu collapsed" data-toggle="collapse" data-target="#nav-content">
+				メニュー
+			</button>
+			<button type="button" class="navbar-toggle button-search collapsed" id="hedderSearchButton">
+				検索
+			</button>
+		</div>
+	</div>
+	<div id="nav-content" class="collapse navbar-collapse headermenu">
+	
+	<ul id="header_link_jsng" class="nav navbar-nav menu-service-list">
+		<li class="active"><a href="/" class="menu-service-item">日本の論文をさがす</a></li>
+		<li><a href="/books/?l=ja" class="menu-service-item">大学図書館の本をさがす</a></li>
+		<li><a href="/d/?l=ja" class="menu-service-item">日本の博士論文をさがす</a></li>
+	</ul>
+	<ul id="header_link_jsok" class="nav navbar-nav menu-service-list" style="display:none;">
+		<li class="active"><a href="/" class="menu-service-item">日本の論文をさがす</a></li>
+		<li><a href="/books/" onclick="return doBooksSearch();" class="menu-service-item">大学図書館の本をさがす</a></li>
+		<li><a href="/d/?l=ja" class="menu-service-item">日本の博士論文をさがす</a></li>
+	</ul>
+	<script type="text/javascript">
+		document.getElementById("header_link_jsng").style.display = "none";
+		document.getElementById("header_link_jsok").style.display = "block";
+	</script>
+	
+
+	<!--ユーティリティリンク・ユーザー情報-->
+	<ul class="nav navbar-nav menu-utility-list">
+	
+	
+	
+	
+	
+		<li><a href="https://register-ci.nii.ac.jp/userregist/userTypeSel.do?lang=ja" class="menu-utility-item">新規登録</a></li> 
+		<li><a href="https://register-ci.nii.ac.jp/auth/action/login?contentsServer=CINII" class="menu-utility-item">ログイン</a></li> 
+		
+			<li><a href="/search?lang=en&amp;q=%22%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200" onclick="return linkUrlLengthCheck('/search?lang=en&amp;q=%22%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200');" class="menu-utility-item">English</a></li>
+		
+	
+	</ul>
+	</div>
+	<!--end of div#utilitylink-->
+<!--end of div#header-->
+</nav>
+<div id="body-wrap" class="container body-wrap">
+
+	
+
+
+
+
+
+
+<div id="searchbox" class="searchbox">
+<div class="searchFormContainer">
+<div class="searchformcontents container-fluid">
+<div class="searchboxheader row">
+	<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+<script type="text/javascript">
+//<![CDATA[
+var tabIndexSource = "<div id=\"tab_index\" class=\"tab_index\"><ul class=\"tab_index_list\"><li id=\"article\" class=\"tab_index_item tab_index_item-active\"><a href=\"javascript:void(0);\" id=\"tab-articles_search\" class=\"tab-index-content\" onclick=\"modeTab('article_search' , 'article');\">論文検索<\/a><\/li><li id=\"author\" class=\"tab_index_item\"><a href=\"javascript:void(0);\" id=\"tab-author_search\" class=\"tab-index-content\" onclick=\"modeTab('author_search' , 'author');\">著者検索<\/a><\/li><li id=\"fulltext\" class=\"tab_index_item\"><a href=\"javascript:void(0);\" id=\"tab-fulltext_search\" class=\"tab-index-content\" onclick=\" modeTab('fulltext_search' , 'fulltext');\">全文検索<\/a><\/li><\/ul><\/div>";
+	document.write(tabIndexSource);
+//]]>
+</script>
+	</div>
+</div><!-- end of div .searchboxheader -->
+<form id="searchform" name="searchform" action="/search" method="get" onsubmit="return false;">
+	<div id="article_search">
+		<div id="article_form">
+		<div class="row form-tabcontent form-articles">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<div id="validation_error" class="validation_error" style="display:none"></div>
+				<div class="row row-textform">
+					<div class="col-xs-9 col-sm-9 col-form">
+						<input type="text" name="q" class="main_srchterm searchforminput" id="freetextbox" onkeypress="return deleteCoordinatesByKey();" value="&quot;パブリックドメイン&quot;" placeholder="フリーワード" style="color: #000000;" onblur="if(this.value==''){this.style.color='#999999'; this.value=''}" onfocus="if(this.value==''){this.style.color='#000000'; this.value = ''}" />
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<button class="btn searchbtn" onclick="return dosearch();"><span>検索</span></button>
+					</div>
+				</div>
+			</div>
+			<div id="art_normal_search" class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<div class="row filter_radiobtnbox" id="filter_radiobtnboxnormal">
+				<div class="col-xs-12 col-sm-9 filter_segmentControl">
+				<div class="row">
+				<div id="filter_radiobtnboxnormal">
+				<div class="col-xs-12 col-sm-2 filter_radiobtnbox-segmentarea1">
+		 			<label for="filter_all_normal" class="segment1 "><input type="radio" name="range" class="customRB" value="0" id="filter_all_normal" />すべて</label>
+		 		</div>
+		 		<div class="col-xs-12 col-sm-7 filter_radiobtnbox-segmentarea3">
+		 			<label for="filter_otherservice_normal" class="segment3 checked"><input type="radio" name="range" class="customRB" value="2" id="filter_otherservice_normal" checked="checked"/>本文あり</label>
+		 		</div>
+				</div>
+				</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-3 advsearchbtn-area">
+					 <a class="btn-toggle-advsearch collapsed" id="btn-toggle-advsearch-top-open" onclick="searchBoxDisclosure();" href="javascript:void(0);">
+					 	 <span class="btn-toggle-advsearch-label">詳細検索</span>
+					 </a>
+				</div>
+
+				</div><!-- end of div #filter_radiobtnboxnormal -->
+			</div><!-- end of div #art_normal_search -->
+
+			<div id="art_advanced_search" class="col-xs-12 col-sm-12 advanced_search">
+				<div class="row filter_radiobtnbox col-sm-offset-2" id="filter_radiobtnboxadvanced">
+				<div class="col-xs-12 col-sm-9 filter_segmentControl">
+				<div class="row">
+				<div id="filter_radiobtnboxadvanced">
+				<div class="col-xs-12 col-sm-2 filter_radiobtnbox-segmentarea1">
+					<label for="filter_all_advanced" class="segment1 "><input type="radio" name="range" class="customRB" value="0" id="filter_all_advanced"  />すべて</label>
+				</div>
+				<div class="col-xs-12 col-sm-7 filter_radiobtnbox-segmentarea3">
+					<label for="filter_otherservice_advanced" class="segment3 checked"><input type="radio" class="customRB" name="range" value="2" id="filter_otherservice_advanced" checked="checked"/>本文あり</label>
+				</div>
+
+				</div>
+				</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-3 advsearchbtn-area">
+					<a class="btn-toggle-advsearch" id="btn-toggle-advsearch-top-close" onclick="searchBoxDisclosure();" href="javascript:void(0);">
+						<span class="btn-toggle-advsearch-label">閉じる</span>
+					</a>
+				</div>
+
+				</div><!-- end of div#filter_radiobtn -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-2 searchformlabel"><label for="sopt1">タイトル</label></div>
+							<div class="col-xs-12 col-sm-10 col-form"><input type="text" name="title" id="sopt1" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-6 searchformlabel"><label for="sopt2">著者名</label></div>
+							<div class="col-xs-12 col-sm-6 col-form"><input type="text" name="author" id="sopt2" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-5 searchformlabel"><label for="sopt13">著者ID</label></div>
+							<div class="col-xs-12 col-sm-7 col-form"><input type="text" name="nrid" id="sopt13" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-3 searchformlabel"><label for="sopt3">著者所属</label></div>
+							<div class="col-xs-12 col-sm-9 col-form"><input type="text" name="affiliation" id="sopt3" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-6 searchformlabel"><label for="sopt4">刊行物名</label></div>
+							<div class="col-xs-12 col-sm-6 "><input type="text" name="journal" id="sopt4" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-5 searchformlabel"><label for="sopt5">ISSN</label></div>
+							<div class="col-xs-12 col-sm-7 col-form">
+								<input type="text" name="issn" id="sopt5" class="searchforminput" maxlength="16" onkeypress="return deleteCoordinatesByKey();" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-3 searchformlabel"><label for="sopt6">巻号ページ</label></div>
+							<div class="col-xs-12 col-sm-9">
+								<div class="volNumPageControls">
+									<span><input type="text" name="volume" id="sopt6" class="searchforminput" maxlength="9" onkeypress="return deleteCoordinatesByKey();" value="" placeholder="巻" /></span>
+									<span><input type="text" name="issue" id="sopt7" class="searchforminput" maxlength="9" onkeypress="return deleteCoordinatesByKey();" value="" placeholder="号(通号)" /></span>
+									<span><input type="text" name="page" id="sopt8" class="searchforminput" maxlength="19" onkeypress="return deleteCoordinatesByKey();" value="" placeholder="ページ" /></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-6 searchformlabel"><label for="sopt9">出版者</label></div>
+							<div class="col-xs-12 col-sm-6 "><input type="text" name="publisher" id="sopt9" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-5 searchformlabel"><label for="sopt10">参考文献</label></div>
+							<div class="col-xs-12 col-sm-7 col-form">
+								<input type="text" name="references" id="sopt10" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-3 searchformlabel"><label for="sopt11">出版年</label></div>
+							<div class="col-xs-12 col-sm-9 ">
+								<input type="text" name="year_from" id="sopt11" class="degreeconferment_year" onkeypress="return deleteCoordinatesByKey();" maxlength="4" value="" />
+								<span class="unit">年から</span>
+								<input type="text" name="year_to" id="sopt12"  class="degreeconferment_year" maxlength="4" onkeypress="return deleteCoordinatesByKey();" value="" />
+								<span class="unit">年まで</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 visible-xs-block text-center">
+						<button class="btn searchbtn" onclick="return dosearch();">検索</button>
+					</div>
+					<div id="btn-toggle-advsearch-bottom" class="col-xs-12 visible-xs-block advsearchbtn-area">
+						<a class="btn-toggle-advsearch collapsed" href="javascript:void(0);" onclick="searchBoxDisclosure();"><span class="btn-toggle-advsearch-label">閉じる</span></a>
+					</div>
+				</div>
+			</div><!-- end of div #art_advanced_search -->
+		</div><!-- end of div .form-articles -->
+		</div><!-- end of div #article_form -->
+	</div><!-- end of div #article_search -->
+	<input type="hidden" name="count" />
+	<input type="hidden" name="sortorder" />
+	<input type="hidden" name="type" value="0" />
+</form><!--end of form #searchform -->
+<form id="authorsearchform" name="authorsearchform" action="/author" method="get" onsubmit="return false;">
+	<div id="author_search">
+		<div id="author_form">
+		<div class="row form-tabcontent form-author">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<div id="author_validation_error" class="validation_error" style="display:none"></div>
+				<div class="row row-textform">
+					<div class="col-xs-9 col-sm-9 col-form">
+						<input type="text" name="q" class="main_srchterm searchforminput" id="authname_textbox" onkeypress="return deleteCoordinatesByKeyAuthor();" value="" placeholder="著者名" style="color: #000000;" onblur="if(this.value==''){this.style.color='#999999'; this.value=''}" onfocus="if(this.value==''){this.style.color='#000000'; this.value = ''}" />
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<button class="btn searchbtn" onclick="return doauthorsearch();">検索</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- end of div .form-author -->
+		</div><!-- end of div #author_form -->
+	</div><!-- end of div #author_search -->
+	<input type="hidden" name="count" />
+	<input type="hidden" name="sortorder" />
+</form><!--end of form #authorsearchform-->
+<form id="fulltextsearchform" name="fulltextsearchform" action="/fulltext" method="get" onsubmit="return false;">
+	<div id="fulltext_search">
+		<div id="fulltext_form">
+		<div class="row form-tabcontent form-fulltext">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<div id="fulltext_validation_error" class="validation_error" style="display:none"></div>
+				<div class="row row-textform">
+					<div class="col-xs-9 col-sm-9 col-form">
+						<input type="text" name="q" class="main_srchterm searchforminput" id="freetextbox-full" onkeypress="return deleteCoordinatesByKeyFullText();" value="" placeholder="フリーワード" style="color: #000000;" onblur="if(this.value==''){this.style.color='#999999'; this.value=''}" onfocus="if(this.value==''){this.style.color='#000000'; this.value = ''}" />
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<button class="btn searchbtn" onclick="return dofulltextsearch()">検索</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- end of div .form-fulltext -->
+		</div><!-- end of div #fulltext_form -->
+	</div><!-- end of div #fulltext_search -->
+	<input type="hidden" name="count" />
+	<input type="hidden" name="sortorder" />
+</form><!-- end of form #fulltextsearchform -->
+
+<script type="text/javascript">
+//<![CDATA[
+//--This function is to set the initial view of the search box, opened or closed.--
+//--So please change the boolean argument dynamically as the situation demands.--
+//--FALSE is to be closed. TRUE is to be opened.--
+
+window.onload = function(){
+	if("" == document.searchform.q.value || document.searchform.q.value == ""){
+	    document.searchform.q.style.color = "#999999";
+		document.searchform.q.value = "";
+	}
+	if("" != document.searchform.q.value) {
+	    document.searchform.q.style.color = "#000000";
+	}
+
+	if("" == document.authorsearchform.q.value || document.authorsearchform.q.value == ""){
+	    document.authorsearchform.q.style.color = "#999999";
+		document.authorsearchform.q.value = "";
+	}
+	if("" != document.authorsearchform.q.value) {
+	    document.authorsearchform.q.style.color = "#000000";
+	}
+	if("" == document.fulltextsearchform.q.value || document.fulltextsearchform.q.value == ""){
+	    document.fulltextsearchform.q.style.color = "#999999";
+		document.fulltextsearchform.q.value = "";
+	}
+	if("" != document.fulltextsearchform.q.value) {
+	    document.fulltextsearchform.q.style.color = "#000000";
+	}
+}
+
+initialOpening(haveSearchBox(document.searchform));
+checkSync();
+
+//]]>
+
+//<![CDATA[
+//--This function is to set the initial view of the search box, article search or author search or fulltext search.--
+//--So please change 'article' or 'author' dynamically as the situation demands.--
+	initialMode('article');
+//]]>
+</script>
+</div><!-- end of div .searchformcontents -->
+</div><!-- end of div .searchFormContainer -->
+</div><!-- end of div #searchbox -->
+
+	<div class="servicestop_information">
+	<div id="servicestop_information">
+<ul>
+<a href="https://support.nii.ac.jp/ja/news/cinii/20210706">【7/12更新】2022年4月1日からのCiNii ArticlesのCiNii Researchへの統合について</a>
+</ul>
+</div>
+	</div>
+	<div class="hfeed hentry container-hasSubnav">
+	
+
+
+
+
+
+
+
+
+<div id="content" class="maincontents">
+	<div id="resultlist" class="resultlist">
+
+
+	<div class="listheading">
+	<h1 class="heading">
+	<span class="hitNumLabel">検索結果</span>
+	
+	35件中&nbsp;1-35&nbsp;を表示
+	</h1>
+	<div class="paging paging-top">
+	
+	</div>
+	
+	
+
+		<div class="actionsortbox">
+		<div class="actionforlist hidden-xs">
+		<form name="actionform" method="get" action="" class="form-inline">
+			<label for="selectall">
+				<input class="cb" type="checkbox" id="selectall" onclick="checkALL(this.checked);" />すべて選択：
+			</label>
+			<div class="form-group form-group-inline">
+				<select name="fileType" onchange="document.articlelist.fileType.value=this.value" class="form-control">
+					<option value="0">新しいウィンドウで開く</option>
+					<option value="6">RefWorksに書き出し</option>
+					<option value="7">EndNoteに書き出し</option>
+					<option value="12">Mendeleyに書き出し</option>
+					<option value="8">Refer/BiblXで表示</option>
+					<option value="9">RISで表示</option>
+					<option value="10">BibTeXで表示</option>
+					<option value="11">TSVで表示</option>
+					<option value="5">問題の指摘</option>
+				</select>
+			</div>
+			<input type="button" value="実行" onclick="nocheckalert();openALL();" class="commonBtn" />
+		</form>
+		</div>
+		
+
+		<div class="sortlist">
+		<form name="listoption" action="" class="form-inline">
+			<div class="form-group form-group-inline">
+				
+				<select name="count" id="count" class="form-control">
+    <option value="20">20件ずつ表示</option>
+    <option value="50">50件ずつ表示</option>
+    <option value="100">100件ずつ表示</option>
+    <option value="200" selected="selected">200件ずつ表示</option>
+
+
+</select>
+
+
+			</div>
+
+			<div class="form-group form-group-inline">
+				
+					
+					<select name="sortorder" id="sortorder" class="form-control">
+    <option value="1" selected="selected">出版年：新しい順</option>
+    <option value="2">出版年：古い順</option>
+    <option value="4">タイトル：五十音順</option>
+    <option value="3">タイトル：五十音逆順</option>
+    <option value="6">刊行物名：五十音順</option>
+    <option value="5">刊行物名：五十音逆順</option>
+    <option value="7">被引用件数：多い順</option>
+
+
+</select>
+
+
+				
+				
+			</div>
+			
+				<input type="button" value="表示" onclick="return dosearch();" class="commonBtn" />
+				
+			
+			
+		</form>
+		</div>
+		
+		</div>
+		
+	</div><!-- end of .listHeading-->
+	
+
+
+<form name="articlelist" action="/export" method="post">
+	<input type="hidden" name="fileType" />
+	<div id="itemlistbox" class="listContainer">
+	<ul>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">1</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007924853" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007924853" onclick="return opendetail(130007924853);" class="taggedlink">
+					
+						[63] EAST ASIA DIGITAL LIBRARY：東アジアにおける国際共同プロジェクトの一事例
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							福林 靖博
+						
+						
+					
+						,
+						
+							奥田 倫子
+						
+						
+					
+						,
+						
+							中川 紗央里
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… EADLは、漢籍など東アジア諸言語で記された<span class="query">パブリックドメイン</span>の書籍等のデジタル化データ（画像データ及びメタデータ等）のコンテンツの検索・閲覧を可能とするポータルサイトである。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">デジタルアーカイブ学会誌 4(s1), s80-s83, 2020</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.24506%2Fjsda.4.s1_s80&amp;naid=130007924853" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">2</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120006651724" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120006651724" onclick="return opendetail(120006651724);" class="taggedlink">
+					
+						九州大学附属図書館におけるデジタルアーカイブの二次利用自由化
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							林 豊
+						
+						
+					
+						,
+						
+							小柳 貴俊
+						
+						
+					
+						,
+						
+							泉 愛
+						
+						
+					
+						,
+						
+							吉松 直美
+						
+						
+					
+						,
+						
+							井ノ上 俊哉
+						
+						
+					
+						,
+						
+							堀 優子
+						
+						
+					
+						,
+						
+							斎藤 未夏
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							九州大学附属図書館では，2018年10月より，インターネットで公開している所蔵貴重資料等のデジタル化画像の二次利用を大幅に自由化（オープン化）した．同時に，デジタル化されていない貴重資料等の二次利用手続きについても簡素化を果たした．本稿では，この取組みの概要，検討の過程，利用者からの反響，今後の展望について紹介する．
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">九州大学附属図書館研究開発室年報 (2018/2019), 21-27, 2019-07</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F2324%2F2327998&amp;naid=120006651724" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+						<a href="/lognavi?name=crossref&amp;lang=ja&amp;id=info:doi/10.15017/2327998" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-CrossRef', {'nonInteraction': 1});">DOI</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">3</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007741456" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007741456" onclick="return opendetail(130007741456);" class="taggedlink">
+					
+						2E15  <span class="query">パブリックドメイン</span>画像解析ソフトウェアを用いた公開講座向け簡易ARゲームとロボット工作の開発
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							早稲田 一嘉
+						
+						
+					
+						,
+						
+							藤本 健司
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">工学教育研究講演会講演論文集 2019(0), 246-247, 2019</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.20549%2Fjseeja.2019.0_246&amp;naid=130007741456" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">4</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007831273" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007831273" onclick="return opendetail(130007831273);" class="taggedlink">
+					
+						コ・メディカル向け解剖学国家試験対策e-learning サイトの構築法
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							⿊澤 ⼀弘
+						
+						
+					
+						,
+						
+							易 勤
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… どに留意した.レンタルサーバ上にオープンソースのCMS システムであるWordPress をインストールし,択⼀問題の機能を実装するプラグインは有料のWP Viral Quizを選択した.使⽤する画像に関しては主として<span class="query">パブリックドメイン</span>もしくはCC BY（クリエイティブ・コモンズ 表⽰）のものを使⽤した.【結果】現在、内臓系・神経系に関しては⼀問⼀答形式が完成し,国家試験過去問に関しては分野別・年度別でコンテンツを拡充し …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">日本保健科学学会誌 21(Supplement), 44-44, 2018</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.24531%2Fjhsaiih.21.Supplement_44&amp;naid=130007831273" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">5</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130005396386" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130005396386" onclick="return opendetail(130005396386);" class="taggedlink">
+					
+						青空文庫から.txtファイルの未来へ：<span class="query">パブリックドメイン</span>と電子テキストの20年
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							大久保 ゆう
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							&lt;p&gt;ボランティアで運営されているインターネット上のデジタルテキスト・アーカイブである青空文庫は，その主たる形式として，テキストファイル（拡張子.txt）を扱っている。本稿では，テキストファイルに施す青空文庫独自の注記や，作業にまつわる問題点や解決法，そのほかテキストファイルの利点などを，その歴史的な経緯や今後の展望とともに解説する。とりわけJIS漢字コードと，書籍の体裁や組み版の情報 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報管理 59(12), 829-838, 2017</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1241%2Fjohokanri.59.829&amp;naid=130005396386" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">6</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009910877" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009910877" onclick="return opendetail(110009910877);" class="taggedlink">
+					
+						パブリック・ドメインの法理
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							ポイケルト アレキサンダー
+						
+						
+					
+						,
+						
+							島並 良 [訳]
+						
+						
+					
+						,
+						
+							角松 生史 [訳]
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">神戸法学雑誌 64(3・4), 189-226, 2015-03</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fwww.lib.kobe-u.ac.jp%2Fhandle_kernel%2F81008880&amp;naid=110009910877" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+						<a href="/lognavi?name=crossref&amp;lang=ja&amp;id=info:doi/10.24546/81008880" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-CrossRef', {'nonInteraction': 1});">DOI</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">7</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110010017354" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110010017354" onclick="return opendetail(110010017354);" class="taggedlink">
+					
+						CC4.0時代のオープンデータとライセンスデザイン(&lt;特集&gt;オープンデータ)
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							中川 隆太郎
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							2000年代半ば以降,欧米を中心として世界的にオープンデータ政策が活発化するなかで,著作権やEUのデータベース権などをめぐり,各国で様々なライセンスデザインの取り組みが重ねられている。本稿では,オープンデータとライセンスデザインというテーマについて,まず前提として,なぜパブリック・ライセンスが基本形となるか説明したうえで,議論の中心となるクリエイティブ・コモンズ・ライセンスやEUのデータベース権に …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報の科学と技術 65(12), 509-514, 2015</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.18919%2Fjkg.65.12_509&amp;naid=110010017354" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">8</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009662715" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009662715" onclick="return opendetail(110009662715);" class="taggedlink">
+					
+						弁護士から見た情報処理：2. ソフトウェア開発をめぐる法律問題 ─紛争回避のためのポイント─
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							市毛 由美子
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 類型（請負型／準委任型）を抑えたうえで，瑕疵担保責任と責任制限，仕様の変更管理，ユーザの協力義務とベンダの説明義務およびプロジェクト・マネジメント義務，特許権，著作権，営業秘密等の知的財産権の取扱い，フリーソフトウェア等の<span class="query">パブリックドメイン</span>の権利関係等，について解説し，自らの権利を守り他人の権利を侵害しないためにはどのようなことに注意しなければならないのかのポイントを示す． …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報処理 55(3), 225-231, 2014-02-15</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00098405%2F&amp;naid=110009662715" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">9</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130004703694" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130004703694" onclick="return opendetail(130004703694);" class="taggedlink">
+					
+						大学図書館書籍アーカイブHathiTrust
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							時実 象一
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 現在はこれにInternet Archiveのデジタル書籍や連邦政府文書などが追加されており，1,141万2,713点のコンテンツ，うち書籍588万8,922点，約35％の397万8,007点が<span class="query">パブリックドメイン</span>である。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報管理 57(8), 548-561, 2014</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1241%2Fjohokanri.57.548&amp;naid=130004703694" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">10</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009844518" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009844518" onclick="return opendetail(110009844518);" class="taggedlink">
+					
+						習熟度に対応した映画英語WBT教材の開発 : 教材のモジュール化、共有化へ向けた取り組み
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							角山 照彦
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							This study reports on the use and effect of the film-based WBT courses. With the diversification of scholastic ability rapidly advancing, there is a great need for meticulous teaching responding to va …
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">映画英語教育研究 : 紀要 19(0), 17-30, 2014</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.24499%2Fatem.19.0_17&amp;naid=110009844518" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">11</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009823766" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009823766" onclick="return opendetail(110009823766);" class="taggedlink">
+					
+						美術教育と著作権法(IV) : Web管理下における美術著作物の利用可能性と契約
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							安東 恭一郎
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… そのため,著作権法35条下および,<span class="query">パブリックドメイン</span>の利用時などにおける美術資料の扱いを検討した。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">美術教育学：美術科教育学会誌 34(0), 49-60, 2013</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.24455%2Faaej.34.0_49&amp;naid=110009823766" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">12</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009615180" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009615180" onclick="return opendetail(110009615180);" class="taggedlink">
+					
+						<span class="query">パブリックドメイン</span>映画を活用したブレンド型授業の効果
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							角山 照彦
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							This article reports on whether the use of a film-based e-learning course in a blended-learning model promotes out-of-classroom learning activities and results in an increase in study time and improve …
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">大学英語教育学会中国・四国支部研究紀要 (10), 15-28, 2013</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ndld&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fdl.ndl.go.jp%2Finfo%3Andljp%2Fpid%2F10500798&amp;naid=110009615180" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-NDLD', {'nonInteraction': 1});">国立国会図書館デジタルコレクション</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">13</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009604490" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009604490" onclick="return opendetail(110009604490);" class="taggedlink">
+					
+						<span class="query">パブリックドメイン</span>映画を活用したeラーニング教材の開発 : eラーニングによる支援は「単位の実質化」につながるのか
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							角山 照彦
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							With the diversification of scholastic ability rapidly advancing, the compelling need for meticulous teaching responding to various proficiency levels is greater than ever, and teachers must promote t …
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">映画英語教育研究 : 紀要 18(0), 27-39, 2013</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.24499%2Fatem.18.0_27&amp;naid=110009604490" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">14</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120005946744" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120005946744" onclick="return opendetail(120005946744);" class="taggedlink">
+					
+						著作権法におけるパブリック・ドメインの衰退と興隆
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							黄 汇
+						
+						
+					
+						,
+						
+							蘭 蘭 [訳]
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">知的財産法政策学研究 (38), 283-311, 2012-06</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F2115%2F49623&amp;naid=120005946744" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">15</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120006722887" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120006722887" onclick="return opendetail(120006722887);" class="taggedlink">
+					
+						帝京大学グループにおけるオーディオブックの導入について
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							高橋 憲司
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							The use of "audiobook" was focused as a way of questing knowledge and improving the education of students and personnel of the Teikyo University group. Audiobook is an audio version of a book or a lec …
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">帝京平成大学紀要 23(2), 475-481, 2012-03</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Flib.thu.ac.jp%2Fwebopac%2FTC00000078&amp;naid=120006722887" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">16</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130005480140" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130005480140" onclick="return opendetail(130005480140);" class="taggedlink">
+					
+						映画のシーン抽出に関する研究
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							横村 浩太郎
+						
+						
+					
+						,
+						
+							鹿嶋 雅之
+						
+						
+					
+						,
+						
+							佐藤 公則
+						
+						
+					
+						,
+						
+							渡邊 睦
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 最近では著作権の切れた映画が<span class="query">パブリックドメイン</span>DVDとして安価で出回り，&lt;br&gt;映像メディアがデジタルアーカイブとして大量に存在する．これらの映像&lt;br&gt;コンテンツは多種多様であり，映像内容をそのタイトル等から短時間で判別&lt;br&gt;することは困難である．&lt;br&gt;本研究は各ユーザーの求めるシーンの抽出を目的とし，映画の文法に基づ&lt;br&gt;いた各シーンの定義を行い，その定義に関連する特徴量か …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">電気関係学会九州支部連合大会講演論文集 2012(0), 591-592, 2012</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11527%2Fjceeek.2012.0_591&amp;naid=130005480140" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">17</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009554051" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009554051" onclick="return opendetail(110009554051);" class="taggedlink">
+					
+						長尾構想の検討 : 推進に向けた予測と提言
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							後藤 敏行
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… また,<span class="query">パブリックドメイン</span>と推定される資料,非市販または権利者不明と判断される資料を電子化して図書館内での閲覧,利用者への有償貸出に供する場合はオプトアウトを,市販中の資料を国立国会図書館のデータベースから出版社が販売するという仕組みについてはオプトインの規定を設けるべきと提言する。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">図書館界 64(4), 256-267, 2012</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F2241%2F121202&amp;naid=110009554051" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.20628%2Ftoshokankai.64.4_256&amp;naid=110009554051" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">18</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120002905929" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120002905929" onclick="return opendetail(120002905929);" class="taggedlink">
+					
+						<span class="query">パブリックドメイン</span>増進法を考える
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							田中 宏和
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">岡山大学大学院社会文化科学研究科紀要 (31), 61-81, 2011-03</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fousar.lib.okayama-u.ac.jp%2F44436&amp;naid=120002905929" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+						<a href="/lognavi?name=crossref&amp;lang=ja&amp;id=info:doi/10.18926/44436" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-CrossRef', {'nonInteraction': 1});">DOI</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">19</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110007605794" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110007605794" onclick="return opendetail(110007605794);" class="taggedlink">
+					
+						暗号化と表現の自由--米国デジタル・ミレニアム著作権法を素材に
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							大日方 信春
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							本稿は、DMCAにあるconstitutional objectionsについて探究しようと思う。
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">熊本法学 (119), 1-44, 2010-03</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F2298%2F15411&amp;naid=110007605794" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">20</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110007580532" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110007580532" onclick="return opendetail(110007580532);" class="taggedlink">
+					
+						オープンアクセスの法的課題 : ライセンスとその標準化・互換性を中心に(&lt;特集&gt;オープンアクセス)
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							渡辺 智暁
+						
+						
+					
+						,
+						
+							野口 祐子
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							本稿では,オープンアクセスの法的な課題として,著作権の利用許諾(ライセンス)の果たす役割について述べる。学術文献を共有し,情報の活用を促進する上では,著作権は障害になりかねない。これを解消する一つの手段がライセンスである。多様なライセンスが互換性を考慮しないままに開発・利用されると,再利用や複数の著作物の組み合わせによる利用の妨げとなるケースがあるため,ライセンスの標準化や互換性の確保が重要である …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報の科学と技術 60(4), 151-155, 2010</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.18919%2Fjkg.60.4_151&amp;naid=110007580532" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+						<a href="/lognavi?name=crm&amp;lang=ja&amp;type=abstract&amp;id=2010177200" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Search-Ichushi', {'nonInteraction': 1});">医中誌Web</a>&nbsp;
+					
+					
+					
+					
+						<span class="numof_quoted_reference">参考文献5件</span>
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">21</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110007530626" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110007530626" onclick="return opendetail(110007530626);" class="taggedlink">
+					
+						公共空間と<span class="query">パブリックドメイン</span>--イギリスのアメニティ概念とその現代性を手掛かりとして
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							小林 俊和
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">立命館経営学 48(4), 147-163, 2009-11</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F10367%2F1042&amp;naid=110007530626" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+						<a href="/lognavi?name=crossref&amp;lang=ja&amp;id=info:doi/10.34382/00000912" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-CrossRef', {'nonInteraction': 1});">DOI</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">22</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120002277709" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120002277709" onclick="return opendetail(120002277709);" class="taggedlink">
+					
+						知的財産法における<span class="query">パブリックドメイン</span>の保護について
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							胡 開忠
+						
+						
+					
+						,
+						
+							大内 哲也 [訳]
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">知的財産法政策学研究 (23), 157-182, 2009-06</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F2115%2F43592&amp;naid=120002277709" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">23</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130004609463" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130004609463" onclick="return opendetail(130004609463);" class="taggedlink">
+					
+						映像と音声特徴に基づいた映画のダイジェスト生成
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							鶴田 伸一
+						
+						
+					
+						,
+						
+							鹿嶋 雅之
+						
+						
+					
+						,
+						
+							佐藤 公則
+						
+						
+					
+						,
+						
+							渡邊 睦
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 生成手法を提案した．提案手法では動画コンテンツを音声と映像の2つの視点から捉え，それぞれから個別に特徴抽出を行う．各々の特徴に対し重み付けを行い評価することにより，会話・動き・効果音それぞれに着目したダイジェストの作成が容易に行える．<span class="query">パブリックドメイン</span>のカラー実写映画およびアニメーションに対し提案手法を適用し，特徴シーンの抽出およびそれに基づいたダイジェストの生成を行った． …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">電気関係学会九州支部連合大会講演論文集 2009(0), 155-155, 2009</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11527%2Fjceeek.2009.0.155.0&amp;naid=130004609463" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">24</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110007486827" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110007486827" onclick="return opendetail(110007486827);" class="taggedlink">
+					
+						1.<span class="query">パブリックドメイン</span>映画『ローマの休日』を利用した教育教材の開発(大会テーマ:グローバルな英語コミュニケーション能力とは-英語教育再考)
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							濱田 真由美
+						
+						
+					
+						,
+						
+							穐本 浩美
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">JACET全国大会要綱 47, 157-158, 2008</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ndld&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fdl.ndl.go.jp%2Finfo%3Andljp%2Fpid%2F10498395&amp;naid=110007486827" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-NDLD', {'nonInteraction': 1});">国立国会図書館デジタルコレクション</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">25</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110006661186" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110006661186" onclick="return opendetail(110006661186);" class="taggedlink">
+					
+						カナダにおける表現の自由と著作権
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							大林 啓吾
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… <span class="query">パブリックドメイン</span>が狭小化し、翻案物の作成等に制限がかかるからである。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">尚美学園大学総合政策研究紀要 (13), 13-25, 2007-03</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1506%2F00000092%2F&amp;naid=110006661186" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">26</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110006854667" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110006854667" onclick="return opendetail(110006854667);" class="taggedlink">
+					
+						1.デジタルアーカイブの歴史的考察
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							笠羽 晴夫
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">映像情報メディア学会誌 61(11), 1545-1548, 2007</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.3169%2Fitej.61.1545&amp;naid=110006854667" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+						<span class="numof_quoted_reference">被引用文献1件</span>
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">27</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130004577613" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130004577613" onclick="return opendetail(130004577613);" class="taggedlink">
+					
+						健常高齢者における脳萎縮と無症候性脳病変の検討:MRIによる定性的評価と定量的評価
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							武田 貴光
+						
+						
+					
+						,
+						
+							近藤 健男
+						
+						
+					
+						,
+						
+							杉山 謙
+						
+						
+					
+						,
+						
+							出江 紳一
+						
+						
+					
+						,
+						
+							今井 潤
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… MRIをスキャナでパーソナルコンピューターに読み込み、<span class="query">パブリックドメイン</span>ソフトを用いて各面積の画素値を測定し、頭蓋脳指数（CCI）｛（脳実質の画素数／頭蓋内の画素数）×100%｝と脳室指数（VAI）｛脳室の画素数／（脳実質の画素数＋脳室の画素数）｝を計算した。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">理学療法学Supplement 2003(0), A0074-A0074, 2004</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.14900%2Fcjpt.2003.0.A0074.0&amp;naid=130004577613" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">28</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110002826956" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110002826956" onclick="return opendetail(110002826956);" class="taggedlink">
+					
+						デジタル・アーカイブにおける課題と展望(&lt;特集&gt;デジタル情報資源のアーカイビング)
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							武邑 光裕
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							「記憶」がデジタル環境に記録され,デジタル・アーカイブは未来の記憶に資する可能性を提示する。言語を記述,印刷し,書籍という重量媒体を最終形とした情報資産の意味は変容し,テクストの深層にあるコードそれ自体が,デジタル情報の原資と認識される。累積と離散性,この二つの概念が合流するデジタル・アーカイブの概念を考えると,それはデジタル情報財の普遍的な格納を目指すと同時に,情報の流動化や創造性を促す装置でも …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報の科学と技術 54(9), 440-446, 2004</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.18919%2Fjkg.54.9_440&amp;naid=110002826956" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+						<span class="numof_quoted_reference">参考文献13件</span>
+					
+					
+						<span class="numof_quoted_reference">被引用文献1件</span>
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">29</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130004376788" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130004376788" onclick="return opendetail(130004376788);" class="taggedlink">
+					
+						QRコード (2次元バーコード) の開発と生産管理
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							野村 政弘
+						
+						
+					
+						,
+						
+							澤田 善次郎
+						
+						
+					
+						,
+						
+							星野 裕
+						
+						
+					
+						,
+						
+							増澤 洋一
+						
+						
+					
+						,
+						
+							藤本 義治
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… この日本発のQRコードは<span class="query">パブリックドメイン</span>として全世界に向けて発信している。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">生産管理 8(2), 107-112, 2002</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.14846%2Fseisankanri1995.8.2_107&amp;naid=130004376788" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">30</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110001097911" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110001097911" onclick="return opendetail(110001097911);" class="taggedlink">
+					
+						共有データを利用して、情報選択能力の基礎を育てる
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							赤川 雅生
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… みんなのお気に入り・おすすめの作品の中から、自分がほしいと思う情報を選び、加工することで、新たな自分のお気に入りやおすすめの作品を作り出し、人に伝える・・・人が作り出したものから新たな物を作り出す<span class="query">パブリックドメイン</span>の考え方に立ち、本実践は低学年期における共有データの使い方を探ったものである。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">年会論文集 (18), 25-26, 2002</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ndld&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fdl.ndl.go.jp%2Finfo%3Andljp%2Fpid%2F10405669&amp;naid=110001097911" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-NDLD', {'nonInteraction': 1});">国立国会図書館デジタルコレクション</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">31</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110000472516" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110000472516" onclick="return opendetail(110000472516);" class="taggedlink">
+					
+						常微分方程式数値解法の並列アルゴリズムと<span class="query">パブリックドメイン</span>ソフトウェアパッケージPVM
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							川? 拓弥
+						
+						
+					
+						,
+						
+							奈良 久
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							The VLSI revolution is stimulating research in the fields of parallel processing and multiprocessor system. Multiprocessor systems are now available for very fast computer used in the scientific numer …
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">八戸工業大学情報システム工学研究所紀要 13, 33-39, 2001-03</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1078%2F00002598%2F&amp;naid=110000472516" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">32</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110002437725" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110002437725" onclick="return opendetail(110002437725);" class="taggedlink">
+					
+						分子生物学とインターネット : 情報の共有と<span class="query">パブリックドメイン</span>データベースの重要性
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							鵜川 義弘
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">日本機械学会誌 99(937), 1007-1010, 1996</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1299%2Fjsmemag.99.937_1007&amp;naid=110002437725" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+						<span class="numof_quoted_reference">参考文献9件</span>
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">33</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110002876723" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110002876723" onclick="return opendetail(110002876723);" class="taggedlink">
+					
+						OSIプロトコルプログラムのTCP/IP上への移植とその性能評価
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							大岸 智彦
+						
+						
+					
+						,
+						
+							井戸上 彰
+						
+						
+					
+						,
+						
+							加藤 聰彦
+						
+						
+					
+						,
+						
+							鈴木 健二
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 従ってこのような状況においては、TCP上でISOトランスポートサービスを提供するRFC1006が有効であり、<span class="query">パブリックドメイン</span>ソフトウェアとして利用されているISODEもこれを採用している。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">全国大会講演論文集 第51回(ネットワーク), 79-80, 1995-09-20</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00128310%2F&amp;naid=110002876723" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">34</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110002886681" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110002886681" onclick="return opendetail(110002886681);" class="taggedlink">
+					
+						電子メールのマンマシン・インタフェース
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							三井 礼子
+						
+						
+					
+						,
+						
+							片山 陽子
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 我々は開発作業の効率化をコウリョウシテデンシメールI/Fに<span class="query">パブリックドメイン</span>・ソフトウェアとして流通していた「xmh」を採用した。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">全国大会講演論文集 第42回(ネットワーク), 227-228, 1991-02-25</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00120039%2F&amp;naid=110002886681" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">35</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110002874894" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110002874894" onclick="return opendetail(110002874894);" class="taggedlink">
+					
+						EWS4800シリーズ : Xウィンドウのチューニング技法
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							本郷 喜裕
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… X Window Systemはクライアント・サーバモデルに基づくネットワークトランスペアレントな環境を提供し、移植性の良さと<span class="query">パブリックドメイン</span>という配布形態により標準ウィンドウシステムとしての地位を固めつつある。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">全国大会講演論文集 第38回(ソフトウェア工学), 1265-1266, 1989-03-15</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00116829%2F&amp;naid=110002874894" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+	</ul>
+
+	</div>
+	
+</form>
+<form name="feedbackform" action="/feedback" method="post">
+	<input type="hidden" name="from" />
+	<input type="hidden" name="process" />
+</form>
+
+	<div class="paging">
+	
+	</div>
+	
+
+	</div>
+	
+</div>
+
+	
+
+
+
+
+
+
+
+
+<div id="side_navigation" class="side_navigation">
+<div id="relateditem" class="relateditem">
+	
+	
+	<div id="relatedauthor" class="relateditem_section relatedauthor">
+	<h2 class="heading accordion hidden-xs">
+		<a href="javascript:void(0)" class="accordionSwitch collapsed" data-toggle="collapse" data-target="#relatedAuthorList">
+		</a>関連著者
+	</h2>
+	<ul id="relatedAuthorList">
+		
+			
+			<li><a href="/author?q=%E8%A7%92%E5%B1%B1+%E7%85%A7%E5%BD%A6" onclick="return linkUrlLengthCheck('/author?q=%E8%A7%92%E5%B1%B1+%E7%85%A7%E5%BD%A6');">角山 照彦</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BD%90%E8%97%A4+%E5%85%AC%E5%89%87" onclick="return linkUrlLengthCheck('/author?q=%E4%BD%90%E8%97%A4+%E5%85%AC%E5%89%87');">佐藤 公則</a></li>
+		
+			
+			<li><a href="/author?q=%E6%B8%A1%E9%82%8A+%E7%9D%A6" onclick="return linkUrlLengthCheck('/author?q=%E6%B8%A1%E9%82%8A+%E7%9D%A6');">渡邊 睦</a></li>
+		
+			
+			<li><a href="/author?q=%E9%B9%BF%E5%B6%8B+%E9%9B%85%E4%B9%8B" onclick="return linkUrlLengthCheck('/author?q=%E9%B9%BF%E5%B6%8B+%E9%9B%85%E4%B9%8B');">鹿嶋 雅之</a></li>
+		
+			
+			<li><a href="/author?q=%E2%BF%8A%E6%BE%A4+%E2%BC%80%E5%BC%98" onclick="return linkUrlLengthCheck('/author?q=%E2%BF%8A%E6%BE%A4+%E2%BC%80%E5%BC%98');">⿊澤 ⼀弘</a></li>
+		
+			
+			<li><a href="/author?q=%E3%83%9D%E3%82%A4%E3%82%B1%E3%83%AB%E3%83%88+%E3%82%A2%E3%83%AC%E3%82%AD%E3%82%B5%E3%83%B3%E3%83%80%E3%83%BC" onclick="return linkUrlLengthCheck('/author?q=%E3%83%9D%E3%82%A4%E3%82%B1%E3%83%AB%E3%83%88+%E3%82%A2%E3%83%AC%E3%82%AD%E3%82%B5%E3%83%B3%E3%83%80%E3%83%BC');">ポイケルト アレキサンダー</a></li>
+		
+			
+			<li><a href="/author?q=%E4%B8%89%E4%BA%95+%E7%A4%BC%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E4%B8%89%E4%BA%95+%E7%A4%BC%E5%AD%90');">三井 礼子</a></li>
+		
+			
+			<li><a href="/author?q=%E4%B8%AD%E5%B7%9D+%E7%B4%97%E5%A4%AE%E9%87%8C" onclick="return linkUrlLengthCheck('/author?q=%E4%B8%AD%E5%B7%9D+%E7%B4%97%E5%A4%AE%E9%87%8C');">中川 紗央里</a></li>
+		
+			
+			<li><a href="/author?q=%E4%B8%AD%E5%B7%9D+%E9%9A%86%E5%A4%AA%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E4%B8%AD%E5%B7%9D+%E9%9A%86%E5%A4%AA%E9%83%8E');">中川 隆太郎</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BA%95%E3%83%8E%E4%B8%8A+%E4%BF%8A%E5%93%89" onclick="return linkUrlLengthCheck('/author?q=%E4%BA%95%E3%83%8E%E4%B8%8A+%E4%BF%8A%E5%93%89');">井ノ上 俊哉</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BA%95%E6%88%B8%E4%B8%8A+%E5%BD%B0" onclick="return linkUrlLengthCheck('/author?q=%E4%BA%95%E6%88%B8%E4%B8%8A+%E5%BD%B0');">井戸上 彰</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BB%8A%E4%BA%95+%E6%BD%A4" onclick="return linkUrlLengthCheck('/author?q=%E4%BB%8A%E4%BA%95+%E6%BD%A4');">今井 潤</a></li>
+		
+			
+			<li><a href="/author?q=%E5%87%BA%E6%B1%9F+%E7%B4%B3%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E5%87%BA%E6%B1%9F+%E7%B4%B3%E4%B8%80');">出江 紳一</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8A%A0%E8%97%A4+%E8%81%B0%E5%BD%A6" onclick="return linkUrlLengthCheck('/author?q=%E5%8A%A0%E8%97%A4+%E8%81%B0%E5%BD%A6');">加藤 聰彦</a></li>
+		
+			
+			<li><a href="/author?q=%E5%90%89%E6%9D%BE+%E7%9B%B4%E7%BE%8E" onclick="return linkUrlLengthCheck('/author?q=%E5%90%89%E6%9D%BE+%E7%9B%B4%E7%BE%8E');">吉松 直美</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A0%80+%E5%84%AA%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E5%A0%80+%E5%84%AA%E5%AD%90');">堀 優子</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A2%97%E6%BE%A4+%E6%B4%8B%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E5%A2%97%E6%BE%A4+%E6%B4%8B%E4%B8%80');">増澤 洋一</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A4%A7%E4%B9%85%E4%BF%9D+%E3%82%86%E3%81%86" onclick="return linkUrlLengthCheck('/author?q=%E5%A4%A7%E4%B9%85%E4%BF%9D+%E3%82%86%E3%81%86');">大久保 ゆう</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A4%A7%E5%86%85+%E5%93%B2%E4%B9%9F" onclick="return linkUrlLengthCheck('/author?q=%E5%A4%A7%E5%86%85+%E5%93%B2%E4%B9%9F');">大内 哲也</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A4%A7%E5%B2%B8+%E6%99%BA%E5%BD%A6" onclick="return linkUrlLengthCheck('/author?q=%E5%A4%A7%E5%B2%B8+%E6%99%BA%E5%BD%A6');">大岸 智彦</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A4%A7%E6%97%A5%E6%96%B9+%E4%BF%A1%E6%98%A5" onclick="return linkUrlLengthCheck('/author?q=%E5%A4%A7%E6%97%A5%E6%96%B9+%E4%BF%A1%E6%98%A5');">大日方 信春</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A4%A7%E6%9E%97+%E5%95%93%E5%90%BE" onclick="return linkUrlLengthCheck('/author?q=%E5%A4%A7%E6%9E%97+%E5%95%93%E5%90%BE');">大林 啓吾</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A5%88%E8%89%AF+%E4%B9%85" onclick="return linkUrlLengthCheck('/author?q=%E5%A5%88%E8%89%AF+%E4%B9%85');">奈良 久</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A5%A5%E7%94%B0+%E5%80%AB%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E5%A5%A5%E7%94%B0+%E5%80%AB%E5%AD%90');">奥田 倫子</a></li>
+		
+			
+			<li><a href="/author?q=%E5%AE%89%E6%9D%B1+%E6%81%AD%E4%B8%80%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E5%AE%89%E6%9D%B1+%E6%81%AD%E4%B8%80%E9%83%8E');">安東 恭一郎</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B0%8F%E6%9E%97+%E4%BF%8A%E5%92%8C" onclick="return linkUrlLengthCheck('/author?q=%E5%B0%8F%E6%9E%97+%E4%BF%8A%E5%92%8C');">小林 俊和</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B0%8F%E6%9F%B3+%E8%B2%B4%E4%BF%8A" onclick="return linkUrlLengthCheck('/author?q=%E5%B0%8F%E6%9F%B3+%E8%B2%B4%E4%BF%8A');">小柳 貴俊</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B3%B6%E4%B8%A6+%E8%89%AF" onclick="return linkUrlLengthCheck('/author?q=%E5%B3%B6%E4%B8%A6+%E8%89%AF');">島並 良</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B7%9D%3F+%E6%8B%93%E5%BC%A5" onclick="return linkUrlLengthCheck('/author?q=%E5%B7%9D%3F+%E6%8B%93%E5%BC%A5');">川? 拓弥</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B8%82%E6%AF%9B+%E7%94%B1%E7%BE%8E%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E5%B8%82%E6%AF%9B+%E7%94%B1%E7%BE%8E%E5%AD%90');">市毛 由美子</a></li>
+		
+			
+			<li><a href="/author?q=%E5%BE%8C%E8%97%A4+%E6%95%8F%E8%A1%8C" onclick="return linkUrlLengthCheck('/author?q=%E5%BE%8C%E8%97%A4+%E6%95%8F%E8%A1%8C');">後藤 敏行</a></li>
+		
+			
+			<li><a href="/author?q=%E6%96%8E%E8%97%A4+%E6%9C%AA%E5%A4%8F" onclick="return linkUrlLengthCheck('/author?q=%E6%96%8E%E8%97%A4+%E6%9C%AA%E5%A4%8F');">斎藤 未夏</a></li>
+		
+			
+			<li><a href="/author?q=%E6%97%A9%E7%A8%B2%E7%94%B0+%E4%B8%80%E5%98%89" onclick="return linkUrlLengthCheck('/author?q=%E6%97%A9%E7%A8%B2%E7%94%B0+%E4%B8%80%E5%98%89');">早稲田 一嘉</a></li>
+		
+			
+			<li><a href="/author?q=%E6%98%93+%E5%8B%A4" onclick="return linkUrlLengthCheck('/author?q=%E6%98%93+%E5%8B%A4');">易 勤</a></li>
+		
+			
+			<li><a href="/author?q=%E6%98%9F%E9%87%8E+%E8%A3%95" onclick="return linkUrlLengthCheck('/author?q=%E6%98%9F%E9%87%8E+%E8%A3%95');">星野 裕</a></li>
+		
+			
+			<li><a href="/author?q=%E6%99%82%E5%AE%9F+%E8%B1%A1%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E6%99%82%E5%AE%9F+%E8%B1%A1%E4%B8%80');">時実 象一</a></li>
+		
+			
+			<li><a href="/author?q=%E6%9C%AC%E9%83%B7+%E5%96%9C%E8%A3%95" onclick="return linkUrlLengthCheck('/author?q=%E6%9C%AC%E9%83%B7+%E5%96%9C%E8%A3%95');">本郷 喜裕</a></li>
+		
+			
+			<li><a href="/author?q=%E6%9D%89%E5%B1%B1+%E8%AC%99" onclick="return linkUrlLengthCheck('/author?q=%E6%9D%89%E5%B1%B1+%E8%AC%99');">杉山 謙</a></li>
+		
+			
+			<li><a href="/author?q=%E6%9E%97+%E8%B1%8A" onclick="return linkUrlLengthCheck('/author?q=%E6%9E%97+%E8%B1%8A');">林 豊</a></li>
+		
+			
+			<li><a href="/author?q=%E6%A8%AA%E6%9D%91+%E6%B5%A9%E5%A4%AA%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E6%A8%AA%E6%9D%91+%E6%B5%A9%E5%A4%AA%E9%83%8E');">横村 浩太郎</a></li>
+		
+			
+			<li><a href="/author?q=%E6%AD%A6%E7%94%B0+%E8%B2%B4%E5%85%89" onclick="return linkUrlLengthCheck('/author?q=%E6%AD%A6%E7%94%B0+%E8%B2%B4%E5%85%89');">武田 貴光</a></li>
+		
+			
+			<li><a href="/author?q=%E6%AD%A6%E9%82%91+%E5%85%89%E8%A3%95" onclick="return linkUrlLengthCheck('/author?q=%E6%AD%A6%E9%82%91+%E5%85%89%E8%A3%95');">武邑 光裕</a></li>
+		
+			
+			<li><a href="/author?q=%E6%B3%89+%E6%84%9B" onclick="return linkUrlLengthCheck('/author?q=%E6%B3%89+%E6%84%9B');">泉 愛</a></li>
+		
+			
+			<li><a href="/author?q=%E6%B8%A1%E8%BE%BA+%E6%99%BA%E6%9A%81" onclick="return linkUrlLengthCheck('/author?q=%E6%B8%A1%E8%BE%BA+%E6%99%BA%E6%9A%81');">渡辺 智暁</a></li>
+		
+			
+			<li><a href="/author?q=%E6%BE%A4%E7%94%B0+%E5%96%84%E6%AC%A1%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E6%BE%A4%E7%94%B0+%E5%96%84%E6%AC%A1%E9%83%8E');">澤田 善次郎</a></li>
+		
+			
+			<li><a href="/author?q=%E6%BF%B1%E7%94%B0+%E7%9C%9F%E7%94%B1%E7%BE%8E" onclick="return linkUrlLengthCheck('/author?q=%E6%BF%B1%E7%94%B0+%E7%9C%9F%E7%94%B1%E7%BE%8E');">濱田 真由美</a></li>
+		
+			
+			<li><a href="/author?q=%E7%89%87%E5%B1%B1+%E9%99%BD%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E7%89%87%E5%B1%B1+%E9%99%BD%E5%AD%90');">片山 陽子</a></li>
+		
+			
+			<li><a href="/author?q=%E7%94%B0%E4%B8%AD+%E5%AE%8F%E5%92%8C" onclick="return linkUrlLengthCheck('/author?q=%E7%94%B0%E4%B8%AD+%E5%AE%8F%E5%92%8C');">田中 宏和</a></li>
+		
+			
+			<li><a href="/author?q=%E7%A6%8F%E6%9E%97+%E9%9D%96%E5%8D%9A" onclick="return linkUrlLengthCheck('/author?q=%E7%A6%8F%E6%9E%97+%E9%9D%96%E5%8D%9A');">福林 靖博</a></li>
+		
+			
+			<li><a href="/author?q=%E7%A9%90%E6%9C%AC+%E6%B5%A9%E7%BE%8E" onclick="return linkUrlLengthCheck('/author?q=%E7%A9%90%E6%9C%AC+%E6%B5%A9%E7%BE%8E');">穐本 浩美</a></li>
+		
+			
+			<li><a href="/author?q=%E7%AC%A0%E7%BE%BD+%E6%99%B4%E5%A4%AB" onclick="return linkUrlLengthCheck('/author?q=%E7%AC%A0%E7%BE%BD+%E6%99%B4%E5%A4%AB');">笠羽 晴夫</a></li>
+		
+			
+			<li><a href="/author?q=%E8%83%A1+%E9%96%8B%E5%BF%A0" onclick="return linkUrlLengthCheck('/author?q=%E8%83%A1+%E9%96%8B%E5%BF%A0');">胡 開忠</a></li>
+		
+			
+			<li><a href="/author?q=%E8%97%A4%E6%9C%AC+%E5%81%A5%E5%8F%B8" onclick="return linkUrlLengthCheck('/author?q=%E8%97%A4%E6%9C%AC+%E5%81%A5%E5%8F%B8');">藤本 健司</a></li>
+		
+			
+			<li><a href="/author?q=%E8%97%A4%E6%9C%AC+%E7%BE%A9%E6%B2%BB" onclick="return linkUrlLengthCheck('/author?q=%E8%97%A4%E6%9C%AC+%E7%BE%A9%E6%B2%BB');">藤本 義治</a></li>
+		
+			
+			<li><a href="/author?q=%E8%98%AD+%E8%98%AD" onclick="return linkUrlLengthCheck('/author?q=%E8%98%AD+%E8%98%AD');">蘭 蘭</a></li>
+		
+			
+			<li><a href="/author?q=%E8%A7%92%E6%9D%BE+%E7%94%9F%E5%8F%B2" onclick="return linkUrlLengthCheck('/author?q=%E8%A7%92%E6%9D%BE+%E7%94%9F%E5%8F%B2');">角松 生史</a></li>
+		
+			
+			<li><a href="/author?q=%E8%B5%A4%E5%B7%9D+%E9%9B%85%E7%94%9F" onclick="return linkUrlLengthCheck('/author?q=%E8%B5%A4%E5%B7%9D+%E9%9B%85%E7%94%9F');">赤川 雅生</a></li>
+		
+			
+			<li><a href="/author?q=%E8%BF%91%E8%97%A4+%E5%81%A5%E7%94%B7" onclick="return linkUrlLengthCheck('/author?q=%E8%BF%91%E8%97%A4+%E5%81%A5%E7%94%B7');">近藤 健男</a></li>
+		
+			
+			<li><a href="/author?q=%E9%87%8E%E5%8F%A3+%E7%A5%90%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E9%87%8E%E5%8F%A3+%E7%A5%90%E5%AD%90');">野口 祐子</a></li>
+		
+			
+			<li><a href="/author?q=%E9%87%8E%E6%9D%91+%E6%94%BF%E5%BC%98" onclick="return linkUrlLengthCheck('/author?q=%E9%87%8E%E6%9D%91+%E6%94%BF%E5%BC%98');">野村 政弘</a></li>
+		
+			
+			<li><a href="/author?q=%E9%88%B4%E6%9C%A8+%E5%81%A5%E4%BA%8C" onclick="return linkUrlLengthCheck('/author?q=%E9%88%B4%E6%9C%A8+%E5%81%A5%E4%BA%8C');">鈴木 健二</a></li>
+		
+			
+			<li><a href="/author?q=%E9%AB%98%E6%A9%8B+%E6%86%B2%E5%8F%B8" onclick="return linkUrlLengthCheck('/author?q=%E9%AB%98%E6%A9%8B+%E6%86%B2%E5%8F%B8');">高橋 憲司</a></li>
+		
+			
+			<li><a href="/author?q=%E9%B5%9C%E5%B7%9D+%E7%BE%A9%E5%BC%98" onclick="return linkUrlLengthCheck('/author?q=%E9%B5%9C%E5%B7%9D+%E7%BE%A9%E5%BC%98');">鵜川 義弘</a></li>
+		
+			
+			<li><a href="/author?q=%E9%B6%B4%E7%94%B0+%E4%BC%B8%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E9%B6%B4%E7%94%B0+%E4%BC%B8%E4%B8%80');">鶴田 伸一</a></li>
+		
+			
+			<li><a href="/author?q=%E9%BB%84+%E6%B1%87" onclick="return linkUrlLengthCheck('/author?q=%E9%BB%84+%E6%B1%87');">黄 汇</a></li>
+		
+	</ul>
+	</div>
+	
+
+	<div id="relatedjournal" class="relateditem_section relatedjournal">
+	<h2 class="heading accordion hidden-xs">
+		<a href="javascript:void(0)" class="accordionSwitch collapsed" data-toggle="collapse" data-target="#relatedJournalList"></a>
+		関連刊行物
+	</h2>
+	<ul id="relatedJournalList">
+		
+		
+			<li><a href="/search?journal=%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86');">全国大会講演論文集</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%83%85%E5%A0%B1%E3%81%AE%E7%A7%91%E5%AD%A6%E3%81%A8%E6%8A%80%E8%A1%93" onclick="return linkUrlLengthCheck('/search?journal=%E6%83%85%E5%A0%B1%E3%81%AE%E7%A7%91%E5%AD%A6%E3%81%A8%E6%8A%80%E8%A1%93');">情報の科学と技術</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%83%85%E5%A0%B1%E7%AE%A1%E7%90%86" onclick="return linkUrlLengthCheck('/search?journal=%E6%83%85%E5%A0%B1%E7%AE%A1%E7%90%86');">情報管理</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%98%A0%E7%94%BB%E8%8B%B1%E8%AA%9E%E6%95%99%E8%82%B2%E7%A0%94%E7%A9%B6+%3A+%E7%B4%80%E8%A6%81" onclick="return linkUrlLengthCheck('/search?journal=%E6%98%A0%E7%94%BB%E8%8B%B1%E8%AA%9E%E6%95%99%E8%82%B2%E7%A0%94%E7%A9%B6+%3A+%E7%B4%80%E8%A6%81');">映画英語教育研究 : 紀要</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%9F%A5%E7%9A%84%E8%B2%A1%E7%94%A3%E6%B3%95%E6%94%BF%E7%AD%96%E5%AD%A6%E7%A0%94%E7%A9%B6" onclick="return linkUrlLengthCheck('/search?journal=%E7%9F%A5%E7%9A%84%E8%B2%A1%E7%94%A3%E6%B3%95%E6%94%BF%E7%AD%96%E5%AD%A6%E7%A0%94%E7%A9%B6');">知的財産法政策学研究</a></li>
+		
+		
+			<li><a href="/search?journal=%E9%9B%BB%E6%B0%97%E9%96%A2%E4%BF%82%E5%AD%A6%E4%BC%9A%E4%B9%9D%E5%B7%9E%E6%94%AF%E9%83%A8%E9%80%A3%E5%90%88%E5%A4%A7%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E9%9B%BB%E6%B0%97%E9%96%A2%E4%BF%82%E5%AD%A6%E4%BC%9A%E4%B9%9D%E5%B7%9E%E6%94%AF%E9%83%A8%E9%80%A3%E5%90%88%E5%A4%A7%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86');">電気関係学会九州支部連合大会講演論文集</a></li>
+		
+		
+			<li><a href="/search?journal=JACET%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%A6%81%E7%B6%B1" onclick="return linkUrlLengthCheck('/search?journal=JACET%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%A6%81%E7%B6%B1');">JACET全国大会要綱</a></li>
+		
+		
+			<li><a href="/search?journal=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%AD%A6%E4%BC%9A%E8%AA%8C');">デジタルアーカイブ学会誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E4%B9%9D%E5%B7%9E%E5%A4%A7%E5%AD%A6%E9%99%84%E5%B1%9E%E5%9B%B3%E6%9B%B8%E9%A4%A8%E7%A0%94%E7%A9%B6%E9%96%8B%E7%99%BA%E5%AE%A4%E5%B9%B4%E5%A0%B1" onclick="return linkUrlLengthCheck('/search?journal=%E4%B9%9D%E5%B7%9E%E5%A4%A7%E5%AD%A6%E9%99%84%E5%B1%9E%E5%9B%B3%E6%9B%B8%E9%A4%A8%E7%A0%94%E7%A9%B6%E9%96%8B%E7%99%BA%E5%AE%A4%E5%B9%B4%E5%A0%B1');">九州大学附属図書館研究開発室年報</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%85%AB%E6%88%B8%E5%B7%A5%E6%A5%AD%E5%A4%A7%E5%AD%A6%E6%83%85%E5%A0%B1%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%B7%A5%E5%AD%A6%E7%A0%94%E7%A9%B6%E6%89%80%E7%B4%80%E8%A6%81" onclick="return linkUrlLengthCheck('/search?journal=%E5%85%AB%E6%88%B8%E5%B7%A5%E6%A5%AD%E5%A4%A7%E5%AD%A6%E6%83%85%E5%A0%B1%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%B7%A5%E5%AD%A6%E7%A0%94%E7%A9%B6%E6%89%80%E7%B4%80%E8%A6%81');">八戸工業大学情報システム工学研究所紀要</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%9B%B3%E6%9B%B8%E9%A4%A8%E7%95%8C" onclick="return linkUrlLengthCheck('/search?journal=%E5%9B%B3%E6%9B%B8%E9%A4%A8%E7%95%8C');">図書館界</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%A4%A7%E5%AD%A6%E8%8B%B1%E8%AA%9E%E6%95%99%E8%82%B2%E5%AD%A6%E4%BC%9A%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD%E6%94%AF%E9%83%A8%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81" onclick="return linkUrlLengthCheck('/search?journal=%E5%A4%A7%E5%AD%A6%E8%8B%B1%E8%AA%9E%E6%95%99%E8%82%B2%E5%AD%A6%E4%BC%9A%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD%E6%94%AF%E9%83%A8%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81');">大学英語教育学会中国・四国支部研究紀要</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%B0%9A%E7%BE%8E%E5%AD%A6%E5%9C%92%E5%A4%A7%E5%AD%A6%E7%B7%8F%E5%90%88%E6%94%BF%E7%AD%96%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81" onclick="return linkUrlLengthCheck('/search?journal=%E5%B0%9A%E7%BE%8E%E5%AD%A6%E5%9C%92%E5%A4%A7%E5%AD%A6%E7%B7%8F%E5%90%88%E6%94%BF%E7%AD%96%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81');">尚美学園大学総合政策研究紀要</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%B2%A1%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%A4%A7%E5%AD%A6%E9%99%A2%E7%A4%BE%E4%BC%9A%E6%96%87%E5%8C%96%E7%A7%91%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%A7%91%E7%B4%80%E8%A6%81" onclick="return linkUrlLengthCheck('/search?journal=%E5%B2%A1%E5%B1%B1%E5%A4%A7%E5%AD%A6%E5%A4%A7%E5%AD%A6%E9%99%A2%E7%A4%BE%E4%BC%9A%E6%96%87%E5%8C%96%E7%A7%91%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%A7%91%E7%B4%80%E8%A6%81');">岡山大学大学院社会文化科学研究科紀要</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%B7%A5%E5%AD%A6%E6%95%99%E8%82%B2%E7%A0%94%E7%A9%B6%E8%AC%9B%E6%BC%94%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E5%B7%A5%E5%AD%A6%E6%95%99%E8%82%B2%E7%A0%94%E7%A9%B6%E8%AC%9B%E6%BC%94%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86');">工学教育研究講演会講演論文集</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%B8%9D%E4%BA%AC%E5%B9%B3%E6%88%90%E5%A4%A7%E5%AD%A6%E7%B4%80%E8%A6%81" onclick="return linkUrlLengthCheck('/search?journal=%E5%B8%9D%E4%BA%AC%E5%B9%B3%E6%88%90%E5%A4%A7%E5%AD%A6%E7%B4%80%E8%A6%81');">帝京平成大学紀要</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%B9%B4%E4%BC%9A%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E5%B9%B4%E4%BC%9A%E8%AB%96%E6%96%87%E9%9B%86');">年会論文集</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%83%85%E5%A0%B1%E5%87%A6%E7%90%86" onclick="return linkUrlLengthCheck('/search?journal=%E6%83%85%E5%A0%B1%E5%87%A6%E7%90%86');">情報処理</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%97%A5%E6%9C%AC%E4%BF%9D%E5%81%A5%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E6%97%A5%E6%9C%AC%E4%BF%9D%E5%81%A5%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%BC%9A%E8%AA%8C');">日本保健科学学会誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%97%A5%E6%9C%AC%E6%A9%9F%E6%A2%B0%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E6%97%A5%E6%9C%AC%E6%A9%9F%E6%A2%B0%E5%AD%A6%E4%BC%9A%E8%AA%8C');">日本機械学会誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%98%A0%E5%83%8F%E6%83%85%E5%A0%B1%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E6%98%A0%E5%83%8F%E6%83%85%E5%A0%B1%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%AD%A6%E4%BC%9A%E8%AA%8C');">映像情報メディア学会誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%86%8A%E6%9C%AC%E6%B3%95%E5%AD%A6" onclick="return linkUrlLengthCheck('/search?journal=%E7%86%8A%E6%9C%AC%E6%B3%95%E5%AD%A6');">熊本法学</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%90%86%E5%AD%A6%E7%99%82%E6%B3%95%E5%AD%A6Supplement" onclick="return linkUrlLengthCheck('/search?journal=%E7%90%86%E5%AD%A6%E7%99%82%E6%B3%95%E5%AD%A6Supplement');">理学療法学Supplement</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%94%9F%E7%94%A3%E7%AE%A1%E7%90%86" onclick="return linkUrlLengthCheck('/search?journal=%E7%94%9F%E7%94%A3%E7%AE%A1%E7%90%86');">生産管理</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%A5%9E%E6%88%B8%E6%B3%95%E5%AD%A6%E9%9B%91%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E7%A5%9E%E6%88%B8%E6%B3%95%E5%AD%A6%E9%9B%91%E8%AA%8C');">神戸法学雑誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%AB%8B%E5%91%BD%E9%A4%A8%E7%B5%8C%E5%96%B6%E5%AD%A6" onclick="return linkUrlLengthCheck('/search?journal=%E7%AB%8B%E5%91%BD%E9%A4%A8%E7%B5%8C%E5%96%B6%E5%AD%A6');">立命館経営学</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%BE%8E%E8%A1%93%E6%95%99%E8%82%B2%E5%AD%A6%EF%BC%9A%E7%BE%8E%E8%A1%93%E7%A7%91%E6%95%99%E8%82%B2%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E7%BE%8E%E8%A1%93%E6%95%99%E8%82%B2%E5%AD%A6%EF%BC%9A%E7%BE%8E%E8%A1%93%E7%A7%91%E6%95%99%E8%82%B2%E5%AD%A6%E4%BC%9A%E8%AA%8C');">美術教育学：美術科教育学会誌</a></li>
+		
+	</ul>
+	</div>
+	
+</div>
+
+</div>
+
+<a class="gotop center-block visible-xs">
+	ページトップへ
+</a>
+	</div>
+	<!-- end of div#hfeed -->
+	
+
+
+
+
+
+
+
+</div>
+
+<footer class="footer">
+	<div class="footer-wrap">
+		<div class="displaymode visible-xs">
+			<div class="modelist">
+				<div class="modeitem">
+					<span id="btnSP" class="selected">スマートフォン版</span>
+				</div>
+				|
+				<div class="modeitem">
+					<a id="btnPC" href="#" onclick="selectModePc();return false;">PC版</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-linkblock ftb-about">
+			<ul class="ft-group">
+				<li><p class="ft-heading">CiNiiについて</p>
+					<ul class="ft-list">
+						<li><a href="https://support.nii.ac.jp/ja/cinii/cinii_outline">CiNiiについて</a></li>
+						<li><a href="https://support.nii.ac.jp/ja/cia/cinii_db">収録刊行物について</a></li>
+						<li><a href="https://support.nii.ac.jp/ja/cinii/terms">利用規約</a></li>
+						<li><a href="https://support.nii.ac.jp/ja/cinii/contact">お問い合わせ</a></li>
+						<li><a href="http://www.nii.ac.jp/">国立情報学研究所 (NII)</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-linkblock ftb-help">
+			<ul class="ft-group">
+				<li><p class="ft-heading">ヘルプ</p>
+					<ul class="ft-list">
+						<li><p><a href="https://support.nii.ac.jp/ja/cia/manual_outline">CiNii Articles - 日本の論文をさがす</a></p>
+						</li>
+						<li><p><a href="https://support.nii.ac.jp/ja/cib/manual_outline">CiNii Books - 大学図書館の本をさがす</a></p>
+						</li>
+						<li><p><a href="https://support.nii.ac.jp/ja/cid/manual_outline">CiNii Dissertations - 日本の博士論文をさがす</a></p>
+						</li>
+						<li><p><a href="https://support.nii.ac.jp/ja/cinii/api/api_outline">メタデータ・API</a></p>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-linkblock ftb-info">
+			<ul class="ft-group">
+				<li><p class="ft-heading">新着情報</p>
+					<ul class="ft-list">
+						<li> <a href="https://support.nii.ac.jp/ja/news/cinii">お知らせ</a></li>
+						<li> <a href="https://support.nii.ac.jp/ja/news/cinii/feed">RSS</a></li>
+						<li><a href="http://twitter.com/cinii_jp">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-linkblock ftb-service">
+			<ul class="ft-group">
+				<li><p class="ft-heading">NIIのコンテンツサービス</p>
+					<ul class="ft-list">
+						<li><a href="https://kaken.nii.ac.jp/">KAKEN - 科学研究費助成事業データベース</a></li>
+						<li><a href="https://irdb.nii.ac.jp/">IRDB - 学術機関リポジトリデータベース</a></li>
+						<li><a href="https://reo.nii.ac.jp/">NII-REO - 電子リソースリポジトリ</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-16015352-1', 'auto');
+	  ga('send', 'pageview');
+</script>
+
+<script type="text/javascript" src="/js/customFormControls_res.js?null"></script>
+</body>
+</html>
+

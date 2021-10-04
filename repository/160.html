@@ -1,0 +1,4585 @@
+
+ 
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head profile="http://www.w3.org/2003/g/data-view">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name = "format-detection" content = "telephone=no" />
+	<meta name="viewport" content="width=device-width,user-scalable=no" />
+	<meta http-equiv="content-style-type" content="text/css" />
+	<meta http-equiv="content-script-type" content="text/javascript" />
+
+	<script type="text/javascript" src="/js/jquery-1.11.2.min.js?null"></script>
+
+	<link href="/style/cinii_res.css?STYLE02V14" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<title>CiNii Articles 検索&nbsp;-
+		
+	 		&nbsp;&quot;ウィキペディア&quot;</title>
+	<link rel="search" type="application/opensearchdescription+xml" title="CiNii" href="http://ci.nii.ac.jp/opensearch/description.xml" />
+	<link rel="search" type="application/opensearchdescription+xml" title="CiNii Author" href="http://ci.nii.ac.jp/opensearch/author.xml" />
+	
+		<link rel="alternate" type="application/rss+xml" href="https://ci.nii.ac.jp/opensearch/search?q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9A%E3%83%87%E3%82%A3%E3%82%A2%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200&amp;format=rss" title="RSS 1.0" />
+		<link rel="alternate" type="application/atom+xml" href="https://ci.nii.ac.jp/opensearch/search?q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9A%E3%83%87%E3%82%A3%E3%82%A2%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200&amp;format=atom" title="Atom 1.0" />
+		<link rel="alternate" type="application/json" href="https://ci.nii.ac.jp/opensearch/search?q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9A%E3%83%87%E3%82%A3%E3%82%A2%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200&amp;format=json" title="JSON-LD 1.0" />
+	
+	
+	<script type="text/javascript" src="/js/cinii.js?JS01V130"></script>
+	<script type="text/javascript" src="/js/searchbox_disclosure.js?JS03V11"></script>
+	<script type="text/javascript" src="/js/modetab.js?JS04V13"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/html5shiv-printshiv.min.js"></script>
+	<script type="text/javascript" src="/js/respond.min.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/changeDisplayMode.js"></script>
+	<!--[if IE 8.0]>
+	<link rel="stylesheet" type="text/css" href="/style/cinii-ie8.css">
+	<![endif]-->
+</head>
+<body id="search" class="articles result_list with_sidenavi">
+	
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-header">
+	<div id="header" class="navbar-topcontent">
+
+		<p id="header_sysname"><a href="/" id="system_ci_jp" class="headerlogo"></a></p>
+
+		<div class="navbar-topcontent">
+			<!--ブランド名 ロゴ名の表示-->
+			<p id="header_sysname"><a href="/" id="system_ci_jp" class="navbar-brand headerlogo">CiNii 国立情報学研究所 学術情報ナビゲータ[サイニィ]</a></p>
+			<!--トグルボタンの設置-->
+			<button type="button" class="navbar-toggle button-menu collapsed" data-toggle="collapse" data-target="#nav-content">
+				メニュー
+			</button>
+			<button type="button" class="navbar-toggle button-search collapsed" id="hedderSearchButton">
+				検索
+			</button>
+		</div>
+	</div>
+	<div id="nav-content" class="collapse navbar-collapse headermenu">
+	
+	<ul id="header_link_jsng" class="nav navbar-nav menu-service-list">
+		<li class="active"><a href="/" class="menu-service-item">日本の論文をさがす</a></li>
+		<li><a href="/books/?l=ja" class="menu-service-item">大学図書館の本をさがす</a></li>
+		<li><a href="/d/?l=ja" class="menu-service-item">日本の博士論文をさがす</a></li>
+	</ul>
+	<ul id="header_link_jsok" class="nav navbar-nav menu-service-list" style="display:none;">
+		<li class="active"><a href="/" class="menu-service-item">日本の論文をさがす</a></li>
+		<li><a href="/books/" onclick="return doBooksSearch();" class="menu-service-item">大学図書館の本をさがす</a></li>
+		<li><a href="/d/?l=ja" class="menu-service-item">日本の博士論文をさがす</a></li>
+	</ul>
+	<script type="text/javascript">
+		document.getElementById("header_link_jsng").style.display = "none";
+		document.getElementById("header_link_jsok").style.display = "block";
+	</script>
+	
+
+	<!--ユーティリティリンク・ユーザー情報-->
+	<ul class="nav navbar-nav menu-utility-list">
+	
+	
+	
+	
+	
+		<li><a href="https://register-ci.nii.ac.jp/userregist/userTypeSel.do?lang=ja" class="menu-utility-item">新規登録</a></li> 
+		<li><a href="https://register-ci.nii.ac.jp/auth/action/login?contentsServer=CINII" class="menu-utility-item">ログイン</a></li> 
+		
+			<li><a href="/search?lang=en&amp;q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9A%E3%83%87%E3%82%A3%E3%82%A2%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200" onclick="return linkUrlLengthCheck('/search?lang=en&amp;q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9A%E3%83%87%E3%82%A3%E3%82%A2%22&amp;range=2&amp;sortorder=1&amp;start=1&amp;count=200');" class="menu-utility-item">English</a></li>
+		
+	
+	</ul>
+	</div>
+	<!--end of div#utilitylink-->
+<!--end of div#header-->
+</nav>
+<div id="body-wrap" class="container body-wrap">
+
+	
+
+
+
+
+
+
+<div id="searchbox" class="searchbox">
+<div class="searchFormContainer">
+<div class="searchformcontents container-fluid">
+<div class="searchboxheader row">
+	<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+<script type="text/javascript">
+//<![CDATA[
+var tabIndexSource = "<div id=\"tab_index\" class=\"tab_index\"><ul class=\"tab_index_list\"><li id=\"article\" class=\"tab_index_item tab_index_item-active\"><a href=\"javascript:void(0);\" id=\"tab-articles_search\" class=\"tab-index-content\" onclick=\"modeTab('article_search' , 'article');\">論文検索<\/a><\/li><li id=\"author\" class=\"tab_index_item\"><a href=\"javascript:void(0);\" id=\"tab-author_search\" class=\"tab-index-content\" onclick=\"modeTab('author_search' , 'author');\">著者検索<\/a><\/li><li id=\"fulltext\" class=\"tab_index_item\"><a href=\"javascript:void(0);\" id=\"tab-fulltext_search\" class=\"tab-index-content\" onclick=\" modeTab('fulltext_search' , 'fulltext');\">全文検索<\/a><\/li><\/ul><\/div>";
+	document.write(tabIndexSource);
+//]]>
+</script>
+	</div>
+</div><!-- end of div .searchboxheader -->
+<form id="searchform" name="searchform" action="/search" method="get" onsubmit="return false;">
+	<div id="article_search">
+		<div id="article_form">
+		<div class="row form-tabcontent form-articles">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<div id="validation_error" class="validation_error" style="display:none"></div>
+				<div class="row row-textform">
+					<div class="col-xs-9 col-sm-9 col-form">
+						<input type="text" name="q" class="main_srchterm searchforminput" id="freetextbox" onkeypress="return deleteCoordinatesByKey();" value="&quot;ウィキペディア&quot;" placeholder="フリーワード" style="color: #000000;" onblur="if(this.value==''){this.style.color='#999999'; this.value=''}" onfocus="if(this.value==''){this.style.color='#000000'; this.value = ''}" />
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<button class="btn searchbtn" onclick="return dosearch();"><span>検索</span></button>
+					</div>
+				</div>
+			</div>
+			<div id="art_normal_search" class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<div class="row filter_radiobtnbox" id="filter_radiobtnboxnormal">
+				<div class="col-xs-12 col-sm-9 filter_segmentControl">
+				<div class="row">
+				<div id="filter_radiobtnboxnormal">
+				<div class="col-xs-12 col-sm-2 filter_radiobtnbox-segmentarea1">
+		 			<label for="filter_all_normal" class="segment1 "><input type="radio" name="range" class="customRB" value="0" id="filter_all_normal" />すべて</label>
+		 		</div>
+		 		<div class="col-xs-12 col-sm-7 filter_radiobtnbox-segmentarea3">
+		 			<label for="filter_otherservice_normal" class="segment3 checked"><input type="radio" name="range" class="customRB" value="2" id="filter_otherservice_normal" checked="checked"/>本文あり</label>
+		 		</div>
+				</div>
+				</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-3 advsearchbtn-area">
+					 <a class="btn-toggle-advsearch collapsed" id="btn-toggle-advsearch-top-open" onclick="searchBoxDisclosure();" href="javascript:void(0);">
+					 	 <span class="btn-toggle-advsearch-label">詳細検索</span>
+					 </a>
+				</div>
+
+				</div><!-- end of div #filter_radiobtnboxnormal -->
+			</div><!-- end of div #art_normal_search -->
+
+			<div id="art_advanced_search" class="col-xs-12 col-sm-12 advanced_search">
+				<div class="row filter_radiobtnbox col-sm-offset-2" id="filter_radiobtnboxadvanced">
+				<div class="col-xs-12 col-sm-9 filter_segmentControl">
+				<div class="row">
+				<div id="filter_radiobtnboxadvanced">
+				<div class="col-xs-12 col-sm-2 filter_radiobtnbox-segmentarea1">
+					<label for="filter_all_advanced" class="segment1 "><input type="radio" name="range" class="customRB" value="0" id="filter_all_advanced"  />すべて</label>
+				</div>
+				<div class="col-xs-12 col-sm-7 filter_radiobtnbox-segmentarea3">
+					<label for="filter_otherservice_advanced" class="segment3 checked"><input type="radio" class="customRB" name="range" value="2" id="filter_otherservice_advanced" checked="checked"/>本文あり</label>
+				</div>
+
+				</div>
+				</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-3 advsearchbtn-area">
+					<a class="btn-toggle-advsearch" id="btn-toggle-advsearch-top-close" onclick="searchBoxDisclosure();" href="javascript:void(0);">
+						<span class="btn-toggle-advsearch-label">閉じる</span>
+					</a>
+				</div>
+
+				</div><!-- end of div#filter_radiobtn -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-2 searchformlabel"><label for="sopt1">タイトル</label></div>
+							<div class="col-xs-12 col-sm-10 col-form"><input type="text" name="title" id="sopt1" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-6 searchformlabel"><label for="sopt2">著者名</label></div>
+							<div class="col-xs-12 col-sm-6 col-form"><input type="text" name="author" id="sopt2" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-5 searchformlabel"><label for="sopt13">著者ID</label></div>
+							<div class="col-xs-12 col-sm-7 col-form"><input type="text" name="nrid" id="sopt13" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-3 searchformlabel"><label for="sopt3">著者所属</label></div>
+							<div class="col-xs-12 col-sm-9 col-form"><input type="text" name="affiliation" id="sopt3" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-6 searchformlabel"><label for="sopt4">刊行物名</label></div>
+							<div class="col-xs-12 col-sm-6 "><input type="text" name="journal" id="sopt4" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-5 searchformlabel"><label for="sopt5">ISSN</label></div>
+							<div class="col-xs-12 col-sm-7 col-form">
+								<input type="text" name="issn" id="sopt5" class="searchforminput" maxlength="16" onkeypress="return deleteCoordinatesByKey();" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-3 searchformlabel"><label for="sopt6">巻号ページ</label></div>
+							<div class="col-xs-12 col-sm-9">
+								<div class="volNumPageControls">
+									<span><input type="text" name="volume" id="sopt6" class="searchforminput" maxlength="9" onkeypress="return deleteCoordinatesByKey();" value="" placeholder="巻" /></span>
+									<span><input type="text" name="issue" id="sopt7" class="searchforminput" maxlength="9" onkeypress="return deleteCoordinatesByKey();" value="" placeholder="号(通号)" /></span>
+									<span><input type="text" name="page" id="sopt8" class="searchforminput" maxlength="19" onkeypress="return deleteCoordinatesByKey();" value="" placeholder="ページ" /></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-6 searchformlabel"><label for="sopt9">出版者</label></div>
+							<div class="col-xs-12 col-sm-6 "><input type="text" name="publisher" id="sopt9" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" /></div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-5 searchformlabel"><label for="sopt10">参考文献</label></div>
+							<div class="col-xs-12 col-sm-7 col-form">
+								<input type="text" name="references" id="sopt10" class="searchforminput" onkeypress="return deleteCoordinatesByKey();" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						<div class="row row-textform">
+							<div class="col-xs-12 col-sm-3 searchformlabel"><label for="sopt11">出版年</label></div>
+							<div class="col-xs-12 col-sm-9 ">
+								<input type="text" name="year_from" id="sopt11" class="degreeconferment_year" onkeypress="return deleteCoordinatesByKey();" maxlength="4" value="" />
+								<span class="unit">年から</span>
+								<input type="text" name="year_to" id="sopt12"  class="degreeconferment_year" maxlength="4" onkeypress="return deleteCoordinatesByKey();" value="" />
+								<span class="unit">年まで</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 visible-xs-block text-center">
+						<button class="btn searchbtn" onclick="return dosearch();">検索</button>
+					</div>
+					<div id="btn-toggle-advsearch-bottom" class="col-xs-12 visible-xs-block advsearchbtn-area">
+						<a class="btn-toggle-advsearch collapsed" href="javascript:void(0);" onclick="searchBoxDisclosure();"><span class="btn-toggle-advsearch-label">閉じる</span></a>
+					</div>
+				</div>
+			</div><!-- end of div #art_advanced_search -->
+		</div><!-- end of div .form-articles -->
+		</div><!-- end of div #article_form -->
+	</div><!-- end of div #article_search -->
+	<input type="hidden" name="count" />
+	<input type="hidden" name="sortorder" />
+	<input type="hidden" name="type" value="0" />
+</form><!--end of form #searchform -->
+<form id="authorsearchform" name="authorsearchform" action="/author" method="get" onsubmit="return false;">
+	<div id="author_search">
+		<div id="author_form">
+		<div class="row form-tabcontent form-author">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<div id="author_validation_error" class="validation_error" style="display:none"></div>
+				<div class="row row-textform">
+					<div class="col-xs-9 col-sm-9 col-form">
+						<input type="text" name="q" class="main_srchterm searchforminput" id="authname_textbox" onkeypress="return deleteCoordinatesByKeyAuthor();" value="" placeholder="著者名" style="color: #000000;" onblur="if(this.value==''){this.style.color='#999999'; this.value=''}" onfocus="if(this.value==''){this.style.color='#000000'; this.value = ''}" />
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<button class="btn searchbtn" onclick="return doauthorsearch();">検索</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- end of div .form-author -->
+		</div><!-- end of div #author_form -->
+	</div><!-- end of div #author_search -->
+	<input type="hidden" name="count" />
+	<input type="hidden" name="sortorder" />
+</form><!--end of form #authorsearchform-->
+<form id="fulltextsearchform" name="fulltextsearchform" action="/fulltext" method="get" onsubmit="return false;">
+	<div id="fulltext_search">
+		<div id="fulltext_form">
+		<div class="row form-tabcontent form-fulltext">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<div id="fulltext_validation_error" class="validation_error" style="display:none"></div>
+				<div class="row row-textform">
+					<div class="col-xs-9 col-sm-9 col-form">
+						<input type="text" name="q" class="main_srchterm searchforminput" id="freetextbox-full" onkeypress="return deleteCoordinatesByKeyFullText();" value="" placeholder="フリーワード" style="color: #000000;" onblur="if(this.value==''){this.style.color='#999999'; this.value=''}" onfocus="if(this.value==''){this.style.color='#000000'; this.value = ''}" />
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<button class="btn searchbtn" onclick="return dofulltextsearch()">検索</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- end of div .form-fulltext -->
+		</div><!-- end of div #fulltext_form -->
+	</div><!-- end of div #fulltext_search -->
+	<input type="hidden" name="count" />
+	<input type="hidden" name="sortorder" />
+</form><!-- end of form #fulltextsearchform -->
+
+<script type="text/javascript">
+//<![CDATA[
+//--This function is to set the initial view of the search box, opened or closed.--
+//--So please change the boolean argument dynamically as the situation demands.--
+//--FALSE is to be closed. TRUE is to be opened.--
+
+window.onload = function(){
+	if("" == document.searchform.q.value || document.searchform.q.value == ""){
+	    document.searchform.q.style.color = "#999999";
+		document.searchform.q.value = "";
+	}
+	if("" != document.searchform.q.value) {
+	    document.searchform.q.style.color = "#000000";
+	}
+
+	if("" == document.authorsearchform.q.value || document.authorsearchform.q.value == ""){
+	    document.authorsearchform.q.style.color = "#999999";
+		document.authorsearchform.q.value = "";
+	}
+	if("" != document.authorsearchform.q.value) {
+	    document.authorsearchform.q.style.color = "#000000";
+	}
+	if("" == document.fulltextsearchform.q.value || document.fulltextsearchform.q.value == ""){
+	    document.fulltextsearchform.q.style.color = "#999999";
+		document.fulltextsearchform.q.value = "";
+	}
+	if("" != document.fulltextsearchform.q.value) {
+	    document.fulltextsearchform.q.style.color = "#000000";
+	}
+}
+
+initialOpening(haveSearchBox(document.searchform));
+checkSync();
+
+//]]>
+
+//<![CDATA[
+//--This function is to set the initial view of the search box, article search or author search or fulltext search.--
+//--So please change 'article' or 'author' dynamically as the situation demands.--
+	initialMode('article');
+//]]>
+</script>
+</div><!-- end of div .searchformcontents -->
+</div><!-- end of div .searchFormContainer -->
+</div><!-- end of div #searchbox -->
+
+	<div class="servicestop_information">
+	<div id="servicestop_information">
+<ul>
+<a href="https://support.nii.ac.jp/ja/news/cinii/20210706">【7/12更新】2022年4月1日からのCiNii ArticlesのCiNii Researchへの統合について</a>
+</ul>
+</div>
+	</div>
+	<div class="hfeed hentry container-hasSubnav">
+	
+
+
+
+
+
+
+
+
+<div id="content" class="maincontents">
+	<div id="resultlist" class="resultlist">
+
+
+	<div class="listheading">
+	<h1 class="heading">
+	<span class="hitNumLabel">検索結果</span>
+	
+	51件中&nbsp;1-51&nbsp;を表示
+	</h1>
+	<div class="paging paging-top">
+	
+	</div>
+	
+	
+
+		<div class="actionsortbox">
+		<div class="actionforlist hidden-xs">
+		<form name="actionform" method="get" action="" class="form-inline">
+			<label for="selectall">
+				<input class="cb" type="checkbox" id="selectall" onclick="checkALL(this.checked);" />すべて選択：
+			</label>
+			<div class="form-group form-group-inline">
+				<select name="fileType" onchange="document.articlelist.fileType.value=this.value" class="form-control">
+					<option value="0">新しいウィンドウで開く</option>
+					<option value="6">RefWorksに書き出し</option>
+					<option value="7">EndNoteに書き出し</option>
+					<option value="12">Mendeleyに書き出し</option>
+					<option value="8">Refer/BiblXで表示</option>
+					<option value="9">RISで表示</option>
+					<option value="10">BibTeXで表示</option>
+					<option value="11">TSVで表示</option>
+					<option value="5">問題の指摘</option>
+				</select>
+			</div>
+			<input type="button" value="実行" onclick="nocheckalert();openALL();" class="commonBtn" />
+		</form>
+		</div>
+		
+
+		<div class="sortlist">
+		<form name="listoption" action="" class="form-inline">
+			<div class="form-group form-group-inline">
+				
+				<select name="count" id="count" class="form-control">
+    <option value="20">20件ずつ表示</option>
+    <option value="50">50件ずつ表示</option>
+    <option value="100">100件ずつ表示</option>
+    <option value="200" selected="selected">200件ずつ表示</option>
+
+
+</select>
+
+
+			</div>
+
+			<div class="form-group form-group-inline">
+				
+					
+					<select name="sortorder" id="sortorder" class="form-control">
+    <option value="1" selected="selected">出版年：新しい順</option>
+    <option value="2">出版年：古い順</option>
+    <option value="4">タイトル：五十音順</option>
+    <option value="3">タイトル：五十音逆順</option>
+    <option value="6">刊行物名：五十音順</option>
+    <option value="5">刊行物名：五十音逆順</option>
+    <option value="7">被引用件数：多い順</option>
+
+
+</select>
+
+
+				
+				
+			</div>
+			
+				<input type="button" value="表示" onclick="return dosearch();" class="commonBtn" />
+				
+			
+			
+		</form>
+		</div>
+		
+		</div>
+		
+	</div><!-- end of .listHeading-->
+	
+
+
+<form name="articlelist" action="/export" method="post">
+	<input type="hidden" name="fileType" />
+	<div id="itemlistbox" class="listContainer">
+	<ul>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">1</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007867997" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007867997" onclick="return opendetail(130007867997);" class="taggedlink">
+					
+						英語版<span class="query">ウィキペディア</span>からプロパティ公理を備えたオントロジーの構築と評価
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							川上 時生
+						
+						
+					
+						,
+						
+							森田 武史
+						
+						
+					
+						,
+						
+							山口 高平
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							&lt;p&gt;Large-scale ontologies have received much attention in various fields such as information retrieval, data integration, and question answering. However, since it is costly to construct and mai …
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会論文誌 35(4), D-J33_1-14, 2020</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1527%2Ftjsai.D-J33&amp;naid=130007867997" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">2</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007867994" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007867994" onclick="return opendetail(130007867994);" class="taggedlink">
+					
+						英語版<span class="query">ウィキペディア</span>オントロジーの構築とYAGOおよびDBpediaとの比較評価
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							川上 時生
+						
+						
+					
+						,
+						
+							森田 武史
+						
+						
+					
+						,
+						
+							山口 高平
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							&lt;p&gt;Large-scale ontologies are attracting attention in various fields such as information retrieval, data integration and question answering. Because it takes many costs for human experts to buil …
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会論文誌 35(4), C-J32_1-14, 2020</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1527%2Ftjsai.C-J32&amp;naid=130007867994" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">3</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007854857" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007854857" onclick="return opendetail(130007854857);" class="taggedlink">
+					
+						《報告4》図書館における地域資料の新たな用方法としての<span class="query">ウィキペディア</span>・タウン:事業の意義と現状，今後の展開について（特集・2019年度図書館学セミナー）
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							青木 和人
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">図書館界 71(6), 330-335, 2020</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.20628%2Ftoshokankai.71.6_330&amp;naid=130007854857" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">4</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007803937" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007803937" onclick="return opendetail(130007803937);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>における女性科学者記事
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							北村 紗衣
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;この論考においては，<span class="query">ウィキペディア</span>において女性科学者の人物記事が比較的冷遇されてきた経過と，それに対して現在行われている対策を検討し，今後の改善のための方策を指摘する。 … <span class="query">ウィキペディア</span>に存在するジェンダーバイアスについては，既にさまざまなところで指摘がなされおり，女性科学者に関する人物記事についてもその貧弱さが指摘されてきた。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報の科学と技術 70(3), 127-133, 2020</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.18919%2Fjkg.70.3_127&amp;naid=130007803937" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">5</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007658933" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007658933" onclick="return opendetail(130007658933);" class="taggedlink">
+					
+						日本語BERTモデルを用いた経済テキストデータのセンチメント分析
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							青嶋 智久
+						
+						
+					
+						,
+						
+							中川 慧
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… このモデルは事前学習として用いることで様々なタスクに適用可能であり、我々は日本語版<span class="query">ウィキペディア</span>のデータから日本語版のBERTモデルを構築した。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会全国大会論文集 JSAI2019(0), 4Rin127-4Rin127, 2019</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fpjsai.JSAI2019.0_4Rin127&amp;naid=130007658933" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">6</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007658546" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007658546" onclick="return opendetail(130007658546);" class="taggedlink">
+					
+						極性を考慮したリスク発見に向けた因果関係ネットワークの構築
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							五十嵐 光秋
+						
+						
+					
+						,
+						
+							坂地 泰紀
+						
+						
+					
+						,
+						
+							和泉 潔
+						
+						
+					
+						,
+						
+							島田 尚
+						
+						
+					
+						,
+						
+							須田 真太郎
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;決算短信の因果関係ネットワークを構築する実験を行った．因果関係を決算短信から抽出し，表現の類似度を算出してネットワークを構築した．類似度の計算には日本語版<span class="query">ウィキペディア</span>のコーパスから作成したword2vecモデルを使用し，単語の重要度を表すidf値の組み合わせることで，単語ベクトルから因果関係表現のベクトルを獲得した．また、極性辞書を用いて因果表現の極性の反転を捉えることで，word2vec …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会全国大会論文集 JSAI2019(0), 2O3J1304-2O3J1304, 2019</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fpjsai.JSAI2019.0_2O3J1304&amp;naid=130007658546" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">7</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120006488032" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120006488032" onclick="return opendetail(120006488032);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>タウン東山 : 京都女子大学図書館司書課程におけるアクティブ・ラーニング実践
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							桂 まに子
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">京都女子大学図書館情報学研究紀要 (005), 1-12, 2018-03-31</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F11173%2F2618&amp;naid=120006488032" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">8</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007527788" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007527788" onclick="return opendetail(130007527788);" class="taggedlink">
+					
+						大学初年次における「身近な地域」の調査と<span class="query">ウィキペディア</span>編集―奈良のならまちでの実践からみた有効性と課題―
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							河本 大地
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;「身近な地域」の調査と<span class="query">ウィキペディア</span>編集の組合せの有効性と課題を，大学の初年次教育における実践をもとに整理することが本稿の目的である．対象地域は古都・奈良のならまちで，奈良教育大学の近くに歴史的町並みを有する．学生は，ならまち各町を「マイタウン」として担当し，<span class="query">ウィキペディア</span>記事を作成するとともに，自治会長等への聞取りや施設訪問などをおこない，成果を報 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">E-journal GEO 13(2), 534-548, 2018</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.4157%2Fejgeo.13.534&amp;naid=130007527788" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">9</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130006742618" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130006742618" onclick="return opendetail(130006742618);" class="taggedlink">
+					
+						[C22] 地域資料をアーカイブする手法としての<span class="query">ウィキペディア</span>タウン、または<span class="query">ウィキペディア</span>とウィキメディア・コモンズ
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							日下 九八
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;初回の企画立ち上げから、各地の<span class="query">ウィキペディア</span>タウンをサポートし、またファシリテーター養成講座や甲州エディットソンなど関連イベントにも関わってきた経験から、各事例を報告し、<span class="query">ウィキペディア</span>タウンに期待されるもの、得られるものを、デジタルアーカイビングの観点から整理する。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">デジタルアーカイブ学会誌 2(2), 120-123, 2018</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.24506%2Fjsda.2.2_120&amp;naid=130006742618" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">10</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130006728175" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130006728175" onclick="return opendetail(130006728175);" class="taggedlink">
+					
+						人材養成部会「<span class="query">ウィキペディア</span>タウンin岐阜」実施報告
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							石原 眞理
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">デジタルアーカイブ学会誌 2(1), 43-43, 2018</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.24506%2Fjsda.2.1_43&amp;naid=130006728175" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">11</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120006335022" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120006335022" onclick="return opendetail(120006335022);" class="taggedlink">
+					
+						情報科学研究会アンケート集計
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">尾道市立大学地域総合センター叢書 (9), 90-94, 2017-06</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fharp.lib.hiroshima-u.ac.jp%2Fonomichi-u%2Fmetadata%2F13084&amp;naid=120006335022" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">12</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130006589083" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130006589083" onclick="return opendetail(130006589083);" class="taggedlink">
+					
+						オンライン・コミュニティにおける協働と調整
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							積田 淳史
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							&lt;p&gt;　オンライン・コミュニティ研究は増えつつあるが，参加者たちの協働プロセスと，問題の調整に関する理解は十分ではない．そこで本研究は，約10年のケーススタディを行った．その結果，参加者たちは，対話による調整，階層組織やルールといった構造的な調整，目標や方針など参加者に共有された情報による調整，自らの活動を自発的に変化させる「調節」の4つの手段を組み合わせて調整を実現し，協働を進めるこ …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">組織科学 51(2), 60-73, 2017</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11207%2Fsoshikikagaku.51.2_60&amp;naid=130006589083" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">13</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130006069735" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130006069735" onclick="return opendetail(130006069735);" class="taggedlink">
+					
+						[B02] 地域資料デジタルアーカイブに市民参加型<span class="query">ウィキペディア</span>タウンが果たす意義
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							青木 和人
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;/p&gt;&lt;p&gt;そこで本研究では、市民参加型で地域資料を出典としながら、<span class="query">ウィキペディア</span>上にその内容を編集する<span class="query">ウィキペディア</span>タウン活動成果のテキストマイニング分析から、その意義について考察した。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">デジタルアーカイブ学会誌 1(Pre), 37-42, 2017</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.24506%2Fjsda.1.Pre_37&amp;naid=130006069735" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">14</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120006319738" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120006319738" onclick="return opendetail(120006319738);" class="taggedlink">
+					
+						反応スキームを眺めて簡単に解ける酵素反応速度論
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							多比良 和誠
+						
+						
+					
+						,
+						
+							二村 泰弘
+						
+						
+					
+						,
+						
+							加藤 卓
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 前半では、一般的な解説書や<span class="query">ウィキペディア</span>の「ミカエリス・メンテン式」の説明にも載っている方法を復習するが、実は、この方法だと複雑な酵素反応を解くことは非常に困難である。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">東京福祉大学・大学院紀要 = Bulletin of Tokyo University and Graduate School of Social Welfare 7(1), 47-56, 2016-10</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F10087%2F10735&amp;naid=120006319738" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">15</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007956752" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007956752" onclick="return opendetail(130007956752);" class="taggedlink">
+					
+						ラウンドテーブル <span class="query">ウィキペディア</span>と科学史 : 知識とコミュニケーションを考える 日本科学史学会63回年会シンポジウム報告
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							北村 紗衣
+						
+						
+					
+						,
+						
+							日下 九八
+						
+						
+					
+						,
+						
+							吉本 秀之
+						
+						
+					
+						,
+						
+							藤本 大士
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">科学史研究 55(279), 221, 2016</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.34336%2Fjhsj.55.279_221&amp;naid=130007956752" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">16</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007502895" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007502895" onclick="return opendetail(130007502895);" class="taggedlink">
+					
+						5. DBpedia Japanese
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							加藤 文彦
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">映像情報メディア学会誌 70(11), 857-861, 2016</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.3169%2Fitej.70.857&amp;naid=130007502895" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">17</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130005170301" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130005170301" onclick="return opendetail(130005170301);" class="taggedlink">
+					
+						やりたいことを仕事にしよう！ししょまろはん流仕事術
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							是住 久美子
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… また，<span class="query">ウィキペディア</span>タウンなどの外部のコミュニティ活動に司書として参加し，役割を果たすことで新たな図書館の可能性に気付くこともある。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報の科学と技術 66(12), 615-618, 2016</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.18919%2Fjkg.66.12_615&amp;naid=130005170301" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">18</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120007016076" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120007016076" onclick="return opendetail(120007016076);" class="taggedlink">
+					
+						図書館における地域資料の活用事例 : Wikipedia Town in Tsuru実施とスマートフォンアプリの作成
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							日向 良和
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 本研究は2015年度都留文科大学博物館学芸員資格課程の、博物館情報メディア論にて実 習としておこなわれた、<span class="query">ウィキペディア</span>タウンin 都留と、スマートフォンアプリの作成 の実践報告である。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">都留文科大學研究紀要 84, 87-100, 2016</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1679%2F00000377%2F&amp;naid=120007016076" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+						<a href="/lognavi?name=crossref&amp;lang=ja&amp;id=info:doi/10.34356/00000377" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-CrossRef', {'nonInteraction': 1});">DOI</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">19</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="170000151245" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/170000151245" onclick="return opendetail(170000151245);" class="taggedlink">
+					
+						公共図書館を情報発信拠点とした市民参加型オープンデータ作成イベントの参加者属性分析
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							青木 和人
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">じんもんこん2015論文集 (2015), 145-152, 2015-12-12</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00146537%2F&amp;naid=170000151245" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">20</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120005611501" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120005611501" onclick="return opendetail(120005611501);" class="taggedlink">
+					
+						Policy Topics 学部研究会報告 <span class="query">ウィキペディア</span>とどうつきあうか : 日本語版管理者の現場と経験から
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							山田 晴通
+						
+						
+					
+						,
+						
+						
+							Harumichi Yamada
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">Journal of policy studies = 総合政策研究 (49), 121-125, 2015-03</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F10236%2F13330&amp;naid=120005611501" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">21</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009867090" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009867090" onclick="return opendetail(110009867090);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>編集コラボレーションにおける編集者間の社会ネットワークの効果
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							根本 啓一
+						
+						
+					
+						,
+						
+							ピーター グロア
+						
+						
+					
+						,
+						
+							ロバート ローバッカー
+						
+						
+					
+						,
+						
+							岡田 謙一
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… と英語版の<span class="query">ウィキペディア</span>を対象とし，<span class="query">ウィキペディア</span>の記事を編集するユーザ間に存在する社会ネットワークが，記事編集という協調作業においてどのような影響があるかを分析した．記事編集に関わるユーザ間の社会ネットワークを計測するために，個々のユーザが持つユーザ会話ページへの書き込みによるインタラクションに着目した．英語版の<span class="query">ウィキペディア</span>では，記事 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報処理学会論文誌 56(1), 83-96, 2015-01-15</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00112702%2F&amp;naid=110009867090" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">22</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130005491625" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130005491625" onclick="return opendetail(130005491625);" class="taggedlink">
+					
+						オンライン・コミュニティにおける協働と組織化
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							積田 淳史
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 本発表では、成功事例である<span class="query">ウィキペディア</span>の定性分析を基に、どのようなバランスがとられているかを紹介する。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">経営情報学会　全国研究発表大会要旨集 2015f(0), 435-438, 2015</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11497%2Fjasmin.2015f.0_435&amp;naid=130005491625" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">23</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007783991" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007783991" onclick="return opendetail(130007783991);" class="taggedlink">
+					
+						Wikiによる農業農村情報用語集システム
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							関勝 寿
+						
+						
+					
+						,
+						
+							溝口 勝
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… <span class="query">ウィキペディア</span>と同じように，一般のウェブ利用者が編集作業に参加でき，投稿履歴によっていつ，誰がどのような編集をしたかが分かる，という特徴を持っている。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">農業農村工学会誌 80(1), 3-6,a1, 2014</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11408%2Fjjsidre.80.1_3&amp;naid=130007783991" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">24</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130004705894" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130004705894" onclick="return opendetail(130004705894);" class="taggedlink">
+					
+						言語横断エンティティリンキングのための語義曖昧性解消
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							古川 竜也
+						
+						
+					
+						,
+						
+							相良 毅
+						
+						
+					
+						,
+						
+							相澤 彰子
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 日本語の技術的な文章中の専門用語から，英語<span class="query">ウィキペディア</span>項目へのリンクを付与することができれば，専門用語について豊富な情報を得ることができる．そこで本研究では，日本語文章中の専門用語から英語<span class="query">ウィキペディア</span>項目へリンクする言語横断エンティティリンキングの実現を目指す．本稿では，そのために必要な語義曖昧性解消手法を提案する．また，手動で構築した評価データを用い …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報知識学会誌 24(2), 172-177, 2014</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.2964%2Fjsik_2014_014&amp;naid=130004705894" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">25</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="10031173588" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/10031173588" onclick="return opendetail(10031173588);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>教育の経験
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							時実 象一
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 図書館情報学志望の学生を対象に<span class="query">ウィキペディア</span>の作成実習を行なった. … 5-6名のグループで作成したい記事を選定し, <span class="query">ウィキペディア</span>のアカウントを取得して記事を作成した. … 教員に対する<span class="query">ウィキペディア</span>の利用についてのアンケート結果についても述べた. …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報知識学会誌 23(2), 185-192, 2013-05-25</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.2964%2Fjsik.23_185&amp;naid=10031173588" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+						<span class="numof_quoted_reference">参考文献19件</span>
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">26</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120005642012" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120005642012" onclick="return opendetail(120005642012);" class="taggedlink">
+					
+						構築型文化コモンズと著作権法 : 「オープン・クリエーション」モデルの制度的条件とその含意
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							山根 崇邦
+						
+						
+					
+						,
+						
+						
+							Takakuni Yamane
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… オープンソース・ソフトウェアや<span class="query">ウィキペディア</span>、AP通信、興行用マジックなど、一定のコミュニティが知的資源を共有管理することでその資源の豊富化を実現する事例が増えている。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">同志社法学 64(6), 1695-1733, 2013-01</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1707%2F00023360%2F&amp;naid=120005642012" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+						<a href="/lognavi?name=crossref&amp;lang=ja&amp;id=info:doi/10.14988/pa.2017.0000014088" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-CrossRef', {'nonInteraction': 1});">DOI</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">27</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130003360635" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130003360635" onclick="return opendetail(130003360635);" class="taggedlink">
+					
+						専門知識の発信による学会の社会貢献　土木学会応用力学委員会の<span class="query">ウィキペディア</span>プロジェクト
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							山川 優樹
+						
+						
+					
+						,
+						
+							柴田 俊文
+						
+						
+					
+						,
+						
+							中井 健太郎
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 土木学会応用力学委員会では，学術団体による社会貢献の取り組みとして，<span class="query">ウィキペディア</span>を通じて土木工学や応用力学に関する専門知識・情報を体系的に社会に発信・還元することを目的に「応用力学<span class="query">ウィキペディア</span>プロジェクト」を進めている。 … 本稿ではこの「応用力学<span class="query">ウィキペディア</span>プロジェクト」の活動を紹介する。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報管理 55(11), 819-825, 2013</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1241%2Fjohokanri.55.819&amp;naid=130003360635" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+						<span class="numof_quoted_reference">被引用文献1件</span>
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">28</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110009783494" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110009783494" onclick="return opendetail(110009783494);" class="taggedlink">
+					
+						過去の編集情報を用いた<span class="query">ウィキペディア</span>利用者の編集行動に関する予測
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							吉田裕
+						
+						
+					
+						,
+						
+							大和田勇人
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 近年，<span class="query">ウィキペディア</span>利用者の編集回数は減少している．2005年以前に<span class="query">ウィキペディア</span>編集に参加した者の内その1年後も編集活動を続けている者は40％であるが，2007年以降は12～15％のみである．利用者は<span class="query">ウィキペディア</span>・コミュニティへの参加に何らかの問題を抱えており，コミュニティの成長を妨げている．本研究は，データマイニングの手法を用いて過去の編集情報から利用 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">第74回全国大会講演論文集 2012(1), 461-462, 2012-03-06</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00109552%2F&amp;naid=110009783494" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">29</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130005457174" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130005457174" onclick="return opendetail(130005457174);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>と地理学教育の連携の可能性
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							山田 晴通
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… そして、そうした検索の結果としてヒットする可能性が高く、レポートの作成に参考される事の多いサイトのひとつが<span class="query">ウィキペディア</span>、特にその日本語版である。 … そもそも<span class="query">ウィキペディア</span>は、ネットにアクセスできる者であれば、誰もが加筆編集に参加できることが最大の特徴であり、一定の権威のある専門家が項目を執筆するような在来型の百科事典とは性格が大きく異なっている。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">日本地理学会発表要旨集 2012s(0), 100196, 2012</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.14866%2Fajg.2012s.0_100196&amp;naid=130005457174" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">30</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130001855950" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130001855950" onclick="return opendetail(130001855950);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>：その信頼性と社会的役割
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							日下 九八
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… <span class="query">ウィキペディア</span>は，誰でも編集できる，フリーなオンライン多言語百科事典である。 … 百科事典の性質や，<span class="query">ウィキペディア</span>の記事内容に関する「検証可能性」「独自研究は載せない」「中立的な観点」という重要な方針が促す改善と常に発展過程にあるという性質による限界を論じる。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報管理 55(1), 2-12, 2012</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1241%2Fjohokanri.55.2&amp;naid=130001855950" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">31</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130001855880" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130001855880" onclick="return opendetail(130001855880);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>の基本的な編集方法と考え方　間違いを正しく編集する
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							日下 九八
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 本稿では，<span class="query">ウィキペディア</span>の簡単な編集方法を解説することで，参加への障壁を取り除くことを試みる。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報管理 55(7), 481-488, 2012</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1241%2Fjohokanri.55.481&amp;naid=130001855880" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+						<span class="numof_quoted_reference">被引用文献2件</span>
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">32</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="170000067071" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/170000067071" onclick="return opendetail(170000067071);" class="taggedlink">
+					
+						ウィキラベルによる報道争点の検出
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							野本 忠司
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報アクセスシンポジウム2011 (2011), 9-16, 2011-09-07</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00077520%2F&amp;naid=170000067071" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">33</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="10029134588" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/10029134588" onclick="return opendetail(10029134588);" class="taggedlink">
+					
+						学生における Wikipedia 日本語版の利用動向
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							長塚 隆
+						
+						
+					
+						,
+						
+							神野 こずえ
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							Wikipediaは利用者参加型のオンライン百科事典であり，インターネットに接続し，誰でもが記事を編集できる．Wikipedia日本語版は281言語版のなかで記事数では7番目に大きな言語版である．Wikipedia日本語版の学生を中心とした利用動向を調べるために，認知度，利用経験，利用理由，利用目的，記事の信頼度，記事の編集経験，他の言語版の利用などについてアンケートを実施した．学生におけるWik …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報知識学会誌 21(2), 149-156, 2011-05-28</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.2964%2Fjsik.21_05&amp;naid=10029134588" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+						<span class="numof_quoted_reference">参考文献11件</span>
+					
+					
+						<span class="numof_quoted_reference">被引用文献1件</span>
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">34</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="170000088698" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/170000088698" onclick="return opendetail(170000088698);" class="taggedlink">
+					
+						単語の専門性に着目した気象学論文データベースからの専門語抽出
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							宇井敬一朗
+						
+						
+					
+						,
+						
+							天笠俊之
+						
+						
+					
+						,
+						
+							北川博之
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 処理を行う研究が盛んになっている．この処理において，その科学分野向けに構築されたオントロジーが重要な役割を果たす．オントロジーを構築するためには，そのオントロジーが対象としている分野で用いられる専門語の抽出が必要となる．本研究では，論文データ，<span class="query">ウィキペディア</span>，ウェブを利用し，各語彙の専門性を導出することで，特定の分野で用いられる専門語を抽出する手法を提案し，その評価を行う． …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">第73回全国大会講演論文集 2011(1), 287-288, 2011-03-02</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ipsj&amp;lang=ja&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1001%2F00108535%2F&amp;naid=170000088698" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IPSJ', {'nonInteraction': 1});">情報処理学会</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">35</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007425611" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007425611" onclick="return opendetail(130007425611);" class="taggedlink">
+					
+						英語<span class="query">ウィキペディア</span>を日本語で引く
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							岡田 昌也
+						
+						
+					
+						,
+						
+							佐藤 理史
+						
+						
+					
+						,
+						
+							駒谷 和範
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;本研究では、英語<span class="query">ウィキペディア</span>を日本語で引くためのインタフェースを作成した。 … 本インタフェースは、入力されたタームを英訳して英語<span class="query">ウィキペディア</span>の見出し語を探し出す機能をもつ。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会全国大会論文集 JSAI2011(0), 2F11-2F11, 2011</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fpjsai.JSAI2011.0_2F11&amp;naid=130007425611" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">36</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130005025938" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130005025938" onclick="return opendetail(130005025938);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>を利用したシソーラスの自動拡張
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							小林 暁雄
+						
+						
+					
+						,
+						
+							増山 繁
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… <span class="query">ウィキペディア</span>は，多くの固有名詞を記事として収録しており，自然言語処理の多くの応用タスクに利用されている.これらの固有名詞を，既存の人手で作成されたシソーラスの意味体系に正しく配置することができれば，自然言語処理の分野において，非常に有用であると考えられる．そこで，我々は既存のシソーラスに<span class="query">ウィキペディア</span>の知識を結合することで，より大規模なシソーラスへと拡張 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">自動制御連合講演会講演論文集 54(0), 125-125, 2011</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11511%2Fjacc.54.0.125.0&amp;naid=130005025938" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">37</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120005281547" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120005281547" onclick="return opendetail(120005281547);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>とアカデミズムの間
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							山田 晴通
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">東京経済大学人文自然科学論集 (131), 57-75, 2011</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F11150%2F545&amp;naid=120005281547" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">38</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110008440894" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110008440894" onclick="return opendetail(110008440894);" class="taggedlink">
+					
+						われわれは<span class="query">ウィキペディア</span>とどうつきあうべきか : メディア・リテラシーの視点から(&lt;特集&gt;ソーシャルサービス活用指南)
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							渡辺 智暁
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 本稿では<span class="query">ウィキペディア</span>を使う上で重要となるメディア・リテラシーを論じている。 … 具体的には, <span class="query">ウィキペディア</span>の運営・品質管理体制や方針, 参加者の動機, 利害関係者の動機や影響力などを解説し, <span class="query">ウィキペディア</span>の特定の項目の信頼性を見積もる上でそれらがどのように手がかりとなるかを論じる。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報の科学と技術 61(2), 64-69, 2011</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.18919%2Fjkg.61.2_64&amp;naid=110008440894" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+						<span class="numof_quoted_reference">参考文献22件</span>
+					
+					
+						<span class="numof_quoted_reference">被引用文献2件</span>
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">39</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130006655401" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130006655401" onclick="return opendetail(130006655401);" class="taggedlink">
+					
+						レポート剽窃に関する一考察:～情報社会の諸問題をテーマとして～
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							加納 寛子
+						
+						
+					
+						,
+						
+							光原 弘幸
+						
+						
+					
+						,
+						
+							山崎 雄介
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							インターネット上のコンテンツは急速に増加し，レポート剽窃の続出が，昨今の高等教育における課題の一つとなっている．レポート作成方法の指導と機械的チェックの双方がそろって，レポート剽窃防止につながるのではないかと考え，レポート剽窃防止の枠組みを提案した．そして，レポート作成方法の指導のみ行い提出させたレポートと，機械的チェックの連絡も行って提出させたレポートを比較した．機械的チェックの事前連絡を行わな …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">日本科学教育学会研究会研究報告 25(1), 19-22, 2010</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.14935%2Fjsser.25.1_19&amp;naid=130006655401" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">40</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110008576636" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110008576636" onclick="return opendetail(110008576636);" class="taggedlink">
+					
+						インターネットは言論の公共圏たりうるか--ブログと<span class="query">ウィキペディア</span>の内容分析
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							栗岡 幹英
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							清水新二教授定年退職記念号
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">奈良女子大学社会学論集 (17), 133-151, 2010</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fhdl.handle.net%2F10935%2F2235&amp;naid=110008576636" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">41</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110007577721" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110007577721" onclick="return opendetail(110007577721);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>のデータベース解析と考察
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							永江 孝規
+						
+						
+					
+						,
+						
+						
+							Takanori NAGAE
+						
+					
+						,
+						
+							東京工芸大学芸術学部メディアアート表現学科
+						
+						
+					
+						,
+						
+						
+							Department of Media Art Faculty of Arts Tokyo Polytechnic University
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">芸術世界 (16), 1-18, 2010</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1245%2F00001713%2F&amp;naid=110007577721" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+						<span class="numof_quoted_reference">被引用文献1件</span>
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">42</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130008089495" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130008089495" onclick="return opendetail(130008089495);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>記事閲覧回数の特徴分析
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							曽根 広哲
+						
+						
+					
+						,
+						
+							山名 早人
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;<span class="query">ウィキペディア</span>では編集履歴だけではなく，閲覧回数のデータも取得可能であるが，これを用いた研究は多くない．そこで，本研究では閲覧回数の特徴を調査することを目的として，編集回数や検索エンジンのヒット数，ランキングなどとの比較・分析を試みる．&lt;/p&gt; …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会第二種研究会資料 2009(SWO-021), 03, 2009</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fjsaisigtwo.2009.SWO-021_03&amp;naid=130008089495" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">43</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130008089467" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130008089467" onclick="return opendetail(130008089467);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>の成長における秩序と多様性
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							山崎 由佳
+						
+						
+					
+						,
+						
+							伊藤 貴一
+						
+						
+					
+						,
+						
+							井庭 崇
+						
+						
+					
+						,
+						
+							熊坂 賢次
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;<span class="query">ウィキペディア</span>の履歴データを用いて、成長を、秩序と多様性という観点から捉える。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会第二種研究会資料 2009(SWO-020), 06, 2009</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fjsaisigtwo.2009.SWO-020_06&amp;naid=130008089467" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">44</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130008089460" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130008089460" onclick="return opendetail(130008089460);" class="taggedlink">
+					
+						マスコラボレーションにおけるコンテンツ形成プロセスの分析
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							伊藤 諭志
+						
+						
+					
+						,
+						
+							伊藤 貴一
+						
+						
+					
+						,
+						
+							熊坂 賢次
+						
+						
+					
+						,
+						
+							井庭 崇
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;<span class="query">ウィキペディア</span>を事例として、マスコラボレーションにおけるコンテンツ形成プロセスを分析する。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会第二種研究会資料 2009(SWO-020), 07, 2009</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fjsaisigtwo.2009.SWO-020_07&amp;naid=130008089460" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">45</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007425260" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007425260" onclick="return opendetail(130007425260);" class="taggedlink">
+					
+						減衰流を用いた関係の解析
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							張 信鵬
+						
+						
+					
+						,
+						
+							浅野 泰仁
+						
+						
+					
+						,
+						
+							吉川 正俊
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 関係の強さを測る課題がよく議論されている．従来手法の多くは距離，連結度，共引用のいずれかに基づいているが、不十分だと考えられる．本論文では，三つの概念全てに基づき二重ネットワークを提案した上で，減衰流を用いた関係の強さを測る手法と、関係に寄与したオブジェクトを発見する手法を提案する．膨大な数のオブジェクト間の関係を含む<span class="query">ウィキペディア</span>を利用し，「関係」発見システムを構築する。 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会全国大会論文集 JSAI2009(0), 2G1NFC55-2G1NFC55, 2009</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fpjsai.JSAI2009.0_2G1NFC55&amp;naid=130007425260" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">46</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007422350" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007422350" onclick="return opendetail(130007422350);" class="taggedlink">
+					
+						Wikipediaからの対訳用語対の抽出
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							岡崎 直観
+						
+						
+					
+						,
+						
+							劉 瀟
+						
+						
+					
+						,
+						
+							綱川 隆司
+						
+						
+					
+						,
+						
+							辻井 潤一
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;<span class="query">ウィキペディア</span>では，同一の実体を複数の言語で説明することがあり，それらのエントリ間は言語横断リンクで結ばれる．そこで，本研究では言語横断リンクで結ばれたエントリ同士を並行コーパスと見なし，対訳用語対をマイニングする．提案手法は，単一言語に対して用語抽出を行い，その用語に対する訳語を，統計的機械翻訳に基づく翻訳確率，並行コーパス中における共起回数，言語を横断した用語周辺 …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会全国大会論文集 JSAI2009(0), 3B31-3B31, 2009</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fpjsai.JSAI2009.0_3B31&amp;naid=130007422350" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">47</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130007422162" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130007422162" onclick="return opendetail(130007422162);" class="taggedlink">
+					
+						<span class="query">ウィキペディア</span>を用いた語義曖昧性解消手法と 情報検索への応用
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							道下 智之
+						
+						
+					
+						,
+						
+							中山 浩太郎
+						
+						
+					
+						,
+						
+							原 隆浩
+						
+						
+					
+						,
+						
+							西尾 章治郎
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… &lt;p&gt;近年，<span class="query">ウィキペディア</span>を用いた語義曖昧性解消に関する研究が注目されている．本研究では，<span class="query">ウィキペディア</span>を用いた語義曖昧性解消を利用して情報検索を高度化することを目指す．<span class="query">ウィキペディア</span>シソーラスを利用して，曖昧な語と共起する語の関連語を抽出し，それらを素性として語義曖昧性解消を行う手法を提案し，情報検索へ適応することで有用性を評価する．&lt …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会全国大会論文集 JSAI2009(0), 2G1NFC59-2G1NFC59, 2009</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fpjsai.JSAI2009.0_2G1NFC59&amp;naid=130007422162" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">48</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130000072313" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130000072313" onclick="return opendetail(130000072313);" class="taggedlink">
+					
+						海外Ｉｎｆｏｒｍａｔｉｏｎ　Ｐｒｏｆｅｓｓｉｏｎａｌｓの活動状況　　～ドイツ語版<span class="query">ウィキペディア</span>，ウィキソースとインフォプロ～:～ドイツ語版<span class="query">ウィキペディア</span>，ウィキソースとインフォプロ～
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							佐藤 京子
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報管理 50(11), 774-776, 2008</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.1241%2Fjohokanri.50.774&amp;naid=130000072313" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">49</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="120006729073" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/120006729073" onclick="return opendetail(120006729073);" class="taggedlink">
+					
+						The internet as a shared work desk : Two international online projects with NID-students in spring 2005
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							Jörg Bühler
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+						
+							The world of the internet is changing its face. We have been getting used to drawing out every kind of desired information from the comprehensive, omnipresent world wide web. Now, the internet is tran …
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">長岡造形大学研究紀要 = Nagaoka Institute of Design Bulletin (3), 16-23, 2006-03</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=ir&amp;lang=ja&amp;type=pdf&amp;id=http%3A%2F%2Fid.nii.ac.jp%2F1689%2F00000018%2F&amp;naid=120006729073" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-IR', {'nonInteraction': 1});">機関リポジトリ</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+			
+				<li class="evenline">
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">50</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="130005023363" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/130005023363" onclick="return opendetail(130005023363);" class="taggedlink">
+					
+						Semantic Wiki as a Light-Weight Metadata Management System
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							ムリアディ ヘンドリー
+						
+						
+					
+						,
+						
+							伊藤 武彦
+						
+						
+					
+						,
+						
+							白井 康之
+						
+						
+					
+						,
+						
+							近藤 隆
+						
+						
+					
+						,
+						
+							市吉 伸幸
+						
+						
+					
+						,
+						
+							阿部 貴志
+						
+						
+					
+						,
+						
+							五條掘 孝
+						
+						
+					
+						,
+						
+							宮崎 智
+						
+						
+					
+						,
+						
+							菅原 秀明
+						
+						
+					
+						,
+						
+							藤山 秋佐夫
+						
+						
+					
+						,
+						
+							武田 英明
+						
+						
+					
+						,
+						
+							川本 祥子
+						
+						
+					
+						,
+						
+							荒木 次郎
+						
+						
+					
+						,
+						
+							小林 悟志
+						
+						
+					
+						,
+						
+							北本 朝展
+						
+						
+					
+						,
+						
+							出宮 スウェンミノル
+						
+						
+					
+						,
+						
+							水田 洋子
+						
+						
+					
+						,
+						
+							久木田 加津子
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							… 本研究は，<span class="query">ウィキペディア</span>や他の百科辞典，辞書サイトに広く使用されているMediaWikiを拡張し，ウィキの上でRDF相当の情報を管理するためのSemantic MediaWikiの開発である． …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">人工知能学会全国大会論文集 JSAI06(0), 284-284, 2006</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.11517%2Fpjsai.JSAI06.0.284.0&amp;naid=130005023363" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+			
+				<li class="oddline">
+			
+			
+			<div class="listitem xfolkentry">
+			<div class="list_number hidden-xs">51</div>
+			
+				<p class="listcheck hidden-xs">
+					<input type="checkbox" class="cb" name="docSelect" value="110004668714" />
+				</p>
+			
+				<dl class="paper_class">
+			
+			
+				<dt class="item_mainTitle item_title">
+				<a href="/naid/110004668714" onclick="return opendetail(110004668714);" class="taggedlink">
+					
+						デジタル・レファレンス・ツールとしてのWikipedia(&lt;特集&gt;デジタル・レファレンス・サービス)
+					
+					
+				</a>
+				</dt>
+				<dd>
+				<p class="item_subData item_authordata">
+					
+						
+						
+							兼宗 進
+						
+						
+					
+				</p>
+				<p class="item_snipet item_summry description">
+				
+					
+						
+							Wikipediaは,市販の百科事典を凌駕する巨大な百科事典である。従来の百科辞典と比較して,(1)300万に迫る項目が解説されている,(2)200種類を超える世界中のさまざまな言語の辞典が作られている,(3)日々改定が行われており時代に即した新規項目が充実している,(4)世界中のボランティアの手によって編集が行われていることが,大きな特徴である。本稿では,Wikipediaの概要を紹介し,レファ …
+						
+						
+					
+				
+				</p>
+				<p class="item_extraData item_journaldata">
+				<span class="journal_title">情報の科学と技術 56(3), 103-107, 2006</span>
+				</p>
+				<p class="item_otherdata">
+					
+						<a href="/lognavi?name=jstg&amp;lang=ja&amp;type=pdf&amp;id=https%3A%2F%2Fdoi.org%2F10.18919%2Fjkg.56.3_103&amp;naid=110004668714" class="bodypdf" target="_blank" onclick="ga('send', 'event', 'access', 'click', 'Read-J-STAGE', {'nonInteraction': 1});">J-STAGE</a>&nbsp;
+					
+					
+					
+					
+						<span class="numof_quoted_reference">参考文献29件</span>
+					
+					
+						<span class="numof_quoted_reference">被引用文献2件</span>
+					
+				</p>
+				</dd>
+			
+			</dl>
+			</div>
+			
+			</li>
+		
+	</ul>
+
+	</div>
+	
+</form>
+<form name="feedbackform" action="/feedback" method="post">
+	<input type="hidden" name="from" />
+	<input type="hidden" name="process" />
+</form>
+
+	<div class="paging">
+	
+	</div>
+	
+
+	</div>
+	
+</div>
+
+	
+
+
+
+
+
+
+
+
+<div id="side_navigation" class="side_navigation">
+<div id="relateditem" class="relateditem">
+	
+	
+	<div id="relatedauthor" class="relateditem_section relatedauthor">
+	<h2 class="heading accordion hidden-xs">
+		<a href="javascript:void(0)" class="accordionSwitch collapsed" data-toggle="collapse" data-target="#relatedAuthorList">
+		</a>関連著者
+	</h2>
+	<ul id="relatedAuthorList">
+		
+			
+			<li><a href="/author?q=%E6%97%A5%E4%B8%8B+%E4%B9%9D%E5%85%AB" onclick="return linkUrlLengthCheck('/author?q=%E6%97%A5%E4%B8%8B+%E4%B9%9D%E5%85%AB');">日下 九八</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B1%B1%E7%94%B0+%E6%99%B4%E9%80%9A" onclick="return linkUrlLengthCheck('/author?q=%E5%B1%B1%E7%94%B0+%E6%99%B4%E9%80%9A');">山田 晴通</a></li>
+		
+			
+			<li><a href="/author?q=%E9%9D%92%E6%9C%A8+%E5%92%8C%E4%BA%BA" onclick="return linkUrlLengthCheck('/author?q=%E9%9D%92%E6%9C%A8+%E5%92%8C%E4%BA%BA');">青木 和人</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BA%95%E5%BA%AD+%E5%B4%87" onclick="return linkUrlLengthCheck('/author?q=%E4%BA%95%E5%BA%AD+%E5%B4%87');">井庭 崇</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BC%8A%E8%97%A4+%E8%B2%B4%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E4%BC%8A%E8%97%A4+%E8%B2%B4%E4%B8%80');">伊藤 貴一</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8C%97%E6%9D%91+%E7%B4%97%E8%A1%A3" onclick="return linkUrlLengthCheck('/author?q=%E5%8C%97%E6%9D%91+%E7%B4%97%E8%A1%A3');">北村 紗衣</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B1%B1%E5%8F%A3+%E9%AB%98%E5%B9%B3" onclick="return linkUrlLengthCheck('/author?q=%E5%B1%B1%E5%8F%A3+%E9%AB%98%E5%B9%B3');">山口 高平</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B7%9D%E4%B8%8A+%E6%99%82%E7%94%9F" onclick="return linkUrlLengthCheck('/author?q=%E5%B7%9D%E4%B8%8A+%E6%99%82%E7%94%9F');">川上 時生</a></li>
+		
+			
+			<li><a href="/author?q=%E6%A3%AE%E7%94%B0+%E6%AD%A6%E5%8F%B2" onclick="return linkUrlLengthCheck('/author?q=%E6%A3%AE%E7%94%B0+%E6%AD%A6%E5%8F%B2');">森田 武史</a></li>
+		
+			
+			<li><a href="/author?q=%E7%86%8A%E5%9D%82+%E8%B3%A2%E6%AC%A1" onclick="return linkUrlLengthCheck('/author?q=%E7%86%8A%E5%9D%82+%E8%B3%A2%E6%AC%A1');">熊坂 賢次</a></li>
+		
+			
+			<li><a href="/author?q=%E7%A9%8D%E7%94%B0+%E6%B7%B3%E5%8F%B2" onclick="return linkUrlLengthCheck('/author?q=%E7%A9%8D%E7%94%B0+%E6%B7%B3%E5%8F%B2');">積田 淳史</a></li>
+		
+			
+			<li><a href="/author?q=Department+of+Media+Art+Faculty+of+Arts+Tokyo+Polytechnic+University" onclick="return linkUrlLengthCheck('/author?q=Department+of+Media+Art+Faculty+of+Arts+Tokyo+Polytechnic+University');">Department of Media Art Faculty of Arts Tokyo Polytechnic University</a></li>
+		
+			
+			<li><a href="/author?q=Harumichi+Yamada" onclick="return linkUrlLengthCheck('/author?q=Harumichi+Yamada');">Harumichi Yamada</a></li>
+		
+			
+			<li><a href="/author?q=J%C3%B6rg+B%C3%BChler" onclick="return linkUrlLengthCheck('/author?q=J%C3%B6rg+B%C3%BChler');">J&ouml;rg B&uuml;hler</a></li>
+		
+			
+			<li><a href="/author?q=Takakuni+Yamane" onclick="return linkUrlLengthCheck('/author?q=Takakuni+Yamane');">Takakuni Yamane</a></li>
+		
+			
+			<li><a href="/author?q=Takanori+NAGAE" onclick="return linkUrlLengthCheck('/author?q=Takanori+NAGAE');">Takanori NAGAE</a></li>
+		
+			
+			<li><a href="/author?q=%E3%83%94%E3%83%BC%E3%82%BF%E3%83%BC+%E3%82%B0%E3%83%AD%E3%82%A2" onclick="return linkUrlLengthCheck('/author?q=%E3%83%94%E3%83%BC%E3%82%BF%E3%83%BC+%E3%82%B0%E3%83%AD%E3%82%A2');">ピーター グロア</a></li>
+		
+			
+			<li><a href="/author?q=%E3%83%A0%E3%83%AA%E3%82%A2%E3%83%87%E3%82%A3+%E3%83%98%E3%83%B3%E3%83%89%E3%83%AA%E3%83%BC" onclick="return linkUrlLengthCheck('/author?q=%E3%83%A0%E3%83%AA%E3%82%A2%E3%83%87%E3%82%A3+%E3%83%98%E3%83%B3%E3%83%89%E3%83%AA%E3%83%BC');">ムリアディ ヘンドリー</a></li>
+		
+			
+			<li><a href="/author?q=%E3%83%AD%E3%83%90%E3%83%BC%E3%83%88+%E3%83%AD%E3%83%BC%E3%83%90%E3%83%83%E3%82%AB%E3%83%BC" onclick="return linkUrlLengthCheck('/author?q=%E3%83%AD%E3%83%90%E3%83%BC%E3%83%88+%E3%83%AD%E3%83%BC%E3%83%90%E3%83%83%E3%82%AB%E3%83%BC');">ロバート ローバッカー</a></li>
+		
+			
+			<li><a href="/author?q=%E4%B8%AD%E4%BA%95+%E5%81%A5%E5%A4%AA%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E4%B8%AD%E4%BA%95+%E5%81%A5%E5%A4%AA%E9%83%8E');">中井 健太郎</a></li>
+		
+			
+			<li><a href="/author?q=%E4%B8%AD%E5%B1%B1+%E6%B5%A9%E5%A4%AA%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E4%B8%AD%E5%B1%B1+%E6%B5%A9%E5%A4%AA%E9%83%8E');">中山 浩太郎</a></li>
+		
+			
+			<li><a href="/author?q=%E4%B8%AD%E5%B7%9D+%E6%85%A7" onclick="return linkUrlLengthCheck('/author?q=%E4%B8%AD%E5%B7%9D+%E6%85%A7');">中川 慧</a></li>
+		
+			
+			<li><a href="/author?q=%E4%B9%85%E6%9C%A8%E7%94%B0+%E5%8A%A0%E6%B4%A5%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E4%B9%85%E6%9C%A8%E7%94%B0+%E5%8A%A0%E6%B4%A5%E5%AD%90');">久木田 加津子</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BA%8C%E6%9D%91+%E6%B3%B0%E5%BC%98" onclick="return linkUrlLengthCheck('/author?q=%E4%BA%8C%E6%9D%91+%E6%B3%B0%E5%BC%98');">二村 泰弘</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BA%94%E5%8D%81%E5%B5%90+%E5%85%89%E7%A7%8B" onclick="return linkUrlLengthCheck('/author?q=%E4%BA%94%E5%8D%81%E5%B5%90+%E5%85%89%E7%A7%8B');">五十嵐 光秋</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BA%94%E6%A2%9D%E6%8E%98+%E5%AD%9D" onclick="return linkUrlLengthCheck('/author?q=%E4%BA%94%E6%A2%9D%E6%8E%98+%E5%AD%9D');">五條掘 孝</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BC%8A%E8%97%A4+%E6%AD%A6%E5%BD%A6" onclick="return linkUrlLengthCheck('/author?q=%E4%BC%8A%E8%97%A4+%E6%AD%A6%E5%BD%A6');">伊藤 武彦</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BC%8A%E8%97%A4+%E8%AB%AD%E5%BF%97" onclick="return linkUrlLengthCheck('/author?q=%E4%BC%8A%E8%97%A4+%E8%AB%AD%E5%BF%97');">伊藤 諭志</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BD%90%E8%97%A4+%E4%BA%AC%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E4%BD%90%E8%97%A4+%E4%BA%AC%E5%AD%90');">佐藤 京子</a></li>
+		
+			
+			<li><a href="/author?q=%E4%BD%90%E8%97%A4+%E7%90%86%E5%8F%B2" onclick="return linkUrlLengthCheck('/author?q=%E4%BD%90%E8%97%A4+%E7%90%86%E5%8F%B2');">佐藤 理史</a></li>
+		
+			
+			<li><a href="/author?q=%E5%85%89%E5%8E%9F+%E5%BC%98%E5%B9%B8" onclick="return linkUrlLengthCheck('/author?q=%E5%85%89%E5%8E%9F+%E5%BC%98%E5%B9%B8');">光原 弘幸</a></li>
+		
+			
+			<li><a href="/author?q=%E5%85%BC%E5%AE%97+%E9%80%B2" onclick="return linkUrlLengthCheck('/author?q=%E5%85%BC%E5%AE%97+%E9%80%B2');">兼宗 進</a></li>
+		
+			
+			<li><a href="/author?q=%E5%87%BA%E5%AE%AE+%E3%82%B9%E3%82%A6%E3%82%A7%E3%83%B3%E3%83%9F%E3%83%8E%E3%83%AB" onclick="return linkUrlLengthCheck('/author?q=%E5%87%BA%E5%AE%AE+%E3%82%B9%E3%82%A6%E3%82%A7%E3%83%B3%E3%83%9F%E3%83%8E%E3%83%AB');">出宮 スウェンミノル</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8A%89+%E7%80%9F" onclick="return linkUrlLengthCheck('/author?q=%E5%8A%89+%E7%80%9F');">劉 瀟</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8A%A0%E7%B4%8D+%E5%AF%9B%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E5%8A%A0%E7%B4%8D+%E5%AF%9B%E5%AD%90');">加納 寛子</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8A%A0%E8%97%A4+%E5%8D%93" onclick="return linkUrlLengthCheck('/author?q=%E5%8A%A0%E8%97%A4+%E5%8D%93');">加藤 卓</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8A%A0%E8%97%A4+%E6%96%87%E5%BD%A6" onclick="return linkUrlLengthCheck('/author?q=%E5%8A%A0%E8%97%A4+%E6%96%87%E5%BD%A6');">加藤 文彦</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8C%97%E5%B7%9D%E5%8D%9A%E4%B9%8B" onclick="return linkUrlLengthCheck('/author?q=%E5%8C%97%E5%B7%9D%E5%8D%9A%E4%B9%8B');">北川博之</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8C%97%E6%9C%AC+%E6%9C%9D%E5%B1%95" onclick="return linkUrlLengthCheck('/author?q=%E5%8C%97%E6%9C%AC+%E6%9C%9D%E5%B1%95');">北本 朝展</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8E%9F+%E9%9A%86%E6%B5%A9" onclick="return linkUrlLengthCheck('/author?q=%E5%8E%9F+%E9%9A%86%E6%B5%A9');">原 隆浩</a></li>
+		
+			
+			<li><a href="/author?q=%E5%8F%A4%E5%B7%9D+%E7%AB%9C%E4%B9%9F" onclick="return linkUrlLengthCheck('/author?q=%E5%8F%A4%E5%B7%9D+%E7%AB%9C%E4%B9%9F');">古川 竜也</a></li>
+		
+			
+			<li><a href="/author?q=%E5%90%89%E5%B7%9D+%E6%AD%A3%E4%BF%8A" onclick="return linkUrlLengthCheck('/author?q=%E5%90%89%E5%B7%9D+%E6%AD%A3%E4%BF%8A');">吉川 正俊</a></li>
+		
+			
+			<li><a href="/author?q=%E5%90%89%E6%9C%AC+%E7%A7%80%E4%B9%8B" onclick="return linkUrlLengthCheck('/author?q=%E5%90%89%E6%9C%AC+%E7%A7%80%E4%B9%8B');">吉本 秀之</a></li>
+		
+			
+			<li><a href="/author?q=%E5%90%89%E7%94%B0%E8%A3%95" onclick="return linkUrlLengthCheck('/author?q=%E5%90%89%E7%94%B0%E8%A3%95');">吉田裕</a></li>
+		
+			
+			<li><a href="/author?q=%E5%92%8C%E6%B3%89+%E6%BD%94" onclick="return linkUrlLengthCheck('/author?q=%E5%92%8C%E6%B3%89+%E6%BD%94');">和泉 潔</a></li>
+		
+			
+			<li><a href="/author?q=%E5%9D%82%E5%9C%B0+%E6%B3%B0%E7%B4%80" onclick="return linkUrlLengthCheck('/author?q=%E5%9D%82%E5%9C%B0+%E6%B3%B0%E7%B4%80');">坂地 泰紀</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A2%97%E5%B1%B1+%E7%B9%81" onclick="return linkUrlLengthCheck('/author?q=%E5%A2%97%E5%B1%B1+%E7%B9%81');">増山 繁</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A4%9A%E6%AF%94%E8%89%AF+%E5%92%8C%E8%AA%A0" onclick="return linkUrlLengthCheck('/author?q=%E5%A4%9A%E6%AF%94%E8%89%AF+%E5%92%8C%E8%AA%A0');">多比良 和誠</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A4%A7%E5%92%8C%E7%94%B0%E5%8B%87%E4%BA%BA" onclick="return linkUrlLengthCheck('/author?q=%E5%A4%A7%E5%92%8C%E7%94%B0%E5%8B%87%E4%BA%BA');">大和田勇人</a></li>
+		
+			
+			<li><a href="/author?q=%E5%A4%A9%E7%AC%A0%E4%BF%8A%E4%B9%8B" onclick="return linkUrlLengthCheck('/author?q=%E5%A4%A9%E7%AC%A0%E4%BF%8A%E4%B9%8B');">天笠俊之</a></li>
+		
+			
+			<li><a href="/author?q=%E5%AE%87%E4%BA%95%E6%95%AC%E4%B8%80%E6%9C%97" onclick="return linkUrlLengthCheck('/author?q=%E5%AE%87%E4%BA%95%E6%95%AC%E4%B8%80%E6%9C%97');">宇井敬一朗</a></li>
+		
+			
+			<li><a href="/author?q=%E5%AE%AE%E5%B4%8E+%E6%99%BA" onclick="return linkUrlLengthCheck('/author?q=%E5%AE%AE%E5%B4%8E+%E6%99%BA');">宮崎 智</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B0%8F%E6%9E%97+%E6%82%9F%E5%BF%97" onclick="return linkUrlLengthCheck('/author?q=%E5%B0%8F%E6%9E%97+%E6%82%9F%E5%BF%97');">小林 悟志</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B0%8F%E6%9E%97+%E6%9A%81%E9%9B%84" onclick="return linkUrlLengthCheck('/author?q=%E5%B0%8F%E6%9E%97+%E6%9A%81%E9%9B%84');">小林 暁雄</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B1%B1%E5%90%8D+%E6%97%A9%E4%BA%BA" onclick="return linkUrlLengthCheck('/author?q=%E5%B1%B1%E5%90%8D+%E6%97%A9%E4%BA%BA');">山名 早人</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B1%B1%E5%B4%8E+%E7%94%B1%E4%BD%B3" onclick="return linkUrlLengthCheck('/author?q=%E5%B1%B1%E5%B4%8E+%E7%94%B1%E4%BD%B3');">山崎 由佳</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B1%B1%E5%B4%8E+%E9%9B%84%E4%BB%8B" onclick="return linkUrlLengthCheck('/author?q=%E5%B1%B1%E5%B4%8E+%E9%9B%84%E4%BB%8B');">山崎 雄介</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B1%B1%E5%B7%9D+%E5%84%AA%E6%A8%B9" onclick="return linkUrlLengthCheck('/author?q=%E5%B1%B1%E5%B7%9D+%E5%84%AA%E6%A8%B9');">山川 優樹</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B1%B1%E6%A0%B9+%E5%B4%87%E9%82%A6" onclick="return linkUrlLengthCheck('/author?q=%E5%B1%B1%E6%A0%B9+%E5%B4%87%E9%82%A6');">山根 崇邦</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B2%A1%E5%B4%8E+%E7%9B%B4%E8%A6%B3" onclick="return linkUrlLengthCheck('/author?q=%E5%B2%A1%E5%B4%8E+%E7%9B%B4%E8%A6%B3');">岡崎 直観</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B2%A1%E7%94%B0+%E6%98%8C%E4%B9%9F" onclick="return linkUrlLengthCheck('/author?q=%E5%B2%A1%E7%94%B0+%E6%98%8C%E4%B9%9F');">岡田 昌也</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B2%A1%E7%94%B0+%E8%AC%99%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E5%B2%A1%E7%94%B0+%E8%AC%99%E4%B8%80');">岡田 謙一</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B3%B6%E7%94%B0+%E5%B0%9A" onclick="return linkUrlLengthCheck('/author?q=%E5%B3%B6%E7%94%B0+%E5%B0%9A');">島田 尚</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B7%9D%E6%9C%AC+%E7%A5%A5%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E5%B7%9D%E6%9C%AC+%E7%A5%A5%E5%AD%90');">川本 祥子</a></li>
+		
+			
+			<li><a href="/author?q=%E5%B8%82%E5%90%89+%E4%BC%B8%E5%B9%B8" onclick="return linkUrlLengthCheck('/author?q=%E5%B8%82%E5%90%89+%E4%BC%B8%E5%B9%B8');">市吉 伸幸</a></li>
+		
+			
+			<li><a href="/author?q=%E5%BC%B5+%E4%BF%A1%E9%B5%AC" onclick="return linkUrlLengthCheck('/author?q=%E5%BC%B5+%E4%BF%A1%E9%B5%AC');">張 信鵬</a></li>
+		
+			
+			<li><a href="/author?q=%E6%97%A5%E5%90%91+%E8%89%AF%E5%92%8C" onclick="return linkUrlLengthCheck('/author?q=%E6%97%A5%E5%90%91+%E8%89%AF%E5%92%8C');">日向 良和</a></li>
+		
+			
+			<li><a href="/author?q=%E6%98%AF%E4%BD%8F+%E4%B9%85%E7%BE%8E%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E6%98%AF%E4%BD%8F+%E4%B9%85%E7%BE%8E%E5%AD%90');">是住 久美子</a></li>
+		
+			
+			<li><a href="/author?q=%E6%99%82%E5%AE%9F+%E8%B1%A1%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E6%99%82%E5%AE%9F+%E8%B1%A1%E4%B8%80');">時実 象一</a></li>
+		
+			
+			<li><a href="/author?q=%E6%9B%BD%E6%A0%B9+%E5%BA%83%E5%93%B2" onclick="return linkUrlLengthCheck('/author?q=%E6%9B%BD%E6%A0%B9+%E5%BA%83%E5%93%B2');">曽根 広哲</a></li>
+		
+			
+			<li><a href="/author?q=%E6%9D%B1%E4%BA%AC%E5%B7%A5%E8%8A%B8%E5%A4%A7%E5%AD%A6%E8%8A%B8%E8%A1%93%E5%AD%A6%E9%83%A8%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%82%A2%E3%83%BC%E3%83%88%E8%A1%A8%E7%8F%BE%E5%AD%A6%E7%A7%91" onclick="return linkUrlLengthCheck('/author?q=%E6%9D%B1%E4%BA%AC%E5%B7%A5%E8%8A%B8%E5%A4%A7%E5%AD%A6%E8%8A%B8%E8%A1%93%E5%AD%A6%E9%83%A8%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%82%A2%E3%83%BC%E3%83%88%E8%A1%A8%E7%8F%BE%E5%AD%A6%E7%A7%91');">東京工芸大学芸術学部メディアアート表現学科</a></li>
+		
+			
+			<li><a href="/author?q=%E6%9F%B4%E7%94%B0+%E4%BF%8A%E6%96%87" onclick="return linkUrlLengthCheck('/author?q=%E6%9F%B4%E7%94%B0+%E4%BF%8A%E6%96%87');">柴田 俊文</a></li>
+		
+			
+			<li><a href="/author?q=%E6%A0%97%E5%B2%A1+%E5%B9%B9%E8%8B%B1" onclick="return linkUrlLengthCheck('/author?q=%E6%A0%97%E5%B2%A1+%E5%B9%B9%E8%8B%B1');">栗岡 幹英</a></li>
+		
+			
+			<li><a href="/author?q=%E6%A0%B9%E6%9C%AC+%E5%95%93%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E6%A0%B9%E6%9C%AC+%E5%95%93%E4%B8%80');">根本 啓一</a></li>
+		
+			
+			<li><a href="/author?q=%E6%A1%82+%E3%81%BE%E3%81%AB%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E6%A1%82+%E3%81%BE%E3%81%AB%E5%AD%90');">桂 まに子</a></li>
+		
+			
+			<li><a href="/author?q=%E6%AD%A6%E7%94%B0+%E8%8B%B1%E6%98%8E" onclick="return linkUrlLengthCheck('/author?q=%E6%AD%A6%E7%94%B0+%E8%8B%B1%E6%98%8E');">武田 英明</a></li>
+		
+			
+			<li><a href="/author?q=%E6%B0%B4%E7%94%B0+%E6%B4%8B%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E6%B0%B4%E7%94%B0+%E6%B4%8B%E5%AD%90');">水田 洋子</a></li>
+		
+			
+			<li><a href="/author?q=%E6%B0%B8%E6%B1%9F+%E5%AD%9D%E8%A6%8F" onclick="return linkUrlLengthCheck('/author?q=%E6%B0%B8%E6%B1%9F+%E5%AD%9D%E8%A6%8F');">永江 孝規</a></li>
+		
+			
+			<li><a href="/author?q=%E6%B2%B3%E6%9C%AC+%E5%A4%A7%E5%9C%B0" onclick="return linkUrlLengthCheck('/author?q=%E6%B2%B3%E6%9C%AC+%E5%A4%A7%E5%9C%B0');">河本 大地</a></li>
+		
+			
+			<li><a href="/author?q=%E6%B5%85%E9%87%8E+%E6%B3%B0%E4%BB%81" onclick="return linkUrlLengthCheck('/author?q=%E6%B5%85%E9%87%8E+%E6%B3%B0%E4%BB%81');">浅野 泰仁</a></li>
+		
+			
+			<li><a href="/author?q=%E6%B8%A1%E8%BE%BA+%E6%99%BA%E6%9A%81" onclick="return linkUrlLengthCheck('/author?q=%E6%B8%A1%E8%BE%BA+%E6%99%BA%E6%9A%81');">渡辺 智暁</a></li>
+		
+			
+			<li><a href="/author?q=%E6%BA%9D%E5%8F%A3+%E5%8B%9D" onclick="return linkUrlLengthCheck('/author?q=%E6%BA%9D%E5%8F%A3+%E5%8B%9D');">溝口 勝</a></li>
+		
+			
+			<li><a href="/author?q=%E7%99%BD%E4%BA%95+%E5%BA%B7%E4%B9%8B" onclick="return linkUrlLengthCheck('/author?q=%E7%99%BD%E4%BA%95+%E5%BA%B7%E4%B9%8B');">白井 康之</a></li>
+		
+			
+			<li><a href="/author?q=%E7%9B%B8%E6%BE%A4+%E5%BD%B0%E5%AD%90" onclick="return linkUrlLengthCheck('/author?q=%E7%9B%B8%E6%BE%A4+%E5%BD%B0%E5%AD%90');">相澤 彰子</a></li>
+		
+			
+			<li><a href="/author?q=%E7%9B%B8%E8%89%AF+%E6%AF%85" onclick="return linkUrlLengthCheck('/author?q=%E7%9B%B8%E8%89%AF+%E6%AF%85');">相良 毅</a></li>
+		
+			
+			<li><a href="/author?q=%E7%9F%B3%E5%8E%9F+%E7%9C%9E%E7%90%86" onclick="return linkUrlLengthCheck('/author?q=%E7%9F%B3%E5%8E%9F+%E7%9C%9E%E7%90%86');">石原 眞理</a></li>
+		
+			
+			<li><a href="/author?q=%E7%A5%9E%E9%87%8E+%E3%81%93%E3%81%9A%E3%81%88" onclick="return linkUrlLengthCheck('/author?q=%E7%A5%9E%E9%87%8E+%E3%81%93%E3%81%9A%E3%81%88');">神野 こずえ</a></li>
+		
+			
+			<li><a href="/author?q=%E7%B6%B1%E5%B7%9D+%E9%9A%86%E5%8F%B8" onclick="return linkUrlLengthCheck('/author?q=%E7%B6%B1%E5%B7%9D+%E9%9A%86%E5%8F%B8');">綱川 隆司</a></li>
+		
+			
+			<li><a href="/author?q=%E8%8D%92%E6%9C%A8+%E6%AC%A1%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E8%8D%92%E6%9C%A8+%E6%AC%A1%E9%83%8E');">荒木 次郎</a></li>
+		
+			
+			<li><a href="/author?q=%E8%8F%85%E5%8E%9F+%E7%A7%80%E6%98%8E" onclick="return linkUrlLengthCheck('/author?q=%E8%8F%85%E5%8E%9F+%E7%A7%80%E6%98%8E');">菅原 秀明</a></li>
+		
+			
+			<li><a href="/author?q=%E8%97%A4%E5%B1%B1+%E7%A7%8B%E4%BD%90%E5%A4%AB" onclick="return linkUrlLengthCheck('/author?q=%E8%97%A4%E5%B1%B1+%E7%A7%8B%E4%BD%90%E5%A4%AB');">藤山 秋佐夫</a></li>
+		
+			
+			<li><a href="/author?q=%E8%97%A4%E6%9C%AC+%E5%A4%A7%E5%A3%AB" onclick="return linkUrlLengthCheck('/author?q=%E8%97%A4%E6%9C%AC+%E5%A4%A7%E5%A3%AB');">藤本 大士</a></li>
+		
+			
+			<li><a href="/author?q=%E8%A5%BF%E5%B0%BE+%E7%AB%A0%E6%B2%BB%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E8%A5%BF%E5%B0%BE+%E7%AB%A0%E6%B2%BB%E9%83%8E');">西尾 章治郎</a></li>
+		
+			
+			<li><a href="/author?q=%E8%BE%BB%E4%BA%95+%E6%BD%A4%E4%B8%80" onclick="return linkUrlLengthCheck('/author?q=%E8%BE%BB%E4%BA%95+%E6%BD%A4%E4%B8%80');">辻井 潤一</a></li>
+		
+			
+			<li><a href="/author?q=%E8%BF%91%E8%97%A4+%E9%9A%86" onclick="return linkUrlLengthCheck('/author?q=%E8%BF%91%E8%97%A4+%E9%9A%86');">近藤 隆</a></li>
+		
+			
+			<li><a href="/author?q=%E9%81%93%E4%B8%8B+%E6%99%BA%E4%B9%8B" onclick="return linkUrlLengthCheck('/author?q=%E9%81%93%E4%B8%8B+%E6%99%BA%E4%B9%8B');">道下 智之</a></li>
+		
+			
+			<li><a href="/author?q=%E9%87%8E%E6%9C%AC+%E5%BF%A0%E5%8F%B8" onclick="return linkUrlLengthCheck('/author?q=%E9%87%8E%E6%9C%AC+%E5%BF%A0%E5%8F%B8');">野本 忠司</a></li>
+		
+			
+			<li><a href="/author?q=%E9%95%B7%E5%A1%9A+%E9%9A%86" onclick="return linkUrlLengthCheck('/author?q=%E9%95%B7%E5%A1%9A+%E9%9A%86');">長塚 隆</a></li>
+		
+			
+			<li><a href="/author?q=%E9%96%A2%E5%8B%9D+%E5%AF%BF" onclick="return linkUrlLengthCheck('/author?q=%E9%96%A2%E5%8B%9D+%E5%AF%BF');">関勝 寿</a></li>
+		
+			
+			<li><a href="/author?q=%E9%98%BF%E9%83%A8+%E8%B2%B4%E5%BF%97" onclick="return linkUrlLengthCheck('/author?q=%E9%98%BF%E9%83%A8+%E8%B2%B4%E5%BF%97');">阿部 貴志</a></li>
+		
+			
+			<li><a href="/author?q=%E9%9D%92%E5%B6%8B+%E6%99%BA%E4%B9%85" onclick="return linkUrlLengthCheck('/author?q=%E9%9D%92%E5%B6%8B+%E6%99%BA%E4%B9%85');">青嶋 智久</a></li>
+		
+			
+			<li><a href="/author?q=%E9%A0%88%E7%94%B0+%E7%9C%9F%E5%A4%AA%E9%83%8E" onclick="return linkUrlLengthCheck('/author?q=%E9%A0%88%E7%94%B0+%E7%9C%9F%E5%A4%AA%E9%83%8E');">須田 真太郎</a></li>
+		
+			
+			<li><a href="/author?q=%E9%A7%92%E8%B0%B7+%E5%92%8C%E7%AF%84" onclick="return linkUrlLengthCheck('/author?q=%E9%A7%92%E8%B0%B7+%E5%92%8C%E7%AF%84');">駒谷 和範</a></li>
+		
+	</ul>
+	</div>
+	
+
+	<div id="relatedjournal" class="relateditem_section relatedjournal">
+	<h2 class="heading accordion hidden-xs">
+		<a href="javascript:void(0)" class="accordionSwitch collapsed" data-toggle="collapse" data-target="#relatedJournalList"></a>
+		関連刊行物
+	</h2>
+	<ul id="relatedJournalList">
+		
+		
+			<li><a href="/search?journal=%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E5%AD%A6%E4%BC%9A%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E5%AD%A6%E4%BC%9A%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%AB%96%E6%96%87%E9%9B%86');">人工知能学会全国大会論文集</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%83%85%E5%A0%B1%E3%81%AE%E7%A7%91%E5%AD%A6%E3%81%A8%E6%8A%80%E8%A1%93" onclick="return linkUrlLengthCheck('/search?journal=%E6%83%85%E5%A0%B1%E3%81%AE%E7%A7%91%E5%AD%A6%E3%81%A8%E6%8A%80%E8%A1%93');">情報の科学と技術</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%83%85%E5%A0%B1%E7%AE%A1%E7%90%86" onclick="return linkUrlLengthCheck('/search?journal=%E6%83%85%E5%A0%B1%E7%AE%A1%E7%90%86');">情報管理</a></li>
+		
+		
+			<li><a href="/search?journal=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%AD%A6%E4%BC%9A%E8%AA%8C');">デジタルアーカイブ学会誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E5%AD%A6%E4%BC%9A%E7%AC%AC%E4%BA%8C%E7%A8%AE%E7%A0%94%E7%A9%B6%E4%BC%9A%E8%B3%87%E6%96%99" onclick="return linkUrlLengthCheck('/search?journal=%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E5%AD%A6%E4%BC%9A%E7%AC%AC%E4%BA%8C%E7%A8%AE%E7%A0%94%E7%A9%B6%E4%BC%9A%E8%B3%87%E6%96%99');">人工知能学会第二種研究会資料</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%83%85%E5%A0%B1%E7%9F%A5%E8%AD%98%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E6%83%85%E5%A0%B1%E7%9F%A5%E8%AD%98%E5%AD%A6%E4%BC%9A%E8%AA%8C');">情報知識学会誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E5%AD%A6%E4%BC%9A%E8%AB%96%E6%96%87%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E5%AD%A6%E4%BC%9A%E8%AB%96%E6%96%87%E8%AA%8C');">人工知能学会論文誌</a></li>
+		
+		
+			<li><a href="/search?journal=E-journal+GEO" onclick="return linkUrlLengthCheck('/search?journal=E-journal+GEO');">E-journal GEO</a></li>
+		
+		
+			<li><a href="/search?journal=Journal+of+policy+studies+%3D+%E7%B7%8F%E5%90%88%E6%94%BF%E7%AD%96%E7%A0%94%E7%A9%B6" onclick="return linkUrlLengthCheck('/search?journal=Journal+of+policy+studies+%3D+%E7%B7%8F%E5%90%88%E6%94%BF%E7%AD%96%E7%A0%94%E7%A9%B6');">Journal of policy studies = 総合政策研究</a></li>
+		
+		
+			<li><a href="/search?journal=%E3%81%98%E3%82%93%E3%82%82%E3%82%93%E3%81%93%E3%82%932015%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E3%81%98%E3%82%93%E3%82%82%E3%82%93%E3%81%93%E3%82%932015%E8%AB%96%E6%96%87%E9%9B%86');">じんもんこん2015論文集</a></li>
+		
+		
+			<li><a href="/search?journal=%E4%BA%AC%E9%83%BD%E5%A5%B3%E5%AD%90%E5%A4%A7%E5%AD%A6%E5%9B%B3%E6%9B%B8%E9%A4%A8%E6%83%85%E5%A0%B1%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81" onclick="return linkUrlLengthCheck('/search?journal=%E4%BA%AC%E9%83%BD%E5%A5%B3%E5%AD%90%E5%A4%A7%E5%AD%A6%E5%9B%B3%E6%9B%B8%E9%A4%A8%E6%83%85%E5%A0%B1%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81');">京都女子大学図書館情報学研究紀要</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%90%8C%E5%BF%97%E7%A4%BE%E6%B3%95%E5%AD%A6" onclick="return linkUrlLengthCheck('/search?journal=%E5%90%8C%E5%BF%97%E7%A4%BE%E6%B3%95%E5%AD%A6');">同志社法学</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%9B%B3%E6%9B%B8%E9%A4%A8%E7%95%8C" onclick="return linkUrlLengthCheck('/search?journal=%E5%9B%B3%E6%9B%B8%E9%A4%A8%E7%95%8C');">図書館界</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%A5%88%E8%89%AF%E5%A5%B3%E5%AD%90%E5%A4%A7%E5%AD%A6%E7%A4%BE%E4%BC%9A%E5%AD%A6%E8%AB%96%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E5%A5%88%E8%89%AF%E5%A5%B3%E5%AD%90%E5%A4%A7%E5%AD%A6%E7%A4%BE%E4%BC%9A%E5%AD%A6%E8%AB%96%E9%9B%86');">奈良女子大学社会学論集</a></li>
+		
+		
+			<li><a href="/search?journal=%E5%B0%BE%E9%81%93%E5%B8%82%E7%AB%8B%E5%A4%A7%E5%AD%A6%E5%9C%B0%E5%9F%9F%E7%B7%8F%E5%90%88%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8F%A2%E6%9B%B8" onclick="return linkUrlLengthCheck('/search?journal=%E5%B0%BE%E9%81%93%E5%B8%82%E7%AB%8B%E5%A4%A7%E5%AD%A6%E5%9C%B0%E5%9F%9F%E7%B7%8F%E5%90%88%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8F%A2%E6%9B%B8');">尾道市立大学地域総合センター叢書</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%83%85%E5%A0%B1%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%82%B7%E3%83%B3%E3%83%9D%E3%82%B8%E3%82%A6%E3%83%A02011" onclick="return linkUrlLengthCheck('/search?journal=%E6%83%85%E5%A0%B1%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%82%B7%E3%83%B3%E3%83%9D%E3%82%B8%E3%82%A6%E3%83%A02011');">情報アクセスシンポジウム2011</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%83%85%E5%A0%B1%E5%87%A6%E7%90%86%E5%AD%A6%E4%BC%9A%E8%AB%96%E6%96%87%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E6%83%85%E5%A0%B1%E5%87%A6%E7%90%86%E5%AD%A6%E4%BC%9A%E8%AB%96%E6%96%87%E8%AA%8C');">情報処理学会論文誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%97%A5%E6%9C%AC%E5%9C%B0%E7%90%86%E5%AD%A6%E4%BC%9A%E7%99%BA%E8%A1%A8%E8%A6%81%E6%97%A8%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E6%97%A5%E6%9C%AC%E5%9C%B0%E7%90%86%E5%AD%A6%E4%BC%9A%E7%99%BA%E8%A1%A8%E8%A6%81%E6%97%A8%E9%9B%86');">日本地理学会発表要旨集</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%97%A5%E6%9C%AC%E7%A7%91%E5%AD%A6%E6%95%99%E8%82%B2%E5%AD%A6%E4%BC%9A%E7%A0%94%E7%A9%B6%E4%BC%9A%E7%A0%94%E7%A9%B6%E5%A0%B1%E5%91%8A" onclick="return linkUrlLengthCheck('/search?journal=%E6%97%A5%E6%9C%AC%E7%A7%91%E5%AD%A6%E6%95%99%E8%82%B2%E5%AD%A6%E4%BC%9A%E7%A0%94%E7%A9%B6%E4%BC%9A%E7%A0%94%E7%A9%B6%E5%A0%B1%E5%91%8A');">日本科学教育学会研究会研究報告</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%98%A0%E5%83%8F%E6%83%85%E5%A0%B1%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E6%98%A0%E5%83%8F%E6%83%85%E5%A0%B1%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%AD%A6%E4%BC%9A%E8%AA%8C');">映像情報メディア学会誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%9D%B1%E4%BA%AC%E7%A6%8F%E7%A5%89%E5%A4%A7%E5%AD%A6%E3%83%BB%E5%A4%A7%E5%AD%A6%E9%99%A2%E7%B4%80%E8%A6%81+%3D+Bulletin+of+Tokyo+University+and+Graduate+School+of+Social+Welfare" onclick="return linkUrlLengthCheck('/search?journal=%E6%9D%B1%E4%BA%AC%E7%A6%8F%E7%A5%89%E5%A4%A7%E5%AD%A6%E3%83%BB%E5%A4%A7%E5%AD%A6%E9%99%A2%E7%B4%80%E8%A6%81+%3D+Bulletin+of+Tokyo+University+and+Graduate+School+of+Social+Welfare');">東京福祉大学・大学院紀要 = Bulletin of Tokyo University and Graduate School of Social Welfare</a></li>
+		
+		
+			<li><a href="/search?journal=%E6%9D%B1%E4%BA%AC%E7%B5%8C%E6%B8%88%E5%A4%A7%E5%AD%A6%E4%BA%BA%E6%96%87%E8%87%AA%E7%84%B6%E7%A7%91%E5%AD%A6%E8%AB%96%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E6%9D%B1%E4%BA%AC%E7%B5%8C%E6%B8%88%E5%A4%A7%E5%AD%A6%E4%BA%BA%E6%96%87%E8%87%AA%E7%84%B6%E7%A7%91%E5%AD%A6%E8%AB%96%E9%9B%86');">東京経済大学人文自然科学論集</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%A7%91%E5%AD%A6%E5%8F%B2%E7%A0%94%E7%A9%B6" onclick="return linkUrlLengthCheck('/search?journal=%E7%A7%91%E5%AD%A6%E5%8F%B2%E7%A0%94%E7%A9%B6');">科学史研究</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%AC%AC73%E5%9B%9E%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E7%AC%AC73%E5%9B%9E%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86');">第73回全国大会講演論文集</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%AC%AC74%E5%9B%9E%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E7%AC%AC74%E5%9B%9E%E5%85%A8%E5%9B%BD%E5%A4%A7%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86');">第74回全国大会講演論文集</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%B5%84%E7%B9%94%E7%A7%91%E5%AD%A6" onclick="return linkUrlLengthCheck('/search?journal=%E7%B5%84%E7%B9%94%E7%A7%91%E5%AD%A6');">組織科学</a></li>
+		
+		
+			<li><a href="/search?journal=%E7%B5%8C%E5%96%B6%E6%83%85%E5%A0%B1%E5%AD%A6%E4%BC%9A%E3%80%80%E5%85%A8%E5%9B%BD%E7%A0%94%E7%A9%B6%E7%99%BA%E8%A1%A8%E5%A4%A7%E4%BC%9A%E8%A6%81%E6%97%A8%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E7%B5%8C%E5%96%B6%E6%83%85%E5%A0%B1%E5%AD%A6%E4%BC%9A%E3%80%80%E5%85%A8%E5%9B%BD%E7%A0%94%E7%A9%B6%E7%99%BA%E8%A1%A8%E5%A4%A7%E4%BC%9A%E8%A6%81%E6%97%A8%E9%9B%86');">経営情報学会　全国研究発表大会要旨集</a></li>
+		
+		
+			<li><a href="/search?journal=%E8%87%AA%E5%8B%95%E5%88%B6%E5%BE%A1%E9%80%A3%E5%90%88%E8%AC%9B%E6%BC%94%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86" onclick="return linkUrlLengthCheck('/search?journal=%E8%87%AA%E5%8B%95%E5%88%B6%E5%BE%A1%E9%80%A3%E5%90%88%E8%AC%9B%E6%BC%94%E4%BC%9A%E8%AC%9B%E6%BC%94%E8%AB%96%E6%96%87%E9%9B%86');">自動制御連合講演会講演論文集</a></li>
+		
+		
+			<li><a href="/search?journal=%E8%8A%B8%E8%A1%93%E4%B8%96%E7%95%8C" onclick="return linkUrlLengthCheck('/search?journal=%E8%8A%B8%E8%A1%93%E4%B8%96%E7%95%8C');">芸術世界</a></li>
+		
+		
+			<li><a href="/search?journal=%E8%BE%B2%E6%A5%AD%E8%BE%B2%E6%9D%91%E5%B7%A5%E5%AD%A6%E4%BC%9A%E8%AA%8C" onclick="return linkUrlLengthCheck('/search?journal=%E8%BE%B2%E6%A5%AD%E8%BE%B2%E6%9D%91%E5%B7%A5%E5%AD%A6%E4%BC%9A%E8%AA%8C');">農業農村工学会誌</a></li>
+		
+		
+			<li><a href="/search?journal=%E9%83%BD%E7%95%99%E6%96%87%E7%A7%91%E5%A4%A7%E5%AD%B8%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81" onclick="return linkUrlLengthCheck('/search?journal=%E9%83%BD%E7%95%99%E6%96%87%E7%A7%91%E5%A4%A7%E5%AD%B8%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81');">都留文科大學研究紀要</a></li>
+		
+		
+			<li><a href="/search?journal=%E9%95%B7%E5%B2%A1%E9%80%A0%E5%BD%A2%E5%A4%A7%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81+%3D+Nagaoka+Institute+of+Design+Bulletin" onclick="return linkUrlLengthCheck('/search?journal=%E9%95%B7%E5%B2%A1%E9%80%A0%E5%BD%A2%E5%A4%A7%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%B4%80%E8%A6%81+%3D+Nagaoka+Institute+of+Design+Bulletin');">長岡造形大学研究紀要 = Nagaoka Institute of Design Bulletin</a></li>
+		
+	</ul>
+	</div>
+	
+</div>
+
+</div>
+
+<a class="gotop center-block visible-xs">
+	ページトップへ
+</a>
+	</div>
+	<!-- end of div#hfeed -->
+	
+
+
+
+
+
+
+
+</div>
+
+<footer class="footer">
+	<div class="footer-wrap">
+		<div class="displaymode visible-xs">
+			<div class="modelist">
+				<div class="modeitem">
+					<span id="btnSP" class="selected">スマートフォン版</span>
+				</div>
+				|
+				<div class="modeitem">
+					<a id="btnPC" href="#" onclick="selectModePc();return false;">PC版</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-linkblock ftb-about">
+			<ul class="ft-group">
+				<li><p class="ft-heading">CiNiiについて</p>
+					<ul class="ft-list">
+						<li><a href="https://support.nii.ac.jp/ja/cinii/cinii_outline">CiNiiについて</a></li>
+						<li><a href="https://support.nii.ac.jp/ja/cia/cinii_db">収録刊行物について</a></li>
+						<li><a href="https://support.nii.ac.jp/ja/cinii/terms">利用規約</a></li>
+						<li><a href="https://support.nii.ac.jp/ja/cinii/contact">お問い合わせ</a></li>
+						<li><a href="http://www.nii.ac.jp/">国立情報学研究所 (NII)</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-linkblock ftb-help">
+			<ul class="ft-group">
+				<li><p class="ft-heading">ヘルプ</p>
+					<ul class="ft-list">
+						<li><p><a href="https://support.nii.ac.jp/ja/cia/manual_outline">CiNii Articles - 日本の論文をさがす</a></p>
+						</li>
+						<li><p><a href="https://support.nii.ac.jp/ja/cib/manual_outline">CiNii Books - 大学図書館の本をさがす</a></p>
+						</li>
+						<li><p><a href="https://support.nii.ac.jp/ja/cid/manual_outline">CiNii Dissertations - 日本の博士論文をさがす</a></p>
+						</li>
+						<li><p><a href="https://support.nii.ac.jp/ja/cinii/api/api_outline">メタデータ・API</a></p>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-linkblock ftb-info">
+			<ul class="ft-group">
+				<li><p class="ft-heading">新着情報</p>
+					<ul class="ft-list">
+						<li> <a href="https://support.nii.ac.jp/ja/news/cinii">お知らせ</a></li>
+						<li> <a href="https://support.nii.ac.jp/ja/news/cinii/feed">RSS</a></li>
+						<li><a href="http://twitter.com/cinii_jp">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-linkblock ftb-service">
+			<ul class="ft-group">
+				<li><p class="ft-heading">NIIのコンテンツサービス</p>
+					<ul class="ft-list">
+						<li><a href="https://kaken.nii.ac.jp/">KAKEN - 科学研究費助成事業データベース</a></li>
+						<li><a href="https://irdb.nii.ac.jp/">IRDB - 学術機関リポジトリデータベース</a></li>
+						<li><a href="https://reo.nii.ac.jp/">NII-REO - 電子リソースリポジトリ</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-16015352-1', 'auto');
+	  ga('send', 'pageview');
+</script>
+
+<script type="text/javascript" src="/js/customFormControls_res.js?null"></script>
+</body>
+</html>
+

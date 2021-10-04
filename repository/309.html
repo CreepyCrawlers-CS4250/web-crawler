@@ -1,0 +1,2519 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+
+
+<head>
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta name="viewport" content="width=device-width" />
+<meta name="format-detection" content="telephone=no">
+
+<link href="/resources/core.css?v=1629282897064" rel="stylesheet" type="text/css" />
+<link href="/resources/treeview.css?v=1629282897064" rel="stylesheet" type="text/css" />
+<link href="/resources/uniform.default.css?v=1629282897064" rel="stylesheet" type="text/css" />
+
+<link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/vnd.microsoft.icon" />
+
+<script type="text/javascript" src="/resources/jquery-1.4.2.min.js?v=1629282897064"></script>
+<script type="text/javascript" src="/resources/jquery-ui-1.8.6.custom.min.js?v=1629282897064"></script>
+<script type="text/javascript" src="/resources/jquery.ba-bbq.js?v=1629282897064"></script>
+<script type="text/javascript" src="/resources/jquery.uniform.min.js?v=1629282897064"></script>
+<script type="text/javascript" src="/resources/search.js?v=1629282897064"></script>
+<script type="text/javascript">//<![CDATA[
+	ndl.d2.search.MESSAGES = {
+		"failed-to-get-dialog":'ダイアログの取得に失敗しました。',
+		'tree-failed-to-get-data':'取得に失敗しました',
+		"now-loading":'Now Loading...'
+	};
+//]]></script>
+
+
+
+<link href="/resources/detail.css?v=1629282897064" rel="stylesheet" type="text/css" />
+<link href="/resources/WT12.css?v=1629282897064" rel="stylesheet" type="text/css" />
+<link href="/resources/lang_ja.css?v=1629282897064" rel="stylesheet" type="text/css" />
+<link href="/resources/video-js.css?v=1629282897064" rel="stylesheet" type="text/css" />
+
+	<link href="/resources/WT12_MOBILE.css?v=1629282897064" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/resources/video.js?v=1629282897064"></script>
+<script type="text/javascript" src="/resources/videojs-contrib-hls.js?v=1629282897064"></script>
+<script type="text/javascript" src="/resources/hls.js?v=1629282897064"></script>
+
+
+	
+	
+		<script type="text/javascript" src="/d2viewer/viewer.js?v=1629282897064"></script>
+	
+	<script type="text/javascript" src="/d2player/swfobject.js?v=1629282897064"></script>
+	<script type="text/javascript" src="/resources/WT12-core.js?v=1629282897064"></script>
+	<script type="text/javascript" src="/resources/WT12-d2viewer.js?v=1629282897064"></script>
+	<script type="text/javascript" src="/resources/WT12-d2player.js?v=1629282897064"></script>
+	<script type="text/javascript" src="/resources/WT12-onload.js?v=1629282897064"></script>
+
+<title>天文月報 = The astronomical herald. 63(11) - 国立国会図書館デジタルコレクション</title>
+<script type="text/javascript">//<![CDATA[
+	ndl.d2.search.T03_WT12.ACTION_CONTENT_VIEW = '/';
+	ndl.d2.search.T03_WT12.ACTION_TOC_LOAD = '/common/toctree';
+	ndl.d2.search.T03_WT12.ACTION_PRINT = '/view/print';
+	ndl.d2.search.T03_WT12.ACTION_PREPARE_PDF = '/view/preparePdf';
+	ndl.d2.search.T03_WT12.ACTION_PRINT_ADJUST = '/view/printAdjust';
+	ndl.d2.search.T03_WT12.ACTION_JPEG_OUTPUT = '/view/jpegOutputMenu';
+	ndl.d2.search.T03_WT12.ACTION_VIEW_SETTINGS = '/view/settings';
+	ndl.d2.search.T03_WT12.D2PLAYER_BASE = '/d2player/';
+	ndl.d2.search.T03_WT12.D2PLAYER_VERSION_STAMP = '?v=1629282897064';
+	ndl.d2.search.T03_WT12.ACTION_FULLDOWNLOAD = '/view/fullDownload';
+	ndl.d2.search.T03_WT12.ACTION_PREPARE_FULLDOWNLOAD = '/view/prepareFullDownload';
+
+	ndl.d2.search.T03_WT12.MESSAGES = {
+		"failed-to-get-contents":'コンテンツデータの取得に失敗しました。',
+		"failed-to-get-image-info":'画像の取得に失敗しました。',
+		"btn-show-ancestor-metadata-info":'[表示]',
+		"btn-hide-ancestor-metadata-info":'[隠す]',
+		"btn-show-simple-metadata-info":'簡易レコード表示にする',
+		"btn-show-detail-metadata-info":'詳細レコード表示にする',
+		"btn-show-url":'URL',
+		"btn-view-settings":'表示領域設定',
+		"btn-show-url-copy":'コピー',
+		"btn-show-url-copy-notice":'URLをクリップボードにコピーしました。',
+		"btn-show-url-close":'閉じる',
+		"btn-per-frame-view":'各画像',
+		"btn-arranged-view":'全体/部分画像',
+		"btn-close-full":'フルスクリーン解除',
+		"btn-overview-on":'概観図オン',
+		"btn-overview-off":'概観図オフ',
+		"btn-print-adjust-inlibrary":'次へ（印刷調整）',
+		"btn-print-adjust-notinlibrary":'印刷調整',
+		"btn-print-notinlibrary":'PDF作成',
+		"btn-print-cancel":'キャンセル（閲覧画面へ戻る）',
+		"btn-fulldownload":'開始する',
+		"btn-fulldownload-cancel":'キャンセル（閲覧画面へ戻る）',
+		"btn-open-imagedownload-dialog":'JPEG表示',
+		"btn-imagedownload-cancel":'キャンセル',
+		"btn-open-fulldownload-dialog":'全コマダウンロード',
+		"btn-print":'印刷する',
+		"btn-full":'フルスクリーン(画面の拡大)',
+		"btn-direction":'コマ送り方向反転',
+		"btn-help":'操作方法',
+		"btn-fit":'画面サイズに合わせて表示する',
+		"btn-fith":'画面の横幅に合わせて表示する',
+		"btn-cclockwise":'回転（反時計回り）',
+		"btn-clockwise":'回転（時計回り）',
+		"btn-zoomout":'縮小',
+		"btn-zoomin":'拡大',
+		"lbl-adjust-brightness":'明度',
+		"lbl-adjust-brightness-low":'暗',
+		"lbl-adjust-brightness-high":'明',
+		"lbl-adjust-contrast":'コントラスト',
+		"lbl-adjust-contrast-low":'低',
+		"lbl-adjust-contrast-high":'高',
+		"lbl-adjust-gamma":'ガンマ補正',
+		"lbl-adjust-gamma-low":'暗',
+		"lbl-adjust-gamma-high":'明',
+		"btn-adjust-undo":'元に戻す',
+		"btn-frame-text-other":'先頭／最終',
+		"btn-frame-text-other-reverse":'最終／先頭',
+		"btn-fith-other":'画面幅に合わせてサイズ調整',
+		"btn-zoom-text-other":'画像の倍率',
+		"btn-show-url-text-other":'URL表示',
+		"btn-overview-text-other":'概観図表示',
+		"btn-fulldownload-other":'全コマダウンロード',
+		"btn-clock-text-other":'回転',
+		"btn-search-show":'検索表示',
+		"btn-search-hide":'検索非表示',
+		"btn-alternativelist":'別形式一覧',
+		"btn-print-text":'印刷',
+		"btn-open-imagedownload-dialog-text":'JPEG',
+		"btn-open-fulldownload-dialog-text":'全コマDL',
+		"btn-close":'閉じる',
+		"view-size-empty":'表示領域を入力してください。',
+		"view-size-invalid":'表示領域は100から99999までの数値を入力してください。',
+		"print-range-not-defined":'出力範囲が指定されていません。',
+		"print-range-input-format-error":'範囲指定方法が間違っています。',
+		"btn-frame-prev": '前',
+		"btn-frame-next": '次',
+		"btn-frame-first": '先頭',
+		"btn-frame-last": '最終',
+		__dummy__:null
+	};
+	
+	ndl.d2.search.T03_WT12.ACCESS_KEY_MAP = {'metadata':'m','print':'p','viewsettings':'s','optionalinfo':'','tableofcontents':'c','backtoresult':'z','url':'u'};
+	ndl.d2.search.T03_WT12.SHORTCUT_KEY_MAP = {'k71':'fit','k70':'fullscreen','c37':'frameback','k72':'fith','k75':'clockwise','c39':'frameforward','k74':'cclockwise','k77':'togglemute','k76':'overview','k35':'lastpage','k79':'toggleAlternativelist','k37':'prevpage','k36':'firstpage','k39':'nextpage','k38':'volumeup','k187':'zoomin','k189':'zoomout','s37':'rewind','s39':'forward','k107':'zoomin','k109':'zoomout','k80':'togglepause','k84':'toggleframelist','k40':'volumedown','k83':'stop','k85':'fast','k65':'togglearrange','k87':'toggleaspect','k68':'slow'};
+
+	ndl.d2.search.T03_WT12.DRM_CONTENTS_LOCK_NONWWWDOMAIN = 'dl.ndl.go.jp';
+	ndl.d2.search.T03_WT12.DRM_CONTENTS_LOCK_WWWDOMAIN = 'www.dl.ndl.go.jp';
+	ndl.d2.search.T03_WT12.DRM_CONTENTS_LOCK_FILENAME = 'transparent.gif';
+
+	ndl.d2.search.T03_WT12.DRM_THUMBNAIL_LEVELSUPPLY = 1;
+
+	ndl.d2.search.T03_WT12.ZOOM_SCALE_LIST = [1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200];
+	ndl.d2.search.T03_WT12.ZOOM_SCALE_LIST_WHEEL = [1,5,10,15,20,25,30,40,50,75,100,125,150,200];
+	ndl.d2.search.T03_WT12.ZOOM_SCALE_LIST_TOUCH = [1,5,10,15,20,25,30,40,50,60,70,80,90,100,120,140,160,180,200];
+
+	ndl.d2.search.T03_WT12.PLAYBACK_RATE_LIST = '3.00,2.50,2.00,1.50,1.25,1.00,0.75,0.50'.split(",");
+	ndl.d2.search.T03_WT12.INITIAL_PLAYBACK_RATE_INDEX = 5;
+	
+	ndl.d2.search.T03_WT12.ZOOM_ANIMATION_OFF = false;
+//]]></script>
+</head>
+
+
+
+	<body class="home no-js pc">
+
+
+<script type="text/javascript">//<![CDATA[
+	document.write('<div class="with-js">');
+//]]></script>
+<div class="viewport detail-viewport">
+<div class="header">
+	
+	
+	
+	<h1 class="apptitle"><a href="https://dl.ndl.go.jp/" title="トップページへ"><img src="/resources/images/aptitle.png" alt="国立国会図書館デジタルコレクション"></a></h1>
+	<div class="utilmenu">
+	
+		
+		
+			
+		
+		
+	
+	<div class="lang-selector">
+<form action="" method="get">
+
+	
+		
+		
+			<input type="hidden"
+				name="itemId"
+				value="info:ndljp/pid/3304578"
+			/>
+		
+	
+
+<label for="language_select">言語(<span  lang="en">Language</span>):</label>
+<select name="__lang" id="language_select">
+	<option value="ja">日本語</option>
+	
+		
+		
+			<option value="en">English</option>
+		
+	
+</select>
+
+<input type="submit" value="選択" id="btn-select-lang"/>
+</form>
+</div>
+
+
+		<a href="https://dl.ndl.go.jp/" class="ico_h_to_top" accesskey="0">トップへ</a>
+		<a href="https://dl.ndl.go.jp/ja/intro.html" class="ico_h_faq">このデータベースについて</a>
+		<a href="https://dl.ndl.go.jp/ja/help.html" class="ico_h_help" accesskey="1">ヘルプ</a>
+		
+			
+			
+		
+	</div>
+	
+</div>
+
+<form action="" id="form-item-information">
+	<input type="hidden" name="inLibrary" id="inLibrary" value="false"/>
+	<input type="hidden" name="itemId" id="itemId"  value="info:ndljp/pid/3304578"/>
+	<input type="hidden" name="frameItemId" id="frameItemId"  value="info:ndljp/pid/3304578"/>
+	<input type="hidden" name="viewMode" id="viewMode" value="C"/>
+	<input type="hidden" name="contentsDispPattern" id="contentsDispPattern" value="02"/>
+	<input type="hidden" name="lastContentNo" id="lastContentNo" value="0"/>
+	
+	
+		
+			<input type="hidden" name="enablePrintAdjust" id="enablePrintAdjust" value="1"/>
+			<ul id="printAdjustEnabledMessage" style="display:none;">
+				<li>余白の削除などで一部分だけ印刷したい場合、または画像が薄すぎる、暗すぎる場合は、下の「詳細設定」をお試しください。</li>
+			</ul>
+		
+	
+</form>
+
+
+<div class="mainview">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="GlobalNaviAreaWrap" class="searchheader">
+  <form id="form-keyword-search" method="get" action="/search/searchResult">
+  <div id="GlobalNaviArea" class="width GlobalNaviArea1Line">
+    
+    
+    
+    <select name="featureCode" id="searchselect" title="資料群を選択する"><option value="all">すべて</option>
+      
+        
+        <option value="books">図書</option>
+      
+        
+        <option value="magazines">雑誌</option>
+      
+        
+        <option value="classic">古典籍資料（貴重書等）</option>
+      
+        
+        <option value="etd">博士論文</option>
+      
+        
+        <option value="kanpo">官報</option>
+      
+        
+        <option value="kensei">憲政資料</option>
+      
+        
+        <option value="senryo">日本占領関係資料</option>
+      
+        
+        <option value="prange">プランゲ文庫</option>
+      
+        
+        <option value="audioVisual">録音・映像関係資料</option>
+      
+        
+        <option value="music">歴史的音源</option>
+      
+        
+        <option value="maps">地図</option>
+      
+        
+        <option value="special">特殊デジタルコレクション</option>
+      
+        
+        <option value="otherInstitutions">他機関デジタル化資料</option>
+      
+        
+        <option value="internet">電子書籍・電子雑誌</option></select><!--
+ --><div id="searchBox">
+      <p id="searchForm">
+        <input type="text" name="searchWord" value="" id="searchInput" title="検索語を入力する" /><!--
+        --><input type="submit" value="検索" id="searchBtn"  title="検索を実行する"/>
+      </p>
+    </div>
+    
+    
+    
+      
+    
+    <li class="checkboxWrap">
+      <input type="hidden" name="fulltext" value="1" id="hidden-fulltext"  />
+      <input type="checkbox" value="1" checked id="check-fulltext" style="vertical-align: middle" />
+      <label for="check-fulltext">全文検索</label>
+    </li>
+    <p class="compoundsearch compoundsearch1Line">
+      
+      
+        
+        
+        <a href="/search/detail?searchConditionParameter=">詳細検索</a>
+      
+    </p>
+    
+    
+    <fieldset class="checkboxWrap checkboxWrap1Line"><legend></legend>
+      <span id="checkbox1Line_0">
+        <input type="checkbox" name="viewRestricted" id="chk-view-restricted-detail-0" value="0"  checked="checked" />
+        <label for="chk-view-restricted-detail-0">インターネット公開</label>
+      </span>
+      <span id="checkbox1Line_2">
+        <input type="checkbox" name="viewRestricted" id="chk-view-restricted-detail-2" value="2"  />
+        <label for="chk-view-restricted-detail-2">図書館送信資料</label>
+      </span>
+      <span id="checkbox1Line_3">
+        <input type="checkbox" name="viewRestricted" id="chk-view-restricted-detail-3" value="3"  />
+        <label for="chk-view-restricted-detail-3">国立国会図書館内限定</label>
+      </span>
+    </fieldset>
+  </div>
+  </form>
+</div>
+
+
+	<div class="detailheader">
+		<div class="detailtitlebox">
+			<button class="minibutton minibuttonicon mb-search show" id="btn-search" title="検索表示">&nbsp;</button>
+			
+			
+			
+			
+			
+				
+			
+			
+				
+			
+			
+			
+			
+			
+			
+			<h2>天文月報 = The astronomical herald. 63(11)</h2>
+			<div class="aboutdatabox headersizetype-p-n">
+				<p class="searchotherdata">
+					
+					
+					
+					
+					
+					
+
+					
+					
+						
+					
+					
+						
+					
+
+					
+						
+				 	
+						<a href="/info:ndljp/pid/3304577" class="prevnext"><span class="previewicon">←</span><span class="previewbox">前の巻号</span></a>
+					
+					
+						
+				 	
+						<a href="/info:ndljp/pid/3304579" class="prevnext"><span>後の巻号</span><span class="nexticon">→</span></a>
+					
+				</p>
+			</div>
+		</div>
+			
+		<div class="detailcontrolbox">
+			<div class="detailoperation">
+				<div class="icon-wrapper">
+					<button class="minibutton minibuttonicon mb-info" id="btn-info" title="書誌・目次等">&nbsp;</button>
+					<span class="icon-caption">情報</span>
+				</div>
+				
+					
+				
+				
+				
+				<div class="icon-wrapper btn-help-wrapper">
+					<button class="minibutton minibuttonicon mb-help" id="btn-help" title="操作方法">&nbsp;</button>
+					<span class="icon-caption">操作方法</span>
+				</div>
+			</div>
+		</div>
+	</div><!-- end of div.searchbar -->
+	<div class="normalview">
+		<div class="tocbox tocresizable">
+			<div class="tocboxclose">
+				<button class="minibutton minibuttonicon mb-close" id="btn-tocboxclose" title="書誌・目次等を閉じる">&nbsp;</button>
+			</div>
+			<div class="tocboxinner">
+				<div class="toctabcontainer">
+					
+					
+					
+					
+						<div id="toctab1" class="toctab toctabopened"><a href="#" accesskey="c">目次・巻号</a></div>
+					
+					<div id="toctab2" class="toctab toctabopened"><a href="#" accesskey="m">書誌情報</a></div>
+				</div>
+				
+				
+				
+					<div class="childpain" id="childpain-1">
+						<div class="childpaininner">
+							<div class="childpaincontents">
+
+								<div>
+									<h3>目次・巻号</h3>
+									<div id="resultmenu-toc" class="">
+										
+
+
+
+
+
+
+
+
+
+
+<div class="ndltree-wrapper ndltree-open" id="toctree">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<ul class="ndltree">
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;tocCloseNodeId=info%3Andljp%2Fpid%2F3381704&amp;viewMode=" class="ndltree-folder ndltree-folder-opened" title="階層を開閉する"><span>↓</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3381704?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">天文月報 = The astronomical herald</a></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<ul class="ndltree">
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F10" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?10" /><input type="hidden" value=""
+					/><span class="ndltree-label">1900～1909 (22)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F11" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?11" /><input type="hidden" value=""
+					/><span class="ndltree-label">1910～1919 (130)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F12" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?12" /><input type="hidden" value=""
+					/><span class="ndltree-label">1920～1929 (121)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F13" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?13" /><input type="hidden" value=""
+					/><span class="ndltree-label">1930～1939 (124)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F14" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?14" /><input type="hidden" value=""
+					/><span class="ndltree-label">1940～1949 (74)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F15" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?15" /><input type="hidden" value=""
+					/><span class="ndltree-label">1950～1959 (126)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F16" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?16" /><input type="hidden" value=""
+					/><span class="ndltree-label">1960～1969 (129)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;tocCloseNodeId=info%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=" class="ndltree-folder ndltree-folder-opened" title="階層を開閉する"><span>↓</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17" /><input type="hidden" value=""
+					/><span class="ndltree-label">1970～1979 (130)</span></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<ul class="ndltree">
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;tocCloseNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1970&amp;viewMode=" class="ndltree-folder ndltree-folder-opened" title="階層を開閉する"><span>↓</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1970" /><input type="hidden" value=""
+					/><span class="ndltree-label">1970 (13)</span></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<ul class="ndltree">
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304569" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304569" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304569?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(2) [15]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304570" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304570" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304570?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(3) [18]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304571" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304571" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304571?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(4) [31]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304572" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304572" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304572?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(5) [17]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304573" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304573" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304573?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(6) [15]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304574" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304574" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304574?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(7) [15]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304575" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304575" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304575?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(8) [15]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304576" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304576" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304576?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(9) [15]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304577" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304577" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304577?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(10) [15]</a></td></tr></tbody></table></li>
+	
+		
+		<li class="selected">
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;tocCloseNodeId=info%3Andljp%2Fpid%2F3304578&amp;viewMode=" class="ndltree-folder ndltree-folder-opened" title="階層を開閉する"><span>↓</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304578?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(11) [17]</a></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<ul class="ndltree">
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#1" /><input type="hidden" value=""
+					/><span class="ndltree-label">IAU第14回総会(特集)/巻頭グラビア3p,279～299</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#2" /><input type="hidden" value=""
+					/><span class="ndltree-label">月報アルバム--第14回IAU総開会かる.千客万来/p276～278</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#3" /><input type="hidden" value=""
+					/><span class="ndltree-label">第14回IAU総会かるの報告 / 宮本正太郎 ; 古畑正秋 ; 弓滋 ; 末元善三郎 ; 藤田良雄 ; 北村正利 ; 高倉達雄 ; 進士晃 ; 青木信仰/p279～299</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#4" /><input type="hidden" value=""
+					/><span class="ndltree-label">事務報告(各国代表会議,財政委員会),第17(月)委員会 / 宮本正太郎/279～280</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#5" /><input type="hidden" value=""
+					/><span class="ndltree-label">事務報告(指名委員会),第21(夜天光)委員会,観測天体物理学における自動化コロキウム-11- / 古畑正秋/280～281</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#6" /><input type="hidden" value=""
+					/><span class="ndltree-label">第19(地球回転)委員会,第31(時)委員会 / 弓滋/282～284</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#7" /><input type="hidden" value=""
+					/><span class="ndltree-label">第10(太陽活動)委員会,第12(太陽大気の輻射と構造)委員会,宇宙天文学の新技術シンポジウム / 末元善三郎/284～286</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#8" /><input type="hidden" value=""
+					/><span class="ndltree-label">第29(恒星分光)委員会,第36(恒星大気の理論)委員会,第44(地球大気外での天文観測)委員会,第45(スペクトル分類と多重バンド色指数)委員会 / 藤田良雄/286～288</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#9" /><input type="hidden" value=""
+					/><span class="ndltree-label">第42(測光連星)委員会,第26(実視連星)委員会 / 北村正利/288～290</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#10" /><input type="hidden" value=""
+					/><span class="ndltree-label">第40(電波天文)委員会,第44(地球大気外での天文観測)委員会,IAUシンポジウム-43-,太陽の磁場 / 高倉達雄/291～294</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#11" /><input type="hidden" value=""
+					/><span class="ndltree-label">第4(暦)委員会・合同討論E(星食光電観測)その他 / 進士晃/295～297</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#12" /><input type="hidden" value=""
+					/><span class="ndltree-label">ハイデルベルグ・コロキウム,第7委員会(天体力学) / 青木信仰/297～299</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#13" /><input type="hidden" value=""
+					/><span class="ndltree-label">新刊紹介 / 古在白秀 ; 内田豊 ; 森本雅樹/p299～300</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304578#14" /><input type="hidden" value=""
+					/><span class="ndltree-label">天象欄--11月の天文暦,188センチ反射望遠鏡･岡山 / 石田五郎/p301～301</span></td></tr></tbody></table></li>
+	
+	</ul>
+
+
+</li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304579" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304579" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304579?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(12) [15]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><span class="ndltree-file"><span>・</span></span></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304580" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304580?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">63(総目次(1)-(12)) [3]</a></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3304581" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3304581" /><input type="hidden" value=""
+					/><a href="/info:ndljp/pid/3304581?tocOpened=1" class="ndltree-item ndltree-label" title="資料を表示する">64(1) [15]</a></td></tr></tbody></table></li>
+	
+	</ul>
+
+
+</li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1971" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1971" /><input type="hidden" value=""
+					/><span class="ndltree-label">1971 (13)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1972" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1972" /><input type="hidden" value=""
+					/><span class="ndltree-label">1972 (13)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1973" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1973" /><input type="hidden" value=""
+					/><span class="ndltree-label">1973 (12)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1974" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1974" /><input type="hidden" value=""
+					/><span class="ndltree-label">1974 (14)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1975" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1975" /><input type="hidden" value=""
+					/><span class="ndltree-label">1975 (13)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1976" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1976" /><input type="hidden" value=""
+					/><span class="ndltree-label">1976 (13)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1977" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1977" /><input type="hidden" value=""
+					/><span class="ndltree-label">1977 (13)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1978" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1978" /><input type="hidden" value=""
+					/><span class="ndltree-label">1978 (13)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F17%2F1979" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?17/1979" /><input type="hidden" value=""
+					/><span class="ndltree-label">1979 (13)</span></td></tr></tbody></table></li>
+	
+	</ul>
+
+
+</li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F18" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?18" /><input type="hidden" value=""
+					/><span class="ndltree-label">1980～1989 (125)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F19" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?19" /><input type="hidden" value=""
+					/><span class="ndltree-label">1990～1999 (124)</span></td></tr></tbody></table></li>
+	
+		
+		<li>
+			<table><tbody><tr><td valign="top" class="ndltree-icon-cell"><a href="/info:ndljp/pid/3304578?tocOpenedNodeIds=info%3Andljp%2Fpid%2F3381704%7Cinfo%3Andljp%2Fpid%2F3304578%7Cinfo%3Andljp%2Fpid%2F3381704%3F17%2F1970%7Cinfo%3Andljp%2Fpid%2F3381704%3F17&amp;viewMode=&amp;tocOpenNodeId=info%3Andljp%2Fpid%2F3381704%3F20" class="ndltree-folder" title="階層を開閉する"><span>→</span></a></td><td valign="top" class="ndltree-label-cell"><input type="hidden" value="info:ndljp/pid/3381704?20" /><input type="hidden" value=""
+					/><span class="ndltree-label">2000～2009 (12)</span></td></tr></tbody></table></li>
+	
+	</ul>
+
+
+</li>
+	
+	</ul>
+
+
+
+</div>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				
+				<div class="childpain" id="childpain-2">
+					<div class="childpaininner">
+						<div class="childpaincontents">
+							<div id="structured-metadata-info">
+								
+
+
+
+
+
+
+
+
+
+
+
+	
+		<div class="ancestor-item">
+			<h3>天文月報 = The astronomical heraldの書誌情報</h3>
+			<div class="ancestor-item-info">
+				<h4>簡易表示</h4>
+				<dl class="simple-metadata-list">
+					
+						<dt>永続的識別子</dt>
+						<dd>info:ndljp/pid/3381704</dd>
+					
+						<dt>タイトル</dt>
+						<dd>天文月報 = The astronomical herald</dd>
+					
+						<dt>出版者</dt>
+						<dd>日本天文学会</dd>
+					
+						<dt>出版年月日</dt>
+						<dd>1908-</dd>
+					
+						<dt>ISSN</dt>
+						<dd>0374-2466</dd>
+					
+						<dt>請求記号</dt>
+						<dd>Z15-38</dd>
+					
+						<dt>書誌ID（国立国会図書館オンラインへのリンク）</dt>
+						<dd>
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          <a href="http://id.ndl.go.jp/bib/000000015933" target="_blank">000000015933</a><br />
+		 </dd>
+					
+						<dt>公開範囲</dt>
+						<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館／図書館送信参加館内公開<br /></dd>
+					
+				</dl>
+				<h4>詳細表示</h4>
+				<dl class="detail-metadata-list">
+					
+					
+
+
+
+
+
+
+
+
+
+
+
+
+	<dt>資料種別 (materialType)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+Journal<br /></dd>
+
+	<dt>タイトル (title)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+天文月報 = The astronomical herald<br /></dd>
+
+	<dt>タイトルよみ (titleTranscription)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+テンモン ゲッポウ = The astronomical herald<br /></dd>
+
+	<dt>並列タイトル (alternative)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+The astronomical herald<br /></dd>
+
+	<dt>著者標目 (creator:NDLNA)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+日本天文学会<br /></dd>
+
+	<dt>巻次・年月次 (volumeRange)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1巻1号 (明治41年4月)-<br /></dd>
+
+	<dt>出版地 (publicationPlace)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+三鷹<br /></dd>
+
+	<dt>出版者 (publisher)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+日本天文学会<br /></dd>
+
+	<dt>出版者よみ (publisherTranscription)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+ニホン テンモン ガッカイ<br /></dd>
+
+	<dt>出版年月日 (issued)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1908-<br /></dd>
+
+	<dt>出版年月日(W3CDTF形式) (issued:W3CDTF)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1908<br /></dd>
+
+	<dt>フォーマット(IMT形式) (format:IMT)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+image/jp2<br /></dd>
+
+	<dt>容量・大きさ (extent)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+冊 ; 26cm<br /></dd>
+
+	<dt>内容記述 (description)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館雑誌記事索引 43 (1) 1950.01～54 (12) 1961.11 ; 58 (1) 1964.12～<br /><hr />本タイトル等は最新号による<br /><hr />出版地の変更あり<br /><hr />総目次・総索引あり<br /></dd>
+
+	<dt>刊行頻度 (publicationPeriodicity)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+月刊<br /></dd>
+
+	<dt>関連資料（書誌ID） (relation:NDLBibID)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+000000043306<br /></dd>
+
+	<dt>原資料(日本全国書誌番号) (sourceIdentifier:JPNO)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+00016037<br /></dd>
+
+	<dt>永続的識別子 (identifier:NDLJP)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+info:ndljp/pid/3381704<br /></dd>
+
+	<dt>ISSN (identifier:ISSN)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+0374-2466<br /></dd>
+
+	<dt>Linking ISSN (identifier:ISSNL)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+0374-2466<br /></dd>
+
+	<dt>URL (identifier:URI)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+https://dl.ndl.go.jp/info:ndljp/pid/3381704<br /></dd>
+
+	<dt>NDL請求記号 (callNumber)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+Z15-38<br /></dd>
+
+	<dt>原資料のNDL書誌ID (sourceIdentifier:NDLBibID)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          000000015933<br />
+		 </dd>
+
+	<dt>NDLC (subject:NDLC)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+ZM33<br /></dd>
+
+	<dt>言語(ISO639-2形式) (language:ISO639-2)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+jpn<br /></dd>
+
+	<dt>刊行状態 (publicationStatus)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+継続刊行中<br /></dd>
+
+	<dt>コレクション情報 (type:collection)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+雑誌<br /></dd>
+
+	<dt>所蔵事項 (holdingIssues)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1巻1号 (明治41年4月)- (欠: 37巻8号-41巻5号)<br /></dd>
+
+	<dt>デジタル化出版者 (digitizedPublisher)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館<br /></dd>
+
+	<dt>デジタル化日(W3CDTF形式) (dateDigitized:W3CDTF)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+2011-03-31<br /></dd>
+
+	<dt>提供者 (provider)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+大規模デジタル化（雑誌４）<br /></dd>
+
+	<dt>提供制限 (accessRights)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館/図書館送信限定公開<br /></dd>
+
+	<dt>公開範囲 (rights)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館／図書館送信参加館内公開<br /></dd>
+
+	<dt>階層レベル (type:biblevel)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1<br /></dd>
+
+	<dt>作成者典拠ID (creator:NDLNAId)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+00275417<br /></dd>
+
+	<dt>出版地（国名コード） (publicationPlace:ISO3166)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+JP<br /></dd>
+
+
+				</dl>
+			</div>
+		</div>
+	
+
+<div id="item-info">
+	<h3>書誌情報</h3>
+	<h4>簡易表示</h4>
+	<dl class="simple-metadata-list">
+		
+			<dt>永続的識別子</dt>
+			<dd>info:ndljp/pid/3304578</dd>
+		
+			<dt>タイトル</dt>
+			<dd>天文月報 = The astronomical herald. 63(11)</dd>
+		
+			<dt>出版者</dt>
+			<dd>日本天文学会</dd>
+		
+			<dt>出版年月日</dt>
+			<dd>1970-10</dd>
+		
+			<dt>ISSN</dt>
+			<dd>0374-2466</dd>
+		
+			<dt>請求記号</dt>
+			<dd>Z15-38</dd>
+		
+			<dt>書誌ID（国立国会図書館オンラインへのリンク）</dt>
+			<dd>
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          <a href="http://id.ndl.go.jp/bib/000000015933" target="_blank">000000015933</a><br />
+		 </dd>
+		
+			<dt>DOI</dt>
+			<dd>10.11501/3304578</dd>
+		
+			<dt>公開範囲</dt>
+			<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館／図書館送信参加館内公開<br /></dd>
+		
+	</dl>
+	<h4>詳細表示</h4>
+	<dl class="detail-metadata-list">
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+	<dt>資料種別 (materialType)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+Journal<br /></dd>
+
+	<dt>タイトル (title)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+天文月報 = The astronomical herald<br /></dd>
+
+	<dt>タイトルよみ (titleTranscription)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+テンモン ゲッポウ = The astronomical herald<br /></dd>
+
+	<dt>巻次、部編番号 (volume)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+63(11)<br /></dd>
+
+	<dt>巻次、部編番号よみ (volumeTranscription)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+19700100<br /></dd>
+
+	<dt>並列タイトル (alternative)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+The astronomical herald<br /></dd>
+
+	<dt>著者標目 (creator:NDLNA)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+日本天文学会<br /></dd>
+
+	<dt>巻次・年月次 (volumeRange)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1巻1号 (明治41年4月)-<br /></dd>
+
+	<dt>出版地 (publicationPlace)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+三鷹<br /></dd>
+
+	<dt>出版者 (publisher)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+日本天文学会<br /></dd>
+
+	<dt>出版者よみ (publisherTranscription)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+ニホン テンモン ガッカイ<br /></dd>
+
+	<dt>出版年月日 (issued)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1970-10<br /></dd>
+
+	<dt>出版年月日(W3CDTF形式) (issued:W3CDTF)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1970-10<br /></dd>
+
+	<dt>フォーマット(IMT形式) (format:IMT)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+image/jp2<br /></dd>
+
+	<dt>容量・大きさ (extent)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+冊 ; 26cm<br /></dd>
+
+	<dt>内容記述 (description)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館雑誌記事索引 43 (1) 1950.01～54 (12) 1961.11 ; 58 (1) 1964.12～<br /><hr />本タイトル等は最新号による<br /><hr />出版地の変更あり<br /><hr />総目次・総索引あり<br /></dd>
+
+	<dt>刊行頻度 (publicationPeriodicity)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+月刊<br /></dd>
+
+	<dt>前の巻(永続的識別子) (preview:NDLJP)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+info:ndljp/pid/3304577<br /></dd>
+
+	<dt>次の巻(永続的識別子) (next:NDLJP)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+info:ndljp/pid/3304579<br /></dd>
+
+	<dt>関連資料（書誌ID） (relation:NDLBibID)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+000000043306<br /></dd>
+
+	<dt>上位資料(永続的識別子) (isPartOf:NDLJP)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+info:ndljp/pid/3381704<br /></dd>
+
+	<dt>原資料(日本全国書誌番号) (sourceIdentifier:JPNO)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+00016037<br /></dd>
+
+	<dt>永続的識別子 (identifier:NDLJP)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+info:ndljp/pid/3304578<br /></dd>
+
+	<dt>ISSN (identifier:ISSN)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+0374-2466<br /></dd>
+
+	<dt>Linking ISSN (identifier:ISSNL)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+0374-2466<br /></dd>
+
+	<dt>URL (identifier:URI)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+https://dl.ndl.go.jp/info:ndljp/pid/3304578<br /></dd>
+
+	<dt>DOI (identifier:DOI)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+10.11501/3304578<br /></dd>
+
+	<dt>NDL請求記号 (callNumber)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+Z15-38<br /></dd>
+
+	<dt>原資料のNDL書誌ID (sourceIdentifier:NDLBibID)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          000000015933<br />
+		 </dd>
+
+	<dt>NDLC (subject:NDLC)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+ZM33<br /></dd>
+
+	<dt>言語(ISO639-2形式) (language:ISO639-2)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+jpn<br /></dd>
+
+	<dt>刊行状態 (publicationStatus)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+継続刊行中<br /></dd>
+
+	<dt>コレクション情報 (type:collection)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+雑誌<br /></dd>
+
+	<dt>所蔵事項 (holdingIssues)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+1巻1号 (明治41年4月)- (欠: 37巻8号-41巻5号)<br /></dd>
+
+	<dt>デジタル化出版者 (digitizedPublisher)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館<br /></dd>
+
+	<dt>デジタル化日(W3CDTF形式) (dateDigitized:W3CDTF)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+2011-03-31<br /></dd>
+
+	<dt>提供者 (provider)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+大規模デジタル化（雑誌４）<br /></dd>
+
+	<dt>提供制限 (accessRights)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館/図書館送信限定公開<br /></dd>
+
+	<dt>公開範囲 (rights)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+国立国会図書館／図書館送信参加館内公開<br /></dd>
+
+	<dt>階層レベル (type:biblevel)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+2<br /></dd>
+
+	<dt>サムネイルURL (thumbnailUrl:thumbnailUrl)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+<a href="https://dl.ndl.go.jp/titleThumb/info:ndljp/pid/3304578" target="_blank">https://dl.ndl.go.jp/titleThumb/info:ndljp/pid/3304578</a><br /></dd>
+
+	<dt>サムネイルファイル名 (thumbnailFileName:thumbnailFileName)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+000000015933_19700100thumb.jpg<br /></dd>
+
+	<dt>作成者典拠ID (creator:NDLNAId)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+00275417<br /></dd>
+
+	<dt>出版地（国名コード） (publicationPlace:ISO3166)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+JP<br /></dd>
+
+	<dt>目次 (tableOfContents)</dt>
+	<dd>
+
+
+
+
+
+
+
+
+
+
+
+IAU第14回総会(特集) / 巻頭グラビア3p,279～299 (0004.jp2)&lt;8325178&gt;<br /><hr />月報アルバム--第14回IAU総開会かる.千客万来 / p276～278 (0003.jp2)<br /><hr />第14回IAU総会かるの報告 / 宮本正太郎 ; 古畑正秋 ; 弓滋 ; 末元善三郎 ; 藤田良雄 ; 北村正利 ; 高倉達雄 ; 進士晃 ; 青木信仰 / p279～299 (0004.jp2)<br /><hr />事務報告(各国代表会議,財政委員会),第17(月)委員会 / 宮本正太郎 / 279～280 (0004.jp2)&lt;8325180&gt;<br /><hr />事務報告(指名委員会),第21(夜天光)委員会,観測天体物理学における自動化コロキウム-11- / 古畑正秋 / 280～281 (0005.jp2)&lt;8325181&gt;<br /><hr />第19(地球回転)委員会,第31(時)委員会 / 弓滋 / 282～284 (0006.jp2)&lt;8325182&gt;<br /><hr />第10(太陽活動)委員会,第12(太陽大気の輻射と構造)委員会,宇宙天文学の新技術シンポジウム / 末元善三郎 / 284～286 (0007.jp2)&lt;8325183&gt;<br /><hr />第29(恒星分光)委員会,第36(恒星大気の理論)委員会,第44(地球大気外での天文観測)委員会,第45(スペクトル分類と多重バンド色指数)委員会 / 藤田良雄 / 286～288 (0008.jp2)&lt;8325184&gt;<br /><hr />第42(測光連星)委員会,第26(実視連星)委員会 / 北村正利 / 288～290 (0009.jp2)&lt;8325185&gt;<br /><hr />第40(電波天文)委員会,第44(地球大気外での天文観測)委員会,IAUシンポジウム-43-,太陽の磁場 / 高倉達雄 / 291～294 (0010.jp2)&lt;8325186&gt;<br /><hr />第4(暦)委員会・合同討論E(星食光電観測)その他 / 進士晃 / 295～297 (0012.jp2)&lt;8325187&gt;<br /><hr />ハイデルベルグ・コロキウム,第7委員会(天体力学) / 青木信仰 / 297～299 (0013.jp2)&lt;8325188&gt;<br /><hr />新刊紹介 / 古在白秀 ; 内田豊 ; 森本雅樹 / p299～300 (0014.jp2)<br /><hr />天象欄--11月の天文暦,188センチ反射望遠鏡･岡山 / 石田五郎 / p301～301 (0015.jp2)<br /></dd>
+
+
+		
+		<dt>URL</dt>
+		<dd>
+			<span id="item-url">
+				https://dl.ndl.go.jp/info:ndljp/pid/3304578
+			</span>
+		</dd>
+	</dl>
+</div>
+
+							</div>
+							<div id="content-info">
+								
+									
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+<div class="url-description">
+	<p id="content-url">https://dl.ndl.go.jp/info:ndljp/pid/3304578/1</p>
+</div>
+
+								
+							</div>
+							
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="detailviewport" id="detailviewport">
+			
+				<div id="fullscreen-control-wrapper">
+					<div id="fullscreen-control">
+						
+						<div id="content-control-fullscreen">
+							<button class="minibutton minibuttonicon mb-zoomout" id="btn-zoomout-fullscreen" title="縮小">&nbsp;</button>
+							<div class="mb-placeholder zoomindicator"></div>
+							<button class="minibutton minibuttonicon mb-zoomin" id="btn-zoomin-fullscreen" title="拡大">&nbsp;</button>
+							<button class="minibutton minibuttonicon mb-fit" id="btn-fit-fullscreen" title="画面サイズに合わせて表示する">&nbsp;</button>
+							<button class="minibutton minibuttonicon mb-cclockwise" id="btn-cclockwise-fullscreen" title="回転（反時計回り）">&nbsp;</button>
+							<button class="minibutton minibuttonicon mb-clockwise" id="btn-clockwise-fullscreen" title="回転（時計回り）">&nbsp;</button>
+							
+							<button class="minibutton minibuttonicon minitogglebutton mb-other" id="btn-other-fullscreen" title="その他ダイアログ">&nbsp;</button>
+							
+							<button class="minibutton minibuttonicon mb-url" id="btn-show-url-fullscreen" title="URL">URL</button>
+							
+						</div>
+						
+							<button class="minibutton minibuttonicon mb-print" id="btn-print-fullscreen" title="印刷する">&nbsp;</button>
+						
+						
+						
+						<span id="fullscreencancel" class="fullscreencancel"></span>
+					</div>
+				</div>
+				<div id="content-control-container"></div>
+				<div class="detailviewport-inner" id="detailviewport-inner">
+					
+						<div class="content-alert" id="content-alert">
+							<div class="message-box-wrapper">
+								<div class="message-box-inner">
+									
+									
+										<p>この資料は、著作権の保護期間中であるか、著作権の確認が済んでいない資料のためインターネット公開をしていません。閲覧を希望される場合は、国立国会図書館または図書館送信参加館へご来館ください。<br />＞<a href="https://openinq.dl.ndl.go.jp/search#3">デジタル化資料のインターネット提供について</a><br /><br />図書館送信参加館にご来館になる場合は、来館予定の図書館へ利用方法の確認をお願いいたします。 <br />「書誌ID（国立国会図書館オンラインへのリンク） 」が表示されている資料は、遠隔複写サービスもご利用いただけます。<br /><br />＞<a href="https://www.ndl.go.jp/jp/use/digital_transmission/index.html">図書館向けデジタル化資料送信サービス（図書館送信）について</a><br />＞<a href="https://dl.ndl.go.jp/ja/soshin_librarylist.html">図書館送信参加館一覧</a><br />＞<a href="https://www.ndl.go.jp/jp/copy/remote/index.html">遠隔複写サービス の申し込み方</a></p>
+									
+								</div>
+							</div>
+						</div>
+					
+					
+				</div>
+			
+			
+		</div>
+
+	</div>
+</div>
+
+<div id="help-dialogue">
+	
+	
+		<div class="resulttable">
+<table summary="コンテンツ閲覧画面の操作方法です。マウス操作、キーボード操作について記載しています。">
+<colgroup span="1" style="width:180px;border:1px solid #e5e5e5;" />
+<colgroup span="1" style="width:200px;border:1px solid #e5e5e5;" />
+<colgroup span="1" style="width:120px;border:1px solid #e5e5e5;" />
+<!--<colgroup span="1" style="width:250px;border:1px solid #e5e5e5;" />-->
+<thead>
+<tr><th scope="col">機能</th><th scope="col">マウス操作</th><th scope="col">キーボード操作</th></tr>
+</thead>
+<tbody>
+<tr class="odd">
+	<td>コマ送りの向きを反転する</td><td><img src="/html-resources/b32.png" alt="コマ送り方向反転ボタン（右向き）" /> <img src="/html-resources/b31.png" alt="コマ送り方向反転ボタン（左向き）" /></td><td></td>
+</tr>
+<tr>
+	<td>次のコマに進む</td><td>上の表示が<img src="/html-resources/b32.png" alt="コマ送り方向反転ボタン（右向き）" />のとき：ビューア部右端をクリック<br />上の表示が<img src="/html-resources/b31.png" alt="コマ送り方向反転ボタン（左向き）" />のとき：ビューア部左端をクリック</td><td>上の表示が<img src="/html-resources/b32.png" alt="コマ送り方向反転ボタン（右向き）" />のとき：→<br />上の表示が<img src="/html-resources/b31.png" alt="コマ送り方向反転ボタン（左向き）" />のとき：←</td>
+</tr>
+<tr class="odd">
+	<td>前のコマに戻る</td><td>上の表示が<img src="/html-resources/b32.png" alt="コマ送り方向反転ボタン（右向き）" />のとき：ビューア部左端をクリック<br />上の表示が<img src="/html-resources/b31.png" alt="コマ送り方向反転ボタン（左向き）" />のとき：ビューア部右端をクリック</td><td>上の表示が<img src="/html-resources/b32.png" alt="コマ送り方向反転ボタン（右向き）" />のとき：←<br />上の表示が<img src="/html-resources/b31.png" alt="コマ送り方向反転ボタン（左向き）" />のとき：→</td>
+</tr>
+<tr>
+	<td>先頭コマに移動</td><td><img src="/html-resources/b18.png" alt="その他ボタン" />を押してメニューを表示してから<img src="/html-resources/b19.png" alt="先頭ボタン" /></td><td>Home</td>
+</tr>
+<tr class="odd">
+	<td>最終コマに移動</td><td><img src="/html-resources/b18.png" alt="その他ボタン" />を押してメニューを表示してから<img src="/html-resources/b20.png" alt="最終ボタン" /></td><td>End</td>
+</tr>
+<tr>
+	<td>コマ数指定移動</td><td>[コマ番号]からコマ数を選択</td><td></td>
+</tr>
+<tr class="odd">
+	<td>画像を拡大</td><td>ホイールを上に回す<br /><img src="/html-resources/b6.png" alt="拡大ボタン" /></td><td>＋</td>
+</tr>
+<tr>
+	<td>画像を縮小</td><td>ホイールを下に回す<br /><img src="/html-resources/b5.png" alt="縮小ボタン" /></td><td>－</td>
+</tr>
+<tr class="odd">
+	<td>画像の表示範囲を動かす</td><td>画像をクリック＆ドラッグ</td><td></td>
+</tr>
+<tr>
+	<td>フルスクリーン（ビューア部の拡大）表示</td><td><img src="/html-resources/b21.png" alt="フルスクリーンボタン" /></td><td>F</td>
+</tr>
+<tr class="odd">
+	<td>フルスクリーン（ビューア部の拡大）解除</td><td>[フルスクリーン解除]</td><td>F</td>
+</tr>
+<tr>
+	<td>画像全体を画面内に収める</td><td><img src="/html-resources/b1.png" alt="縦横合わせボタン" /></td><td>G</td>
+</tr>
+<tr class="odd">
+	<td>画像の横幅を画面内に収める</td><td><img src="/html-resources/b2.png" alt="画面の横幅に合わせて表示するボタン" /></td><td>H</td>
+</tr>
+<tr>
+	<td>90°回転（反時計周り）</td><td><img src="../../../html-resources/b4.png" alt="90°回転（反時計周り）ボタン" /></td><td>J</td>
+</tr>
+<tr class="odd">
+	<td>90°回転（時計回り）</td><td><img src="../../../html-resources/b3.png" alt="90°回転（時計回り）ボタン" /></td><td>K</td>
+</tr>
+<tr>
+	<td>サムネイル一覧を表示する</td><td><img src="../../../html-resources/b22.png" alt="サムネイル一覧ボタン" /></td><td>T</td>
+</tr>
+<tr class="odd">
+	<td>複数の画像を合成した全体画像を表示する</td><td><img src="../../../html-resources/b23.png" alt="全体画像ボタン" /><br />	※この機能は古典籍資料の一部資料でのみ使用できます。</td><td></td>
+</tr>
+<tr>
+	<td>表示画像の画質を調整する</td><td><img src="../../../html-resources/b24.png" alt="画質調整ボタン" /><br />※このボタンで調整できるのは閲覧画面に表示している画像です。印刷時の画質は印刷調整画面で調整してください。</td><td></td>
+</tr>
+<tr class="odd">
+	<td>書誌、目次、解題・翻刻を表示する</td><td><img src="../../../html-resources/b25.png" alt="詳細情報を表示するボタン" /></td><td></td>
+</tr>
+<tr>
+	<td>書誌、目次、解題・翻刻を閉じる</td><td><img src="../../../html-resources/b26.png" alt="×ボタン" /></td><td></td>
+</tr>
+<tr class="odd">
+	<td>印刷する</td><td><img src="../../../html-resources/b27.png" alt="印刷するボタン" /></td><td>*P</td>
+</tr>
+<tr>
+	<td>JPEG形式で表示</td><td><img src="../../../html-resources/b28.png" alt="JPEG表示ボタン" />をクリックし倍率を設定</td><td></td>
+</tr>
+<tr class="odd">
+	<td>画像を全コマダウンロードする</td><td><img src="../../../html-resources/b29.png" alt="全コマダウンロードボタン" /><br />※公開範囲が「インターネット公開（保護期間満了）」の資料でのみ利用可能です。</td><td></td>
+</tr>
+<tr>
+	<td>特定コマのURLを表示する</td><td>[URL]</td><td>*U</td>
+</tr>
+<tr class="odd">
+	<td>音声/映像を再生する</td><td><img src="../../../html-resources/b8.png" alt="再生ボタン" /></td><td>P</td>
+</tr>
+<tr>
+	<td>音声/映像を一時停止する</td><td><img src="../../../html-resources/b9.png" alt="一時停止ボタン" /></td><td>P</td>
+</tr>
+<tr class="odd">
+	<td>音声/映像を停止する</td><td><img src="../../../html-resources/b10.png" alt="停止ボタン" /></td><td>S</td>
+</tr>
+<tr>
+	<td>音声/映像をコマ送りする</td><td><img src="../../../html-resources/b33.png" alt="コマ送りボタン" /></td><td>Ctrl＋→:コマ送り<br>Ctrl＋←：コマ戻し</td>
+</tr>
+<tr class="odd">
+	<td>音声/映像の表示領域比率を4:3に設定する</td><td><img src="../../../html-resources/b15.png" alt="4:3ボタン" /></td><td>W</td>
+</tr>
+<tr>
+	<td>音声/映像の表示領域比率を16:9に設定する</td><td><img src="../../../html-resources/b16.png" alt="16:9ボタン" /></td><td>W</td>
+</tr>
+<tr class="odd">
+	<td>音声/映像を任意の位置から再生する</td><td><img src="../../../html-resources/b13.png" style="width:180px" alt="シークバー" /><br />※シークバーのドラッグも可能です。</td><td>SHIFT＋→：+10秒<br>SHIFT＋←：-10秒</td>
+</tr>
+<tr>
+	<td>音声を消す（ミュート）</td><td><img src="../../../html-resources/b11.png" alt="ミュートボタン" /></td><td>M</td>
+</tr>
+<tr class="odd">
+	<td>音声を消す（ミュート）を解除</td><td><img src="../../../html-resources/b12.png" alt="ミュートボタン（ミュート状態）" /></td><td>M</td>
+</tr>
+<tr>
+	<td>音量を調整する</td><td><img src="../../../html-resources/b14.png" alt="音量スライダー" /></td><td>↑↓</td>
+</tr>
+<tr class="odd">
+	<td>再生速度を変更する</td><td><img src="../../../html-resources/b17.png" alt="再生速度変更ボタン" /></td><td>U（速くする）<br />D（遅くする）</td>
+</tr>
+</tbody>
+</table>
+<p>*アクセスキーの場合は、表中に「*」をつけています。<br />
+　&nbsp;Windows IEでは「ALT」+アクセスキー、Windows FireFoxでは「ALT」+「SHIFT」+アクセスキーのように押して利用します。</p>
+</div>
+
+	
+</div>
+
+<div id="btn-scrollTop" title="画面上部へスクロール"></div>
+
+
+
+<div class="footer clearfix">
+
+
+        
+        
+        <p class="footerleft"><a href="https://www.ndl.go.jp/" accesskey="4">国立国会図書館ホーム</a></p>
+        <p class="footerright">
+        
+          
+        
+        <a href="https://dl.ndl.go.jp/ja/sitepolicy.html" accesskey="3">サイトポリシー</a> &nbsp;
+        <a href="https://dl.ndl.go.jp/ja/contact.html" accesskey="2">お問い合わせ</a></p>
+        <p class="footercenter" lang="en">Copyright &copy; 2011- National Diet Library. All Rights Reserved.</p>
+
+</div><!-- end of div.footer -->
+<div id="dialog-area"></div>
+
+</div>
+<script type="text/javascript">//<![CDATA[
+	document.write('<' + '/div>');
+//]]></script>
+</body>
+
+</html>

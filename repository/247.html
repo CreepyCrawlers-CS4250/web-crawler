@@ -1,0 +1,981 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="bUOjvbytv/U910Jm9QTS1OJ+/eh/tVfYfUnNPbcoR09nNkygV45nzBgrVgNUBaqrh/Qu/W6eXSvgQvcPsoqzzw==" />
+<link rel="search" type="application/opensearchdescription+xml" title="NDL Search" href="https://iss.ndl.go.jp/api/opensearch_description" />
+  <link rel="stylesheet" media="" href="/stylesheets/ndl/styles.css" type="text/css" />
+  
+<link rel="stylesheet" media="print" href="/stylesheets/ndl/styles_print.css" type="text/css" />
+<script src="/javascripts/ndl/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="/javascripts/ndl/jquery-ui-1.8.6.custom.min.js" type="text/javascript"></script>
+<script src="/javascripts/ndl/jquery.cookie.js" type="text/javascript"></script>
+<script src="/javascripts/rails.js" type="text/javascript"></script>
+<script src="/javascripts/ndl/init.js" type="text/javascript"></script>
+<link rel="stylesheet" media="" href="/stylesheets/ndl/style_dialog.css" type="text/css" />
+
+<!-- script type="text/javascript" defer src="https://api.jglobal.jst.go.jp/webapi/api.js.php?key=JDEkcmFzbXVzbGUkLmhUREguWmptNFhPSG9BYXdRbkhSMA==" charset="UTF-8"></script -->
+<script type="text/javascript">
+//<![CDATA[
+
+$(window).load(function(){
+  if(search_keywords == '') {
+    return false;
+  }
+  apiurl = 'https://api.jglobal.jst.go.jp/jgapi/v1/terms';
+  $.ajax({
+    url: apiurl,
+    type: 'GET',
+    dataType: 'json',
+    data: { "q": search_keywords },
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-JGAPI-KEY', 'JDEkcmFzbXVzbGUkLmhUREguWmptNFhPSG9BYXdRbkhSMA==');
+    },
+    success: function(data) {
+      api_invoke(data);
+    },
+    error: function(data) { 
+    },
+  });
+  return false;
+});
+
+function api_invoke(data){
+  var main_html = "";
+  var data_html = "";
+  var hit_cnt = 0;
+  var item = "";
+  for( var i = 0; i < data.length; i ++ ){
+    item = data[i]['title'];
+    if( search_keywords.indexOf(item) < 0 ){
+      hit_cnt++;
+      if( hit_cnt > disp_cnt ){
+        data_html += '<li class="additional"><a href="' + books_url + "?any=" + encodeURI(item) + '">' + item + '</a></li>';
+      }else{
+        data_html += '<li><a href="' + books_url + "?any=" + encodeURI(item) + '">' + item + '</a></li>';
+      }
+    }
+  }
+
+  if( hit_cnt > 0 ){
+    main_html += '<h2 class="mainlabel">';
+    main_html += '科学技術用語';
+    main_html += '</h2>';
+    main_html += '<p>Powered by <a href=\"javascript:void(window.open(\'http://jglobal.jst.go.jp/\',\'jstwindow\'))\">J-GLOBAL</a></p>'
+    main_html += '<div class="subgroup" id="jglobal_content">';
+    main_html += '<ul class="sub-ul">';
+    main_html += data_html;
+    main_html += '</ul>';
+    if( hit_cnt > disp_cnt ){
+      main_html += '<div class="show-wrapper">';
+      main_html += '<span class="showall"><a href="#">▼全て表示</a></span><span class="showsome"><a href="#">▲一部を表示</a></span>';
+      main_html += '</div>';
+    }
+    main_html += '</div>';
+
+    contents.innerHTML = main_html;
+    var jglobalArea = $('#jglobal_content');
+    setShowAllSwitch($('.showall', jglobalArea), $('.showsome', jglobalArea), $('.additional', jglobalArea));
+
+    return true;
+  }
+
+}
+
+//]]>
+</script>
+  <script type="text/javascript">
+
+    document.onkeydown = function(e) { 
+        if(!e) {
+            if(window.event.keyCode == 116) {
+                window.event.keyCode = 1; // IE8対応 keyCode 1 は存在しない
+                return false;
+            }
+        } else {
+            if(e.which == 116) {
+                return false;
+            }
+        }
+    };
+
+    
+    // 並び換えのプルダウンメニューが選択されたときに呼び出される関数
+    function change_page_with_sort_type(obj) {
+      var url = "https://iss.ndl.go.jp/books?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&ar=4e1f&except_repository_nos%5B%5D=R100000038&except_repository_nos%5B%5D=R100000049&except_repository_nos%5B%5D=R100000073";
+      para_sym = (url.indexOf('?') > 1) ? "&" : "?";
+      if (obj.value) {
+        window.location.href= url + para_sym + "sort=" + obj.value;
+      } else {
+        window.location.href= url;
+      }
+    }
+    //]]>
+
+    // Show or Hide Multisearching Indicatior
+    (function($){
+      var multisearchingIndicator = function( isVisible ){
+        if ( isVisible ) { // Show
+          var colorBefore = '#030';
+          var colorAfter = '#080';
+          var speed = 1200;
+          var effect = 'linear';
+          $(function(){
+            var wrapper = $( '#tabs-search' );
+            if ( wrapper.length > 0 ) {
+              var indicator = $( '<div class="indicator-multisearching"><div class="im-label">横断検索実行中...(%)</div><div class="im-stop" onclick="multisearchingIndicator( false )">停止</div><div class="dropshadow dropshadow-up">&nbsp;</div></div>' );
+              indicator.css( 'background-color', colorBefore );
+              var animate = function(){
+                indicator.animate(
+                { backgroundColor: colorAfter },
+                speed,
+                effect,
+                function(){
+                  indicator.animate(
+                  { backgroundColor: colorBefore },
+                  speed,
+                  effect,
+                  animate
+                )
+                }
+              );
+              };
+              indicator.hide();
+              wrapper.append( indicator );
+              indicator.slideDown( 'slow', function(){
+                animate();
+              } );
+            };
+          });
+        } else { // Hide
+          var indicator = $( '.indicator-multisearching' );
+          if ( indicator.length > 0 ) {
+            indicator.slideUp( 'fast', function(){ indicator.remove(); } );
+          };
+          if(typeof(indicatorStop) == 'function') {
+            indicatorStop();
+          }
+        };
+      };
+      window.multisearchingIndicator = multisearchingIndicator; // Expose to the globe.
+    })(jQuery);
+
+  </script>
+
+<title>簡易検索結果｜「&quot;ウィキボヤージュ&quot;」に一致する資料は見つかりませんでした｜国立国会図書館サーチ</title>
+
+<script type="text/javascript" charset="utf-8" src="/javascripts/ndl/accessibility.js"></script>
+<script type="text/javascript" charset="utf-8" src="/javascripts/lib/shortcut.js"></script>
+</head>
+<body class="result result2" >
+    <noscript>
+    <style type="text/css"><!--
+      div#search-advanced    { display: block; }
+      div#search-handicapped { display: block; }
+      --></style>
+  </noscript>
+
+<style> div#header div.utilmenu { float: none; } </style>
+
+<p class="guidance"><a name="PTOP" id="PTOP"></a></p>
+<p class="guidance"><img width="1" height="1" alt="サイトメニューここから" src="/images/ndl/spacer.png" /><a name="PTOP" id="PTOP"><img width="1" height="1" alt="このページの先頭です" src="/images/ndl/spacer.png" /></a></p>
+  <p class="guidance" id="shortcut_description"><a href="#"><img width="1" height="1" alt="ショートカットキーの説明を開始します。画面遷移や機能実行は、説明にあるショートカットキーを同時に押した後、Enterキーを押してください。ショートカットキーの説明を聞くには、Alt＋0。トップ画面の表示には、Alt＋1。ログインを行うには、Alt＋2。簡易検索画面の表示には、Alt＋3。詳細検索画面の表示には、Alt＋4。障害者向け資料検索画面の表示には、Alt＋5。検索結果の並び替えを行うには、Alt＋6。国立国会図書館ホームページの表示には、Alt＋7。検索結果の絞り込みを行うには、Alt＋8。以上でショートカットキーの説明を終わります。" src="/images/ndl/spacer.png" /></a></p>
+
+    <div id="header" class="header">
+    <p class="guidance"><a href="#resultlist">検索結果一覧へ移動</a></p>
+    <p id="systemname"><a onfocus="popuppanel_login_hide()" href="/">国立国会図書館サーチ</a></p>
+
+  <div class="utilmenu">
+        
+        <ul style="display:inline-block; float: right;">
+            <div class="login-btn" title='ログイン' >                          <a href="/login?target=https://iss.ndl.go.jp/books?op_id=1&locale=ja&any=%2522%25E3%2582%25A6%25E3%2582%25A3%25E3%2582%25AD%25E3%2583%259C%25E3%2583%25A4%25E3%2583%25BC%25E3%2582%25B8%25E3%2583%25A5%2522&display=&ar=4e1f" class='popup-login'>
+        ログイン
+      </a>
+ </div>
+      <li class="setting"><a onfocus="popuppanel_login_hide()" href="/users/edit">設定</a></li>
+      
+      <li class="help"><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a href="https://iss.ndl.go.jp/information/help/" target="_blank" onfocus="popuppanel_lang_hide()" >ヘルプ</a>
+      </li>
+        <li class="box"><a href="javascript:void(0)" class="triangle triangle-white-rightdown popup-lang"><img class="guidance " width="1" height="1" alt="画面の表示言語のリストです。言語の選択が可能です。" src="/images/ndl/spacer.png" />Language</a><div class="popuppanel popuppanel-lang" id="popuppanel-lang" style="margin-left: -2em">
+          <ul>
+            <li><a href="/books?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;ar=4e1f&amp;display=&amp;locale=ja&amp;op_id=1">日本語 (Japanese)</a></li>
+            <li><a href="/books?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;ar=4e1f&amp;display=&amp;locale=zh&amp;op_id=1">简体中文（Chinese）</a></li>
+            <li><a href="/books?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;ar=4e1f&amp;display=&amp;locale=ko&amp;op_id=1">한국어（Korean）</a></li>
+            <li><a href="/books?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;ar=4e1f&amp;display=&amp;locale=en&amp;op_id=1">English</a></li>
+          </ul>
+        </div></li>
+
+        <li class="box font-size"><a href="javascript:void(0)" onfocus="popuppanel_lang_hide()" >文字拡大</a></li>
+        <li class="box monochrome"><a href="javascript:void(0)">白黒反転</a></li>
+
+    </ul>
+  </div>
+  <p class="guidance"><img width="1" height="1" alt="サイトメニューここまで" src="/images/ndl/spacer.png" /></p>
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+  //popuppanel_loginの非表示処理
+  var popuppanel_login_hide = function(){
+    $("#popuppanel-login").hide();
+  };
+
+  //popuppanel_langの非表示処理
+  var popuppanel_lang_hide = function(){
+    $("#popuppanel-lang").hide();
+  };
+
+  //DOMがロードされたときの処理
+  $(document).ready(function($){
+    //文字拡大処理
+    //cookieが存在しない場合、フォントサイズ最小値を設定する
+    if($.cookie("ndlFontSizeStyle") == null){
+      $.cookie("ndlFontSizeStyle", inputMinFontSize, {path:'/' });
+    }
+    //tmpNowFontSizeに一つ前のフォントサイズ係数を設定し、changeFontSizeに処理を依頼
+    if(eval($.cookie("ndlFontSizeStyle")) == inputMinFontSize){
+      tmpNowFontSize = inputMaxFontSize + 1;
+    }else{
+      tmpNowFontSize = eval($.cookie("ndlFontSizeStyle")) - 1 ;
+    }
+    if (window.location.href.match(/login/)){
+        changeFontSize(75);
+    }else{
+        changeFontSize(50);
+    };
+    
+    //白黒反転処理
+    if(eval($.cookie("ndlColorChangeFlag")) == 1){
+      // 白黒反転適用
+      $("body").addClass("monochrome");
+      $("a.sso").css("color", "#FFFF99");
+      /* 白黒反転フラグを有効化 */
+      tmpColorChangeFlag = 1;
+      $.cookie("ndlColorChangeFlag", 1, {path:'/' });
+    }else{
+      $("body").removeClass("monochrome");
+      $("a.sso").css("color", "");
+      /* 白黒反転フラグを無効化 */
+      tmpColorChangeFlag = 0;
+      $.cookie("ndlColorChangeFlag", 0, {path:'/' });
+    }
+
+  });
+
+  //文字拡大がクリックされたときの処理
+  $("li.font-size a").click(function(){
+    // フォントサイズ係数が最大値以下の場合
+    if(eval($.cookie("ndlFontSizeStyle")) <= inputMaxFontSize){
+      $.cookie("ndlFontSizeStyle", eval($.cookie("ndlFontSizeStyle")) + 1, {path:'/' });
+    }else{
+      // フォントサイズ係数が最大値を超えた場合はデフォルトに戻す
+      $.cookie("ndlFontSizeStyle", inputMinFontSize, {path:'/' });
+    }
+  });
+
+  //白黒反転がクリックされたときの処理
+  $("li.monochrome a").click(function(){
+    if( eval($.cookie("ndlColorChangeFlag")) == 1){//ture(白黒反転適用)の場合
+      $.cookie("ndlColorChangeFlag", 0, {path:'/' });
+    }else{//上記以外(白黒反転無効)の場合
+      $.cookie("ndlColorChangeFlag", 1, {path:'/' });
+    }
+  });
+
+
+
+//]]>
+</script>
+<!--[if IE 6]>
+<iframe class="shim" frameborder="0" width="0" height="0"></iframe>
+<![endif]-->
+
+
+<div id="tabs-search" class="tabs-search"><p class="guidance"><a name="search-guidance" id="search-guidance"></a></p>
+<p class="guidance"><img width="1" height="1" alt="検索メニューここから" src="/images/ndl/spacer.png" /></p>
+  <div class="tabs-search-trigger-wrapper">
+    <ul class="tabs-search-trigger">
+      <li class="tabtrigger-first"><a href="#search-normal">簡易検索</a></li><li class="tabtrigger-second"><a href="#search-advanced">詳細検索</a></li><li class="tabtrigger-third"><a href="#search-handicapped">障害者向け資料検索</a></li>
+    </ul>
+  </div>
+
+<script>
+//<![CDATA[
+$.fn.disableOnSubmit_for_search = function(disableList){
+	if(disableList == null){var $list = 'input[type=submit],input[type=button],input[type=reset],button';}
+	else{var $list = disableList;}
+
+	// Makes sure button is enabled at start
+	$(this).find($list).removeAttr('disabled');
+	$(this).submit(function(){
+    if ($(this).find('#searchbox').length){
+    //簡易検索の２重送信抑止
+      if ($(this).find('#searchbox').val() != ''){
+        //空検索時には非活性としない
+        $(this).find($list).attr('disabled','disabled');
+      }
+    }else if ( ($(this).find('#searchbutton_advanced').length)){
+    //詳細検索の２重送信抑止
+      if (get_advanced_text_cnt() > 0){
+        //空検索時には非活性としない
+        $(this).find($list).attr('disabled','disabled');
+      }
+    }else{
+      //簡易検索,詳細検索以外の２重送信抑止
+      $(this).find($list).attr('disabled','disabled');
+    }
+  });
+  return this;
+};
+
+$(function(){
+  $('#searchwrapper').disableOnSubmit_for_search();
+  $('#search_advanced_form').disableOnSubmit_for_search();
+  $('#search_handicapped_form').disableOnSubmit_for_search();
+});
+
+function valid_submit(){
+    //空検索と非活性時にはfalse
+    return (document.getElementById('searchbox').value != '' && !document.getElementById('searchbutton').disabled)
+  }
+
+function valid_submit_advanced(){
+    //空検索と非活性時にはfalse
+    return (get_advanced_text_cnt() > 0 && !document.getElementById('searchbutton_advanced').disabled)
+  }
+// 出版年バリデーションチェック(詳細検索)
+function valid_date(){
+  if (!valid_submit_advanced()) return false
+  $('.valid-date').text('');
+  $('#datefrom').val($('#datefrom').val().replace(/\s+/g, ""))
+  $('#dateto').val($('#dateto').val().replace(/\s+/g, ""))
+  if ($('#datefrom').val() || $('#dateto').val()){
+    var dates = [$('#datefrom').val(), $('#dateto').val()];
+    for (var i=0; i < dates.length; i++) {
+      var date = dates[i]
+      if(!date){
+        dates.splice(i--, 1); 
+        continue;
+      } 
+      // 4,6,8桁かつ数字チェック
+      if(!(([4, 6, 8].indexOf(date.length) >= 0) && date.match(/^[0-9０-９]+$/))){
+        $('.valid-date').text('年(YYYY)、年月(YYYYMM)、年月日(YYYYMMDD)で指定してください。');
+        return false;
+      }
+      dates[i] = date.replace(/[０-９]/g, function(s) {
+        return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+      });
+    }
+    // From、Toの桁数チェック
+    if (dates.length == 2){
+      if (dates[0].length != dates[1].length){
+        $('.valid-date').text('始点と終点を指定する場合は、同じ桁数にしてください。');
+        return false;
+      }
+      if (dates[0] > dates[1]){
+        $('.valid-date').text('終点には始点と同じ値か始点より大きい値を指定してください。');
+        return false;
+      }
+    }
+    // 確認ダイアログ
+    var cookie = document.cookie.indexOf('date_confirm_flg');
+    if (dates[0].length > 4 && cookie　< 0){
+      $('#modal').dialog({
+        modal: true,
+        resizable: false,
+        title: '',
+        buttons: {
+          OK: function() {
+            if ($('#date_dialog').attr('checked')){
+             document.cookie = 'date_confirm_flg=1'; 
+            }
+            $(this).dialog( "close" );
+            $('#search_advanced_form').submit();
+          }
+        }
+      });  
+    } else {
+      $('#search_advanced_form').submit();
+    }
+  }else{
+    $('#search_advanced_form').submit();
+  }
+}
+function get_advanced_text_cnt(){
+    var advobj,txtcnt=0;
+    var elmnum=document.getElementById('search_advanced_form').length;
+    for(var i=0;i<elmnum;i++){
+      advobj=document.getElementById('search_advanced_form')[i];
+      if(advobj.type=='text' && advobj.value != ''){
+        txtcnt++;
+      }
+    }
+    return txtcnt;
+  }
+
+
+//]]>
+</script>
+  <form id="searchwrapper" name="searchForm" onsubmit="return valid_submit();" action="/books/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="5tmmuhy9pEqjPdTNhA/zsVJptbcslMEoDVuBcZEqJEDsrEmn9558c4bBwKglDovON+Nmoj2/y9uQULtDlIjQwA==" />
+  <a name="CONTENTS" id="CONTENTS"></a>
+  <div id="search-normal" style="z-index:99;">
+    <p class="guidance"><img width="1" height="1" alt="簡易検索ここから" src="/images/ndl/spacer.png" /></p>
+    <input type="hidden" name="op_id" id="op_id" value="1" />
+    
+    <div id="mainsearch" style="margin:0 auto;text-align:center;padding-bottom:16px;">
+        <label for="searchbox"><img width="1" height="1" alt="国立国会図書館サーチの簡易検索ページです。Alt＋0を同時に押すと、本システムのショートカットキーの説明にジャンプします。" src="/images/ndl/spacer.png" /><span style="display:none;">国立国会図書館サーチの簡易検索ページです。Alt＋0を同時に押すと、本システムのショートカットキーの説明にジャンプします。</span>キーワード</label>
+        <div style="display:inline-block;_display:inline;*display:inline;zoom:1;width:350px;padding-right:16px;">
+          <input type="text" name="any" id="searchbox" value="&quot;ウィキボヤージュ&quot;" class="textbox" autocomplete="off" size="50" />
+          <div style="position:relative;height:0px;overflow:visible;">
+            <p id="suggest_list" style="position:absolute;top:0px;left:0px;text-align:left;"></p>
+          </div>
+        </div>
+        <input type="submit" name="commit" value="検索" class="searchbutton" id="searchbutton" data-disable-with="検索" />
+        <span class="transatedsearchselect" style="text-align:left;width:150px;">
+            <label for="trans-normal" class="guidance" id="trans-dropdown-guide"><img width="1" height="1" alt="翻訳検索の言語のリストです。翻訳する検索言語の選択が可能です。" src="/images/ndl/spacer.png" /><span style="display:none;">翻訳検索の言語のリストです。翻訳する検索言語の選択が可能です。</span></label>
+            <select name="trans" id="trans-normal"><option value="">翻訳検索しない</option>
+<option value="ja_ko_jserver">韓国語に翻訳</option>
+<option value="ja_zh_jserver">中国語に翻訳</option>
+<option value="ja_en_jserver">英語に翻訳</option></select>
+        </span>
+        <p class="media-option">
+            <input id="do_remote_search_1" name="do_remote_search" type="checkbox" value="" />
+          <label for="do_remote_search_1">すべての<a href="/information/target/" target="_blank">連携先</a>を検索する</label>
+          <span class="popup-guidance"><img width="13" height="13" alt="チェックすると、検索結果表示に時間がかかるデータベースも含めて検索します。" src="/images/ndl/ico_popup_help.png" /></span>
+        </p>
+        <p id="trans_hidden_val"></p>
+
+    </div>
+      <script>
+//<![CDATA[
+
+        $("#do_remote_search_1").click(function(){
+          if($("#do_remote_search_1").val() == "true"){
+            $("#do_remote_search_1").val("");
+          }else{
+            $("#do_remote_search_1").val("true");
+          }
+        });
+
+        // サジェストキーワード
+
+//]]>
+</script>      <p id="primaryfilter">
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_" value="" checked="checked" /><label for="material_types0">すべて</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_1" value="1" /><label for="material_types1">本</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_2" value="2" /><label for="material_types2">記事・論文</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_3" value="3" /><label for="material_types3">新聞</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_4" value="4" /><label for="material_types4">児童書</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_5" value="5" /><label for="material_types5">レファレンス情報</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_6" value="6" /><label for="material_types6">デジタル資料</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_7" value="7" /><label for="material_types7">その他</label></span>
+            <span class="mediatype-selector" id="mediatype-selector#{i}"><input type="radio" name="mediatype" id="mediatype_9" value="9" /><label for="material_types9">立法情報</label></span>
+      </p>
+    <p class="guidance"><img width="1" height="1" alt="簡易検索ここまで" src="/images/ndl/spacer.png" /></p>
+  </div><!-- and of #search-normal -->
+</form>
+  <div id="search-advanced">
+    <p class="guidance"><img width="1" height="1" alt="詳細検索ここから" src="/images/ndl/spacer.png" /></p>
+    <form id="search_advanced_form" name="searchForm" onsubmit="return valid_submit_advanced();" action="/books/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="sp8EeVrj7WpVZ9ZBzCPTxh9FPcbIqxOW4t1bu/jACUW46utkscA1U3CbwiRtIqu5es/u09mAGWV/1mGJ/WL9xQ==" />
+    <input type="hidden" name="search_mode" id="search_mode" value="advanced" />
+    
+
+      <div class="controlarea">
+        <div class="adv_clear">
+          <a class="roundbutton" href="#">クリア</a>
+        </div>
+
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px"><label for="rft.title">タイトル</label></th>
+            <td style="width: 140px;">
+              <input type="text" name="rft.title" id="rft.title" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="rft.au">著者・編者</label></th>
+            <td style="width: 140px;">
+              <input type="text" name="rft.au" id="rft.au" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="rft.pub">出版社</label></th>
+            <td style="width: 140px;">
+              <input type="text" name="rft.pub" id="rft.pub" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="datefrom">出版年</label>
+              <span class="popup-guidance"><img width="13" height="13" alt="出版年は年(YYYY)のほか、年月(YYYYMM)、年月日(YYYYMMDD)の指定が可能です。&lt;br /&gt;詳しくはヘルプをご覧ください。" src="/images/ndl/ico_popup_help.png" /></span>
+            </th>
+            <td style="">
+              <input type="text" name="datefrom" id="datefrom" value="" class="textbox" style="width: 60px;" />
+              ～
+              <input type="text" name="dateto" id="dateto" value="" class="textbox" style="width: 60px;" />
+              <div class="valid-date" style="color:#ff0000;"></div>
+            </td>
+          </tr>
+        </table>
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px;"><label for="subject">件名</label>
+            <span class="popup-guidance"><img width="13" height="13" alt="件名とはその資料が扱っているテーマを表す言葉（キーワード）です。 入力例）歴史" src="/images/ndl/ico_popup_help.png" /></span></th>
+            <td style="width: 140px;">
+              <input type="text" name="subject" id="subject" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="ndc">分類記号</label>
+            <span class="popup-guidance"><img width="13" height="13" alt="分類記号とはその資料についての主題内容を表現する記号です。　入力例）332.1" src="/images/ndl/ico_popup_help.png" /></span></th>
+            <td style="width: 140px;">
+              <input type="text" name="ndc" id="ndc" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="rft.isbn">ISBN/ISSN</label></th>
+            <td style="width: 140px;">
+              <input type="text" name="rft.isbn" id="rft.isbn" value="" class="textbox" style="width: 125px;" />
+            </td>
+            <th style="width: 80px;"><label for="">出版地</label>
+              <span class="popup-guidance"><img width="13" height="13" alt="都市名、国名、国名コードで検索できます。詳しくはヘルプをご覧ください。" src="/images/ndl/ico_popup_help.png" /></span>
+            </th>
+            <td style="width: 220px;">
+              <input type="text" name="place" id="place" value="" class="textbox" style="width: 125px;" />
+              <td style="width: 18px;"></td>
+            </td>
+          </tr>
+        </table>
+
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px;"><label for="trans">
+              <img width="1" height="1" alt="翻訳検索の言語のリストです。翻訳する検索言語の選択が可能です。" src="/images/ndl/spacer.png" /><span style="display:none;">翻訳検索の言語のリストです。翻訳する検索言語の選択が可能です。</span>
+              翻訳検索</label></th>
+              <td>
+                  <select name="trans" id="trans"><option value="">翻訳検索しない</option>
+<option value="ja_ko_jserver">韓国語に翻訳</option>
+<option value="ja_zh_jserver">中国語に翻訳</option>
+<option value="ja_en_jserver">英語に翻訳</option></select>
+              </td>
+            </tr>
+        </table>
+        <table class="skeleton">
+          <tr>
+            <th nowrap style="width: 90px;">データベース</th>
+            <td nowrap style="">
+              <script>
+//<![CDATA[
+
+                  function click_dummy() {
+                    for (i=0 ; i < document.getElementsByName('repository_nos[]').length ; i ++ ){
+                      if (document.getElementsByName('repository_nos[]').item(i).value == 'R100000039' ||
+                          document.getElementsByName('repository_nos[]').item(i).value == 'R100000040') {
+                            document.getElementsByName('repository_nos[]').item(i).checked = document.getElementById('dummy_repository_nos').checked
+                      }
+                    }
+                  }
+
+//]]>
+</script>                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R100000002" checked="checked" />国立国会図書館オンライン</label>
+                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R100000001" checked="checked" />公共図書館蔵書</label>
+                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R000000004" checked="checked" />国立国会図書館オンライン（雑誌記事索引）</label>
+                     <label><input type="checkbox" name="dummy_repository_nos" id="dummy_repository_nos" value="dummy" onclick="click_dummy();" checked="checked" />NDLデジタルコレクション</label>
+                     <div style="display:none">
+                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R100000039" checked="checked" />国立国会図書館デジタルコレクション</label>
+                     </div>
+                     <div style="display:none">
+                     <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="R100000040" checked="checked" />国立国会図書館デジタルコレクション（電子書籍・電子雑誌）</label>
+                     </div>
+              <label><input type="checkbox" name="repository_nos[]" id="repository_nos_" value="other" checked="checked" />その他</label>
+              <input type="button" class="release4" value=すべて選択/解除>
+            </td>
+          </tr>
+        </table>
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px;">資料種別</th>
+            <td style="">
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="1" checked="checked" />本</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="2" checked="checked" />記事・論文</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="3" checked="checked" />新聞</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="4" checked="checked" />児童書</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="5" checked="checked" />レファレンス情報</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="6" checked="checked" />デジタル資料</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="7" checked="checked" />その他</label>
+                <label><input type="checkbox" name="mediatypes[]" id="mediatypes_" value="9" checked="checked" />立法情報</label>
+              <input type="button" class="release" value=すべて選択/解除>
+            </td>
+          </tr>
+        </table>
+        <table class="skeleton">
+          <tr>
+            <th style="width: 90px;">所蔵館</th>
+            <td>
+              <label><input type="checkbox" name="libraries[]" id="libraries_" value="1" checked="checked" />国立国会図書館</label>
+              <label><input type="checkbox" name="libraries[]" id="libraries_" value="2" checked="checked" />他機関</label>
+              <dl class="media-option">
+                <dt>連携先</dt>
+                <dd>
+                    <input id="do_remote_search_999" name="do_remote_search" type="checkbox" value="" />
+                  <label for="do_remote_search_999">すべての<a href="/information/target/" target="_blank">連携先</a>を検索する</label>
+                  <span class="popup-guidance"><img width="13" height="13" alt="チェックすると、検索結果表示に時間がかかるデータベースも含めて検索します。" src="/images/ndl/ico_popup_help.png" /></span>
+                </dd>
+              </dl>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="submitarea">
+        <input type="button" name="commit" value="検索" class="searchbutton" id="searchbutton_advanced" onclick="valid_date();" data-disable-with="検索" />
+      </div>
+</form>    <p class="guidance"><img width="1" height="1" alt="詳細検索ここまで" src="/images/ndl/spacer.png" /></p>
+  </div>
+  <div id="modal" style="display:none;">
+    <p>出版年に「年月」「年月日」を指定した場合は指定の桁数未満の出版年を持つ書誌がヒットしません。詳しくはヘルプをご覧ください。</p><br>
+    <p>
+      <label><input id="date_dialog" type="checkbox" checked >今後このメッセージを表示しない</label>
+    </p>
+  </div><!-- end of #search-advanced -->
+
+  <div id="search-handicapped">
+    <p class="guidance"><img width="1" height="1" alt="障害者向け資料検索ここから" src="/images/ndl/spacer.png" /></p>
+    <form id="search_handicapped_form" name="searchForm" action="/books/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="vm0Mp45LlLB2spsONnK4M30U7Vh3o2f1ahwgG2M6XWe0GOO6ZWhMiVNOj2uXc8BMGJ4+TWaIbQb3FxopZpip5w==" />
+    <input type="hidden" name="search_mode" id="search_mode" value="handicapped" />
+    <input type="hidden" name="mediatypes[]" id="mediatypes_" value="8" />
+    
+
+    <div class="controlarea">
+      <div class="handi_clear">
+        <a class="roundbutton" href="#">クリア</a>
+      </div>
+      <table class="skeleton"  style="margin-bottom: 10px;">
+        <tr style="float: left;">
+        <!-- <tr> -->
+          <th style="width: 85px"><label for="any">キーワード</label></th>
+          <td style="width: 450px;">
+            <input type="text" name="any" id="any" value="" class="textbox" style="width: 445px; height:20px;" />
+          </td>
+        </tr>
+      </table>
+      <table class="skeleton">
+        <tr>
+          <th style="width: 85px"><label for="rft.title2">タイトル</label></th>
+          <td style="width: 140px;">
+            <input type="text" name="rft.title" id="rft.title2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 80px;"><label for="rft.au2">著者、編者等</label></th>
+          <td style="width: 140px;">
+            <input type="text" name="rft.au" id="rft.au2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 85px;"><label for="org_pub2">原本出版者ほか</label></th>
+          <td style="width: 140px;">
+            <input type="text" name="org_pub" id="org_pub2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 80px;"><label for="datefrom2">原本出版年</label></th>
+          <td style="width: 150px;">
+            <input type="text" name="datefrom" id="datefrom2" value="" class="textbox" style="width: 40px;" />
+            年～
+            <input type="text" name="dateto" id="dateto2" value="" class="textbox" style="width: 40px;" />
+            年
+          </td>
+        </tr>
+      </table>
+      <table class="skeleton">
+        <tr>
+          <th style="width: 85px;"><label for="subject2">件名</label>
+          <span class="popup-guidance"><img width="13" height="13" alt="件名とはその資料が扱っているテーマを表す言葉（キーワード）です。 入力例）歴史" src="/images/ndl/ico_popup_help.png" /></span></th>
+          <td style="width: 140px;">
+            <input type="text" name="subject" id="subject2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 80px;"><label for="ndc2">分類</label>
+          <span class="popup-guidance"><img width="13" height="13" alt="分類とはその資料についての主題内容を表現する記号です。　入力例）332.1" src="/images/ndl/ico_popup_help.png" /></span></th>
+          <td style="width: 140px;">
+            <input type="text" name="ndc" id="ndc2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 85px;"><label for="rft.isbn2">ISBN、ISSN</label></th>
+          <td style="width: 140px;">
+            <input type="text" name="rft.isbn" id="rft.isbn2" value="" class="textbox" style="width: 125px;" />
+          </td>
+          <th style="width: 80px;"><label for="digital_pub2">製作者、所蔵館</label></th>
+          <td style="width: 150px;">
+            <input type="text" name="digital_pub" id="digital_pub2" value="" class="textbox" style="width: 125px;" />
+          </td>
+        </tr>
+      </table>
+      <table class="skeleton">
+        <tr>
+          <th style="width: 85px;">資料種別</th>
+          <td style="">
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="Braille" checked="checked" />点字</label>
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="DAISY" checked="checked" />DAISY・テキストデータ</label>
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="AudioBookInSoundDisk" checked="checked" />録音図書（DVD、CD）</label>
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="AudioBookInSoundTape" checked="checked" />録音図書（カセットテープ）</label>
+              <label><input type="checkbox" name="materialtypes[]" id="materialtypes_" value="LargePrint" checked="checked" />大活字</label>
+            <input type="button" class="release2" value=すべて選択/解除 >
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="submitarea">
+      <input type="submit" name="commit" value="検索" class="searchbutton" data-disable-with="検索" />
+    </div>
+    <p class="guidance"><img width="1" height="1" alt="障害者向け資料検索ここまで" src="/images/ndl/spacer.png" /></p>
+</form>  </div><!-- end of #search-handicapped -->
+</div><!-- end of .tabs-search -->
+
+
+<script>
+//<![CDATA[
+	// 「すべて選択/解除」ボタン定義
+	$("input.release2").toggle(
+		function(){
+			$(this).parent().children("label").children("input").attr("checked", "");
+			$("input.release3").parent().children("label").children("input").attr("checked", "");
+		},
+		function(){
+			$(this).parent().children("label").children("input").attr("checked", "checked");
+			$("input.release3").parent().children("label").children("input").attr("checked", "checked");
+		}
+	);
+
+	// 「すべて選択/解除」ボタン定義(データベース)
+	$("input.release4").toggle(
+		function(){
+			$(this).parent().children("label").children("input").attr("checked", "");
+			click_dummy();
+		},
+		function(){
+			$(this).parent().children("label").children("input").attr("checked", "checked");
+			click_dummy();
+		}
+	);
+	
+  $("#do_remote_search_999").click(function(){
+    if($("#do_remote_search_999").val() == "true"){
+      $("#do_remote_search_999").val("");
+    }else{
+      $("#do_remote_search_999").val("true");
+    }
+  });
+  $("div#search-advanced table.skeleton").css("width", "1000px")
+
+  $('#search_advanced_form input').keypress(function(e){
+    if (e.keyCode == 13) {
+      valid_date();
+    }
+  });
+
+//]]>
+</script>
+
+<div id="resultlist">
+  <div id="resultlist_left-wrapper">
+    <div id="listcontent">
+
+              <div class="noresults-wrapper">
+
+    <div class="noresults-message">
+      「<span class="noresults-words">&quot;ウィキボヤージュ&quot;</span>」に一致する資料は見つかりませんでした。
+        <br />
+        <div style="margin:10px 0px 10px 0px;"><a href="https://iss.ndl.go.jp/books?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;ar=4e1f&amp;display=&amp;do_remote_search=true&amp;locale=ja&amp;op_id=1">「すべての連携先」で検索する</a></div>
+        <div style="font-size:80%;">※「国立国会図書館収集分のみ」での検索は、一部のデータベースを検索対象にしておりません。全ての連携先データベースを検索対象にしている「すべての連携先」での再検索をお試しください。</div>
+    </div>
+
+    
+
+      <div class="noresult-list-top">&nbsp;</div>
+      <div class="noresult-list-contents">
+        <table class="table-other-service2">
+          <tr>
+            <td>
+              <div class="subgroup">
+                <h3 class="sublabel">書籍検索</h3>
+                <ul class="sub-ul">
+                  <li><a href="http://www.google.co.jp/search?tbs=bks:1&amp;tbo=p&amp;q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">Google Book</a></li>
+                  <li><a href="http://scholar.google.co.jp/scholar?q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22 " target="_blank">Google Scholar</a></li>
+                  <li><a href="http://www.amazon.co.jp/gp/search/ref=sr_adv_b/?unfiltered=1&amp;search-alias=stripbooks&amp;node=&amp;field-title=&amp;field-author=&amp;field-keywords=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;field-isbn=&amp;field-publisher=&amp;x-genre=&amp;field-binding_browse-bin=&amp;x-age=&amp;field-datemod=0&amp;field-dateop=before&amp;field-price=&amp;field-pct-off=&amp;emi=&amp;sort=relevancerank&amp;__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A" target="_blank">Amazon 書籍</a></li>
+                  <li><a href="https://www.kinokuniya.co.jp/disp/CSfDispListPage_001.jsp?qs=true&amp;ptk=07&amp;q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">紀伊國屋書店ウェブストア</a></li>
+                  <li><a href="http://honto.jp/netstore/search.html?detailFlg=1&amp;srchf=1&amp;prdNm=&amp;isbn=&amp;pbNm=&amp;k=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;athNm=" target="_blank">ハイブリッド総合書店 honto</a></li>
+                  <li><a href="http://webcatplus.nii.ac.jp/index.html?type=equals-book&amp;text=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">WebCat Plus</a></li>
+                  <li><a href="http://www.worldcat.org/search?q=kw%3A%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">World Cat</a></li>
+                  <!-- li><a href="http://202.231.40.111/GlobalFinder/cgi/Start.exe" target="_blank">人間文化研究機構</a></li -->
+                  <li><a href="http://calil.jp/search?q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">カーリル検索</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div class="subgroup">
+                <h3 class="sublabel">調べ方</h3>
+                <ul class="sub-ul">
+                  <li><a href="https://rnavi.ndl.go.jp/ln-search/#%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">リサーチナビ</a></li>
+                </ul>
+              </div>
+              <div class="subgroup">
+                <h3 class="sublabel">辞書</h3>
+                <ul class="sub-ul">
+                  <li><a href="http://ja.wikipedia.org/w/index.php?title=特別%3A検索&amp;search=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">Wikipedia</a></li>
+                </ul>
+              </div>
+              <div class="subgroup">
+                <h3 class="sublabel">検索エンジン</h3>
+                <ul class="sub-ul">
+                  <li><a href="http://www.google.co.jp/search?ie=utf-8&amp;oe=utf-8&amp;q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">google.co.jp</a></li>
+                  <li><a href="http://search.yahoo.co.jp/search?ei=UTF-8&amp;p=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">yahoo.co.jp</a></li>
+                  <li><a href="http://search.goo.ne.jp/web.jsp?MT=%22%A5%A6%A5%A3%A5%AD%A5%DC%A5%E4%A1%BC%A5%B8%A5%E5%22" target="_blank">goo.ne.jp</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="noresult-list-bottom">&nbsp;</div>
+  </div>
+
+
+      <p class="guidance"><img width="1" height="1" alt="検索結果一覧ここまで" src="/images/ndl/spacer.png" /></p>
+    </div><!-- end of div#listcontent -->
+
+    <div id="facet">
+      <div class="facet-wrapper">
+
+
+
+        
+      </div><!-- end of div.facet-wrapper-->
+      <p class="guidance"><img width="1" height="1" alt="検索結果の絞り込み　ここまで" src="/images/ndl/spacer.png" /></p>
+    </div><!-- end of div#facet -->
+  </div><!-- end of div#resultlist_left-wrapper -->
+
+  <div id="keyword">
+      <div class="keyword-wrapper">
+        <div id="subject_authority_keywords">
+  <div style="margin:10px;">
+    <img alt="Ajax-loader" src="/images/ndl/ajax-loader.gif" />
+    <span style="font-weight:bold;">関連キーワードを取得中..</span>
+  </div>
+  <script>
+//<![CDATA[
+$('#subject_authority_keywords').load('https://iss.ndl.go.jp/books/get_subject_authority_keywords?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&ar=4e1f&except_repository_nos%5B%5D=R100000038&except_repository_nos%5B%5D=R100000049&except_repository_nos%5B%5D=R100000073&sort=df')
+//]]>
+</script>
+</div>
+<div id="author_authority_keywords">
+  </div>
+<div id="jglobal_keywords">
+  
+<div id="jglobal_contents">
+</div>
+<div>
+<input type="hidden" name="jg_keywords" id="jg_keywords" value="%22%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22%22" />
+<script type="text/javascript">
+//<![CDATA[
+
+var books_url = "https://iss.ndl.go.jp/books";
+var search_keywords = decodeURIComponent(document.getElementById("jg_keywords").value);
+var contents = document.getElementById("jglobal_contents");
+var disp_cnt = 7;
+var cnt = 0;
+
+//]]>
+</script>
+</div>
+</div>
+<p class="guidance"><img width="1" height="1" alt="関連キーワードで検索　ここまで" src="/images/ndl/spacer.png" /></p>
+
+          <div class="other-service">
+    <h2 class="mainlabel">外部サービスで検索</h2>
+    <div class="subgroup">
+      <h3 class="sublabel">書籍検索</h3>
+      <ul class="sub-ul">
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://www.google.co.jp/search?tbs=bks:1&amp;tbo=p&amp;q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">Google Book</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://scholar.google.co.jp/scholar?q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22 " target="_blank">Google Scholar</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://webcatplus.nii.ac.jp/index.html?type=equals-book&amp;text=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">WebCat Plus</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://www.worldcat.org/search?q=kw%3A%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">World Cat</a></li>
+        <!-- li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://202.231.40.111/GlobalFinder/cgi/Start.exe" target="_blank">人間文化研究機構</a></li -->
+      </ul>
+    </div>
+    <div class="subgroup">
+      <h3 class="sublabel">調べ方</h3>
+      <ul class="sub-ul">
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="https://rnavi.ndl.go.jp/ln-search/#%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">リサーチナビ</a></li>
+      </ul>
+    </div>
+    <div class="subgroup">
+      <h3 class="sublabel">辞書</h3>
+      <ul class="sub-ul">
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://ja.wikipedia.org/w/index.php?title=特別%3A検索&amp;search=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">Wikipedia</a></li>
+      </ul>
+    </div>
+    <div class="subgroup">
+      <h3 class="sublabel">検索エンジン</h3>
+      <ul class="sub-ul">
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://www.google.co.jp/search?ie=utf-8&amp;oe=utf-8&amp;q=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">google.co.jp</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://search.yahoo.co.jp/search?ei=UTF-8&amp;p=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22" target="_blank">yahoo.co.jp</a></li>
+        <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a href="http://search.goo.ne.jp/web.jsp?MT=%22%A5%A6%A5%A3%A5%AD%A5%DC%A5%E4%A1%BC%A5%B8%A5%E5%22" target="_blank">goo.ne.jp</a></li>
+      </ul>
+    </div>
+    <p class="guidance"><img width="1" height="1" alt="外部サービスで検索　ここまで" src="/images/ndl/spacer.png" /></p>
+  </div><!-- end of div#other_service -->
+<script>
+//<![CDATA[
+    $(function(){
+    var $ext_service = $('#external_service_subgroup')
+    setShowAllSwitch($('.showall', $ext_service), $('.showsome', $ext_service), $('.additional', $ext_service));
+    })
+
+//]]>
+</script>
+      </div><!-- end of div#keyword-wrapper -->
+      <div class="bibliography-info"><a name="bibliography-info" id="bibliography-info"></a>
+  <h2 class="mainlabel">検索結果を出力</h2>
+  <div class="subgroup" >
+    <ul class="sub-ul">
+        <li>
+          <img class="guidance" width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+          <a class="rss" target="_blank" href="/books.rss?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073">検索結果のRSS</a>
+          <p>この検索キーワードに関する新着図書の情報をRSSで受け取ることができます。</p>
+        </li>
+    </ul>
+  </div>
+  <div class="subgroup" >
+    <ul class="sub-ul">
+      <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" />
+        <a class="refworks" target="_blank" href="/books.refworks?any=%22%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9C%E3%83%A4%E3%83%BC%E3%82%B8%E3%83%A5%22&amp;ar=4e1f&amp;except_repository_nos%5B%5D=R100000038&amp;except_repository_nos%5B%5D=R100000049&amp;except_repository_nos%5B%5D=R100000073&amp;page=1&amp;sort=df">RefWorks出力</a>
+        <p>書誌情報を、オンラインデータベースからRefWorks上の個人フォルダに直接取り込むことができます。</p>
+      </li>
+      <li><img class="guidance " width="1" height="1" alt="新しいウインドウが開きます" src="/images/ndl/spacer.png" /><a class="external" href="http://en.wikipedia.org/wiki/RefWorks" target="_blank">RefWorksとは</a></li>
+    </ul>
+  </div>
+  <p class="guidance"><img class="guidance" width="1" height="1" alt="検索結果を出力　ここまで" src="/images/ndl/spacer.png" /></p>
+</div><!-- end of div#bibliography_info -->
+
+  </div><!-- end of div#keyword -->
+</div><!-- end of div#resultlist -->
+
+
+<div id="footer" class="footer">
+<p class="guidance"><img width="1" height="1" alt="以下、フッターです" src="/images/ndl/spacer.png" /></p>
+<ul>
+<li id="home"><a href="https://www.ndl.go.jp/">国立国会図書館ホーム</a></li>
+<li><a href="https://ndlonline.ndl.go.jp/">国立国会図書館オンライン</a></li>
+<li><a href="/children/top">国際子ども図書館 子どもOPAC</a></li>
+<li><a href="https://id.ndl.go.jp/auth/ndla" title="国立国会図書館典拠データ検索・提供サービス">Web NDL Authorities</a></li>
+
+<li><a href="https://iss.ndl.go.jp/information/outline/">国立国会図書館サーチについて</a></li>
+<li><a href="https://www.ndl.go.jp/form/jp/service/contact/index.html">お問い合わせ</a></li>
+</ul>
+<p class="guidance"><a href="#header">ページトップに戻る</a></p>
+</div>
+
+<address>Copyright &copy; 2012 National Diet Library. All Rights Reserved.</address>
+<p class="guidance"><img width="1" height="1" alt="フッター　ここまで" src="/images/ndl/spacer.png" /></p>
+
+
+<script type="text/javascript">
+//<![CDATA[
+  $(function(){
+  if($.cookie("scroll_y")){
+    window.scrollBy(0, $.cookie("scroll_y"));
+    $.cookie("scroll_y", "", { expires: -1 }); 
+  }
+  })
+//]]>
+</script>
+
+</body>
+</html>
