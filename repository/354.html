@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, user-scalable = yes">
+
+    <link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48 64x64 128x128" type="image/vnd.microsoft.icon" />
+    <link rel="apple-touch-icon-precomposed" href="favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon.ico"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<link href="https://fonts.googleapis.com/css?family=Prompt:400,500,800" rel="stylesheet">
+
+    <script>
+        var pageInfo = {
+            isFrontPage: true,
+            isArchive: false,
+            isHome: true,
+            isSingle: false,
+            isCategory: false,
+            isMobile: false,
+            baseUrl: 'https://fondazionecannavo.gazzetta.it/wp-content/themes/fondazionecannavo',
+            title: '&#8220;Il Candido Camp, una occasione di ripartenza&#8221;'
+        };
+
+	</script>
+
+
+    <link rel='stylesheet' id='nextgen_gallery_related_images-css'  href='https://fondazionecannavo.gazzetta.it/wp-content/plugins/nextgen-gallery/products/photocrati_nextgen/modules/nextgen_gallery_display/static/nextgen_gallery_related_images.css?ver=4.0' type='text/css' media='all' />
+<link rel='stylesheet' id='fondazionecandidocannavo-home-css'  href='https://fondazionecannavo.gazzetta.it/wp-content/themes/fondazionecannavo/css/home.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='slick-slider-css'  href='//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='slick-theme-css'  href='//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='//use.fontawesome.com/releases/v5.7.1/css/all.css?ver=1.0' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var photocrati_ajax = {"url":"https:\/\/fondazionecannavo.gazzetta.it\/photocrati_ajax","wp_home_url":"https:\/\/fondazionecannavo.gazzetta.it","wp_site_url":"https:\/\/fondazionecannavo.gazzetta.it","wp_root_url":"https:\/\/fondazionecannavo.gazzetta.it","wp_plugins_url":"https:\/\/fondazionecannavo.gazzetta.it\/wp-content\/plugins","wp_content_url":"https:\/\/fondazionecannavo.gazzetta.it\/wp-content","wp_includes_url":"https:\/\/fondazionecannavo.gazzetta.it\/wp-includes\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://fondazionecannavo.gazzetta.it/wp-content/plugins/nextgen-gallery/products/photocrati_nextgen/modules/ajax/static/ajax.js?ver=4.0'></script>
+<script type='text/javascript' src='https://fondazionecannavo.gazzetta.it/wp-includes/js/jquery/jquery.js?ver=3.3.1'></script>
+<script type='text/javascript' src='https://fondazionecannavo.gazzetta.it/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='https://fondazionecannavo.gazzetta.it/wp-content/plugins/nextgen-gallery/products/photocrati_nextgen/modules/ajax/static/persist.js?ver=4.0'></script>
+<script type='text/javascript' src='https://fondazionecannavo.gazzetta.it/wp-content/plugins/nextgen-gallery/products/photocrati_nextgen/modules/ajax/static/store.js?ver=4.0'></script>
+<script type='text/javascript' src='https://fondazionecannavo.gazzetta.it/wp-content/plugins/nextgen-gallery/products/photocrati_nextgen/modules/ajax/static/ngg_store.js?ver=4.0'></script>
+<script type='text/javascript' src='https://fondazionecannavo.gazzetta.it/wp-content/plugins/nextgen-gallery/products/photocrati_nextgen/modules/lightbox/static/lightbox_context.js?ver=4.0'></script>
+<script type='text/javascript' src='https://fondazionecannavo.gazzetta.it/wp-includes/js/swfobject.js?ver=2.2-20120417'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://fondazionecannavo.gazzetta.it/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://fondazionecannavo.gazzetta.it/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.0" />
+<!-- <meta name="NextGEN" version="2.0.66.29" /> -->
+<script language="javascript">
+var player = new Array();
+//var counter = 0;
+function playerReady(obj) {
+	var id = obj['id'];
+	var version = obj['version'];
+	var client = obj['client'];
+	//console.log('the videoplayer '+id+' has been instantiated');
+	player[id] = document.getElementById(id);
+	addListeners(id);
+};
+
+function addListeners(id) {
+	if (player[id]) { 
+		player[id].addModelListener("STATE", "stateListener");
+	} else {
+		setTimeout("addListeners()",100);
+	}
+}
+
+function stateListener(obj) { 
+	//possible states IDLE, BUFFERING, PLAYING, PAUSED, COMPLETED
+	currentState = obj.newstate; 
+	previousState = obj.oldstate;
+	//console.log('current state : '+ currentState + ' previous state : '+ previousState );
+    
+	//find out what title is playing (or id of the file)
+	var cfg = player[obj.id].getConfig();
+	var plst = player[obj.id].getPlaylist();
+
+	//decide if the counter needs updating and then 
+	//update in the db with ajax request
+	var decision = false;
+	if (((currentState == "PLAYING") && ( (previousState == "BUFFERING") ||(previousState == "COMPLETED")))) {
+		decision = true;
+	}
+	
+	if(decision) {
+		var ajaxString = "file=" + escape( plst[cfg["item"]].file );
+		jQuery.ajax({
+			type: "POST",
+			data: ajaxString,
+			url: "https://fondazionecannavo.gazzetta.it/index.php?wt-stat=true"
+		});	
+	}
+}
+</script>
+
+<!-- BEGIN recaptcha, injected by plugin wp-recaptcha-integration  -->
+
+<!-- END recaptcha -->
+
+  </head>
+
+  <body class="home blog">
+
+    <div id="fb-root"></div>
+
+    <div class="container">
+
+        <!-- masthead -->
+        <div class="row no-gutters" id="masthead">
+            <div class="col-6">
+                <div class="d-flex align-items-center h-100"><img class="img-fluid" src="https://fondazionecannavo.gazzetta.it/wp-content/themes/fondazionecannavo/static/images/logo.jpg" alt=""></div>
+            </div>
+            <div class="col-6">
+                <div class="d-flex align-items-center justify-content-end h-100"><img class="img-fluid" src="https://fondazionecannavo.gazzetta.it/wp-content/themes/fondazionecannavo/static/images/logo-5-x-1000.png"
+                        alt=""></div>
+            </div>
+		</div>
+
+		<!-- nav -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-lg-4 py-3 px-0">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav d-flex justify-content-between w-100">
+            <li class="nav-item active">
+<a class="nav-link" href="https://fondazionecannavo.gazzetta.it/">Home</a></li>
+<li class="nav-item dropdown">
+<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">La fondazione <span class="caret"></span></a>
+<div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownServices">
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/pagina_istituzionale/organigramma/">Organigramma</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/pagina_istituzionale/nascita/">Nascita</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/pagina_istituzionale/scopi/">Scopi</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/pagina_istituzionale/statuto/">Statuto</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/pagina_istituzionale/atto-costitutivo/">Atto Costitutivo</a>
+</div></li>
+<li class="nav-item dropdown">
+<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Caro Candido <span class="caret"></span></a>
+<div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownServices">
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/pagina_istituzionale/biografia-2/">Biografia</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/pagina_istituzionale/una-vita-per-lo-sport/">Una vita per lo sport</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/pagina_istituzionale/candido-day/">Candido Day</a>
+</div></li>
+<li class="nav-item dropdown">
+<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Partners <span class="caret"></span></a>
+<div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownServices">
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/categorie_partner/formatori/">Formatori</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/categorie_partner/contributors/">Contributors</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/categorie_partner/aziende/">Aziende</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/categorie_partner/associazioni/">Associazioni</a>
+
+<a class="dropdown-item" href="https://fondazionecannavo.gazzetta.it/categorie_partner/amici/">Amici</a>
+</div></li>
+<li class="nav-item">
+<a class="nav-link" href="https://fondazionecannavo.gazzetta.it/donazioni/">Donazione</a></li>
+<li class="nav-item">
+<a class="nav-link" href="/contatti/">Contatti</a></li>
+
+            <form class="form-inline my-2 my-lg-0 shadow-sm" name="top-bar-search" id="nav-search">
+                <input class="form-control" type="text" name="s" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </ul>
+    </div>
+</nav>
+        <div class="row no-gutters pb-4">
+            <div class="col">
+                <div class="standard-text-1 text-center p-2" id="container-about">
+                    Da una costola della <b>Gazzetta dello Sport</b>, su iniziativa di <b>RCS Mediagroup</b>, 
+                    nasce questa Fondazione<br /> per continuare, in ambito sociale, l'opera di un grande 
+                    giornalista e scrittore, maestro di vita e di sport.
+                </div>
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="row no-gutters">
+
+
+
+            <!-- initiatives -->
+
+            <div class="col-xl-3 pr-xl-2 order-xl-1 order-2 pb-xl-0 pb-3">
+  <div class="py-3 h-100 px-2" id="initiatives-container">
+    <div class="text-center">
+    <h2 class="mb-0">Le nostre iniziative</h2>
+        <div class="text-center py-3">
+            <a class="" href="/anno-per-anno/">
+              Anno per anno
+            </a>
+        </div>
+                            
+            
+          <div class="py-3">
+              <a class="standard-text" href="https://fondazionecannavo.gazzetta.it/categorie_progetto/progetti-carcere/">
+              Progetti carcere              </a>
+          </div>
+
+                              
+            
+          <div class="py-3">
+              <a class="standard-text" href="https://fondazionecannavo.gazzetta.it/categorie_progetto/diseguaglianze-sociali/">
+              Barriere sociali              </a>
+          </div>
+
+                              
+            
+          <div class="py-3">
+              <a class="standard-text" href="https://fondazionecannavo.gazzetta.it/categorie_progetto/rispetto-delle-regole/">
+              Rispetto delle regole              </a>
+          </div>
+
+                              
+            
+          <div class="py-3">
+              <a class="standard-text" href="https://fondazionecannavo.gazzetta.it/categorie_progetto/disabilita/">
+              Disabilità              </a>
+          </div>
+
+                              
+            
+          <div class="py-3">
+              <a class="standard-text" href="https://fondazionecannavo.gazzetta.it/categorie_progetto/donne-e-sport/">
+              Donne e sport              </a>
+          </div>
+
+                              
+            
+          <div class="py-3">
+              <a class="standard-text" href="https://fondazionecannavo.gazzetta.it/categorie_progetto/banco-dello-sport/">
+              Banco dello Sport              </a>
+          </div>
+
+                  
+        <div class="text-center py-3">
+            <a class="" href="https://fondazionecannavo.gazzetta.it/fotogallery/">
+            Multimedia
+            </a>
+        </div>
+	</div>
+  </div>
+</div>
+            <!-- slider -->
+            <div class="col-xl-6 px-xl-3 order-xl-2 order-1 pb-xl-0 pb-3">
+
+				                        <div class="slider">
+                            							<div class="slider-item-container">
+                                <div class="slide-title text-center py-2">"Il Candido Camp, una occasione di ripartenza"</div>
+								<div class="d-flex slider-item" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2021/09/Cavallin.jpg')">
+									<div class="d-flex w-100 p-4 align-items-end flex-column text-center" style="background-color: rgba(0,0,0,0.15);">
+										<a class="btn btn-primary mt-auto mx-auto" href="https://fondazionecannavo.gazzetta.it/progetti/7425/">Scopri di più</a>
+									</div>
+								</div>
+							</div>
+													<div class="slider-item-container">
+                                <div class="slide-title text-center py-2">Torna il Candido Junior Camp </div>
+								<div class="d-flex slider-item" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2021/09/CandidoJuniorCamp.jpeg')">
+									<div class="d-flex w-100 p-4 align-items-end flex-column text-center" style="background-color: rgba(0,0,0,0.15);">
+										<a class="btn btn-primary mt-auto mx-auto" href="https://fondazionecannavo.gazzetta.it/progetti/torna-il-candido-junior-camp/">Scopri di più</a>
+									</div>
+								</div>
+							</div>
+													<div class="slider-item-container">
+                                <div class="slide-title text-center py-2">Addio Elio, grande anima della Gazzetta e della Fondazione</div>
+								<div class="d-flex slider-item" style="background-image: url('')">
+									<div class="d-flex w-100 p-4 align-items-end flex-column text-center" style="background-color: rgba(0,0,0,0.15);">
+										<a class="btn btn-primary mt-auto mx-auto" href="https://fondazionecannavo.gazzetta.it/progetti/addio-elio-grande-anima-della-gazzetta-e-della-fondazione/">Scopri di più</a>
+									</div>
+								</div>
+							</div>
+													<div class="slider-item-container">
+                                <div class="slide-title text-center py-2">Il progetto in Etiopia non si ferma nel nome di Daniele Redaelli</div>
+								<div class="d-flex slider-item" style="background-image: url('')">
+									<div class="d-flex w-100 p-4 align-items-end flex-column text-center" style="background-color: rgba(0,0,0,0.15);">
+										<a class="btn btn-primary mt-auto mx-auto" href="https://fondazionecannavo.gazzetta.it/progetti/il-progetto-in-etiopia-non-si-ferma-nel-nome-di-daniele-redaelli/">Scopri di più</a>
+									</div>
+								</div>
+							</div>
+													<div class="slider-item-container">
+                                <div class="slide-title text-center py-2">Us Center for safesport: un esempio con streaming</div>
+								<div class="d-flex slider-item" style="background-image: url('')">
+									<div class="d-flex w-100 p-4 align-items-end flex-column text-center" style="background-color: rgba(0,0,0,0.15);">
+										<a class="btn btn-primary mt-auto mx-auto" href="https://fondazionecannavo.gazzetta.it/progetti/us-center-for-safesport-un-esempio-con-straming/">Scopri di più</a>
+									</div>
+								</div>
+							</div>
+						                </div>
+            </div>
+
+            <!-- explanation -->
+            <div class="col-xl-3 pl-xl-2 order-3">
+
+                
+                <div class="py-3 px-2 h-100" id="explanation-container">
+					<h3 class="mb-2">In coda al gruppo</h3>
+
+                    <div class="standard-text-1 text-uppercase">
+                        <div class="standard-text-1 text-uppercase">
+                            <p>
+                                L'area news della Fondazione Cannav&ograve; dedicata a notizie di sport alternativo
+                                provenienti da tutto il paese e contributi specifici sulle attivit&agrave;
+                                d'intervento sociale della Fondazione stess
+                            </p>
+                        </div>
+					</div>
+
+					<div>
+                                                <div class="explanation-img my-2" style="background-image: url('http://incodaalgruppo.gazzetta.it/files/2021/10/FA44DXLX0AArWMk.jpg')">
+                            <a href="https://incodaalgruppo.gazzetta.it/2021/10/05/obiettivo3-al-festival-dello-sport-di-trento/">
+                            </a>
+                        </div>
+                        <div class="standard-text-1 font-weight-bold mb-1">
+                            <a href="https://incodaalgruppo.gazzetta.it/2021/10/05/obiettivo3-al-festival-dello-sport-di-trento/">
+                                <span class="small-title">Obiettivo3 al Festival dello Sport di Trento</span>
+                            </a>
+                        </div>
+                        <div class="standard-text-1 mb-1" id="explanation-excerpt">
+                            Obiettivo3 sarà protagonista al Festival dello Sport di Trento. La prestigiosa vetrina del grande evento organizzato dalla Gazzetta dello Sport accoglierà lo stand di Obiettivo3 in piazza Cesare Battisti per tutti e quattro i giorni della manifestazione, per un programma che si annuncia ricchissimo e pieno di grandi ospiti. Un’occasione unica e imperdibile per promuovere lo sport paralimpico e permettere a tutti quelli che vorranno venirci a trovare di entrare a contatto con il progetto fondato da Alex Zanardi e &#8230;
+                        </div>
+					</div>
+
+                    <a class="standard-text-1 font-weight-bold" style="color: #ec008c" href="http://incodaalgruppo.gazzetta.it/" target="_blank">Altri contenuti dal blog</a>
+                </div>
+            </div>
+        </div>
+        <!-- section-2 -->
+        <div class="row no-gutters pt-4">
+            <!-- categories -->
+            <div class="col-xl-9 order-xl-1 order-2">
+                                                    <div class="row no-gutters top-of-category py-4 px-lg-5 mr-xl-3">
+                                        <div class="col">
+                                            <h2 class="mb-0"><a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/progetti-carcere/">Progetti carcere</a></h2>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters pb-4 px-lg-5">
+                                        <div class="col-lg-5 ">
+                                            <div class="category-img" style="background-image: url('http://fondazionecannavo.gazzetta.it/wp-content/uploads/2015/05/DJ1E2502-480x308.jpg')"></div>
+                                        </div>
+                                        <div class="col-lg-7  pl-lg-2 pt-lg-0 pt-2">
+
+                        
+                        <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/dallinferno-dellospedale-psichiatrico-alla-liberta-la-storia-di-maiello-in-un-libro/">
+                                    <div class="big-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2020/09/IMG-20200918-WA0031-480x319.jpg')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <div class="d-flex align-items-center h-100">
+                                    <a href="https://fondazionecannavo.gazzetta.it/progetti/dallinferno-dellospedale-psichiatrico-alla-liberta-la-storia-di-maiello-in-un-libro/">
+                                        <div>
+                                            <h5 class="mb-0">Dall'inferno dell'ospedale psichiatrico alla libertà: la storia di Maiello in un libro</h5>
+                                            <div class="standard-text-1">
+                                                                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/riapre-la-stanza-di-candido-cannavo-a-san-vittore/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2020/02/SAN-VITTORE-CANAVO-01-240x160.jpg')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/riapre-la-stanza-di-candido-cannavo-a-san-vittore/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">Riapre la stanza di Candido Cannavò a San Vittore </h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                                                <div class="row no-gutters article">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/riaprono-i-corsi-a-opera-nel-nome-di-ottavio-missoni/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2019/06/Missoni-k3BI-712x402@Gazzetta-Web_712x402-240x160.jpg')"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/riaprono-i-corsi-a-opera-nel-nome-di-ottavio-missoni/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">Riaprono i corsi a Opera nel nome di Ottavio Missoni</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                                    </div>
+                </div>
+                                                    <div class="row no-gutters top-of-category py-4 px-lg-5 mr-xl-3">
+                                        <div class="col">
+                                            <h2 class="mb-0"><a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/diseguaglianze-sociali/">Barriere sociali</a></h2>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters pb-4 px-lg-5">
+                                        <div class="col-lg-5 order-lg-2">
+                                            <div class="category-img" style="background-image: url('http://fondazionecannavo.gazzetta.it/wp-content/uploads/2014/11/diseguaglianze-big1-480x267.jpg')"></div>
+                                        </div>
+                                        <div class="col-lg-7 pr-2 order-lg-1 pl-lg-2 pt-lg-0 pt-2">
+
+                        
+                        <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/lo-sport-vale-una-vita-diretta-streaming-alle-11/">
+                                    <div class="big-article-thumbnail" style="background-image: url('')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <div class="d-flex align-items-center h-100">
+                                    <a href="https://fondazionecannavo.gazzetta.it/progetti/lo-sport-vale-una-vita-diretta-streaming-alle-11/">
+                                        <div>
+                                            <h5 class="mb-0">Lo sport vale una vita? Diretta streaming alle 11</h5>
+                                            <div class="standard-text-1">
+                                                                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/il-candido-junior-camp-guarda-al-futuro/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2019/07/Società-2-240x160.jpg')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/il-candido-junior-camp-guarda-al-futuro/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">Il Candido Junior Camp guarda al futuro </h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                                                <div class="row no-gutters article">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/welfare-sportivo-stop-al-bullismo-un-anno-in-piu/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2019/05/Scherma1-240x160.jpg')"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/welfare-sportivo-stop-al-bullismo-un-anno-in-piu/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">Welfare sportivo – Stop al bullismo un anno in più</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                                    </div>
+                </div>
+                                                    <div class="row no-gutters top-of-category py-4 px-lg-5 mr-xl-3">
+                                        <div class="col">
+                                            <h2 class="mb-0"><a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/rispetto-delle-regole/">Rispetto delle regole</a></h2>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters pb-4 px-lg-5">
+                                        <div class="col-lg-5 ">
+                                            <div class="category-img" style="background-image: url('http://fondazionecannavo.gazzetta.it/wp-content/uploads/2015/05/io-tifo-positivo-480x293.jpg')"></div>
+                                        </div>
+                                        <div class="col-lg-7  pl-lg-2 pt-lg-0 pt-2">
+
+                        
+                        <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/lo-sport-vale-una-vita-diretta-streaming-alle-11/">
+                                    <div class="big-article-thumbnail" style="background-image: url('')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <div class="d-flex align-items-center h-100">
+                                    <a href="https://fondazionecannavo.gazzetta.it/progetti/lo-sport-vale-una-vita-diretta-streaming-alle-11/">
+                                        <div>
+                                            <h5 class="mb-0">Lo sport vale una vita? Diretta streaming alle 11</h5>
+                                            <div class="standard-text-1">
+                                                                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/welfare-sportivo-stop-al-bullismo-un-anno-in-piu/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2019/05/Scherma1-240x160.jpg')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/welfare-sportivo-stop-al-bullismo-un-anno-in-piu/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">Welfare sportivo – Stop al bullismo un anno in più</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                                                <div class="row no-gutters article">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/la-storia-viva-di-candido-in-un-libro/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2019/02/Manchette-steso-240x160.jpg')"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/la-storia-viva-di-candido-in-un-libro/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">La storia viva di Candido... in un libro</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                                    </div>
+                </div>
+                                                    <div class="row no-gutters top-of-category py-4 px-lg-5 mr-xl-3">
+                                        <div class="col">
+                                            <h2 class="mb-0"><a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/disabilita/">Disabilità</a></h2>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters pb-4 px-lg-5">
+                                        <div class="col-lg-5 order-lg-2">
+                                            <div class="category-img" style="background-image: url('http://fondazionecannavo.gazzetta.it/wp-content/uploads/2014/11/Disabilità.jpg')"></div>
+                                        </div>
+                                        <div class="col-lg-7 pr-2 order-lg-1 pl-lg-2 pt-lg-0 pt-2">
+
+                        
+                        <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/torna-il-candido-junior-camp/">
+                                    <div class="big-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2021/09/CandidoJuniorCamp-480x319.jpeg')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <div class="d-flex align-items-center h-100">
+                                    <a href="https://fondazionecannavo.gazzetta.it/progetti/torna-il-candido-junior-camp/">
+                                        <div>
+                                            <h5 class="mb-0">Torna il Candido Junior Camp </h5>
+                                            <div class="standard-text-1">
+                                                                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/un-motivo-in-piu-per-donare-alla-fondazione-candido-cannavo/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2019/07/Società-2-240x160.jpg')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/un-motivo-in-piu-per-donare-alla-fondazione-candido-cannavo/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">Un motivo in più per donare alla Fondazione Candido Cannavò</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                                                <div class="row no-gutters article">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/la-fondazione-a-fianco-della-neonata-npic-rieti-junior/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2019/12/Società_Briantea84Academy_PH-Ufficio-Stampa-DMTC-1-240x160.jpg')"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/la-fondazione-a-fianco-della-neonata-npic-rieti-junior/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">La Fondazione a fianco della neonata NPIC Rieti Junior</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                                    </div>
+                </div>
+                                                    <div class="row no-gutters top-of-category py-4 px-lg-5 mr-xl-3">
+                                        <div class="col">
+                                            <h2 class="mb-0"><a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/donne-e-sport/">Donne e sport</a></h2>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters pb-4 px-lg-5">
+                                        <div class="col-lg-5 ">
+                                            <div class="category-img" style="background-image: url('http://fondazionecannavo.gazzetta.it/wp-content/uploads/2014/11/DonnaeSport1.jpg')"></div>
+                                        </div>
+                                        <div class="col-lg-7  pl-lg-2 pt-lg-0 pt-2">
+
+                        
+                        <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/us-center-for-safesport-un-esempio-con-straming/">
+                                    <div class="big-article-thumbnail" style="background-image: url('')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <div class="d-flex align-items-center h-100">
+                                    <a href="https://fondazionecannavo.gazzetta.it/progetti/us-center-for-safesport-un-esempio-con-straming/">
+                                        <div>
+                                            <h5 class="mb-0">Us Center for safesport: un esempio con streaming</h5>
+                                            <div class="standard-text-1">
+                                                                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="row no-gutters article mb-2">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/lo-sport-vale-una-vita-diretta-streaming-alle-11/">
+                                    <div class="small-article-thumbnail" style="background-image: url('')"></div>
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/lo-sport-vale-una-vita-diretta-streaming-alle-11/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">Lo sport vale una vita? Diretta streaming alle 11</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                                                <div class="row no-gutters article">
+                            <div class="col-4">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/isokinetic-al-fianco-della-fondazione-cannavo-e-bimbe-nel-pallone/">
+                                    <div class="small-article-thumbnail" style="background-image: url('https://fondazionecannavo.gazzetta.it/wp-content/uploads/2020/01/Bimbe4-240x160.jpg')"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-8">
+                                <a href="https://fondazionecannavo.gazzetta.it/progetti/isokinetic-al-fianco-della-fondazione-cannavo-e-bimbe-nel-pallone/">
+                                    <div class="d-flex align-items-center h-100">
+                                        <h5 class="mb-0">Isokinetic al fianco della Fondazione Cannavó e Bimbe nel Pallone</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                                    </div>
+                </div>
+                            </div>
+
+            <!-- side-content -->
+            <div class="col-xl-3 pl-xl-2  order-xl-2 order-1">
+
+                <!-- side articles box -->
+                <div class="row no-gutters pb-5">
+                    <div class="col">
+                        <div id="side-articles-box" class="py-3">
+                        <h2 class="pl-3">News</h2>
+                        <img id="fold" src="https://fondazionecannavo.gazzetta.it/wp-content/themes/fondazionecannavo/static/images/piega.svg" alt="">
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse0" role="button" aria-expanded="false" aria-controls="collapse0">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/7425/">"Il Candido Camp, una occasione di ripartenza"</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse0">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/addio-elio-grande-anima-della-gazzetta-e-della-fondazione/">Addio Elio, grande anima della Gazzetta e della Fondazione</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse1">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/il-progetto-in-etiopia-non-si-ferma-nel-nome-di-daniele-redaelli/">Il progetto in Etiopia non si ferma nel nome di Daniele Redaelli</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse2">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/us-center-for-safesport-un-esempio-con-straming/">Us Center for safesport: un esempio con streaming</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse3">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/contro-gli-abusi-nel-mondo-dello-sport-un-bel-passo-avanti/">Contro gli abusi nel mondo dello sport: un bel passo avanti</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse4">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/lo-sport-vale-una-vita-diretta-streaming-alle-11/">Lo sport vale una vita? Diretta streaming alle 11</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse5">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapse6">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/un-motivo-in-piu-per-donare-alla-fondazione-candido-cannavo/">Un motivo in più per donare alla Fondazione Candido Cannavò</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse6">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse7" role="button" aria-expanded="false" aria-controls="collapse7">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/un-libro-in-regalo-sugli-eroi-dello-sport-quelli-veri/">Un libro in regalo sugli Eroi dello Sport. Quelli veri</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse7">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse8" role="button" aria-expanded="false" aria-controls="collapse8">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/la-fondazione-al-fianco-di-changethegame/"> La Fondazione al fianco di ChangeTheGame</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse8">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse9" role="button" aria-expanded="false" aria-controls="collapse9">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/quei-corsi-a-opera-ci-hanno-cambiato-la-vita/">“Quei corsi a Opera ci hanno cambiato la vita”</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse9">
+                                        Davide Misfun, detenuto in regime di semilibertà, spiega l’importanza dell’iniziativa della Fondazione Candido Cannavò nel carcere di massima sicurezza. Siamo andati oltre quelle sbarre a capire com’è stato possibile                                    </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse10" role="button" aria-expanded="false" aria-controls="collapse10">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/il-2019-record-della-fondazione/">Il 2019 record della Fondazione</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse10">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse11" role="button" aria-expanded="false" aria-controls="collapse11">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/operazione-colomba-la-catena-della-solidariera/">Operazione Colomba, la catena della solidarierà </a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse11">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse12" role="button" aria-expanded="false" aria-controls="collapse12">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/anche-fisichella-e-altri-big-in-campo-per-le-campagne-pro-ospedale-sacco/">Anche Fisichella e altri big in campo per le campagne pro ospedale Sacco</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse12">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse13" role="button" aria-expanded="false" aria-controls="collapse13">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/ciao-gianni-mura/">Ciao Gianni </a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse13">
+                                                                            </div>
+                                </div>
+
+
+                        
+
+                                <div class="px-2 mb-2 side-article">
+                                    <div><a data-toggle="collapse" href="#collapse14" role="button" aria-expanded="false" aria-controls="collapse14">
+                                        <i class="fas fa-plus pr-2"></i></a><a href="https://fondazionecannavo.gazzetta.it/progetti/con-testimonial-e-fondazione-tutti-insieme-doniamo-per-gli-ospedali/">Con testimonial e Fondazione Tutti insieme doniamo  per gli ospedali</a>
+                                    </div>
+                                    <div class="collapse standard-text-1" id="collapse14">
+                                                                            </div>
+                                </div>
+
+
+                        
+                            <div class="ml-2"><a class="standard-text-1 font-weight-bold" style="color: #ec008c" href="/categorie_progetto/news/" target="_blank">Leggi altri</a></div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                
+        
+
+                <div class="row no-gutters pb-4">
+                    <div class="col">
+                        <div class="side-box p-3">
+
+                            <h2 class="mb-2">Multimedia</h2>
+
+                            
+                                            <a href="https://fondazionecannavo.gazzetta.it/gallery/e-io-porto-il-pallone/"
+                                                    class="fancybox" data-fancybox-group="gallery"
+                                                    data-caption=" "
+                                                    title="Partita">
+                                                <img src="https://fondazionecannavo.gazzetta.it/wp-content/gallery/eioportoilpallone/thumbs/thumbs_IMG_0099.JPG">
+                                            </a>
+
+
+                                    <a class="mt-2" href="https://fondazionecannavo.gazzetta.it/gallery/e-io-porto-il-pallone/">
+                                        <span class="font-weight-bold">... e io porto il pallone</span>
+                                    </a>
+                                                                
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid px-0">
+        <div class="row no-gutters py-4" id="promo-row">
+            <div class="col">
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="promo-box p-3 mr-md-2 mb-md-0 mb-4">
+                        <h2 class="mb-0">Dona ora<i class="fas fa-link pl-2"></i></h2>
+                        <div class="standard-text-1 py-3">
+                            La Fondazione vive dei vostri contributi, di una passione condivisa, e investe quanto
+                            riceve, ogni anno, senza fine di lucro. La sezione dedicata illustra i meccanismi di
+                            donazione diretta alla Fondazione indicando per quale dei singoli progetti si vuole
+                            contribuire.
+                        </div>
+                        <a class="font-weight-bold standard-text-1" href="">Il 5x1000: come fare e perchè</a>
+                    </div>
+
+                    <div class="promo-box p-3 ml-md-2">
+                        <h2 class="mb-0">Aste on line<i class="fas fa-link pl-2"></i></h2>
+                        <div class="standard-text-1 py-3">
+                            Sull'onda dell'iniziativa della Gazzetta dello Sport, aste periodiche di cimeli,
+                            memorabilia e donazioni ad hoc alla Fondazione stessa vengono rese disponibili per
+                            raccogliere contributi utili alle attività della Fondazione, a partire da queste pagine
+                            gestite per noi da CharitySport.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- third section -->
+    <div class="container">
+        <div class="row no-gutters mt-5">
+            <div class="col-xl-6 mb-xl-0 mb-4s px-3" id="partners-container">
+                <h2 class="px-2">Partners</h2>
+                <div class="row no-gutters">
+
+                    
+                    
+	                        
+	                    <div class="col-xl-6 px-2">
+	                        <div class="standard-text-1">
+	                            <h6>
+	                                <a href="https://fondazionecannavo.gazzetta.it/categorie_partner/contributors/">
+	                                    Contributors	                                </a>
+	                            </h6>
+	                            <p>
+	                                Tra le donazioni e le elargizioni in denaro o altre utilità alla Fondazione, spiccano quelle degli Enti Pubblici, Fondazioni pubbliche e private, Istituti e Fondazioni Bancarie, alle quali va il nostro sentito grazie e che intendiamo valorizzare attraverso le pagine e le schede collegate.	                            </p>
+	                        </div>
+	                    </div>
+
+	                    
+	                    <div class="col-xl-6 px-2">
+	                        <div class="standard-text-1">
+	                            <h6>
+	                                <a href="https://fondazionecannavo.gazzetta.it/categorie_partner/aziende/">
+	                                    Aziende	                                </a>
+	                            </h6>
+	                            <p>
+	                                Senza la partecipazione spesso appassionata di Aziende fornitrici che ci hanno concesso condizioni speciali, tariffe e prestazioni a prezzi di favore, erogazioni dirette per questo o quel progetto, la Fondazione non vivrebbe. 
+Le ringraziamo tutte in questa sezione, com’è giusto e doveroso.	                            </p>
+	                        </div>
+	                    </div>
+
+	                    
+	                                
+	                        
+	                    <div class="col-xl-6 px-2">
+	                        <div class="standard-text-1">
+	                            <h6>
+	                                <a href="https://fondazionecannavo.gazzetta.it/categorie_partner/associazioni/">
+	                                    Associazioni	                                </a>
+	                            </h6>
+	                            <p>
+	                                Molte sono le Associazioni di volontariato, le Onlus, le cooperative sociali, i sodalizi di intervento nel tessuto sociale che abbiamo incontrato e incontriamo sul nostro cammino. Compagni di viaggio e di iniziative che è giusto ricordare, e raccogliere includendo i link ai siti e alle loro iniziative.	                            </p>
+	                        </div>
+	                    </div>
+
+	                    
+	                    <div class="col-xl-6 px-2">
+	                        <div class="standard-text-1">
+	                            <h6>
+	                                <a href="https://fondazionecannavo.gazzetta.it/categorie_partner/amici/">
+	                                    Amici	                                </a>
+	                            </h6>
+	                            <p>
+	                                Su Facebook si chiede e si concede amicizia. Per chi opera nel sociale, la ricerca e la scoperta di amici che fanno lo stesso percorso, anche a livello individuale, è fondamentale. Lo facciamo qui, pur conservando, attraverso il social network, l’opportunità di seguire le vie più consuete.
+	                            </p>
+	                        </div>
+	                    </div>
+
+	                                    </div>
+            </div>
+            <div class="col-xl-3 mb-xl-0 mb-4 px-3" id="pubblications-container">
+                <h2>
+                    Pubblicazioni
+                </h2>
+                <div class="standard-text-1 mb-3">
+                    Nei suoi sessant'anni di attività, Candido Cannavò ha redatto migliaia di articoli e scritto alcuni
+                    libri di successo. La sua attività pubblicistica è stata documentata da lui stesso in “Una vita in rosa”
+                    e dal figlio Alessandro in “La vita e altri giochi di squadra”, più di recente in “Storia sentimentale
+                    dello sport italiano” curata da Elio Trifari. Questi libri, assieme a quelli da lui scritti su carceri,
+                    disabili e “preti di strada”, sono tutti disponibili su Amazon in
+                    <a target="_blank" href="https://www.amazon.it/s/ref=nb_sb_noss?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Dstripbooks&field-keywords=Candido+Cannav%C3%B2&rh=n%3A411663031%2Ck%3ACandido+Cannav%C3%B2.">
+                    questa pagina</a>
+                </div>
+                <div class="text-center">
+                    <a target="_blank" href="http://libreriarizzoli.corriere.it/is-bin/INTERSHOP.enfinity/WFS/RCS-RCS_PhysicalShops-Site/it_IT/-/EUR/ViewParametricSearch-SimpleOfferSearch?webform-id=WFSimpleSearch&DefaultButton=findSimple&PageSize=12&SearchCategoryUUID=3LisEWcWngkAAAEp_Z8fmqFz&WFSimpleSearch_NameOrID=candido+cannavo">
+                        <img class="img-fluid" src="https://fondazionecannavo.gazzetta.it/wp-content/uploads/2019/02/Manchette-steso.jpg">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-xl-3" id="social-container">
+                <div class="row no-gutters px-3">
+                    <div class="col">
+                        <h2 class="mb-3">Social</h2>
+                        <div id="social-box">
+                            <div class="fb-page" data-href="https://www.facebook.com/nelsegnodicandido/" data-tabs="timeline" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/nelsegnodicandido/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/nelsegnodicandido/">Fondazione Candido Cannavò per lo sport</a></blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<div class="container-fluid px-0" id="footer">
+        <div class="row no-gutters footer mt-5 py-5 px-md-5 ">
+            <div class="col-lg-3 col-sm-6 px-3">
+                <ul class="standard-text-1 p-0 m-0">
+                    <li class="font-weight-bold">Fondazione Candido Cannavò per lo sport</li>
+                    <li>Via Solferino, 26 - I - 20100 Milano</li>
+                    <li class="mt-2">C.F. e Partita IVA 06811260964</li>
+                    <li>Copyright 2012 © RCS MediaGroup S.p.A. - Tutti i diritti riservati</li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-sm-6 px-3">
+                <ul class="standard-text-1 p-0 m-0">
+                    <li class="font-weight-bold">Progetti realizzati</li>
+                                                            <li>
+                        <a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/progetti-carcere/">Progetti carcere</a>
+                    </li>
+                                        <li>
+                        <a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/diseguaglianze-sociali/">Barriere sociali</a>
+                    </li>
+                                        <li>
+                        <a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/rispetto-delle-regole/">Rispetto delle regole</a>
+                    </li>
+                                        <li>
+                        <a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/disabilita/">Disabilità</a>
+                    </li>
+                                        <li>
+                        <a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/donne-e-sport/">Donne e sport</a>
+                    </li>
+                                        <li>
+                        <a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/banco-dello-sport/">Banco dello Sport</a>
+                    </li>
+                                        <li>
+                        <a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/bandi/">Bandi</a>
+                    </li>
+                                        <li>
+                        <a href="https://fondazionecannavo.gazzetta.it/categorie_progetto/news/">News</a>
+                    </li>
+                                        <li>
+                        <a href="">Multimedia</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-sm-6 px-3">
+                <ul class="standard-text-1 p-0 m-0">
+                    <li>
+                        <a href="http://www.rcsmediagroup.it/" target="_blank">RCS MediaGroup</a>
+                    </li>
+                    <li>
+                        <a href="http://www.gazzetta.it/blog" target="_blank">I Blog di Gazzetta</a>
+                    </li>
+                    <li>
+                        <a href="http://www.gazzetta.it" target="_blank">La Gazzetta dello Sport</a>
+                    </li>
+                    <li>
+                        <a href="http://invisibili.corriere.it/" target="_blank">Gli Invisibili</a>
+                    </li>
+                    <li>
+                        <a href="http://27esimaora.corriere.it/" target="_blank">La 27Ora</a>
+                    </li>
+                    <li>
+                        <a href="http://sociale.corriere.it/" target="_blank">Corriere Sociale</a>
+                    </li>
+                    <li>
+                        <a href="http://www.gazzetta.it/privacy.shtml" target="_blank">Cookie policy e privacy</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-sm-6 px-3">
+                <h4>Contatti</h4>
+                <div class="standard-text-1 ">
+                    <a href="mailto:info@fondazionecannavo.it">info@fondazionecannavo.it</a>                    
+                </div>
+                <div class="standard-text-1 ">
+                    <a href="mailto:farturi@rcs.it">farturi@rcs.it</a>                    
+                </div>
+                <div class="standard-text-1 ">
+                    <a href="mailto:farturi@rcs.it">gpasini@rcs.it</a>                    
+                </div>
+                <div class="mt-5 standard-text-1">
+                    Created by <a href="https://digipa.it" target="_blank">Nicolò Di Leo</a>
+                </div>
+            </div>
+        </div>
+	</div>
+
+    <script>
+
+        window.fbAsyncInit = function() {
+            FB.Event.subscribe('xfbml.render', function(response) {
+                jQuery("#social-box").css('opacity', 1);
+            });
+        };
+
+    </script>
+
+    <!-- ngg_resource_manager_marker --><script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js?ver=1.0'></script>
+<script type='text/javascript' src='//stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js?ver=1.0'></script>
+<script type='text/javascript' src='//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js?ver=1.0'></script>
+
+<!-- BEGIN recaptcha, injected by plugin wp-recaptcha-integration  -->
+<script type="text/javascript">
+		var recaptcha_widgets={};
+		function recaptchaLoadCallback(){ 
+			try {
+				grecaptcha;
+			} catch(err){
+				return;
+			}
+			var e=document.querySelectorAll ? document.querySelectorAll('.g-recaptcha') : document.getElementsByClassName('g-recaptcha'),form_submits;
+
+			for (var i=0;i<e.length;i++) {
+				(function(el){
+					var wid;
+					// check if captcha element is unrendered
+					if ( ! el.childNodes.length) {
+						wid = grecaptcha.render(el,{
+							'sitekey':'6LeoygkTAAAAABnykdiP12wQKBDayg_EEs-t-dDp',
+							'theme':el.getAttribute('data-theme') || 'light'
+						});
+						el.setAttribute('data-widget-id',wid);
+					} else {
+						wid = el.getAttribute('data-widget-id');
+						grecaptcha.reset(wid);
+					}
+				})(e[i]);
+			}
+		}
+		
+		// if jquery present re-render jquery/ajax loaded captcha elements 
+		if ( typeof jQuery !== 'undefined' )
+			jQuery(document).ajaxComplete( function(evt,xhr,set){
+				if( xhr.responseText && xhr.responseText.indexOf('6LeoygkTAAAAABnykdiP12wQKBDayg_EEs-t-dDp') !== -1)
+					recaptchaLoadCallback();
+			} );
+		
+		</script><script src="https://www.google.com/recaptcha/api.js?onload=recaptchaLoadCallback&#038;render=explicit" async defer></script>
+<!-- END recaptcha -->
+
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.2&appId=200214306714004&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+	<script>
+        jQuery(document).ready(function () {
+            jQuery('.slider').slick({
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 4000,
+                prevArrow: "<i class='fas fa-arrow-left' id='slider-prev'></i>",
+                nextArrow: "<i class='fas fa-arrow-right' id='slider-next'></i>"
+            });
+        });
+	</script>
+
+</body>
+
+</html>

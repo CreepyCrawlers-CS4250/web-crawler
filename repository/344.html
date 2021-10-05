@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang='it-IT' class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	  				<link rel="shortcut icon" href="https://www.amica.it/wp-content/themes/amica/images/favicon.ico?v=20211004164140"/>
+
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"> -->
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0">
+
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-touch-fullscreen" content="yes"/>
+	<meta name="apple-itunes-app" content="app-id=518664927, affiliate-data=, app-argument=">
+
+	<!-- apple touch icon -->
+	<link rel="apple-touch-icon" href="https://www.amica.it/wp-content/themes/amica/js/libs/add2home/img/apple-touch-icon-57x57-precomposed.png?v=20211004164140"/>
+	<link rel="apple-touch-icon" sizes="72x72" href="https://www.amica.it/wp-content/themes/amica/js/libs/add2home/img/apple-touch-icon-72x72-precomposed.png?v=20211004164140"/>
+	<link rel="apple-touch-icon" sizes="114x114" href="https://www.amica.it/wp-content/themes/amica/js/libs/add2home/img/apple-touch-icon-114x114-precomposed.png?v=20211004164140"/>
+
+	
+	<meta property="fb:page_id" content="55695903083">
+
+	<!-- vecchio clab: og tag placeholder -->
+
+	<link href='//fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+
+	<link href="https://www.amica.it/wp-content/themes/amica/js/libs/selectbox/jquery.selectbox.css?v=20211004164140" rel="stylesheet">
+	<link href="https://www.amica.it/wp-content/themes/amica/css/main.css?v=202109131454" rel="stylesheet">
+    <link href="https://www.amica.it/wp-content/themes/amica/assets/css/main.min.css?v=20211004164140" rel="stylesheet">
+	<link href="https://www.amica.it/wp-content/themes/amica/css/overlay.css?v=20211004164140" rel="stylesheet">
+
+	<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+	<script src="https://www.amica.it/wp-content/themes/amica/js/libs/modernizr-2.6.2-respond-1.1.0.min.js?v=20211004164140"></script>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="https://www.amica.it/wp-content/themes/amica/js/libs/jquery-1.8.3.min.js"><\/script>')</script>
+
+	<!-- <script src="https://www.amica.it/wp-content/themes/amica/js/libs/masonry.pkgd.min.js"></script> -->
+	<script src="https://www.amica.it/wp-content/themes/amica/js/libs/jquery.masonry.min.js?v=20211004164140"></script>
+
+	<link href="https://www.amica.it/wp-content/themes/amica/js/libs/bxslider/jquery.bxslider.css?v=20211004164140" rel="stylesheet">
+	<script src="https://www.amica.it/wp-content/themes/amica/js/libs/bxslider/jquery.bxslider.min.js?v=20211004164140"></script>
+	<script async crossorigin="anonymous" src="https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v6.0"></script>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<script src="https://www.amica.it/wp-content/themes/amica/js/libs/selectbox/jquery.selectbox-0.2.min.js?v=20211004164140"></script>
+
+	<script src="https://www.amica.it/wp-content/themes/amica/js/main.js?v=20210930"></script>
+
+			<!--<link rel="stylesheet" href="<php echo get_bloginfo('template_directory'); ?>/js/libs/add2home/add2home.css"/>
+		<script src="<php echo get_bloginfo('template_directory'); ?>/js/libs/add2home/add2home.js" type="text/javascript"></script>-->
+	
+	<script src="https://www.amica.it/wp-content/themes/amica/js/device-amica.js?v=20211004164140" type="text/javascript"></script>
+
+	
+	<script type="text/javascript">
+				// SITEPAGE 2016 1
+		OAS_sitepage = 'amica.it/hp';
+				var sezione='hp';var sottosezione='';
+		if (device.mobile() == true) {
+			//OAS_listpos = 'Position1, Frame1';
+			OAS_sitepage = 'mobile.amica.it/amica';
+									// SITEPAGE 2016 1
+			OAS_sitepage = 'mobile.amica.it/hp';
+					} else if (device.tablet() == true) {
+			//OAS_listpos = 'Position1,TopLeft,Frame1';
+		} else {
+			//OAS_listpos = 'Position1,Top,TopLeft,Frame1';
+		}
+
+		// <<< AMICA-94
+		jQuery(document).ready(function() {
+
+			if (jQuery('.h_mobile_menu').length > 0) {
+
+				var shadowLeft = jQuery('.h_mobile_menu .shadow_left');
+				var shadowRight = jQuery('.h_mobile_menu .shadow_right');
+				
+				jQuery('.menu_items').on('scroll', function(e) {
+					
+	             	var srcElement = e.srcElement;
+	             	var scrolledWidth = srcElement.scrollLeft;
+	             	var maxScroll = srcElement.scrollWidth - srcElement.clientWidth;
+	             	if(scrolledWidth > 0) {
+	            		
+	             		shadowLeft.show();
+	             		shadowRight.show();	                    
+	             		if(maxScroll == scrolledWidth) {		
+	             			shadowRight.hide();
+						}
+	             	}
+	             	else {
+	             		shadowLeft.hide();
+	             		shadowRight.show();	
+	             	}	            
+				});
+			}
+
+			$( "#searchform-mobile-img-lente" ).click(function() {
+				$( "#searchform-mobile" ).submit();
+			});
+
+			$( "#searchform-mobile-txt" ).click(function() {
+				var s_length = $(this).val().length;
+				if (s_length > 0) $( "#searchform-mobile" ).submit();
+			});
+			
+		});
+		// AMICA-94 >>>
+	</script>
+	
+				
+
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		var sez = sezione;
+		var sottosez = sottosezione;
+		_gaq.push(['_setAccount', 'UA-3269171-31']);
+		_gaq.push(['_setDomainName', 'amica.it']);
+				_gaq.push(['_setPageGroup', 1, 'hp']);
+		_gaq.push(['_setPageGroup', 2, '']);
+										_gaq.push(['_setPageGroup', 3, '']);
+		
+		_gaq.push(['_trackPageview']);
+		_gaq.push(['_gat._anonymizeIp']);
+
+		(function () {
+
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+
+			ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+
+		})();
+
+
+	</script>
+
+
+	<!-- Clab include -->
+	<link rel="stylesheet" type="text/css" media="all" href="https://www.amica.it/wp-content/themes/amica/style.css?v=1633358500"/>
+
+			<script type='text/javascript'>
+			function OA_show(name) {
+				return name;
+			}
+		</script>
+		<script type="text/javascript" src="https://js2.corriereobjects.it/includes2013/LIBS/js/adv/mjx_fake.js"></script>
+		<script type="text/javascript" src="https://js2.corriereobjects.it/includes2013/LIBS/js/adv/bt_fake.js"></script>
+	
+<!-- This site is optimized with the Yoast SEO plugin v4.8 - https://yoast.com/wordpress/plugins/seo/ -->
+<title>Amica: moda, bellezza e notizie di tendenza per lei</title>
+<meta name="description" content="Amica è la rivista che ha accompagnato, in questi cinque decenni, l’evoluzione della donna italiana. Perché la moda stessa è evoluzione, specchio del costume e delle sue trasformazioni"/>
+<meta name="robots" content="noarchive, nocache, noodp, max-image-preview:large"/>
+<link rel="canonical" href="https://www.amica.it/" />
+<link rel="next" href="https://www.amica.it/page/2/" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Amica" />
+<meta property="og:description" content="Amica è la rivista che ha accompagnato, in questi cinque decenni, l’evoluzione della donna italiana. Perché la moda stessa è evoluzione, specchio del costume e delle sue trasformazioni" />
+<meta property="og:url" content="https://www.amica.it/" />
+<meta property="og:site_name" content="Amica" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Amica è la rivista che ha accompagnato, in questi cinque decenni, l’evoluzione della donna italiana. Perché la moda stessa è evoluzione, specchio del costume e delle sue trasformazioni" />
+<meta name="twitter:title" content="Amica: moda, bellezza e notizie di tendenza per lei" />
+<script type='application/ld+json'>{"@context":"http:\/\/schema.org","@type":"WebSite","@id":"#website","url":"https:\/\/www.amica.it\/","name":"Amica","alternateName":"Amica.it","potentialAction":{"@type":"SearchAction","target":"https:\/\/www.amica.it\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<script type='application/ld+json'>{"@context":"http:\/\/schema.org","@type":"Organization","url":"https:\/\/www.amica.it\/","sameAs":[],"@id":"#organization","name":"Amica","logo":""}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='stylesheet' id='fnc-splm-css'  href='https://www.amica.it/wp-content/plugins/fnc-splm/public/css/fnc-splm-public.css?v=20211004164140' type='text/css' media='all' />
+<link rel='stylesheet' id='fncs_overlay_adv_style-css'  href='https://www.amica.it/wp-content/plugins/fnc_overlay_adv_2017/classes/../assets/css/fnc_overlay_adv_style.css?v=20211004164140?201810011425' type='text/css' media='all' />
+<link rel='stylesheet' id='css-player-fe-css'  href='https://www.amica.it/wp-content/plugins/fnc_vam_video/classes/../assets/css/player.css?v=20211004164140' type='text/css' media='all' />
+<link rel='https://api.w.org/' href='https://www.amica.it/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.amica.it/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.amica.it/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.4.2" />
+		<script>
+			RCSAD_sitepage = "amica.it/homepage";
+			RCSAD_listpos = "Position1,TopLeft,Frame1,Frame2,Frame3";
+		</script>
+		        <script>
+            var tipologia = "home";
+        </script>
+		            <style type="text/css">#amica_spalla_dx_01{padding-top: 10px;padding-bottom: 10px;}
+.black-is-black {background-color: #000000 !important;letter-spacing: 0.8px !important;}
+.black-is-black a{color:white !important}
+.overlay-modal-img { width: 370px; margin-left: -185px; }</style>
+			<!-- <meta name="NextGEN" version="2.1.60" /> -->
+
+
+<!-- This site is optimized with the Schema plugin v1.7.5 - https://schema.press -->
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"Organization","@id":"#organization","name":"Amica","url":"https:\/\/www.amica.it\/","logo":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","contactPoint":{"@type":"ContactPoint","telephone":"+39 02 63798520","url":"https:\/\/www.abbonamentircs.it\/it_IT\/Amica\/nbGsEWcVLUAAAAFS71crvjaf\/pc?intcmp=abboAmicaSito_other_110316_amica_in_other","contactType":"customer support"},"sameAs":["https:\/\/www.facebook.com\/amicamagazine","https:\/\/www.instagram.com\/amicamagazine\/"]}</script>
+
+
+
+<!-- This site is optimized with the Schema plugin v1.7.5 - https://schema.press -->
+<script type="application/ld+json">{"@context":"http:\/\/schema.org\/","@type":"Blog","headline":"Amica","description":"","url":"https:\/\/www.amica.it","blogPost":[{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/05\/charlene-di-monaco-foto-principe-alberto-preoccupato\/"},"url":"https:\/\/www.amica.it\/2021\/10\/05\/charlene-di-monaco-foto-principe-alberto-preoccupato\/","headline":"Charlene di Monaco: \"Dio vi benedica\". Adesso anche il Principe Alberto è...","datePublished":"2021-10-05T10:54:31+00:00","dateModified":"2021-10-05T10:57:56+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/charlene-di-monaco-q.jpg?v=1118140","width":696,"height":620},"articleSection":"Party &amp; People","description":"\"Dio vi benedica\"... Doveva essere la foto del \"ritorno\". Quella del sorriso per dire \"ci sono\". Anche se lontana ormai sette mesi. Charlene di Monaco (43 anni) è riapparsa sui social con il post e l'immagine che vediamo qui sopra. Il suo sorriso (mezzo sorriso) per rassicurarci della sua salute.","author":{"@type":"Person","name":"Antonella Catena","url":"https:\/\/www.amica.it\/author\/acatena\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/ab07c85a760268b908bdbd9a8265744b?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/05\/fiocchi-per-capelli-accessori-eleganti-giambattista-valli\/"},"url":"https:\/\/www.amica.it\/2021\/10\/05\/fiocchi-per-capelli-accessori-eleganti-giambattista-valli\/","headline":"I fiocchi per capelli di Giambattista Valli valgono...","datePublished":"2021-10-05T09:15:34+00:00","dateModified":"2021-10-05T09:33:44+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/albumtemp-5.jpg?v=1118093","width":1280,"height":1280},"articleSection":"Bellezza","description":"Le modelle che hanno sfilato, con i loro fiocchi per capelli, sulla passerella di Giambattista Valli P\/E 2022, assomigliano un po' a delle dame. Donne uscite da un film in costume o dalla stessa serie di Bridgerton. Immaginare Phoebe Dynevor (la nostra Daphne) indossare questi fiocchi è molto facile.","author":{"@type":"Person","name":"Veronica Eredi","url":"https:\/\/www.amica.it\/author\/veredi\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/da67b2a41c245ea77fc2df3463c8520a?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/gallery\/accessori-per-capelli-foto-fiocchi-eleganti-giambattista-valli\/"},"url":"https:\/\/www.amica.it\/gallery\/accessori-per-capelli-foto-fiocchi-eleganti-giambattista-valli\/","headline":"Accessori per capelli, foto: i fiocchi eleganti di Giambattista...","datePublished":"2021-10-05T08:40:53+00:00","dateModified":"2021-10-05T10:04:45+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/albumtemp-4-1.jpg?v=1118095","width":1280,"height":1280},"articleSection":"Bellezza","author":{"@type":"Person","name":"Veronica Eredi","url":"https:\/\/www.amica.it\/author\/veredi\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/da67b2a41c245ea77fc2df3463c8520a?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/05\/sfilate-parigi-primavera-estate-2022\/"},"url":"https:\/\/www.amica.it\/2021\/10\/05\/sfilate-parigi-primavera-estate-2022\/","headline":"Paris Fashion Week primavera estate 2022. Effetto...","datePublished":"2021-10-05T06:30:59+00:00","dateModified":"2021-10-05T06:35:54+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/sfilate-Parigi-primavera-estate-2022-valentino-cover.jpg?v=1117731","width":696,"height":620},"articleSection":"Fashion Story","description":"Le sfilate di Parigi primavera estate 2022 prendono ispirazione dal passato per le nuove collezioni, ma senza alcuna nostalgia. Si torna indietro nel tempo recuperando stilemi di diversi decenni e rendendoli contemporanei. Si scava negli archivi delle maison più storiche. Muse ispiratrici vengono elette tra le it-girl che furono.","author":{"@type":"Person","name":"Barbara Sini","url":"https:\/\/www.amica.it\/author\/sini-modagmail-com\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/2e1fdee77f0d9ed0816cbc9e8d7549c5?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/05\/amal-clooney-lezioni-extra-scolastiche-di-papa-george-ai-gemelli\/"},"url":"https:\/\/www.amica.it\/2021\/10\/05\/amal-clooney-lezioni-extra-scolastiche-di-papa-george-ai-gemelli\/","headline":"Amal Clooney: Come insegna George, non insegna...","datePublished":"2021-10-05T06:15:15+00:00","dateModified":"2021-10-04T18:04:09+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/amal-clooney-george-clooney-q.jpg?v=1118019","width":696,"height":620},"articleSection":"Party &amp; People","description":"«Non potevo mica dare loro lezioni di trigonometria!»... Lui è George Clooney (61 anni) e loro sono Ella e Alexander, i gemelli che hanno compiuto 5 anni il 6 giugno. Mamma è Amal Clooney, tornata a fianco del marito sul red carpet di The Tender Bar. Il nuovo film da","author":{"@type":"Person","name":"Antonella Catena","url":"https:\/\/www.amica.it\/author\/acatena\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/ab07c85a760268b908bdbd9a8265744b?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/gallery\/george-clooney-ama-clooney-foto-red-carpet\/"},"url":"https:\/\/www.amica.it\/gallery\/george-clooney-ama-clooney-foto-red-carpet\/","headline":"Tutti i red carpet di Amal e George Clooney: le...","datePublished":"2021-10-05T06:00:59+00:00","dateModified":"2021-10-05T07:53:42+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/amal-clooney-george-clooney-red-carpet-2015-q.jpg?v=1118040","width":696,"height":620},"articleSection":"Party &amp; People","author":{"@type":"Person","name":"Antonella Catena","url":"https:\/\/www.amica.it\/author\/acatena\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/ab07c85a760268b908bdbd9a8265744b?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/05\/benefici-meditazione-effetti-fisici-mentali\/"},"url":"https:\/\/www.amica.it\/2021\/10\/05\/benefici-meditazione-effetti-fisici-mentali\/","headline":"Benefici della meditazione: perché 10 minuti al giorno possono cambiarci la...","datePublished":"2021-10-05T06:00:55+00:00","dateModified":"2021-10-04T21:00:18+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/benefici-meditazione.jpeg?v=1118066","width":1200,"height":1200},"articleSection":"Benessere","description":"I benefici della meditazione vanno molto oltre. Perché oltre a combattere lo stress e l'ansia, meditare ha risvolti positivi anche sul fisico. Addirittura, può migliorare la nostra salute. Ovviamente, la chiave per sfruttare la meditazione e i suoi effetti benefici è la costanza. Fortunatamente, però, non occorre dedicare alla meditazione zen","author":{"@type":"Person","name":"Beatrice Zocchi","url":"https:\/\/www.amica.it\/author\/bzocchi\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/168810fa5c4ea5c79ba6d5bdde4219d8?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/05\/sarah-ferguson-testimoniare-principe-andrea-processo\/"},"url":"https:\/\/www.amica.it\/2021\/10\/05\/sarah-ferguson-testimoniare-principe-andrea-processo\/","headline":"Sarah Ferguson dovrà testimoniare per il principe Andrea al...","datePublished":"2021-10-05T05:30:30+00:00","dateModified":"2021-10-04T19:27:11+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/sarah-ferguson-e-il-principe-andrea-quadra.jpg?v=1118057","width":696,"height":620},"articleSection":"Party &amp; People","description":"Potrebbe essere la sua salvezza. Ma anche la sua condanna definitiva. Perché nulla è mai stato certo quando di mezzo c'è Sarah Ferguson. Solo che, questa volta, la posta in gioco è davvero alta. Altissima. Ne va della libertà del suo ex marito. Il principe Andrea. Che per lei","author":{"@type":"Person","name":"Sara Sirtori","url":"https:\/\/www.amica.it\/author\/sara-sirtori\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/33ac0a3924948f0f7cf6ee7c560b07ab?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/gallery\/sarah-ferguson-principe-andrea-foto-coppia-inossidabile\/"},"url":"https:\/\/www.amica.it\/gallery\/sarah-ferguson-principe-andrea-foto-coppia-inossidabile\/","headline":"Sarah Ferguson e il principe Andrea: le foto di una coppia...","datePublished":"2021-10-05T05:15:25+00:00","dateModified":"2021-10-05T07:52:19+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/sarah-ferguson-e-il-principe-andrea-foto-quadra.jpg?v=1118062","width":696,"height":620},"articleSection":"Party &amp; People","author":{"@type":"Person","name":"Sara Sirtori","url":"https:\/\/www.amica.it\/author\/sara-sirtori\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/33ac0a3924948f0f7cf6ee7c560b07ab?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/04\/jennifer-lawrence-incinta-piazza-favore-aborto\/"},"url":"https:\/\/www.amica.it\/2021\/10\/04\/jennifer-lawrence-incinta-piazza-favore-aborto\/","headline":"Jennifer Lawrence incinta scende in piazza a favore...","datePublished":"2021-10-04T17:14:33+00:00","dateModified":"2021-10-04T16:15:44+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/jennifer-lawrence-e-amy-schumer-pro-aborto-quadra.jpg?v=1117995","width":696,"height":620},"articleSection":"Party &amp; People","description":"&nbsp; Libertà di scelta. Fino alla fine. Perché è facile fare politica sul corpo delle donne. Tanto è delle donne, no? Per questo Jennifer Lawrence ha dato una testimonianza molto importante. Scendendo in piazza a Washington. Lei, incinta di diversi mesi, per protestare contro la legge del Texas che","author":{"@type":"Person","name":"Sara Sirtori","url":"https:\/\/www.amica.it\/author\/sara-sirtori\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/33ac0a3924948f0f7cf6ee7c560b07ab?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/gallery\/jennifer-lawrence-foto-belle-attrice\/"},"url":"https:\/\/www.amica.it\/gallery\/jennifer-lawrence-foto-belle-attrice\/","headline":"Jennifer Lawrence, le foto più belle...","datePublished":"2021-10-04T17:00:20+00:00","dateModified":"2021-10-04T19:02:16+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/jennifer-lawrence-quadra.jpg?v=1118013","width":696,"height":620},"articleSection":"Party &amp; People","author":{"@type":"Person","name":"Sara Sirtori","url":"https:\/\/www.amica.it\/author\/sara-sirtori\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/33ac0a3924948f0f7cf6ee7c560b07ab?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/04\/capelli-rossi-colore-foliage-autunno-primavera-2022\/"},"url":"https:\/\/www.amica.it\/2021\/10\/04\/capelli-rossi-colore-foliage-autunno-primavera-2022\/","headline":"Capelli rossi: il colore del foliage autunnale fiorirà in...","datePublished":"2021-10-04T16:05:33+00:00","dateModified":"2021-10-04T16:24:08+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/albumtemp-3-1.jpg?v=1117992","width":2048,"height":2048},"articleSection":"Bellezza","description":"...che collega l'autunno 2021 con la primavera 2022. E sono i capelli rossi. Nuove (e tantissime) sfumature fulve che le sfilate della primavera\/estate 2022 hanno portato in passerella. In tutta la loro bellezza, vivacità e profondità. I capelli ribelli, da sempre i più chiacchierati e odiati\/amati, sono tra i","author":{"@type":"Person","name":"Veronica Eredi","url":"https:\/\/www.amica.it\/author\/veredi\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/da67b2a41c245ea77fc2df3463c8520a?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/gallery\/colore-capelli-autunno-2021-primavera-2022-tinta-rossa-rame-mogano\/"},"url":"https:\/\/www.amica.it\/gallery\/colore-capelli-autunno-2021-primavera-2022-tinta-rossa-rame-mogano\/","headline":"Colore capelli autunno 2021 e primavera 2022: tinta rossa, rame e...","datePublished":"2021-10-04T15:44:17+00:00","dateModified":"2021-10-04T16:22:37+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/albumtemp-4.jpg?v=1117993","width":2048,"height":2048},"articleSection":"Bellezza","author":{"@type":"Person","name":"Veronica Eredi","url":"https:\/\/www.amica.it\/author\/veredi\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/da67b2a41c245ea77fc2df3463c8520a?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/04\/bridgerton-piange-il-covid-si-porta-via-il-premiatissimo-marc-pilcher\/"},"url":"https:\/\/www.amica.it\/2021\/10\/04\/bridgerton-piange-il-covid-si-porta-via-il-premiatissimo-marc-pilcher\/","headline":"Bridgerton piange: il Covid si porta via il premiatissimo Marc...","datePublished":"2021-10-04T15:33:47+00:00","dateModified":"2021-10-04T15:33:47+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/bridgerton-q.jpg?v=1117974","width":696,"height":620},"articleSection":"Film e serie tv","description":"Bridgerton è in lutto. Mentre tutti aspettiamo la seconda stagione della serie Regency di Netflix, tutto il set piange la scomparsa di Marc Pilcher. Ovvero l'artista del make up e dell'hairstyling che ha firmato trucco e acconciature di Daphne, Queen Charlotte e tutte le altre dame (ma anche i","author":{"@type":"Person","name":"Antonella Catena","url":"https:\/\/www.amica.it\/author\/acatena\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/ab07c85a760268b908bdbd9a8265744b?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/gallery\/sfilata-balenciaga-primavera-estate-2022\/"},"url":"https:\/\/www.amica.it\/gallery\/sfilata-balenciaga-primavera-estate-2022\/","headline":"Balenciaga sfilata primavera estate 2022: dai Simpson a Isabelle...","datePublished":"2021-10-04T14:53:10+00:00","dateModified":"2021-10-04T14:53:23+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/balenciaga-ss22-cardi-b-naomi-campbell-wintour.jpg?v=1117925","width":696,"height":620},"articleSection":"Moda","author":{"@type":"Person","name":"Stella Romoli","url":"https:\/\/www.amica.it\/author\/sromoli\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/ca9fc303da445b884c02d7d69c9017ff?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/gallery\/bebe-vio-helen-mirren-foto-insieme-parigi-make-up-rock\/"},"url":"https:\/\/www.amica.it\/gallery\/bebe-vio-helen-mirren-foto-insieme-parigi-make-up-rock\/","headline":"Bebe Vio e Helen Mirren, foto: insieme a Parigi con make up...","datePublished":"2021-10-04T14:27:37+00:00","dateModified":"2021-10-04T14:27:37+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/Squaready20211004141440.jpg?v=1117898","width":1024,"height":1024},"articleSection":"Beauty must have","author":{"@type":"Person","name":"Veronica Eredi","url":"https:\/\/www.amica.it\/author\/veredi\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/da67b2a41c245ea77fc2df3463c8520a?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/04\/george-clooney-svela-perche-non-fara-mai-un-film-con-ben-affleck\/"},"url":"https:\/\/www.amica.it\/2021\/10\/04\/george-clooney-svela-perche-non-fara-mai-un-film-con-ben-affleck\/","headline":"George Clooney svela perché non reciterà mai in un film con Ben...","datePublished":"2021-10-04T13:11:39+00:00","dateModified":"2021-10-04T13:40:30+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/george-clooney-ben-affleck-q-2.jpg?v=1117860","width":696,"height":620},"articleSection":"Party &amp; People","description":"«Noi due insieme sullo stesso schermo? Impossibile!». Tranchant! George Clooney (61 anni) ha risposto così ai giornalisti, sul red carpet del suo nuovo film The Tender Bar. Con lui alla regia. Interpreti: Lily Rabe, Tye Sheridan e Christopher Lloyd (sì, il mitico Doc di Ritorno al futuro). Ma soprattutto","author":{"@type":"Person","name":"Antonella Catena","url":"https:\/\/www.amica.it\/author\/acatena\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/ab07c85a760268b908bdbd9a8265744b?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/gallery\/ben-affleck-george-clooney-foto-red-carpet-los-angeles-the\/"},"url":"https:\/\/www.amica.it\/gallery\/ben-affleck-george-clooney-foto-red-carpet-los-angeles-the\/","headline":"Ben Affleck sostituisce Jennifer Lopez con George Clooney: le foto del red carpet di \"The Tender...","datePublished":"2021-10-04T12:59:54+00:00","dateModified":"2021-10-04T13:45:51+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/george-clooney-ben-affleck-q.jpg?v=1117832","width":696,"height":620},"articleSection":"Party &amp; People","author":{"@type":"Person","name":"Antonella Catena","url":"https:\/\/www.amica.it\/author\/acatena\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/ab07c85a760268b908bdbd9a8265744b?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/04\/balenciaga-sfilata-primavera-estate-2022-simpson\/"},"url":"https:\/\/www.amica.it\/2021\/10\/04\/balenciaga-sfilata-primavera-estate-2022-simpson\/","headline":"Balenciaga ingaggia i Simpson per la sfilata primavera estate...","datePublished":"2021-10-04T12:14:42+00:00","dateModified":"2021-10-05T08:49:10+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/balenciaga.jpg?v=1117836","width":696,"height":620},"articleSection":"Moda","description":"Come passerella un red carpet dove ai modelli si mescolano Vip - da Isabelle Huppert, Cardi B e Elliot Page - e top model - Amber Valletta, Naomi Campbell e Natalia Vodianova. Siamo al Théâtre du Châtelet di Parigi. Qui Balenciaga ha presentato la sua sfilata primavera estate 2022 in formato ibrido, con","author":{"@type":"Person","name":"Stella Romoli","url":"https:\/\/www.amica.it\/author\/sromoli\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/ca9fc303da445b884c02d7d69c9017ff?s=96&d=mm&r=g","height":96,"width":96}}},{"@context":"http:\/\/schema.org\/","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.amica.it\/2021\/10\/04\/regina-elisabetta-prima-volta-parla-principe-filippo\/"},"url":"https:\/\/www.amica.it\/2021\/10\/04\/regina-elisabetta-prima-volta-parla-principe-filippo\/","headline":"La regina Elisabetta parla per la prima volta del principe...","datePublished":"2021-10-04T11:34:40+00:00","dateModified":"2021-10-04T13:13:14+00:00","publisher":{"@type":"Organization","@id":"https:\/\/www.amica.it#organization","name":"Amica","logo":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/themes\/amica\/img_layout\/logo.gif","width":600,"height":60}},"image":{"@type":"ImageObject","url":"https:\/\/www.amica.it\/wp-content\/uploads\/2021\/10\/regina-elisabetta-quadra.jpg?v=1117806","width":696,"height":620},"articleSection":"Party &amp; People","description":"A sei mesi dalla morte del principe Filippo, per la prima volta la regina Elisabetta ha parlato in pubblico del marito. E lo ha fatto in Scozia, il loro posto del cuore. Foto Ansa. Ci sono voluti quasi sei mesi alla regina Elisabetta per ricordare, pubblicamente suo marito. Per","author":{"@type":"Person","name":"Sara Sirtori","url":"https:\/\/www.amica.it\/author\/sara-sirtori\/","image":{"@type":"ImageObject","url":"https:\/\/secure.gravatar.com\/avatar\/33ac0a3924948f0f7cf6ee7c560b07ab?s=96&d=mm&r=g","height":96,"width":96}}}]}</script>
+
+<script language="javascript">
+var player = new Array();
+//var counter = 0;
+function playerReady(obj) {
+	var id = obj['id'];
+	var version = obj['version'];
+	var client = obj['client'];
+	//console.log('the videoplayer '+id+' has been instantiated');
+	player[id] = document.getElementById(id);
+	addListeners(id);
+};
+
+function addListeners(id) {
+	if (player[id]) { 
+		player[id].addModelListener("STATE", "stateListener");
+	} else {
+		setTimeout("addListeners()",100);
+	}
+}
+
+function stateListener(obj) { 
+	//possible states IDLE, BUFFERING, PLAYING, PAUSED, COMPLETED
+	currentState = obj.newstate; 
+	previousState = obj.oldstate;
+	//console.log('current state : '+ currentState + ' previous state : '+ previousState );
+    
+	//find out what title is playing (or id of the file)
+	var cfg = player[obj.id].getConfig();
+	var plst = player[obj.id].getPlaylist();
+
+	//decide if the counter needs updating and then 
+	//update in the db with ajax request
+	var decision = false;
+	if (((currentState == "PLAYING") && ( (previousState == "BUFFERING") ||(previousState == "COMPLETED")))) {
+		decision = true;
+	}
+	
+	if(decision) {
+		var ajaxString = "file=" + escape( plst[cfg["item"]].file );
+		jQuery.ajax({
+			type: "POST",
+			data: ajaxString,
+			url: "https://www.amica.it/index.php?wt-stat=true"
+		});	
+	}
+}
+</script>
+		 <script type="text/javascript">
+					window.addEventListener('cmpFileLoaded', function() {
+						if (typeof privacyok != "undefined" && privacyok==true) {
+						
+							window._taboola = window._taboola || [];
+							_taboola.push({home:'auto'});
+							!function (e, f, u, i) {
+								if (!document.getElementById(i)){
+									e.async = 1;
+									e.src = u;
+									e.id = i;
+									f.parentNode.insertBefore(e, f);
+								}
+							}(	document.createElement('script'),
+								document.getElementsByTagName('script')[0],
+								'//cdn.taboola.com/libtrc/rcs-amica/loader.js',
+								'tb_loader_script');
+								if(window.performance && typeof window.performance.mark == 'function')
+								{window.performance.mark('tbl_ic');}
+						}
+								
+					}, true);
+				</script>
+		 
+
+<!-- This site is optimized with the Schema plugin v1.7.5 - https://schema.press -->
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@id": "https://www.amica.it",
+                "name": "Home"
+            }
+        }
+    ]
+}</script>
+
+
+
+    <script src="https://www.amica.it/wp-content/themes/amica/assets/vendor/trunk8.js?v=20211004164140"></script>
+    <script src="https://www.amica.it/wp-content/themes/amica/assets/js/functions.min.js?v=20211004164140"></script>
+
+	<!-- Clab include -->
+
+<!-- AMICA-38 -->
+<script type="text/javascript">
+	function injectAsidebar(jQuery) {
+	  jQuery.fn.asidebar = function asidebar(status) {
+	    switch (status) {
+	      case "open":
+	        var that = this;
+	        // fade in backdrop
+	        if ($(".aside-backdrop").length === 0) {
+	          $("body").append("<div class='aside-backdrop'></div>");
+	        }
+	        $(".aside-backdrop").addClass("in");
+
+
+	        function close() {
+	        	$(".aside-backdrop").removeClass("in");
+	        }
+
+	        // slide in asidebar
+	        $(this).addClass("in");
+	        $(".aside-backdrop").on('click', close);
+	        break;
+	      case "close":
+	        // fade in backdrop
+	        if ($(".aside-backdrop.in").length > 0) {
+	          $(".aside-backdrop").removeClass("in");
+	        }
+
+	        // slide in asidebar
+	        $(this).removeClass("in");
+	        break;
+	      case "toggle":
+	        if($(this).attr("class").split(' ').indexOf('in') > -1) {
+	          $(this).asidebar("close");
+	        } else {
+	          $(this).asidebar("open");
+	        }
+	        break;
+	    }
+	  }
+	}
+
+	// support browser and node
+	if (typeof jQuery !== "undefined") {
+	  injectAsidebar(jQuery);
+	} else if (typeof module !== "undefined" && module.exports) {
+	  module.exports = injectAsidebar;
+	}
+</script>
+<!-- / AMICA-38 -->
+	 
+		
+	
+<script src="//tags.tiqcdn.com/utag/rcsmedia/amica/prod/utag.sync.js"></script>
+	
+</head>
+<!-- <body> -->
+    <body>
+
+
+<script type="text/javascript">
+  var utag_data = {}
+</script>
+<script type="text/javascript" src="//tags.tiqcdn.com/utag/rcsmedia/amica/prod/utag.js"></script>
+<!-- NEW DESYCH -->
+
+<div id="rcsad_Position1" class="" style="display: none; ">
+	<script type="text/javascript">
+	window.eventDFPready?googletag.cmd.push(function(){googletag.display("rcsad_Position1")}):document.addEventListener("eventDFPready",function(o){googletag.cmd.push(function(){googletag.display("rcsad_Position1")})},!1);
+	</script>
+</div>
+
+<!-- OLD ASYNCH -->
+<!--<script type="text/javascript">
+	OAS_AD('Position1');
+</script>-->
+
+
+
+
+
+<!-- AMICA-38 -->
+<div class="aside">
+  <div class="aside-header">
+    <span class="close" onclick="jQuery('.aside').asidebar('close'); return false;">&times;</span>
+  </div>
+  <div class="aside-contents">
+    <ul>
+		<li class="close" onclick="jQuery('.aside').asidebar('close'); return false;">
+            <img src="/wp-content/themes/amica/img_layout/uscita.png?v=20200318" alt="Amica" width="30">
+		</li>
+		<li>
+            <a href="https://www.amica.it" data-wpel-link="internal"><img src="/wp-content/themes/amica/img_layout/logo.gif?v=20200318" alt="Amica" width="190" style="padding-top: 30px; padding-bottom: 15px;"></a>
+		</li>
+				<li>
+			<a href="https://www.amica.it/moda/" data-wpel-link="internal">Moda</a>
+		</li>
+		<li>
+			<a href="https://www.amica.it/partypeople/" data-wpel-link="internal">Party &amp; People</a>
+		</li>
+		<li>
+			<a href="https://www.amica.it/bellezza/" data-wpel-link="internal">Bellezza</a>
+		</li>
+		<li>
+			<a href="https://www.amica.it/daily-tips/" data-wpel-link="internal">Daily tips</a>
+		</li>
+		<li>
+			<a href="https://www.amica.it/cucina/" data-wpel-link="internal">Kitchen</a>
+		</li>
+		<li>
+			<a href="https://www.amica.it/tv/" data-wpel-link="internal">Film e Serie TV</a>
+		</li>
+		<li>
+			<a href="https://www.amica.it/video/" data-wpel-link="internal">Video</a>
+		</li>
+		<li>
+			<a href="https://www.amica.it/sport/" data-wpel-link="internal">Sport & Fitness</a>
+		</li>
+		<li class="menu-instalook">
+			<a href="https://www.amica.it/archivio-instamica/" data-wpel-link="internal">Instalook</a>
+		</li>
+        <li>
+            <a href="https://www.amica.it/oroscopo/" data-wpel-link="internal">Oroscopo</a>
+        </li>
+				<li class="menu-sfilate-parigi" style="">
+			<a style="color: #dd3333;" href="https://www.amica.it/2021/08/28/moda-autunno-inverno-2021-tendenze-donna/?intcmp=menu" data-wpel-link="internal">Tendenze Autunno</a>
+		</li>
+				<li>
+			<a class="new_instagram_icon" href="//instagram.com/amicamagazine" target="_blank" data-wpel-link="external" rel="nofollow external noopener noreferrer">
+				<img src="/wp-content/themes/amica/img_layout/new_instagram_icon.png?v=20200318" width="20px" alt="Instagram">
+			</a>
+			<a class="new_facebook_icon" href="https://www.facebook.com/amicamagazine" target="_blank" data-wpel-link="external" rel="nofollow external noopener noreferrer">
+				<img src="/wp-content/themes/amica/img_layout/new_facebook_icon.png?v=20200318" width="20px" alt="">
+			</a>
+		</li>
+		<li class="menu-instalook secondary">
+			<a href="//www.abbonamentircs.it/it_IT/Amica/nbGsEWcVLUAAAAFS71crvjaf/pc?intcmp=abboAmicaSito_other_110316_amica_in_other" data-wpel-link="external" rel="external noopener noreferrer">ABBONATI / ACQUISTA</a>
+		</li>
+		<li class="menu-instalook secondary">
+			<a href="//www.amica.it/contatti/" data-wpel-link="internal">Contact Us</a>
+		</li>
+	</ul>
+  </div>
+</div>
+<div class="aside-backdrop" onclick="jQuery('.aside').asidebar('close'); return false;"></div>
+<!-- / AMICA-38 -->
+
+<div id="site">
+
+	<header id="header" class="cf">
+		<div class="centercol">
+			<!-- top.html -->
+							<div class="wrapperTop">
+					<ul class='child'>
+
+												<li class="logo-corriere-top-right">
+							<a href="//www.corriere.it" target="_blank" data-wpel-link="external" rel="external noopener noreferrer">
+								<img src="https://www.amica.it/wp-content/themes/amica/img_layout/logo_header_cs.png?v=20211004164140" width="140" alt="Corriere della Sera">
+							</a>
+						</li>
+													
+						<li class="wrapper_logo">
+							<a href="https://www.amica.it" data-wpel-link="internal">
+								<img src="https://www.amica.it/wp-content/themes/amica/img_layout/logo.gif?v=20211004164140" alt="Amica" width="267" /> <!-- height="65" -->
+							</a>
+							<!--<a id="run4me-logo-2017" href="//www.amica.it/specialeamica/run4me-lierac-2/" data-wpel-link="internal">
+								<img src="/img/logo_Run4Me_Lierac_final.png" style="margin-left: 15px; height: 65px; width: auto;">
+							</a>-->
+						</li>
+
+						<li class="widget-amica-left">
+													<a class="new_instagram_icon" href="//instagram.com/amicamagazine" target="_blank" data-wpel-link="external" rel="external noopener noreferrer">
+								<img src="https://www.amica.it/wp-content/themes/amica/img_layout/new_instagram_icon.png?v=20211004164140" width="20px" alt="Instagram">
+							</a>
+							<a class="new_facebook_icon" href="https://www.facebook.com/amicamagazine" target="_blank" data-wpel-link="external" rel="external noopener noreferrer">
+									<img src="https://www.amica.it/wp-content/themes/amica/img_layout/new_facebook_icon.png?v=20211004164140" width="20px" alt="">
+							</a>
+							<script>
+								// Funzione che effettua il submit per la ricerca in HP 001
+								function search() {
+									var searchText = document.querySelector('#searchform');
+									var abbonatiText = document.querySelector('.new_abbonati');
+									if (searchText && abbonatiText && searchText.style.display !== 'none') {
+										if (searchText.querySelector('input').value !== '') {
+											document.search.submit();
+										} else {
+											searchText.style.display = 'none';
+											abbonatiText.style.display = 'inline-grid';
+										} 
+									} else if (searchText && abbonatiText && searchText.style.display === 'none') {
+										abbonatiText.style.display = 'none';
+										searchText.style.display = 'inline-grid';
+										searchText.autofocus = true;
+									}
+								}
+								
+							</script>
+							<div id="search-desktop-wrapper">
+								<a class="new_search_icon" onClick="window.search()">
+									<img src="https://www.amica.it/wp-content/themes/amica/img_layout/new_search_icon.png?v=20211004164140" width="20px" alt="">
+								</a>
+								<form role="search" method="get" id="searchform" action="https://www.amica.it/" name="search" style='display:none;'>
+										<input type="text" name="s">
+								</form>
+								<a class="new_abbonati" href="//www.abbonamentircs.it/it_IT/Amica/nbGsEWcVLUAAAAFS71crvjaf/pc?intcmp=abboAmicaSito_other_110316_amica_in_other" target="_blank" style="display:inline-block;position:absolute;white-space: nowrap;top:4px;" data-wpel-link="external" rel="external noopener noreferrer">
+									ABBONATI / ACQUISTA
+								</a>
+							</div>
+							
+													
+						
+						</li>
+
+					</ul>
+				</div>
+			
+			
+        </div>
+ 
+            <!-- <div class="h_mobile_menu">
+            	<div class="shadow shadow_left"></div>
+            	<div class="menu_items">
+                	    				<a class="moda" href="" data-wpel-link="internal">Moda</a>
+    				<a class="party_people" href="" data-wpel-link="internal">Party &amp; People</a>
+    				<a class="bellezza" href="" data-wpel-link="internal">Bellezza</a>
+    				<a class="daily_tips" href="" data-wpel-link="internal">Daily tips</a>
+    				<a class="cucina" href="" data-wpel-link="internal">Kitchen</a>
+						    	<a style="" href="https://www.amica.it/2021/08/28/moda-autunno-inverno-2021-tendenze-donna/?intcmp=menu" data-wpel-link="internal">Tendenze Autunno</a>
+	    					<a class="serie_tv" href="" data-wpel-link="internal">Serie TV</a>
+				</div>
+				<div class="shadow shadow_right"></div>
+            </div> -->  
+	</header><!-- /#header -->
+        </div>
+		
+			<div class="mainmenu"> <!-- #main-menu -->
+    			<div class="centercol">				
+					<!-- AMICA-38 -->
+					<div id="aside-trigger" onclick="jQuery('.aside').asidebar('open'); console.log('APERTO');">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+
+					<!-- /AMICA-38 -->
+					<div class="levels">
+						<ul class="level1">			
+																					<li class="moda" style="/*background: url('//www.amica.it/wp-content/themes/amica/img_layout/menu-sep.png') no-repeat left center;*/">
+								<a href="https://www.amica.it/moda/" class="l1" data-wpel-link="internal">Moda</a>
+								
+																
+								<div class="level2">
+									<ul class="cf">
+																						<li>
+													<a href="https://www.amica.it/moda/fashion-story/" class="l2" data-wpel-link="internal">Fashion Story</a>
+													<!-- <div class="level3">
+														<ul class="cf"> -->
+																															<!-- <li>
+																	<div class="inner">
+																		<div class="subcontent">
+																			<span class="subtitle">
+																				<a href=" --" data-wpel-link="internal"><!-- "> --><!-- </a>
+																			</span>
+																			<p> --><!-- </p>
+																			<a href=" --" data-wpel-link="internal"><!-- " class="readall">Leggi tutto</a>
+																		</div>
+																		<a href=" --" data-wpel-link="internal"><!-- ">
+																			<img src=" --><!-- " alt=""></a>
+																	</div>
+																</li> -->
+																														<!-- </ul>
+													</div> --><!-- /.level3 -->
+												</li>
+																								<li>
+													<a href="https://www.amica.it/sfilate/" class="l2" data-wpel-link="internal">Sfilate</a>
+													<!-- <div class="level3">
+														<ul class="cf"> -->
+																															<!-- <li>
+																	<div class="inner">
+																		<div class="subcontent">
+																			<span class="subtitle">
+																				<a href=" --" data-wpel-link="internal"><!-- "> --><!-- </a>
+																			</span>
+																			<p> --><!-- </p>
+																			<a href=" --" data-wpel-link="internal"><!-- " class="readall">Leggi tutto</a>
+																		</div>
+																		<a href=" --" data-wpel-link="internal"><!-- ">
+																			<img class="img_sfilate" src=" --><!-- " alt=""></a>
+																	</div> 
+																</li> -->
+																														<!-- </ul>
+													</div> --><!-- /.level3 -->
+													
+													
+													
+												</li>
+																								<li>
+													<a href="https://www.amica.it/moda/news/" class="l2" data-wpel-link="internal">News Moda</a>
+													<!-- <div class="level3">
+														<ul class="cf"> -->
+																															<!-- <li>
+																	<div class="inner">
+																		<div class="subcontent">
+																			<span class="subtitle">
+																				<a href=" --" data-wpel-link="internal"><!-- "> --><!-- </a>
+																			</span>
+																			<p> --><!-- </p>
+																			<a href=" --" data-wpel-link="internal"><!-- " class="readall">Leggi tutto</a>
+																		</div>
+																		<a href=" --" data-wpel-link="internal"><!-- ">
+																			<img src=" --><!-- " alt=""></a>
+																	</div>
+																</li> -->
+																														<!-- </ul>
+													</div> --><!-- /.level3 -->
+												</li>
+																								<li>
+													<a href="https://www.amica.it/moda/best-of-the-day/" class="l2" data-wpel-link="internal">Star look</a>
+													<!-- <div class="level3">
+														<ul class="cf"> -->
+																															<!-- <li>
+																	<div class="inner">
+																		<div class="subcontent">
+																			<span class="subtitle">
+																				<a href=" --" data-wpel-link="internal"><!-- "> --><!-- </a>
+																			</span>
+																			<p> --><!-- </p>
+																			<a href=" --" data-wpel-link="internal"><!-- " class="readall">Leggi tutto</a>
+																		</div>
+																		<a href=" --" data-wpel-link="internal"><!-- ">
+																			<img src=" --><!-- " alt=""></a>
+																	</div>
+																</li> -->
+																														<!-- </ul>
+													</div> --><!-- /.level3 -->
+												</li>
+												
+										<li>
+											<a href="https://www.amica.it/archivio-instamica/" class="l2" data-wpel-link="internal">Instalook</a>
+											<!-- <div class="level3">
+												<ul class="cf"> -->
+																											<!-- <li>
+															<div class="inner">
+																<div class="subcontent">
+																	<span class="subtitle">
+																		<a href=" --" data-wpel-link="internal"><!-- "> --><!-- </a>
+																	</span>
+																	<p> --><!-- </p>
+																	<a href=" --" data-wpel-link="internal"><!-- " class="readall">Leggi tutto</a>
+																</div>
+																<a href=" --" data-wpel-link="internal"><!-- ">
+																	<img src=" --><!-- " alt=""> </a>
+															</div>
+														</li> -->
+																										<!-- </ul>
+											</div> --><!-- /.level3 -->
+										</li>						
+									</ul>
+								</div><!-- /.level2 -->
+															</li>
+							<li class="party_people">
+								<a href="https://www.amica.it/partypeople/" class="l1" data-wpel-link="internal">Party &amp; People</a>
+							</li>
+							<li class="bellezza">
+								<a href="https://www.amica.it/bellezza/" class="l1" data-wpel-link="internal">Bellezza</a>
+								
+																
+								<div class="level2">
+									<ul class="cf">
+																					<li>
+												<a href="https://www.amica.it/bellezza/beauty-must-have/" class="l2" data-wpel-link="internal">Beauty must have</a>
+												<!-- <div class="level3">
+													<ul class="cf"> -->
+																													<!-- <li>
+																<div class="inner">
+																	<div class="subcontent">
+																		<span class="subtitle">
+																			<a href="" data-wpel-link="internal"></a>
+																		</span>
+																		<p> --><!-- </p>
+																		<a href="" class="readall" data-wpel-link="internal">Leggi tutto</a>
+																	</div>
+																	<a href=" --" data-wpel-link="internal"><!-- "><img src=" --><!-- " alt="">
+																	</a>
+																</div>
+															</li> -->
+																												<!-- </ul>
+												</div> --><!-- /.level3 -->
+											</li>
+																						<li>
+												<a href="https://www.amica.it/bellezza/trucco-e-capelli/" class="l2" data-wpel-link="internal">Trucco e capelli</a>
+												<!-- <div class="level3">
+													<ul class="cf"> -->
+																													<!-- <li>
+																<div class="inner">
+																	<div class="subcontent">
+																		<span class="subtitle">
+																			<a href="" data-wpel-link="internal"></a>
+																		</span>
+																		<p> --><!-- </p>
+																		<a href="" class="readall" data-wpel-link="internal">Leggi tutto</a>
+																	</div>
+																	<a href=" --" data-wpel-link="internal"><!-- "><img src=" --><!-- " alt="">
+																	</a>
+																</div>
+															</li> -->
+																												<!-- </ul>
+												</div> --><!-- /.level3 -->
+											</li>
+																						<li>
+												<a href="https://www.amica.it/bellezza/prodotti-e-news/" class="l2" data-wpel-link="internal">Prodotti e news</a>
+												<!-- <div class="level3">
+													<ul class="cf"> -->
+																													<!-- <li>
+																<div class="inner">
+																	<div class="subcontent">
+																		<span class="subtitle">
+																			<a href="" data-wpel-link="internal"></a>
+																		</span>
+																		<p> --><!-- </p>
+																		<a href="" class="readall" data-wpel-link="internal">Leggi tutto</a>
+																	</div>
+																	<a href=" --" data-wpel-link="internal"><!-- "><img src=" --><!-- " alt="">
+																	</a>
+																</div>
+															</li> -->
+																												<!-- </ul>
+												</div> --><!-- /.level3 -->
+											</li>
+																						<li>
+												<a href="https://www.amica.it/bellezza/tutorial/" class="l2" data-wpel-link="internal">Tutorial</a>
+												<!-- <div class="level3">
+													<ul class="cf"> -->
+																													<!-- <li>
+																<div class="inner">
+																	<div class="subcontent">
+																		<span class="subtitle">
+																			<a href="" data-wpel-link="internal"></a>
+																		</span>
+																		<p> --><!-- </p>
+																		<a href="" class="readall" data-wpel-link="internal">Leggi tutto</a>
+																	</div>
+																	<a href=" --" data-wpel-link="internal"><!-- "><img src=" --><!-- " alt="">
+																	</a>
+																</div>
+															</li> -->
+																												<!-- </ul>
+												</div> --><!-- /.level3 -->
+											</li>
+																						<li>
+												<a href="https://www.amica.it/bellezza/viso-e-corpo/" class="l2" data-wpel-link="internal">Viso e corpo</a>
+												<!-- <div class="level3">
+													<ul class="cf"> -->
+																													<!-- <li>
+																<div class="inner">
+																	<div class="subcontent">
+																		<span class="subtitle">
+																			<a href="" data-wpel-link="internal"></a>
+																		</span>
+																		<p> --><!-- </p>
+																		<a href="" class="readall" data-wpel-link="internal">Leggi tutto</a>
+																	</div>
+																	<a href=" --" data-wpel-link="internal"><!-- "><img src=" --><!-- " alt="">
+																	</a>
+																</div>
+															</li> -->
+																												<!-- </ul>
+												</div> --><!-- /.level3 -->
+											</li>
+																				</ul>
+								</div><!-- /.level2 -->
+															</li>
+														<li class="sport">
+								<a href="https://www.amica.it/sport/" class="l1" data-wpel-link="internal">Sport & Fitness</a>
+							</li>
+							<li class="serie_tv">
+								<a href="https://www.amica.it/tv/" class="l1" data-wpel-link="internal">Film e serie tv</a>
+							</li>
+							<li class="oroscopo">
+								<a href="https://www.amica.it/oroscopo/" class="l1" data-wpel-link="internal">Oroscopo</a>
+							</li>
+									<li class="menu-sfilate-parigi" style="">
+			<a style="color: #dd3333;" href="https://www.amica.it/2021/08/28/moda-autunno-inverno-2021-tendenze-donna/?intcmp=menu" data-wpel-link="internal">Tendenze Autunno</a>
+		</li>
+				
+						</ul>
+					</div>	
+				</div><!-- /#main-menu -->
+			</div>
+
+			<!-- AMICA-660 -->
+							<div id="menu-focus-container">
+					<div id="menu-focus-wrapper">
+						<span>Focus</span>
+						<div class="nav-wrapper">
+							<div class="menu-focus-container"><ul id="menu-focus" class="menu"><li id="menu-item-1108009" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1108009"><a href="//www.amica.it/tag/x-factor-2021/?intcmp=menufocus" data-wpel-link="internal">X Factor 2021</a></li>
+<li id="menu-item-1080398" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1080398"><a href="//www.amica.it/oroscopo/oggi/?intcmp=menufocus" data-wpel-link="internal">Oroscopo oggi</a></li>
+<li id="menu-item-1080403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1080403"><a title="Famiglia reale" href="//www.amica.it/tag/royal-family/?intcmp=menufocus" data-wpel-link="internal">Royal</a></li>
+<li id="menu-item-1080399" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1080399"><a title="Sneakers 2021" href="//www.amica.it/2021/02/24/sneakers-primavera-2021-tendenze/?intcmp=menufocus" data-wpel-link="internal">Sneakers</a></li>
+<li id="menu-item-1080400" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1080400"><a href="//www.amica.it/gallery/attrici-italiane-piu-belle/?intcmp=menufocus" data-wpel-link="internal">Attrici Italiane</a></li>
+<li id="menu-item-1080402" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1080402"><a href="//www.amica.it/2020/06/13/balayage-capelli-2020-cose-re-tendenze/?intcmp=menufocus" data-wpel-link="internal">Balayage Capelli</a></li>
+<li id="menu-item-1080404" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1080404"><a href="//www.amica.it/tag/meghan-markle/?intcmp=menufocus" data-wpel-link="internal">Meghan Markle</a></li>
+</ul></div>						</div>
+						<div id="menu-focus-more">
+							<span>...</span>
+							<ul class="menu" id="menu-focus-desktop"></ul>
+						</div>
+					</div>
+				</div>
+			
+
+			<div class="centercol">
+						
+		<div class="adv masthead">
+			<!-- TOPLEFT -->
+
+	<div id="rcsad_TopLeft" class="adv-inner" style="display: none; ">
+	<script type="text/javascript">
+	window.eventDFPready?googletag.cmd.push(function(){googletag.display("rcsad_TopLeft")}):document.addEventListener("eventDFPready",function(o){googletag.cmd.push(function(){googletag.display("rcsad_TopLeft")})},!1);
+	</script>
+</div>
+<!-- OLD ASYNCH -->
+<!--<div class="adv-inner" id="advTopLeft">
+	<script>OAS_AD('TopLeft');</script>
+</div>-->		</div>
+		
+						
+		                <div id="shadow">
+		
+<div id="shadow">
+	    <div id="main" class="cf home">
+
+		
+<div class='hpSlider'>
+    <div class="item w2 h1_2 moda slider">
+		        <ul class="bxslider">
+			
+				
+                    <li class="moda">
+                        <div class="cta">
+                            <div class="inner moda">
+                                <p>Moda</p>
+                                <a href="https://www.amica.it/2021/10/04/scarpe-sfilate-parigi-primavera-estate-2022/" class="main-link" data-wpel-link="internal">
+									Le scarpe PE22 di Parigi vestono le mille anime di ogni donna                                </a>
+                            </div>
+                        </div>
+                        <a href="https://www.amica.it/2021/10/04/scarpe-sfilate-parigi-primavera-estate-2022/" class="img-link" data-wpel-link="internal">
+                            <img src="https://www.amica.it/wp-content/uploads/2021/10/scarpe-sfilate-Parigi-primavera-estate-2022-slider.jpg?v=1117659" alt=""/>
+                        </a>
+                    </li>
+
+				
+                    <li class="party_people">
+                        <div class="cta">
+                            <div class="inner party_people">
+                                <p>Party &amp; People</p>
+                                <a href="https://www.amica.it/2021/10/04/george-clooney-svela-perche-non-fara-mai-un-film-con-ben-affleck/" class="main-link" data-wpel-link="internal">
+									George Clooney svela perché non reciterà mai in un film con Ben Affleck                                </a>
+                            </div>
+                        </div>
+                        <a href="https://www.amica.it/2021/10/04/george-clooney-svela-perche-non-fara-mai-un-film-con-ben-affleck/" class="img-link" data-wpel-link="internal">
+                            <img src="https://www.amica.it/wp-content/uploads/2021/10/ben-affleck-george-clooney-slider-ok.jpg?v=1117864" alt=""/>
+                        </a>
+                    </li>
+
+				
+                    <li class="bellezza">
+                        <div class="cta">
+                            <div class="inner bellezza">
+                                <p>Trucco e capelli</p>
+                                <a href="https://www.amica.it/2021/10/04/capelli-rossi-colore-foliage-autunno-primavera-2022/" class="main-link" data-wpel-link="internal">
+									Capelli rossi: il colore del foliage autunnale fiorirà in primavera                                </a>
+                            </div>
+                        </div>
+                        <a href="https://www.amica.it/2021/10/04/capelli-rossi-colore-foliage-autunno-primavera-2022/" class="img-link" data-wpel-link="internal">
+                            <img src="https://www.amica.it/wp-content/uploads/2021/10/albumtemp-3-1-980x610.jpg?v=1117992" alt=""/>
+                        </a>
+                    </li>
+
+				
+                    <li class="moda">
+                        <div class="cta">
+                            <div class="inner moda">
+                                <p>Moda</p>
+                                <a href="https://www.amica.it/2021/10/05/sfilate-parigi-primavera-estate-2022/" class="main-link" data-wpel-link="internal">
+									Paris Fashion Week primavera estate 2022. Effetto revival                                </a>
+                            </div>
+                        </div>
+                        <a href="https://www.amica.it/2021/10/05/sfilate-parigi-primavera-estate-2022/" class="img-link" data-wpel-link="internal">
+                            <img src="https://www.amica.it/wp-content/uploads/2021/10/sfilate-Parigi-primavera-estate-2022-slider.jpg?v=1117946" alt=""/>
+                        </a>
+                    </li>
+
+				            </ul>
+    </div>
+</div>
+        <div id="content">
+			            <div class="masonry grid">
+				
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/05/charlene-di-monaco-foto-principe-alberto-preoccupato/" class="main-link" data-wpel-link="internal">
+				Charlene di Monaco: "Dio vi benedica". Adesso anche il Principe Alberto è preoccupato            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/05/charlene-di-monaco-foto-principe-alberto-preoccupato/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/charlene-di-monaco-q-300x300.jpg?v=1118140" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item slideradv_container  homeadvslider">
+    <ul class="bxslider slideradv">
+
+        
+            <li class=" style_normal">
+
+                
+                <div class="cta">
+                    <div class="inner">
+
+                                                    <p>Beauty News</p>
+                                                
+                        <div class="main-link">
+                            <a href="https://www.amica.it/2021/09/28/chinotto-frutto-pianta-profumo-benefici-pelle/" style="color: #000000" data-wpel-link="internal">
+                                Chinotto: storia e profumo di un agrume speciale                             </a>
+                        </div>
+                        <!-- <div class="cta-link">
+                            <a href="&lt;php echo $atts[&#039;link&#039;]; ?" data-wpel-link="internal">">
+                                <php echo $atts['cta']; ?>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+
+                
+                <a href="https://www.amica.it/2021/09/28/chinotto-frutto-pianta-profumo-benefici-pelle/" class="img-link" data-wpel-link="internal">
+                    <img src="https://www.amica.it/wp-content/uploads/2021/09/dffee-620x360.jpg?v=1116729" alt="" />
+                </a>
+                <a href="https://www.amica.it/2021/09/28/chinotto-frutto-pianta-profumo-benefici-pelle/" class="img-link-mobile" data-wpel-link="internal">
+                    <img src="https://www.amica.it/wp-content/uploads/2021/09/dffee-300x300.jpg?v=1116729" alt="" />
+                </a>
+            </li>
+
+        
+            <li class=" style_normal">
+
+                
+                <div class="cta">
+                    <div class="inner">
+
+                                                    <p>Beauty News</p>
+                                                
+                        <div class="main-link">
+                            <a href="https://www.amica.it/2021/09/28/amico-collagene-bellezza-questione-scelta-integratori-liquidi/" style="color: #000000" data-wpel-link="internal">
+                                Questo è l'integratore giusto per un'extra dose di bellezza                            </a>
+                        </div>
+                        <!-- <div class="cta-link">
+                            <a href="&lt;php echo $atts[&#039;link&#039;]; ?" data-wpel-link="internal">">
+                                <php echo $atts['cta']; ?>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+
+                
+                <a href="https://www.amica.it/2021/09/28/amico-collagene-bellezza-questione-scelta-integratori-liquidi/" class="img-link" data-wpel-link="internal">
+                    <img src="https://www.amica.it/wp-content/uploads/2021/09/fffffff-620x360.jpg?v=1112152" alt="" />
+                </a>
+                <a href="https://www.amica.it/2021/09/28/amico-collagene-bellezza-questione-scelta-integratori-liquidi/" class="img-link-mobile" data-wpel-link="internal">
+                    <img src="https://www.amica.it/wp-content/uploads/2021/09/fffffff-300x300.jpg?v=1112152" alt="" />
+                </a>
+            </li>
+
+        
+    </ul>
+</div>
+
+<div class="adv adv-bottom" id="bottom2Hp">
+	<!-- NEW DESYCH -->
+<div id="rcsad_Bottom2" class="adv-inner" style="display: none; "></div>
+<script type="text/javascript">
+window.eventDFPready?refreshBatchPageSlots("Bottom2","/Bottom2","rcsad_Bottom2"):document.addEventListener("eventDFPready",function(t){setTimeout(function(){refreshBatchPageSlots("Bottom2","/Bottom2","rcsad_Bottom2")},0)},!1);
+</script><!-- OLD ASYNCH -->
+<!--<div id="advBottom1" class="adv-inner">
+	<script>
+        if (device.mobile()){
+            OAS_AD('Bottom1');
+        }
+	</script>
+</div>--></div>
+<div class="item bellezza "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Trucco e capelli</p>
+			            <a href="https://www.amica.it/2021/10/05/fiocchi-per-capelli-accessori-eleganti-giambattista-valli/" class="main-link" data-wpel-link="internal">
+				I fiocchi per capelli di Giambattista Valli valgono doppio            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/05/fiocchi-per-capelli-accessori-eleganti-giambattista-valli/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/albumtemp-5-300x300.jpg?v=1118093" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item h2 party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/05/amal-clooney-lezioni-extra-scolastiche-di-papa-george-ai-gemelli/" class="main-link" data-wpel-link="internal">
+				Amal Clooney: Come insegna George, non insegna nessuno            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/05/amal-clooney-lezioni-extra-scolastiche-di-papa-george-ai-gemelli/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/amal-clooney-george-clooney-q-310x620.jpg?v=1118019" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item sport "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Active</p>
+			            <a href="https://www.amica.it/2021/10/05/benefici-meditazione-effetti-fisici-mentali/" class="main-link" data-wpel-link="internal">
+				Benefici della meditazione: perché 10 minuti al giorno possono cambiarci la vita            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/05/benefici-meditazione-effetti-fisici-mentali/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/benefici-meditazione-300x300.jpeg?v=1118066" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/05/sarah-ferguson-testimoniare-principe-andrea-processo/" class="main-link" data-wpel-link="internal">
+				Sarah Ferguson dovrà testimoniare per il principe Andrea al processo?            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/05/sarah-ferguson-testimoniare-principe-andrea-processo/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/sarah-ferguson-e-il-principe-andrea-quadra-300x300.jpg?v=1118057" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/04/jennifer-lawrence-incinta-piazza-favore-aborto/" class="main-link" data-wpel-link="internal">
+				Jennifer Lawrence incinta scende in piazza a favore dell'aborto            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/jennifer-lawrence-incinta-piazza-favore-aborto/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/jennifer-lawrence-e-amy-schumer-pro-aborto-quadra-300x300.jpg?v=1117995" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item serie-tv "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Film e serie tv</p>
+			            <a href="https://www.amica.it/2021/10/04/bridgerton-piange-il-covid-si-porta-via-il-premiatissimo-marc-pilcher/" class="main-link" data-wpel-link="internal">
+				Bridgerton piange: il Covid si porta via il premiatissimo Marc Pilcher            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/bridgerton-piange-il-covid-si-porta-via-il-premiatissimo-marc-pilcher/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/bridgerton-q-300x300.jpg?v=1117974" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item moda "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>News Moda</p>
+			            <a href="https://www.amica.it/2021/10/04/balenciaga-sfilata-primavera-estate-2022-simpson/" class="main-link" data-wpel-link="internal">
+				Balenciaga ingaggia i Simpson per la sfilata primavera estate 2022            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/balenciaga-sfilata-primavera-estate-2022-simpson/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/balenciaga-300x300.jpg?v=1117836" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item h2 party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/04/regina-elisabetta-prima-volta-parla-principe-filippo/" class="main-link" data-wpel-link="internal">
+				La regina Elisabetta parla per la prima volta del principe Filippo            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/regina-elisabetta-prima-volta-parla-principe-filippo/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/regina-elisabetta-quadra-310x620.jpg?v=1117806" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item bellezza "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Beauty must have</p>
+			            <a href="https://www.amica.it/2021/10/04/helen-mirren-modella-a-76-anni-capelli-bianchi-sfilata-loreal-paris/" class="main-link" data-wpel-link="internal">
+				Helen Mirren, modella a 76 anni per la sfilata L'Oréal Paris a Parigi            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/helen-mirren-modella-a-76-anni-capelli-bianchi-sfilata-loreal-paris/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/Squaready20211004100018-300x300.jpg?v=1117825" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item bellezza "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Trucco e capelli</p>
+			            <a href="https://www.amica.it/2021/10/04/trucco-labbra-primavera-estate-2022-rossetto-rosso-paillettes/" class="main-link" data-wpel-link="internal">
+				Trucco labbra primavera/estate 2022: rossetto rosso o paillettes?            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/trucco-labbra-primavera-estate-2022-rossetto-rosso-paillettes/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/albumtemp-3-17-300x300.jpg?v=1117040" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item moda "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>News Moda</p>
+			            <a href="https://www.amica.it/2021/10/04/street-style-parigi-tendenze-autunno-inverno/" class="main-link" data-wpel-link="internal">
+				Street Style di Parigi: i consigli di stile per questo inverno            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/street-style-parigi-tendenze-autunno-inverno/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/street-style-parigi_COPERTINA-ARTICOLO-300x300.jpg?v=1117352" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/04/gwyneth-paltrow-problemi-goop-boss-ex-dipendenti/" class="main-link" data-wpel-link="internal">
+				Gwyneth Paltrow ha problemi con Goop: è davvero il peggior boss che ci sia?            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/gwyneth-paltrow-problemi-goop-boss-ex-dipendenti/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/gwyneth-paltrow-goop-quadra-300x300.jpg?v=1117735" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/04/eugenia-di-york-jack-brooksbank-segreto-corridoio/" class="main-link" data-wpel-link="internal">
+				Eugenia di York: suo marito Jack rivela, per sbaglio, un segreto della Royal Family            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/04/eugenia-di-york-jack-brooksbank-segreto-corridoio/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/02/Senza-nome1-300x300.jpg?v=1060355" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item h2 moda "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>News Moda</p>
+			            <a href="https://www.amica.it/2021/10/03/la-sfilata-primavera-estate-2022-di-givenchy-streaming-su-amica/" class="main-link" data-wpel-link="internal">
+				La sfilata primavera estate 2022 di Givenchy in streaming su Amica            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/03/la-sfilata-primavera-estate-2022-di-givenchy-streaming-su-amica/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/givenchy-sfilata-pe-22-streaming-310x620.jpg?v=1117346" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/03/angelina-jolie-amanda-gorman-premio-figlia-zahara/" class="main-link" data-wpel-link="internal">
+				Angelina Jolie premia Amanda Gorman pensando a sua figlia Zahara            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/03/angelina-jolie-amanda-gorman-premio-figlia-zahara/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/angelina-jolie-zahara-jolie-pitt-e-amanda-gorman-quadra-300x300.jpg?v=1117636" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item moda "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Fashion Story</p>
+			            <a href="https://www.amica.it/2021/10/03/borse-sfilate-parigi-primavera-estate-2022/" class="main-link" data-wpel-link="internal">
+				Le borse PE22 di Parigi? Danno largo spazio alla fantasia            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/03/borse-sfilate-parigi-primavera-estate-2022/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/borse-sfilate-Parigi-primavera-estate-2022-dior-cover-300x300.jpg?v=1117135" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/03/royal-wedding-san-pietroburgo-rebecca-bettarini-george-mikhailovich/" class="main-link" data-wpel-link="internal">
+				Royal wedding a San Pietroburgo: chi è l’italiana alla corte degli zar            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/03/royal-wedding-san-pietroburgo-rebecca-bettarini-george-mikhailovich/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/Senza-nome1-300x300.jpg?v=1117664" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item moda "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>News Moda</p>
+			            <a href="https://www.amica.it/2021/10/02/valentino-sfilata-primavera-estate-2022-vintage/" class="main-link" data-wpel-link="internal">
+				Cosa c'entra Zendaya con la sfilata primavera estate 2022 di Valentino            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/02/valentino-sfilata-primavera-estate-2022-vintage/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/valentino-sfilata-zendaya-300x300.jpg?v=1117604" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/02/no-time-to-die-007-film-da-vedere-cinema-weekend/" class="main-link" data-wpel-link="internal">
+				Perché 007 No Time To Die è il film da vedere al cinema nel weekend            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/02/no-time-to-die-007-film-da-vedere-cinema-weekend/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/daniel-craig-no-time-to-die-620-300x300.jpg?v=1117360" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/02/beatrice-di-york-nome-figlia-impronte-piedini/" class="main-link" data-wpel-link="internal">
+				Beatrice di York riconquista l'Inghilterra con le impronte di Sienna Elizabeth            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/02/beatrice-di-york-nome-figlia-impronte-piedini/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/beatrcie-di-york-nome-piedi-figlia-300x300.jpg?v=1117490" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item bellezza "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Trucco e capelli</p>
+			            <a href="https://www.amica.it/2021/10/02/capelli-neri-autunno-inverno-2021-2022-a-chi-stanno-bene/" class="main-link" data-wpel-link="internal">
+				Capelli neri autunno inverno 2021/2022: a volte ritornano (ma con effetto glossy)            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/02/capelli-neri-autunno-inverno-2021-2022-a-chi-stanno-bene/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/capelli-neri-autunno-inverno-2021-2022-9-300x300.jpg?v=1117418" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item h2 bellezza "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Trucco e capelli</p>
+			            <a href="https://www.amica.it/2021/10/02/kate-middleton-principessa-ama-fare-sport-estremi/" class="main-link" data-wpel-link="internal">
+				Kate Middleton: non si è mai troppo principesse per fare sport            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/02/kate-middleton-principessa-ama-fare-sport-estremi/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/weeddd-310x635.jpg?v=1116251" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/01/festa-dei-nonni-2-ottobre-frasi-auguri-regali/" class="main-link" data-wpel-link="internal">
+				Frasi e auguri per la Festa dei nonni: le 30 più belle da mandare il 2 ottobre            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/festa-dei-nonni-2-ottobre-frasi-auguri-regali/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/festa-dei-nonni-q-gallery-300x300.jpg?v=1116357" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item  "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Sfilate</p>
+			            <a href="https://www.amica.it/2021/10/01/la-sfilata-valentino-streaming/" class="main-link" data-wpel-link="internal">
+				La sfilata Valentino in streaming            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/la-sfilata-valentino-streaming/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/toppa_16-9_W_IT_3-300x300.jpg?v=1115980" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/01/claudio-baglioni-gara-allo-zecchino-doro-il-suo-racconto/" class="main-link" data-wpel-link="internal">
+				Il fanciullino Claudio Baglioni in gara allo Zecchino d'Oro: il suo racconto            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/claudio-baglioni-gara-allo-zecchino-doro-il-suo-racconto/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/claudio-baglioni-q-300x300.jpg?v=1117143" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item h2 serie-tv "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Film e serie tv</p>
+			            <a href="https://www.amica.it/2021/10/01/stasera-in-tv-the-equalizer-serie-giustiziera-new-york/" class="main-link" data-wpel-link="internal">
+				Stasera in tv c'è The Equalizer: la serie tv sulla giustiziera a New York            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/stasera-in-tv-the-equalizer-serie-giustiziera-new-york/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/the-equalizer-quadra-310x620.jpg?v=1117103" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item bellezza "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Beauty must have</p>
+			            <a href="https://www.amica.it/2021/10/01/alessandra-mastronardi-nuovo-volto-skincare-collistar/" class="main-link" data-wpel-link="internal">
+				Alessandra Mastronardi è il nuovo volto della skincare di Collistar            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/alessandra-mastronardi-nuovo-volto-skincare-collistar/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/Alessandra-Mastronarsi-Collistar-2021-300x300.jpg?v=1117123" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item moda "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>News Moda</p>
+			            <a href="https://www.amica.it/2021/10/01/loewe-primavera-estate-2022-la-sfilata-diretta-streaming/" class="main-link" data-wpel-link="internal">
+				Loewe primavera estate 2022: la sfilata in diretta streaming            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/loewe-primavera-estate-2022-la-sfilata-diretta-streaming/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/loewe-streaming-parigi-pe22-300x300.jpg?v=1117131" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/01/beatrice-di-york-mistero-royal-baby-che-nessuno-ha-ancora-visto/" class="main-link" data-wpel-link="internal">
+				Beatrice di York e il mistero della sua Royal Baby che nessuno ha ancora visto            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/beatrice-di-york-mistero-royal-baby-che-nessuno-ha-ancora-visto/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/beatrice-di-york-q-300x300.jpg?v=1116994" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item moda "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Fashion Story</p>
+			            <a href="https://www.amica.it/2021/10/01/stivali-alti-con-tacco-o-senza-autunno-2021/" class="main-link" data-wpel-link="internal">
+				Con o senza tacco, gli stivali alti sono il must di stagione            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/stivali-alti-con-tacco-o-senza-autunno-2021/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/stivali-alti-leonie-hanne-cover-300x300.jpg?v=1116223" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item moda "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Star look</p>
+			            <a href="https://www.amica.it/2021/10/01/cappotto-cammello-meghan-markle-autunno/" class="main-link" data-wpel-link="internal">
+				Meghan Markle regina dei trend d'autunno (made in Italy)            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/cappotto-cammello-meghan-markle-autunno/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/meghan-markle-autunno_COPERTINA-ARTICOLO-300x300.jpg?v=1116978" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item sport "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Viso e corpo</p>
+			            <a href="https://www.amica.it/2021/10/01/ottobre-rosa-2021-prevenzione-lotta-tumore-seno/" class="main-link" data-wpel-link="internal">
+				Ottobre rosa 2021: prevenzione e lotta al tumore al seno            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/ottobre-rosa-2021-prevenzione-lotta-tumore-seno/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/ottobre-rosa-2021-300x300.jpg?v=1117053" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item bellezza "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Trucco e capelli</p>
+			            <a href="https://www.amica.it/2021/10/01/capelli-bianchi-grigi-nasce-primo-colore-non-colore-salone/" class="main-link" data-wpel-link="internal">
+				Capelli bianchi e grigi: nasce il primo colore non colore da fare in salone            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/capelli-bianchi-grigi-nasce-primo-colore-non-colore-salone/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/dreee-300x300.jpg?v=1116710" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/10/01/x-factor-2021-audizioni-pagelle-terza-puntata-audizioni/" class="main-link" data-wpel-link="internal">
+				X Factor 2021: il meglio, il peggio e le pagelle della terza puntata delle audizioni            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/10/01/x-factor-2021-audizioni-pagelle-terza-puntata-audizioni/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/10/x-factor-2021-quadra-300x300.jpg?v=1117095" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>
+<div class="item party_people "  >
+    <div class="cta">
+        <div class="inner" > <!-- inner_speciale_moda -->
+			                <p>Party &amp; People</p>
+			            <a href="https://www.amica.it/2021/09/30/no-time-die-quanto-cosa-vivere-un-giorno-da-james-bond/" class="main-link" data-wpel-link="internal">
+				No Time To Die: Svelato quanto costa vivere un giorno da James Bond            </a>
+        </div>
+    </div>
+    <a href="https://www.amica.it/2021/09/30/no-time-die-quanto-cosa-vivere-un-giorno-da-james-bond/" class="img-link" data-wpel-link="internal">
+        <img src="https://www.amica.it/wp-content/uploads/2021/09/no-time-to-die-james-bond-daniel-craig-agente-007-q-300x300.jpg?v=1116863" alt=""/>
+
+		
+		    </a>
+
+	
+	</div>                </div> <!-- /#masonry -->
+						<div class="sidebar-fixed">
+			<div class="grid">
+
+			<!-- START FRAME1 - FRAME2 -->
+			<div id="sticky-container-frame1-outer" class="sticky-container-outer">
+			<div id="sticky-container-frame1-inner" class="sticky-container-inner">
+			<div class="item1" id="rcsad_Frame1"></div>
+				<!-- INSERIRE QUI TUTTI GLI EVENTUALI ELEMENTI EDITORIALI SUCCESSIVI A FRAME1 FINO A FRAME2 ESCLUSO -->
+				<div class="item1 adv adv-bottom" id="revive">
+						<div class="sidebar-item">
+    <div id="amica_spalla_dx_01"></div>
+</div>
+<div class="sidebar-item">
+    <div id="amica_spalla_dx_02"></div>
+</div>				</div>
+				
+    <div class="item1 h1 quote quote-frase">
+        <div class="title">Alba</div>
+        <blockquote>
+			"Non sapendo quando l'alba arriverà, tengo aperta ogni porta"
+            <span class="author">
+                Emily Dickinson            </span>
+        </blockquote>
+    </div>
+
+			</div>
+			</div>
+			<!-- FINISH FRAME1 - FRAME2 -->
+	
+
+			<!-- START FRAME2 - FRAME3 -->
+			<div id="sticky-container-frame2-outer" class="sticky-container-outer">
+			<div id="sticky-container-frame2-inner" class="sticky-container-inner">
+			<div class="item1" id="rcsad_Frame2"></div>
+			
+        <div class="item daily_tips social-stream-amica social-stream-amica-ig aaaaa">
+            <div class="social-stream-amica-container">
+                            <a href="//instagram.com/amicamagazine" style="width: 300px;display: block;z-index: 999999;height: 268px;position: absolute;top: 0;left: 0;" data-wpel-link="external" rel="external noopener noreferrer"></a>
+              <!-- SnapWidget amicamagazine -->
+              <iframe src="https://snapwidget.com/embed/949932" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;  width:300px; height:300px"></iframe>
+
+              <a href="//instagram.com/amicamagazine" target="_blank" title="" data-wpel-link="external" rel="external noopener noreferrer">
+                <div class="social-stream-amica-bottom">
+                    <span class="social-stream-amica-social-logo"></span>
+                    <span class="social-stream-amica-social-name">Instagram</span>
+                </div>
+              </a>
+              
+            </div>
+        </div>
+
+				<!-- INSERIRE QUI TUTTI GLI EVENTUALI ELEMENTI EDITORIALI SUCCESSIVI A FRAME2 FINO A FRAME3 ESCLUSO -->
+			</div>
+			</div>
+			<!-- FINISH FRAME1 - FRAME3 -->
+
+
+
+			<!-- START FRAME3 - FINE COLONNA -->
+			<div id="sticky-container-frame3-outer" class="sticky-container-outer">
+			<div id="sticky-container-frame3-inner" class="sticky-container-inner">
+			<div class="item1" id="rcsad_Frame3"></div>
+			
+    <div class="item daily_tips social-stream-amica social-stream-amica-fb">
+        <div class="social-stream-amica-container">
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Famicamagazine&tabs=timeline&width=300&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"
+                    width="300" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowTransparency="true" allow="encrypted-media"></iframe>
+        </div>
+    </div>
+
+				<!-- INSERIRE QUI TUTTI GLI EVENTUALI ELEMENTI EDITORIALI SUCCESSIVI A FRAME3 FINO A FINE COLONNA -->
+			</div>
+			</div>
+			<!-- FINISH FRAME3 - FINE COLONNA -->
+
+			<!-- <div class="item1 adv adv-bottom" id="f2">
+				<php require_once 'includes/adv/frame2.php'; ?>
+				FRAME 3
+			</div>
+			<php get_template_part('slideradv/socials-fb'); ?> -->
+			<!-- <h4>
+			Sidebar
+			</h4>
+			<p>
+			Text
+			<br>20.Jan 2016
+			</p>
+			<p>
+			Text
+			<br>20.Jan 2016
+			</p>
+			<p>
+			Text
+			<br>20.Jan 2016
+			</p>
+			<p>
+			Text
+			<br>20.Jan 2016
+			</p>
+			<p>
+			Text
+			<br>20.Jan 2016
+			</p>
+			<p>
+			Text
+			<br>20.Jan 2016
+			</p>
+			<p>
+			Text
+			<br>20.Jan 2016
+			</p> -->
+		</div>
+		            </div>
+
+        </div><!-- /#content index -->
+
+    </div><!-- /#main -->
+	<div id="footer-wrapper">
+	<footer id="footer" class="cf">
+		<div class="centercol">
+					<div class="socials cf">
+				<ul>
+						<li>
+                            <a href="//instagram.com/amicamagazine" target="_blank" data-wpel-link="external" rel="external noopener noreferrer">
+								<!-- <img src="/img_layout/ico-fb.png" alt=""></a> -->
+								<img src="https://www.amica.it/wp-content/themes/amica/img_layout/new_instagram_icon.png?v=20211004164140" width="20px" alt="Instagram">
+                            </a>
+						</li>
+						<li>
+                            <a href="https://www.facebook.com/amicamagazine" target="_blank" data-wpel-link="external" rel="external noopener noreferrer">
+								<!-- <img src="/img_layout/instagram_icon_small.png" alt="Instagram"> -->
+								<img src="https://www.amica.it/wp-content/themes/amica/img_layout/new_facebook_icon.png?v=20211004164140" width="20px" alt="Instagram">
+							</a>
+						</li>
+                        <li>
+                            <div class="FL">
+                                <a href="//www.amica.it/mappa/" data-wpel-link="internal">MAPPA</a>
+                                /
+                                <a href="https://www.amica.it/feed/" data-wpel-link="internal">RSS</a>
+                                /
+                                <a href="http://www.cairorcsmedia.it/site/home/mezzi/digital-adv/la-mappa-dellofferta/web/amica.it.html" target="_blank" data-wpel-link="internal">PUBBLICIT&Agrave;</a>
+                                /
+                                <a href="//www.amica.it/contatti/" data-wpel-link="internal">CONTATTI</a>
+                                /
+                                <a href="//www.amica.it/dati-societari/" data-wpel-link="internal">DATI SOCIETARI</a>
+                                /
+                                <a href="https://www.amica.it/informativa-privacy-e-cookie-policy/" data-wpel-link="internal">COOKIE POLICY E PRIVACY</a>
+                                / 2021 All rights reserved
+                            </div>
+                        </li>
+				<!-- <li><a href="javascript:;" data-wpel-link="internal"><img src="https://www.amica.it/wp-content/themes/amica/img_layout/ico-tw.png" alt=""></a></li> -->
+					<!-- <li><a href="javascript:;" data-wpel-link="internal"><img src="https://www.amica.it/wp-content/themes/amica/img_layout/ico-inst.png" alt=""></a></li> -->
+					<!-- <li><a href="javascript:;" data-wpel-link="internal"><img src="https://www.amica.it/wp-content/themes/amica/img_layout/ico-rss.png" alt=""></a></li> -->
+					</ul>
+							</div><!-- /.socials -->
+			<div class="bottom cf">
+			</div><!-- /.bottom -->
+		</div>
+	</footer><!-- /#footer -->
+</div><!-- /#footer-wrapper -->
+
+<!-- ngg_resource_manager_marker --><script type='text/javascript' src='https://www.amica.it/wp-includes/js/wp-embed.min.js?v=20211004164140'></script>
+		  
+			<script type="text/javascript">
+				window.addEventListener('cmpFileLoaded', function() {
+					if (typeof privacyok != "undefined" && privacyok==true) {
+						window._taboola = window._taboola || [];
+						_taboola.push({flush: true});
+					}									
+				}, true);
+			</script>
+		</div><!-- /#site -->
+
+<!-- anti adblocker-->
+<script src="//components2.rcsobjects.it/rcs_anti-adblocker-verticali/v1/index.min.js"></script>
+<script type="text/javascript">
+    document.addEventListener('adblockActivated', function (event)  {
+      var RcsAntiAdblockerVerticaliComponent = new RcsAntiAdblockerVerticali('amica');
+      RcsAntiAdblockerVerticaliComponent.render();
+    });
+</script>
+
+
+<!-- CODICE AGGIUNTO PER REMARKETING GOOGLE --><!-- Google Code for Remarketing Tag --><!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+	/* <![CDATA[ */
+	var google_conversion_id = 977303262;
+	var google_custom_params = window.google_tag_params;
+	var google_remarketing_only = true;
+	/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+<noscript>
+	<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/977303262/?value=0&amp;guid=ON&amp;script=0"/>
+	</div>
+</noscript><!-- FINE CODICE AGGIUNTO PER REMARKETING GOOGLE -->
+
+<script type="text/javascript" src="//components2.rcsobjects.it/rcs_cpmt/v1/distro/amica_ct.js"></script>
+ 
+
+<!-- SiteCatalyst -->
+<script language="JavaScript" type="text/javascript" src="https://components2.rcsobjects.it/rcs_data-tracking/v1/distro/openx/amica/openx_async.js?v=20211005"></script>
+<script language="JavaScript" type="text/javascript" src="https://components2.rcsobjects.it/rcs_omniture/v1/distro/amica/s_code_amica_prod.js?v=20211005"></script>
+<script language="JavaScript" type="text/javascript" src="https://components2.rcsobjects.it/rcs_omniture/v1/distro/amica/track_functions.js?v=20211005"></script>
+<script language="JavaScript" type="text/javascript"><!--
+	/* You may give each page an identifying name, server, and channel on
+	the next lines. */
+
+			/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+	var s_code = s.t();
+	if (s_code) document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript"><!--
+	if (navigator.appVersion.indexOf('MSIE') >= 0) document.write(unescape('%3C') + '\!-' + '-')
+	//--></script>
+<noscript><img src="//metrics.rcsmetrics.it/b/ss/rcsglobal/1/JS-1.1.1--NS/0" height="1" width="1" border="0" alt=""/>
+</noscript><!--/DO NOT REMOVE/--><!-- End SiteCatalyst -->
+
+
+<!-- START Nielsen Online SiteCensus V6.0 --><!-- COPYRIGHT 2012 Nielsen Online -->
+<script type="text/javascript" src="https://cdn-gl.imrworldwide.com/v60.js"></script>
+<script type="text/javascript">
+	var pvar = {cid: "rcs-it", content: "0", server: "secure-it"};
+	var feat = {check_cookie: 0};
+	var trac = nol_t(pvar, feat);
+	trac.record().post();
+</script>
+<noscript>
+	<div>
+		<img src="//secure-it.imrworldwide.com/cgi-bin/m?ci=rcs-it&amp;cg=0&amp;cc=0&amp;ts=noscript" width="1" height="1" alt=""/>
+	</div>
+</noscript><!-- END Nielsen Online SiteCensus V6.0 -->
+
+</div>
+	
+</body></html></div>
